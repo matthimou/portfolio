@@ -1,0 +1,42 @@
+<svg width="1600" height="900" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="fintech-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#764ba2;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f093fb;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1600" height="900" fill="url(#fintech-grad)"/>
+
+  <!-- Abstract UI Elements - Dashboard Style -->
+  <rect x="80" y="100" width="600" height="280" rx="12" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+  <rect x="100" y="130" width="200" height="8" rx="4" fill="rgba(255,255,255,0.6)"/>
+  <rect x="100" y="160" width="280" height="8" rx="4" fill="rgba(255,255,255,0.4)"/>
+  <rect x="100" y="190" width="150" height="8" rx="4" fill="rgba(255,255,255,0.4)"/>
+
+  <!-- Chart-like elements -->
+  <line x1="120" y1="320" x2="180" y2="280" stroke="rgba(255,255,255,0.8)" stroke-width="3"/>
+  <line x1="180" y1="280" x2="240" y2="300" stroke="rgba(255,255,255,0.8)" stroke-width="3"/>
+  <line x1="240" y1="300" x2="300" y2="260" stroke="rgba(255,255,255,0.8)" stroke-width="3"/>
+  <line x1="300" y1="260" x2="360" y2="270" stroke="rgba(255,255,255,0.8)" stroke-width="3"/>
+
+  <!-- Side cards -->
+  <rect x="720" y="100" width="380" height="180" rx="12" fill="rgba(255,255,255,0.12)"/>
+  <rect x="750" y="130" width="120" height="80" rx="8" fill="rgba(255,255,255,0.2)"/>
+  <rect x="910" y="130" width="150" height="30" rx="4" fill="rgba(255,255,255,0.3)"/>
+
+  <rect x="720" y="310" width="380" height="180" rx="12" fill="rgba(255,255,255,0.12)"/>
+
+  <!-- Grid pattern overlay -->
+  <path d="M 0 0 L 1600 0 L 1600 900 L 0 900 Z" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1" stroke-dasharray="40,40"/>
+
+  <!-- Text -->
+  <text x="800" y="520" font-family="Arial, sans-serif" font-size="56" fill="white" text-anchor="middle" font-weight="bold">
+    Enterprise Fintech Platform
+  </text>
+  <text x="800" y="580" font-family="Arial, sans-serif" font-size="22" fill="rgba(255,255,255,0.7)" text-anchor="middle">
+    Design System • Dashboard • Analytics
+  </text>
+</svg>

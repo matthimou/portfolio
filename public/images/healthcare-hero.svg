@@ -1,0 +1,56 @@
+<svg width="1600" height="900" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="health-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00d2ff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#3a7bd5;stop-opacity:1" />
+    </linearGradient>
+    <pattern id="dots" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+      <circle cx="10" cy="10" r="2" fill="rgba(255,255,255,0.1)"/>
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1600" height="900" fill="url(#health-grad)"/>
+  <rect width="1600" height="900" fill="url(#dots)"/>
+
+  <!-- Mobile Phone Mockup -->
+  <rect x="600" y="120" width="400" height="660" rx="40" fill="white" stroke="rgba(0,0,0,0.1)" stroke-width="8"/>
+  <rect x="620" y="160" width="360" height="580" rx="8" fill="#f5f5f5"/>
+
+  <!-- Phone Screen Content -->
+  <!-- Header -->
+  <rect x="640" y="180" width="120" height="30" rx="15" fill="#00d2ff"/>
+  <circle cx="920" cy="195" r="15" fill="#3a7bd5"/>
+
+  <!-- Card elements -->
+  <rect x="640" y="240" width="320" height="80" rx="12" fill="white"/>
+  <rect x="660" y="260" width="60" height="40" rx="8" fill="#e3f2fd"/>
+  <rect x="740" y="265" width="180" height="8" rx="4" fill="#ddd"/>
+  <rect x="740" y="285" width="120" height="8" rx="4" fill="#eee"/>
+
+  <rect x="640" y="340" width="320" height="80" rx="12" fill="white"/>
+  <rect x="660" y="360" width="60" height="40" rx="8" fill="#e8f5e9"/>
+
+  <rect x="640" y="440" width="320" height="120" rx="12" fill="white"/>
+  <circle cx="690" cy="480" r="20" fill="#fff3e0"/>
+  <circle cx="750" cy="480" r="20" fill="#fce4ec"/>
+  <circle cx="810" cy="480" r="20" fill="#e1f5fe"/>
+
+  <!-- Floating health icons -->
+  <circle cx="280" cy="250" r="50" fill="rgba(255,255,255,0.15)"/>
+  <text x="280" y="265" font-size="40" text-anchor="middle" fill="white">+</text>
+
+  <circle cx="1320" cy="350" r="60" fill="rgba(255,255,255,0.12)"/>
+  <circle cx="1320" cy="350" r="35" fill="none" stroke="white" stroke-width="4"/>
+
+  <circle cx="200" cy="600" r="45" fill="rgba(255,255,255,0.1)"/>
+  <path d="M 200 580 L 200 620 M 180 600 L 220 600" stroke="white" stroke-width="4"/>
+
+  <!-- Text -->
+  <text x="800" y="800" font-family="Arial, sans-serif" font-size="56" fill="white" text-anchor="middle" font-weight="bold">
+    Patient Care Mobile App
+  </text>
+  <text x="800" y="860" font-family="Arial, sans-serif" font-size="22" fill="rgba(255,255,255,0.8)" text-anchor="middle">
+    Healthcare • Mobile-First • User Research
+  </text>
+</svg>

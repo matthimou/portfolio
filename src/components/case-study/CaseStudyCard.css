@@ -1,0 +1,31 @@
+/* Case Study Card Styles */
+
+.case-study-card {
+  padding: var(--space-3xl) 0;
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.case-study-card:last-child {
+  border-bottom: none;
+}
+
+.case-study-card__container {
+  position: relative;
+}
+
+.case-study-card__number {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-tertiary);
+  text-align: center;
+  margin-bottom: var(--space-xl);
+  letter-spacing: 0.1em;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .case-study-card {
+    padding: var(--space-2xl) 0;
+  }
+}

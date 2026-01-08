@@ -1,0 +1,138 @@
+/* Hero Section Styles */
+
+.hero {
+  min-height: calc(50vh - 60px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-lg) var(--content-padding-mobile);
+  margin-top: var(--nav-height);
+  position: relative;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(194, 65, 12, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(254, 215, 170, 0.2) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(231, 229, 228, 0.5) 0%, transparent 100%),
+    linear-gradient(135deg, #F5F5F4 0%, #E7E5E4 50%, #F5F5F4 100%);
+  background-size: cover;
+  background-position: center;
+}
+
+/* Add subtle pattern overlay */
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(194, 65, 12, 0.08) 2px,
+      rgba(194, 65, 12, 0.08) 4px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 2px,
+      rgba(194, 65, 12, 0.08) 2px,
+      rgba(194, 65, 12, 0.08) 4px
+    );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Remove old decorative circle */
+.hero::after {
+  display: none;
+}
+
+.hero__content {
+  text-align: center;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity var(--duration-slow) var(--easing-default),
+              transform var(--duration-slow) var(--easing-default);
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+/* Avatar */
+.hero__avatar {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: white;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.hero__avatar-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero--visible .hero__content {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hero__name {
+  font-family: var(--font-display);
+  font-size: var(--text-4xl);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+  margin: 0;
+  line-height: var(--leading-tight);
+}
+
+.hero__title {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: var(--font-weight-normal);
+  color: var(--color-text-secondary);
+  margin: 0;
+  line-height: var(--leading-normal);
+}
+
+/* Responsive */
+@media (min-width: 768px) {
+  .hero {
+    padding: var(--space-2xl) var(--content-padding-tablet);
+  }
+
+  .hero__name {
+    font-size: calc(var(--text-5xl) * 1.2);
+  }
+
+  .hero__title {
+    font-size: var(--text-3xl);
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero {
+    padding: var(--space-3xl) var(--content-padding-desktop);
+  }
+
+  .hero__name {
+    font-size: calc(var(--text-5xl) * 1.5);
+  }
+}
+
+@media (max-width: 640px) {
+  .hero__name {
+    font-size: var(--text-4xl);
+  }
+
+  .hero__title {
+    font-size: var(--text-xl);
+  }
+}

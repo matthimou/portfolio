@@ -1,0 +1,103 @@
+/* Case Study Hero Styles */
+
+.case-study-hero {
+  margin-bottom: var(--space-3xl);
+}
+
+.case-study-hero__meta {
+  margin-bottom: var(--space-2xl);
+  text-align: center;
+}
+
+.case-study-hero__title {
+  font-family: var(--font-display);
+  font-size: var(--text-3xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-md) 0;
+  line-height: var(--leading-tight);
+}
+
+.case-study-hero__details,
+.case-study-hero__team {
+  font-size: var(--text-base);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+}
+
+.case-study-hero__client,
+.case-study-hero__role {
+  font-weight: var(--font-weight-medium);
+}
+
+.case-study-hero__separator {
+  color: var(--color-text-tertiary);
+}
+
+.case-study-hero__team-info {
+  font-size: var(--text-sm);
+}
+
+/* Hero Image */
+.case-study-hero__image-wrapper {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  position: relative;
+}
+
+.case-study-hero__image {
+  width: 100%;
+  height: auto;
+  display: block;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  background-color: var(--color-bg-secondary);
+}
+
+.case-study-hero__caption {
+  text-align: center;
+  font-size: var(--text-sm);
+  color: var(--color-text-tertiary);
+  margin-top: var(--space-md);
+  margin-bottom: 0;
+  padding: 0 var(--content-padding-mobile);
+}
+
+/* Responsive */
+@media (min-width: 768px) {
+  .case-study-hero__title {
+    font-size: var(--text-4xl);
+  }
+
+  .case-study-hero__caption {
+    padding: 0 var(--content-padding-tablet);
+  }
+}
+
+@media (min-width: 1024px) {
+  .case-study-hero__caption {
+    padding: 0 var(--content-padding-desktop);
+  }
+}
+
+@media (max-width: 640px) {
+  .case-study-hero__title {
+    font-size: var(--text-2xl);
+  }
+
+  .case-study-hero__details,
+  .case-study-hero__team {
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+
+  .case-study-hero__separator {
+    display: none;
+  }
+}

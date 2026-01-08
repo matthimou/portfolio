@@ -1,0 +1,47 @@
+/* Case Study Testimonial Styles */
+
+.case-study-testimonial {
+  margin: var(--space-2xl) 0;
+  padding: var(--space-xl);
+  background-color: var(--color-accent-subtle);
+  border-left: 4px solid var(--color-accent-primary);
+  border-radius: 4px;
+}
+
+.case-study-testimonial__quote {
+  font-size: var(--text-lg);
+  font-style: italic;
+  color: var(--color-text-primary);
+  line-height: var(--leading-relaxed);
+  margin: 0 0 var(--space-lg) 0;
+}
+
+.case-study-testimonial__footer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.case-study-testimonial__author {
+  font-family: var(--font-display);
+  font-size: var(--text-base);
+  font-weight: var(--font-weight-semibold);
+  font-style: normal;
+  color: var(--color-text-primary);
+}
+
+.case-study-testimonial__role {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .case-study-testimonial {
+    padding: var(--space-lg);
+  }
+
+  .case-study-testimonial__quote {
+    font-size: var(--text-base);
+  }
+}

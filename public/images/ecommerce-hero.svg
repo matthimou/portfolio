@@ -1,0 +1,70 @@
+<svg width="1600" height="900" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="ecom-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f093fb;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#f5576c;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ff9966;stop-opacity:1" />
+    </linearGradient>
+    <pattern id="grid" width="80" height="80" patternUnits="userSpaceOnUse">
+      <path d="M 80 0 L 0 0 0 80" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1600" height="900" fill="url(#ecom-grad)"/>
+  <rect width="1600" height="900" fill="url(#grid)"/>
+
+  <!-- Checkout Flow Visualization -->
+  <!-- Step 1 - Cart -->
+  <rect x="120" y="200" width="380" height="500" rx="16" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+  <circle cx="160" cy="240" r="12" fill="white"/>
+  <text x="190" y="250" font-family="Arial, sans-serif" font-size="24" fill="white" font-weight="bold">Cart</text>
+
+  <!-- Cart items -->
+  <rect x="150" y="280" width="320" height="80" rx="8" fill="rgba(255,255,255,0.2)"/>
+  <rect x="170" y="300" width="60" height="40" rx="4" fill="rgba(255,255,255,0.3)"/>
+  <rect x="250" y="310" width="180" height="10" rx="5" fill="rgba(255,255,255,0.5)"/>
+
+  <rect x="150" y="380" width="320" height="80" rx="8" fill="rgba(255,255,255,0.2)"/>
+  <rect x="170" y="400" width="60" height="40" rx="4" fill="rgba(255,255,255,0.3)"/>
+
+  <!-- Arrow -->
+  <path d="M 520 450 L 580 450" stroke="white" stroke-width="4" fill="none"/>
+  <path d="M 565 435 L 580 450 L 565 465" stroke="white" stroke-width="4" fill="none"/>
+
+  <!-- Step 2 - Payment -->
+  <rect x="600" y="200" width="380" height="500" rx="16" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+  <circle cx="640" cy="240" r="12" fill="white"/>
+  <text x="670" y="250" font-family="Arial, sans-serif" font-size="24" fill="white" font-weight="bold">Payment</text>
+
+  <!-- Form fields -->
+  <rect x="630" y="300" width="320" height="50" rx="8" fill="rgba(255,255,255,0.25)"/>
+  <rect x="650" y="315" width="150" height="20" rx="4" fill="rgba(255,255,255,0.4)"/>
+
+  <rect x="630" y="370" width="150" height="50" rx="8" fill="rgba(255,255,255,0.25)"/>
+  <rect x="790" y="370" width="160" height="50" rx="8" fill="rgba(255,255,255,0.25)"/>
+
+  <rect x="630" y="440" width="320" height="50" rx="8" fill="rgba(255,255,255,0.25)"/>
+
+  <!-- CTA Button -->
+  <rect x="630" y="520" width="320" height="60" rx="30" fill="white"/>
+  <text x="790" y="558" font-family="Arial, sans-serif" font-size="22" fill="#f5576c" text-anchor="middle" font-weight="bold">Complete Order</text>
+
+  <!-- Arrow -->
+  <path d="M 1000 450 L 1060 450" stroke="white" stroke-width="4" fill="none"/>
+  <path d="M 1045 435 L 1060 450 L 1045 465" stroke="white" stroke-width="4" fill="none"/>
+
+  <!-- Step 3 - Confirmation -->
+  <rect x="1080" y="300" width="380" height="300" rx="16" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+  <circle cx="1270" cy="400" r="50" fill="rgba(255,255,255,0.3)"/>
+  <path d="M 1250 400 L 1265 415 L 1295 380" stroke="white" stroke-width="6" fill="none"/>
+  <text x="1270" y="490" font-family="Arial, sans-serif" font-size="24" fill="white" text-anchor="middle" font-weight="bold">Success!</text>
+
+  <!-- Text -->
+  <text x="800" y="780" font-family="Arial, sans-serif" font-size="56" fill="white" text-anchor="middle" font-weight="bold">
+    Checkout Optimization
+  </text>
+  <text x="800" y="840" font-family="Arial, sans-serif" font-size="22" fill="rgba(255,255,255,0.85)" text-anchor="middle">
+    E-commerce • Conversion • A/B Testing
+  </text>
+</svg>

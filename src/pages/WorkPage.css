@@ -1,0 +1,82 @@
+/* Work Page Styles */
+
+.work-page {
+  min-height: calc(100vh - var(--nav-height));
+  padding: calc(var(--nav-height) + var(--space-3xl)) 0 var(--space-3xl) 0;
+  background-color: var(--color-bg-primary);
+}
+
+.work-page__header {
+  text-align: center;
+  margin-bottom: var(--space-3xl);
+}
+
+.work-page__heading {
+  font-size: var(--text-4xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-lg);
+}
+
+.work-page__intro {
+  font-size: var(--text-lg);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-relaxed);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Grid Layout - Asymmetric for visual interest */
+.work-page__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-xl);
+  margin-top: var(--space-3xl);
+}
+
+/* First item (featured) spans 2 columns on desktop */
+.work-page__grid > :first-child {
+  grid-column: span 2;
+}
+
+/* Responsive Grid */
+@media (min-width: 1024px) {
+  .work-page__grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-2xl);
+  }
+
+  /* Featured item spans 2 columns */
+  .work-page__grid > :first-child {
+    grid-column: span 2;
+  }
+
+  /* Second item spans 1 column (to create asymmetry) */
+  .work-page__grid > :nth-child(2) {
+    grid-column: span 1;
+  }
+
+  /* Third item spans 2 columns */
+  .work-page__grid > :nth-child(3) {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 768px) {
+  .work-page {
+    padding: calc(var(--nav-height) + var(--space-2xl)) 0 var(--space-2xl) 0;
+  }
+
+  .work-page__heading {
+    font-size: var(--text-3xl);
+  }
+
+  .work-page__grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+
+  .work-page__grid > :first-child {
+    grid-column: span 1;
+  }
+}
