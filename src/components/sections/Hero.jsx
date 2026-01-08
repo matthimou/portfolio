@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import VideoBackground from '../ui/VideoBackground'
 import './Hero.css'
 
-const Hero = ({ name = 'Your Name', title = 'Design Director' }) => {
+const Hero = ({ name = 'Your Name', title = 'Design Director', hideBackground = false }) => {
   const [isVisible, setIsVisible] = useState(false)
 
   useEffect(() => {
@@ -15,7 +15,7 @@ const Hero = ({ name = 'Your Name', title = 'Design Director' }) => {
       className={`hero ${isVisible ? 'hero--visible' : ''}`}
       aria-label="Introduction"
     >
-      <VideoBackground />
+      {!hideBackground && <VideoBackground />}
       <div className="hero__content">
         <div className="hero__avatar">
           <img

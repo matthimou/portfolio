@@ -1,11 +1,11 @@
 /* Hero Section Styles */
 
 .hero {
-  min-height: calc(35vh - 60px);
+  min-height: calc(15vh - 60px);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: var(--space-md) var(--content-padding-mobile);
+  padding: var(--space-xs) var(--content-padding-mobile);
   margin-top: var(--nav-height);
   position: relative;
   overflow: hidden;
@@ -68,7 +68,7 @@
 /* Responsive */
 @media (min-width: 768px) {
   .hero {
-    padding: var(--space-xl) var(--content-padding-tablet);
+    padding: var(--space-sm) var(--content-padding-tablet);
   }
 
   .hero__avatar {
@@ -87,7 +87,7 @@
 
 @media (min-width: 1024px) {
   .hero {
-    padding: var(--space-2xl) var(--content-padding-desktop);
+    padding: var(--space-md) var(--content-padding-desktop);
   }
 
   .hero__name {

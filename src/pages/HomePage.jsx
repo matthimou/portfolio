@@ -1,42 +1,152 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Hero from '../components/sections/Hero'
+import VideoBackground from '../components/ui/VideoBackground'
 import { caseStudies } from '../data/caseStudies'
+import LeapnetLogo from '../assets/LeapnetLogo.png'
+import Logo212 from '../assets/212Logo.png'
+import OrbitzLogo from '../assets/OrbitzLogo.png'
+import DateableLogo from '../assets/DateableLogo.png'
+import GrouponLogo from '../assets/GrouponLogo.png'
+import DoorDashLogo from '../assets/DoorDashLogo.png'
+import leapnetDesc from '../data/experience/leapnet.txt?raw'
+import logo212Desc from '../data/experience/212.txt?raw'
+import orbitzDesc from '../data/experience/orbitz.txt?raw'
+import dateableDesc from '../data/experience/dateable.txt?raw'
+import grouponDesc from '../data/experience/groupon.txt?raw'
+import doordashDesc from '../data/experience/doordash.txt?raw'
 import './HomePage.css'
 
-const CareerPath = () => (
-  <svg viewBox="0 0 800 120" className="experience__illustration" preserveAspectRatio="xMidYMid meet">
-    {/* Path line */}
-    <path
-      d="M 0 60 Q 100 60 150 40 T 300 60 T 450 35 T 600 55 T 800 30"
-      fill="none"
-      stroke="rgba(194, 65, 12, 0.15)"
-      strokeWidth="2"
-      strokeDasharray="8 4"
-      className="experience__path-line"
-    />
+const CareerPath = () => {
+  const [activeCompany, setActiveCompany] = useState(null)
+  const [isExpanded, setIsExpanded] = useState(false)
+  const [hoveredCompany, setHoveredCompany] = useState(null)
 
-    {/* Milestone nodes */}
-    {[
-      { x: 80, y: 55, label: '2012', sublabel: 'Designer' },
-      { x: 230, y: 50, label: '2016', sublabel: 'Senior' },
-      { x: 400, y: 45, label: '2019', sublabel: 'Lead' },
-      { x: 580, y: 50, label: '2022', sublabel: 'Director' },
-      { x: 720, y: 35, label: 'Now', sublabel: 'Leadership' },
-    ].map((node, i) => (
-      <g key={i} className="experience__node" style={{ animationDelay: `${i * 150}ms` }}>
-        {/* Pulse ring */}
-        <circle cx={node.x} cy={node.y} r="8" fill="none" stroke="rgba(194, 65, 12, 0.3)" strokeWidth="1" className="experience__pulse" />
-        {/* Node dot */}
-        <circle cx={node.x} cy={node.y} r="5" fill="var(--color-accent-primary)" />
-        {/* Year label */}
-        <text x={node.x} y={node.y - 18} textAnchor="middle" className="experience__label">{node.label}</text>
-        {/* Role label */}
-        <text x={node.x} y={node.y + 28} textAnchor="middle" className="experience__sublabel">{node.sublabel}</text>
-      </g>
-    ))}
-  </svg>
-)
+  const companies = [
+    { name: 'LeapNet', title: ['CTO', 'Dir Travel Practice'], start: '1995', end: '2001', years: '6 yrs', color: '#1a1a1a', logo: LeapnetLogo, size: 50, tabSize: 34, description: leapnetDesc },
+    { name: '212°', title: ['Founder', 'CEO'], start: '2001', end: '2004', years: '3 yrs', color: '#E87722', logo: Logo212, size: 42, description: logo212Desc },
+    { name: 'Orbitz', title: ['Director', 'Information Architecture'], start: '2004', end: '2012', years: '8 yrs', color: '#0099D8', logo: OrbitzLogo, size: 50, description: orbitzDesc },
+    { name: 'Dateable', title: ['Founder', 'Product/Design'], start: '2012', end: '2014', years: '1.5 yrs', color: '#5B4B9E', logo: DateableLogo, size: 36, description: dateableDesc },
+    { name: 'Groupon', title: ['Head of Design', 'Consumer + Merchant'], start: '2014', end: '2021', years: '8 yrs', color: '#53A318', logo: GrouponLogo, size: 50, description: grouponDesc },
+    { name: 'DoorDash', title: ['Director of Design', 'Core Consumer'], start: '2021', end: '2025', years: '4 yrs', color: '#FF3008', logo: DoorDashLogo, size: 50, description: doordashDesc },
+  ]
+
+  const handleCompanyClick = (index) => {
+    if (!isExpanded) {
+      setIsExpanded(true)
+      setActiveCompany(index)
+    } else {
+      setActiveCompany(index)
+    }
+  }
+
+  const handleClose = () => {
+    setIsExpanded(false)
+    setActiveCompany(null)
+  }
+
+  return (
+    <div className={`career-path ${isExpanded ? 'career-path--expanded' : ''}`}>
+      {/* Timeline View */}
+      <div className="career-path__timeline">
+        <svg viewBox="0 0 900 190" className={`experience__illustration ${hoveredCompany !== null ? 'experience__illustration--has-hover' : ''}`} preserveAspectRatio="xMidYMid meet">
+          {/* Background track */}
+          <line x1="60" y1="90" x2="760" y2="90" stroke="var(--color-border-light)" strokeWidth="1" />
+          {/* Animated progress line */}
+          <line x1="60" y1="90" x2="760" y2="90" stroke="var(--color-text-tertiary)" strokeWidth="1" className="experience__progress-line" />
+
+          {/* Company nodes */}
+          {companies.map((company, index) => {
+            const x = 60 + index * 140
+            const delay = 300 + index * 400
+            const isHovered = hoveredCompany === index
+            return (
+              <g
+                key={index}
+                className={`experience__node ${isHovered ? 'experience__node--hovered' : ''}`}
+                style={{ '--delay': `${delay}ms`, '--node-x': x, '--node-y': 28, '--company-color': company.color }}
+                onMouseEnter={() => setHoveredCompany(index)}
+                onMouseLeave={() => setHoveredCompany(null)}
+                onClick={() => handleCompanyClick(index)}
+              >
+                <circle cx={x} cy="90" r="4" fill={company.color} className="experience__dot" />
+                <circle cx={x} cy="90" r="4" fill="none" stroke={company.color} strokeWidth="1" className="experience__pulse" />
+                {/* Larger hit area */}
+                <rect x={x - 70} y="0" width="140" height="190" fill="transparent" className="experience__hit-area" />
+                {isHovered && (
+                  <circle cx={x} cy="90" r="12" fill="none" stroke={company.color} strokeWidth="2" className="experience__hover-ring" />
+                )}
+                <image
+                  href={company.logo}
+                  x={x - company.size / 2}
+                  y={28 - company.size / 2}
+                  width={company.size}
+                  height={company.size}
+                  className={`experience__logo ${isHovered ? 'experience__logo--hovered' : ''}`}
+                  preserveAspectRatio="xMidYMid meet"
+                  style={{ transformOrigin: `${x}px 28px` }}
+                />
+                <text x={x} y="58" textAnchor="middle" className="experience__years-label">{company.start}-{company.end}</text>
+                <text x={x} y="122" textAnchor="middle" className="experience__company-name">{company.name}</text>
+                {/* Titles - hidden on hover */}
+                <g className={`experience__titles ${isHovered ? 'experience__titles--hidden' : ''}`}>
+                  {company.title.map((line, i) => (
+                    <text key={i} x={x} y={152 + i * 12} textAnchor="middle" className="experience__title-label">{line}</text>
+                  ))}
+                </g>
+                {/* Tap for more - shown on hover */}
+                {isHovered && (
+                  <text x={x} y="158" textAnchor="middle" className="experience__tap-hint">Tap for more</text>
+                )}
+              </g>
+            )
+          })}
+        </svg>
+
+      </div>
+
+      {/* Expanded View */}
+      {isExpanded && (
+        <div className="career-path__expanded">
+          <button className="career-path__close" onClick={handleClose} aria-label="Close details">
+            ×
+          </button>
+          <div className="career-path__tabs">
+            {[...companies].reverse().map((company, reverseIndex) => {
+              const index = companies.length - 1 - reverseIndex
+              return (
+                <button
+                  key={index}
+                  className={`career-path__tab ${activeCompany === index ? 'career-path__tab--active' : ''}`}
+                  onClick={() => setActiveCompany(index)}
+                  style={{ '--tab-color': company.color }}
+                >
+                  <div className="career-path__tab-logo-wrapper">
+                    <img src={company.logo} alt={company.name} className="career-path__tab-logo" style={company.tabSize ? { width: company.tabSize, height: company.tabSize } : {}} />
+                  </div>
+                  <span className="career-path__tab-name">{company.name}</span>
+                  <span className="career-path__tab-years">{company.start}-{company.end}</span>
+                </button>
+              )
+            })}
+          </div>
+          <div className="career-path__content">
+            {activeCompany !== null && (
+              <div className="career-path__detail" style={{ '--detail-color': companies[activeCompany].color }}>
+                <div className="career-path__detail-header">
+                  <h3 className="career-path__detail-company">{companies[activeCompany].name}</h3>
+                  <p className="career-path__detail-title">{companies[activeCompany].title.join(' · ')}</p>
+                  <p className="career-path__detail-period">{companies[activeCompany].start}-{companies[activeCompany].end}</p>
+                </div>
+                <p className="career-path__detail-description">{companies[activeCompany].description}</p>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+    </div>
+  )
+}
 
 const HomePage = () => {
   const [cardsVisible, setCardsVisible] = useState(false)
@@ -76,10 +186,12 @@ const HomePage = () => {
 
   return (
     <div className="home-page">
-      <Hero name="Matthew Hanson" title="Design Leadership" />
+      <div className="hero-experience-wrapper">
+        <VideoBackground />
+        <Hero name="Matthew Hanson" title="Design Leadership" hideBackground />
 
-      {/* Experience Section */}
-      <section className="experience" ref={experienceRef}>
+        {/* Experience Section */}
+        <section className="experience" ref={experienceRef}>
         <div className="container">
           <div className={`experience__content ${experienceVisible ? 'experience__content--visible' : ''}`}>
             <div className="experience__header">
@@ -91,6 +203,7 @@ const HomePage = () => {
           </div>
         </div>
       </section>
+      </div>
 
       {/* Featured Work Section */}
       <section className="home-work">
