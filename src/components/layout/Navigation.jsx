@@ -1,16 +1,48 @@
-import { Link, NavLink } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import { Link, NavLink, useLocation } from 'react-router-dom'
 import { useScrollProgress } from '../../hooks/useScrollProgress'
 import { navigationLinks, brandName } from '../../data/navigation'
 import './Navigation.css'
 
 const Navigation = () => {
   const scrollProgress = useScrollProgress()
+  const location = useLocation()
+  const isHomePage = location.pathname === '/'
+
+  const [scrollY, setScrollY] = useState(0)
+  const [showBrand, setShowBrand] = useState(!isHomePage)
+
+  // Track scroll position
+  useEffect(() => {
+    const handleScroll = () => setScrollY(window.scrollY)
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  // Show/hide brand based on scroll (only on homepage)
+  useEffect(() => {
+    if (!isHomePage) {
+      setShowBrand(true)
+      return
+    }
+
+    const scrollThreshold = 150
+    setShowBrand(scrollY > scrollThreshold)
+  }, [scrollY, isHomePage])
+
+  // Reset when navigating
+  useEffect(() => {
+    setShowBrand(isHomePage ? scrollY > 150 : true)
+  }, [location.pathname, isHomePage, scrollY])
 
   return (
     <nav className="navigation" role="navigation" aria-label="Main navigation">
       <div className="navigation__container">
         {/* Brand/Logo */}
-        <Link to="/" className="navigation__brand">
+        <Link
+          to="/"
+          className={`navigation__brand ${showBrand ? 'navigation__brand--visible' : ''}`}
+        >
           {brandName}
         </Link>
 

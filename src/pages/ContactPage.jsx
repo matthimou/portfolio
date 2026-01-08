@@ -1,10 +1,17 @@
+import { useEffect, useState } from 'react'
 import './ContactPage.css'
 
 const ContactPage = () => {
+  const [isVisible, setIsVisible] = useState(false)
+
+  useEffect(() => {
+    setTimeout(() => setIsVisible(true), 100)
+  }, [])
+
   return (
     <div className="contact-page">
       <div className="container">
-        <section className="contact-page__content">
+        <section className={`contact-page__content ${isVisible ? 'contact-page__content--visible' : ''}`}>
           <h1 className="contact-page__heading">Get in Touch</h1>
           <p className="contact-page__intro">
             Interested in working together? I'd love to hear about your project.
