@@ -269,7 +269,7 @@ const HomePage = () => {
       {/* Footer */}
       <footer className="home-footer">
         <div className="container">
-          <p className="home-footer__text">I vibecoded this, so please excuse any errors</p>
+          <p className="home-footer__text">I vibecoded this, so any glitches are on Claude</p>
           <a
             href="https://github.com/matthimou/portfolio"
             target="_blank"
