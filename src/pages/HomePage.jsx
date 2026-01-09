@@ -112,6 +112,16 @@ const CareerPath = () => {
               <path d="M400 180 L410 190 L420 180" fill="none" stroke="var(--color-text-tertiary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="experience__arrow experience__arrow--2" />
             </g>
           )}
+
+          {/* Collapse arrows when expanded */}
+          {isExpanded && (
+            <g className="experience__collapse-hint" onClick={handleClose} style={{ cursor: 'pointer' }}>
+              {/* Invisible hit area */}
+              <rect x="380" y="160" width="60" height="40" fill="transparent" />
+              <path d="M400 182 L410 172 L420 182" fill="none" stroke="var(--color-accent-primary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="experience__arrow experience__arrow--up-1" />
+              <path d="M400 190 L410 180 L420 190" fill="none" stroke="var(--color-accent-primary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="experience__arrow experience__arrow--up-2" />
+            </g>
+          )}
         </svg>
 
       </div>
@@ -119,9 +129,6 @@ const CareerPath = () => {
       {/* Expanded View */}
       {isExpanded && (
         <div className="career-path__expanded">
-          <button className="career-path__close" onClick={handleClose} aria-label="Close details">
-            ×
-          </button>
           <div className="career-path__tabs">
             {[...companies].reverse().map((company, reverseIndex) => {
               const index = companies.length - 1 - reverseIndex
@@ -145,9 +152,7 @@ const CareerPath = () => {
             {activeCompany !== null && (
               <div className="career-path__detail" style={{ '--detail-color': companies[activeCompany].color }}>
                 <div className="career-path__detail-header">
-                  <h3 className="career-path__detail-company">{companies[activeCompany].name}</h3>
-                  <p className="career-path__detail-title">{companies[activeCompany].title.join(' · ')}</p>
-                  <p className="career-path__detail-period">{companies[activeCompany].start}-{companies[activeCompany].end}</p>
+                  <h3 className="career-path__detail-company">{companies[activeCompany].name} <span className="career-path__detail-title">{companies[activeCompany].title.join(' · ')}</span></h3>
                 </div>
                 <div className="career-path__detail-description">
                   <ReactMarkdown>{companies[activeCompany].description}</ReactMarkdown>

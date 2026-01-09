@@ -1,1 +1,6 @@
-Advertising agency that went public during the dot com boom. Became the CTO of Quantum Leap (a web services sub of Leapnet), where I launched a travel practice and won and led our largest customer accounts including Chicago Tribune, MSNBC, Nike, US Robotics, American Airlines, Cathay Pacific Airlines, British Airways, Hilton Hotels, and many others. Before launching the travel practice I learned to go deep on new industries every 3 months, and within the travel practice I discovered my first big problem to solve online - travel - that continued into my next role.
+# Served as CTO and Travel Practice Director
+&nbsp;
+
+Joined an advertising agency that went public during the dot com boom. Became the CTO of Quantum Leap (a web services subsidiary of Leapnet). After serving as CTO for 2 years I launched a travel practice after leading the design of American Airlines first web experience. This work launched the first half of my career which was heavily focussed on leading the design efforts of travel experience teams.
+
+Clients: Chicago Tribune, MSNBC, Nike, US Robotics, American Airlines, Cathay Pacific Airlines, British Airways, Hilton Hotels, Sam's Club, Walmart.

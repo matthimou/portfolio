@@ -46,48 +46,18 @@
   pointer-events: auto;
 }
 
-/* Home icon indicator */
+/* Home arrow indicator */
 .navigation__brand::before {
-  content: '';
-  width: 6px;
-  height: 6px;
-  background-color: var(--color-accent-primary);
-  border-radius: 50%;
+  content: '←';
+  font-size: 0.9em;
+  color: var(--color-accent-primary);
   opacity: 0.6;
-  transition: opacity 0.2s ease;
-}
-
-/* Pulse ring */
-.navigation__brand::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  width: 6px;
-  height: 6px;
-  background-color: transparent;
-  border: 1.5px solid var(--color-accent-primary);
-  border-radius: 50%;
-  opacity: 0;
-  transform: scale(1);
+  transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
 .navigation__brand:hover::before {
   opacity: 1;
-}
-
-.navigation__brand:hover::after {
-  animation: pulse-ring 1s ease-out infinite;
-}
-
-@keyframes pulse-ring {
-  0% {
-    transform: scale(1);
-    opacity: 0.6;
-  }
-  100% {
-    transform: scale(3);
-    opacity: 0;
-  }
+  transform: translateX(-2px);
 }
 
 .navigation__brand:hover {

@@ -42,6 +42,12 @@ const Navigation = () => {
         <Link
           to="/"
           className={`navigation__brand ${showBrand ? 'navigation__brand--visible' : ''}`}
+          onClick={(e) => {
+            if (isHomePage) {
+              e.preventDefault()
+              window.scrollTo({ top: 0, behavior: 'smooth' })
+            }
+          }}
         >
           {brandName}
         </Link>
