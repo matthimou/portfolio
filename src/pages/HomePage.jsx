@@ -62,10 +62,10 @@ const CareerPath = () => {
           onClick={() => !isExpanded && handleCompanyClick(0)}
           style={{ cursor: isExpanded ? 'default' : 'pointer' }}
         >
-          {/* Background track */}
-          <line x1="60" y1="90" x2="760" y2="90" stroke="var(--color-border-light)" strokeWidth="1" />
+          {/* Background track - centered between logos and names */}
+          <line x1="60" y1="100" x2="760" y2="100" stroke="var(--color-border-light)" strokeWidth="1" />
           {/* Animated progress line */}
-          <line x1="60" y1="90" x2="760" y2="90" stroke="var(--color-text-tertiary)" strokeWidth="1" className="experience__progress-line" />
+          <line x1="60" y1="100" x2="760" y2="100" stroke="var(--color-text-tertiary)" strokeWidth="1" className="experience__progress-line" />
 
           {/* Company nodes */}
           {companies.map((company, index) => {
@@ -77,30 +77,32 @@ const CareerPath = () => {
                 className="experience__node"
                 style={{ '--delay': `${delay}ms`, '--company-color': company.color }}
               >
-                <circle cx={x} cy="90" r="4" fill={company.color} className="experience__dot" />
-                <circle cx={x} cy="90" r="4" fill="none" stroke={company.color} strokeWidth="1" className="experience__pulse" />
+                {/* Logo above timeline */}
                 <image
                   href={company.logo}
                   x={x - company.size / 2}
-                  y={28 - company.size / 2}
+                  y={55 - company.size / 2}
                   width={company.size}
                   height={company.size}
                   className="experience__logo"
                   preserveAspectRatio="xMidYMid meet"
                 />
-                <text x={x} y="58" textAnchor="middle" className="experience__years-label">{company.years}</text>
+                {/* Timeline dot and pulse - centered */}
+                <circle cx={x} cy="100" r="4" fill={company.color} className="experience__dot" />
+                <circle cx={x} cy="100" r="4" fill="none" stroke={company.color} strokeWidth="1" className="experience__pulse" />
                 {/* Timeline endpoint labels */}
                 {index === 0 && (
-                  <text x={x - 20} y="94" textAnchor="end" className="experience__endpoint-year">1995</text>
+                  <text x={x - 20} y="104" textAnchor="end" className="experience__endpoint-year">1995</text>
                 )}
                 {index === companies.length - 1 && (
-                  <text x={x + 20} y="94" textAnchor="start" className="experience__endpoint-year">2025</text>
+                  <text x={x + 20} y="104" textAnchor="start" className="experience__endpoint-year">2025</text>
                 )}
-                <text x={x} y="122" textAnchor="middle" className="experience__company-name">{company.name}</text>
-                {/* Titles */}
+                {/* Company name below timeline */}
+                <text x={x} y="130" textAnchor="middle" className="experience__company-name">{company.name}</text>
+                {/* Titles below company name */}
                 <g className="experience__titles">
                   {company.title.map((line, i) => (
-                    <text key={i} x={x} y={152 + i * 12} textAnchor="middle" className="experience__title-label">{line}</text>
+                    <text key={i} x={x} y={152 + i * 14} textAnchor="middle" className="experience__title-label">{line}</text>
                   ))}
                 </g>
               </g>
