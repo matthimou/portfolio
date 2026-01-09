@@ -9,18 +9,19 @@ import OrbitzLogo from '../assets/OrbitzLogo.png'
 import DateableLogo from '../assets/DateableLogo.png'
 import GrouponLogo from '../assets/GrouponLogo.png'
 import DoorDashLogo from '../assets/DoorDashLogo.png'
-import leapnetDesc from '../data/experience/leapnet.txt?raw'
-import logo212Desc from '../data/experience/212.txt?raw'
-import orbitzDesc from '../data/experience/orbitz.txt?raw'
-import dateableDesc from '../data/experience/dateable.txt?raw'
-import grouponDesc from '../data/experience/groupon.txt?raw'
-import doordashDesc from '../data/experience/doordash.txt?raw'
+import ReactMarkdown from 'react-markdown'
+import leapnetDesc from '../data/experience/leapnet.md?raw'
+import logo212Desc from '../data/experience/212.md?raw'
+import orbitzDesc from '../data/experience/orbitz.md?raw'
+import dateableDesc from '../data/experience/dateable.md?raw'
+import grouponDesc from '../data/experience/groupon.md?raw'
+import doordashDesc from '../data/experience/doordash.md?raw'
 import './HomePage.css'
 
 const CareerPath = () => {
   const [activeCompany, setActiveCompany] = useState(null)
   const [isExpanded, setIsExpanded] = useState(false)
-  const [hoveredCompany, setHoveredCompany] = useState(null)
+  const [isTimelineHovered, setIsTimelineHovered] = useState(null)
 
   const companies = [
     { name: 'LeapNet', title: ['CTO', 'Dir Travel Practice'], start: '1995', end: '2001', years: '6 yrs', color: '#1a1a1a', logo: LeapnetLogo, size: 50, tabSize: 34, description: leapnetDesc },
@@ -34,7 +35,8 @@ const CareerPath = () => {
   const handleCompanyClick = (index) => {
     if (!isExpanded) {
       setIsExpanded(true)
-      setActiveCompany(index)
+      // Always start with most recent company (DoorDash)
+      setActiveCompany(companies.length - 1)
     } else {
       setActiveCompany(index)
     }
@@ -49,7 +51,15 @@ const CareerPath = () => {
     <div className={`career-path ${isExpanded ? 'career-path--expanded' : ''}`}>
       {/* Timeline View */}
       <div className="career-path__timeline">
-        <svg viewBox="0 0 900 190" className={`experience__illustration ${hoveredCompany !== null ? 'experience__illustration--has-hover' : ''}`} preserveAspectRatio="xMidYMid meet">
+        <svg
+          viewBox="0 0 900 200"
+          className={`experience__illustration ${!isExpanded && isTimelineHovered ? 'experience__illustration--hovered' : ''}`}
+          preserveAspectRatio="xMidYMid meet"
+          onMouseEnter={() => !isExpanded && setIsTimelineHovered(true)}
+          onMouseLeave={() => setIsTimelineHovered(false)}
+          onClick={() => !isExpanded && handleCompanyClick(0)}
+          style={{ cursor: isExpanded ? 'default' : 'pointer' }}
+        >
           {/* Background track */}
           <line x1="60" y1="90" x2="760" y2="90" stroke="var(--color-border-light)" strokeWidth="1" />
           {/* Animated progress line */}
@@ -59,48 +69,49 @@ const CareerPath = () => {
           {companies.map((company, index) => {
             const x = 60 + index * 140
             const delay = 300 + index * 400
-            const isHovered = hoveredCompany === index
             return (
               <g
                 key={index}
-                className={`experience__node ${isHovered ? 'experience__node--hovered' : ''}`}
-                style={{ '--delay': `${delay}ms`, '--node-x': x, '--node-y': 28, '--company-color': company.color }}
-                onMouseEnter={() => setHoveredCompany(index)}
-                onMouseLeave={() => setHoveredCompany(null)}
-                onClick={() => handleCompanyClick(index)}
+                className="experience__node"
+                style={{ '--delay': `${delay}ms`, '--company-color': company.color }}
               >
                 <circle cx={x} cy="90" r="4" fill={company.color} className="experience__dot" />
                 <circle cx={x} cy="90" r="4" fill="none" stroke={company.color} strokeWidth="1" className="experience__pulse" />
-                {/* Larger hit area */}
-                <rect x={x - 70} y="0" width="140" height="190" fill="transparent" className="experience__hit-area" />
-                {isHovered && (
-                  <circle cx={x} cy="90" r="12" fill="none" stroke={company.color} strokeWidth="2" className="experience__hover-ring" />
-                )}
                 <image
                   href={company.logo}
                   x={x - company.size / 2}
                   y={28 - company.size / 2}
                   width={company.size}
                   height={company.size}
-                  className={`experience__logo ${isHovered ? 'experience__logo--hovered' : ''}`}
+                  className="experience__logo"
                   preserveAspectRatio="xMidYMid meet"
-                  style={{ transformOrigin: `${x}px 28px` }}
                 />
-                <text x={x} y="58" textAnchor="middle" className="experience__years-label">{company.start}-{company.end}</text>
+                <text x={x} y="58" textAnchor="middle" className="experience__years-label">{company.years}</text>
+                {/* Timeline endpoint labels */}
+                {index === 0 && (
+                  <text x={x - 20} y="94" textAnchor="end" className="experience__endpoint-year">1995</text>
+                )}
+                {index === companies.length - 1 && (
+                  <text x={x + 20} y="94" textAnchor="start" className="experience__endpoint-year">2025</text>
+                )}
                 <text x={x} y="122" textAnchor="middle" className="experience__company-name">{company.name}</text>
-                {/* Titles - hidden on hover */}
-                <g className={`experience__titles ${isHovered ? 'experience__titles--hidden' : ''}`}>
+                {/* Titles */}
+                <g className="experience__titles">
                   {company.title.map((line, i) => (
                     <text key={i} x={x} y={152 + i * 12} textAnchor="middle" className="experience__title-label">{line}</text>
                   ))}
                 </g>
-                {/* Tap for more - shown on hover */}
-                {isHovered && (
-                  <text x={x} y="158" textAnchor="middle" className="experience__tap-hint">Tap for more</text>
-                )}
               </g>
             )
           })}
+
+          {/* Expand arrows on hover */}
+          {!isExpanded && isTimelineHovered && (
+            <g className="experience__expand-hint">
+              <path d="M400 172 L410 182 L420 172" fill="none" stroke="var(--color-text-tertiary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="experience__arrow experience__arrow--1" />
+              <path d="M400 180 L410 190 L420 180" fill="none" stroke="var(--color-text-tertiary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="experience__arrow experience__arrow--2" />
+            </g>
+          )}
         </svg>
 
       </div>
@@ -138,7 +149,9 @@ const CareerPath = () => {
                   <p className="career-path__detail-title">{companies[activeCompany].title.join(' · ')}</p>
                   <p className="career-path__detail-period">{companies[activeCompany].start}-{companies[activeCompany].end}</p>
                 </div>
-                <p className="career-path__detail-description">{companies[activeCompany].description}</p>
+                <div className="career-path__detail-description">
+                  <ReactMarkdown>{companies[activeCompany].description}</ReactMarkdown>
+                </div>
               </div>
             )}
           </div>

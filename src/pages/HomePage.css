@@ -61,6 +61,12 @@
   border-radius: 8px;
   padding: var(--space-sm);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease-out;
+}
+
+.experience__illustration-wrapper:has(.experience__illustration--hovered) {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
 }
 
 .experience__illustration {
@@ -115,6 +121,7 @@
   transform-origin: center;
   transform-box: fill-box;
   opacity: 0;
+  transition: filter 0.3s ease-out;
 }
 
 .experience__content--visible .experience__pulse {
@@ -122,22 +129,44 @@
   animation-delay: var(--delay);
 }
 
-/* Fade out pulses on non-hovered nodes when any node is hovered */
-.experience__node {
-  --pulse-visibility: 1;
-}
-
-.experience__node .experience__pulse {
-  filter: opacity(var(--pulse-visibility));
+/* Timeline hover state */
+.experience__illustration--hovered .experience__pulse {
+  filter: opacity(0);
   transition: filter 0.3s ease-out;
 }
 
-.experience__illustration--has-hover .experience__node {
-  --pulse-visibility: 0;
+/* Wave animation on logos when hovered */
+.experience__illustration--hovered .experience__node:nth-child(3) .experience__logo {
+  animation: logo-wave 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.experience__illustration--has-hover .experience__node--hovered {
-  --pulse-visibility: 1;
+.experience__illustration--hovered .experience__node:nth-child(4) .experience__logo {
+  animation: logo-wave 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) 30ms;
+}
+
+.experience__illustration--hovered .experience__node:nth-child(5) .experience__logo {
+  animation: logo-wave 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) 60ms;
+}
+
+.experience__illustration--hovered .experience__node:nth-child(6) .experience__logo {
+  animation: logo-wave 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) 90ms;
+}
+
+.experience__illustration--hovered .experience__node:nth-child(7) .experience__logo {
+  animation: logo-wave 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) 120ms;
+}
+
+.experience__illustration--hovered .experience__node:nth-child(8) .experience__logo {
+  animation: logo-wave 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) 150ms;
+}
+
+@keyframes logo-wave {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
 }
 
 @keyframes pulse-ring {
@@ -159,18 +188,23 @@
   opacity: 0;
 }
 
-.experience__content--visible .experience__logo,
+.experience__content--visible .experience__logo {
+  opacity: 1;
+  transition: opacity 0.3s ease-out;
+  transition-delay: var(--delay);
+}
+
 .experience__content--visible .experience__company-name,
 .experience__content--visible .experience__title-label,
 .experience__content--visible .experience__years-label {
-  animation: fade-in-text 0.3s ease-out forwards;
-  animation-delay: var(--delay);
+  opacity: 1;
+  transition: opacity 0.3s ease-out;
+  transition-delay: var(--delay);
 }
 
-@keyframes fade-in-text {
-  to {
-    opacity: 1;
-  }
+/* Logo base styles */
+.experience__logo {
+  transform: translateY(0);
 }
 
 /* Text styles */
@@ -195,24 +229,11 @@
   fill: var(--color-text-tertiary);
 }
 
-/* Interactive elements */
-.experience__hit-area {
-  cursor: pointer;
-}
-
-.experience__hover-ring {
-  animation: ring-appear 0.2s ease-out forwards;
-}
-
-@keyframes ring-appear {
-  from {
-    transform: scale(0.5);
-    opacity: 0;
-  }
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
+.experience__endpoint-year {
+  font-family: var(--font-body);
+  font-size: 9px;
+  font-weight: 600;
+  fill: var(--color-text-tertiary);
 }
 
 /* Career Path Component */
@@ -224,43 +245,27 @@
   position: relative;
 }
 
-/* Logo hover animation */
-.experience__logo {
-  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.experience__logo--hovered {
-  animation: logo-bounce 0.6s ease-in-out infinite;
-}
-
-@keyframes logo-bounce {
-  0%, 100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.1);
-  }
-}
-
-/* Titles fade on hover */
-.experience__titles {
-  transition: opacity 0.2s ease-out;
-}
-
-.experience__titles--hidden {
+/* Expand hint arrows */
+.experience__expand-hint {
   opacity: 0;
+  animation: fade-in-hint 0.3s ease-out 0.1s forwards;
 }
 
-/* Tap hint */
-.experience__tap-hint {
-  font-family: var(--font-body);
-  font-size: 10px;
-  font-weight: 500;
-  fill: var(--company-color);
-  animation: tap-hint-appear 0.2s ease-out forwards;
+.experience__arrow {
+  stroke: var(--color-accent-primary);
+  opacity: 0.5;
+  animation: arrow-bounce 1s ease-in-out infinite;
 }
 
-@keyframes tap-hint-appear {
+.experience__arrow--1 {
+  animation-delay: 0s;
+}
+
+.experience__arrow--2 {
+  animation-delay: 0.15s;
+}
+
+@keyframes fade-in-hint {
   from {
     opacity: 0;
   }
@@ -269,13 +274,15 @@
   }
 }
 
-/* Node hover state */
-.experience__node {
-  cursor: pointer;
-}
-
-.experience__node--hovered .experience__company-name {
-  fill: var(--company-color);
+@keyframes arrow-bounce {
+  0%, 100% {
+    transform: translateY(0);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translateY(3px);
+    opacity: 0.7;
+  }
 }
 
 /* Expanded View */
@@ -445,7 +452,45 @@
   font-size: var(--text-base);
   color: var(--color-text-secondary);
   line-height: var(--leading-relaxed);
-  margin: 0;
+}
+
+.career-path__detail-description p {
+  margin: 0 0 var(--space-sm) 0;
+}
+
+.career-path__detail-description p:last-child {
+  margin-bottom: 0;
+}
+
+.career-path__detail-description strong {
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.career-path__detail-description ul,
+.career-path__detail-description ol {
+  margin: 0 0 var(--space-sm) 0;
+  padding-left: var(--space-md);
+}
+
+.career-path__detail-description li {
+  margin-bottom: var(--space-xs);
+}
+
+.career-path__detail-description h2,
+.career-path__detail-description h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin: var(--space-sm) 0 var(--space-xs) 0;
+}
+
+.career-path__detail-description h2 {
+  font-size: var(--text-lg);
+}
+
+.career-path__detail-description h3 {
+  font-size: var(--text-base);
 }
 
 /* Mobile adjustments for expanded view */
