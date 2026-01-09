@@ -1,6 +1,8 @@
-# Technology & design leadership at a traditional advertising agency turned web services firm
+# Launched the web era for American Airlines and global travel brands
 &nbsp;
 
-Joined an advertising agency that went public during the dot com boom. Became the CTO of a subsidiary. Served as CTO for 2 years when I got the chance to lead our efforts to design American Airlines first web experience. After launching American's site left the CTO post and launched a travel practice where I became the Director to manage a growing list of travel clients. This work launched much of the first half of my career which was heavily focussed on the online travel space.
+Rose from front-end engineer to CTO at a dot-com era agency, then founded the travel practice to focus on experience design. Led the design of American Airlines' first website, establishing a career-long arc in travel and hospitality products.
 
-Projects: American Airlines, Cathay Pacific Airlines, British Airways, a joint venture between Hilton, Forte, & Accor Hotels, Sam's Club, Walmart, Chicago Tribune, MSNBC, Nike, US Robotics
+- **CTO at 25** during the dot-com boom
+- **Launched American Airlines' first web experience**
+- **Clients:** British Airways, Cathay Pacific, Hilton/Forte/Accor JV, Walmart/Sam's Club

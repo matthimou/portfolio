@@ -1,7 +1,8 @@
-# Led design at the premier online travel agency
+# Scaled the design organization at a category-defining travel company
 &nbsp;
 
+Grew the UX team from 10 to 200+ across design, research, IA, and front-end engineering. Pioneered a multi-brand multi-geography design platform in the early years of design systems supporting Orbitz through hyper-growth from 100 to 8,000 employees and eventual Expedia acquisition.
 
-Led the information architecture and UX research teams initially and grew into leading all of design. Grew Ux team from 10 people to ~200 across design, IA, research and front-end engineering (multiple brands and geographies). Experienced rapid growth here - when I joined Orbitz was under 100 people, and when I left it was over 8000 teammates across continents and being acquired by Expedia.
-
-A big part of my journey here was helping to building out a massive global platform with feature-level configuration for each product line, that was capable of being styled for multiple brands. This was before we had design systems as we know them today.
+- **Established mobile first** design practices
+- **Built multi-brand** platform in the early days of design systems
+- **Supported growth** from startup to $1B+ acquisition

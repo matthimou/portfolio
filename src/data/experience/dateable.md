@@ -1,6 +1,8 @@
-# Co-founded an online dating service
+# Co-founded a VC-backed dating startup
 &nbsp;
 
-This was my first experience with getting a startup funded, working directly with a board-of-directors to develop plans and evaluate performance. We were a tiny 3-person team that grew to 5 - I had a technical and marketing co-founder - everything else about the product fell to me. We had no physical office, and our infra was all in the cloud. 
+Wore every product hat at a seed-funded startup—design, product strategy, user research, customer service - you name it. First experience navigating board dynamics and investor relations while shipping fast with a tiny team.
 
-After leaving Orbitz which grew to be a huge international organization, Dateable reminded me how to be scrappy and wear many hats simultaneously, and how much a small team with high agency can accomplish. It was the shortest of my tenures, but I learned so much about doing more with less here.
+- **Product/design owner** in 3 growing to 5 person team
+- **Secured seed funding** and helped manage board relationships
+- **Shipped cloud-native product** with zero physical infrastructure early in the cloud transition

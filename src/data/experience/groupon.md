@@ -1,8 +1,8 @@
-# Led Consumer and Merchant experience at the original local marketplace
+# Scaled design globally at the pioneer of local commerce
 &nbsp;
 
-Co-Director, Consumer Product Design --> Director, Consumer Product Design --> Director, Merchant & Consumer Product Design
+Led Consumer and Merchant design through the transition from a single Groupon a day to establishing a rich local marketplace, and a pandemic that almost destroyed it. I started here on the consumer side of design, and added merchant in the later half of my tenure. Groupon was a mix of many 0-1 projects (POS for Restaurants, Dating (true story), Beauty Booking, Food Delivery, Restaurant Reservations, etc), and large gnarly platform efforts.
 
-Co-led the consumer design team initially, eventually leading all of design across Consumer & Merchant. I managed global teams across US/Europe/Asia, helped launch a successful redesign, built a global platform while managing a team of about ~40 across Product Design, Research, Design Systems & Front-end Engineering. This work led to the next key area of focus for me in my career - local marketplaces. 
-
-Across both Groupon and DoorDash opportunities I developed deep expertise in local economies, logistics, merchant pain points, etc that translated well to the next phase of my journey at DoorDash.
+- **Managed global team** across 3 continents
+- **Launched successful consumer platform** and E2E redesign serving multiple countries, languages, and product lines
+- **Upgraded Merchant experience** to match quality practices from our consumer teams and re-engaged teams after years of de-prioritization

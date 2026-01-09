@@ -24,12 +24,12 @@ const CareerPath = () => {
   const [isTimelineHovered, setIsTimelineHovered] = useState(null)
 
   const companies = [
-    { name: 'LeapNet', title: ['CTO', 'Dir Travel Practice'], start: '1995', end: '2001', years: '6 yrs', color: '#1a1a1a', logo: LeapnetLogo, size: 50, tabSize: 34, description: leapnetDesc },
-    { name: '212°', title: ['Founder', 'CEO'], start: '2001', end: '2004', years: '3 yrs', color: '#E87722', logo: Logo212, size: 32, description: logo212Desc },
-    { name: 'Orbitz', title: ['Director', 'Information Architecture'], start: '2004', end: '2012', years: '8 yrs', color: '#0099D8', logo: OrbitzLogo, size: 70, description: orbitzDesc },
-    { name: 'Dateable', title: ['Founder', 'Product/Design'], start: '2012', end: '2014', years: '1.5 yrs', color: '#5B4B9E', logo: DateableLogo, size: 28, description: dateableDesc },
-    { name: 'Groupon', title: ['Director', 'Consumer & Merchant Experience'], start: '2014', end: '2021', years: '8 yrs', color: '#53A318', logo: GrouponLogo, size: 70, description: grouponDesc },
-    { name: 'DoorDash', title: ['Director of Design', 'Core Consumer'], start: '2021', end: '2025', years: '4 yrs', color: '#FF3008', logo: DoorDashLogo, size: 58, description: doordashDesc },
+    { name: 'LeapNet', title: ['CTO', 'Dir Travel Practice'], start: '1995', end: '2001', years: '6 yrs', color: '#1a1a1a', logo: LeapnetLogo, size: 65, tabSize: 34, description: leapnetDesc },
+    { name: '212°', title: ['Founder', 'CEO'], start: '2001', end: '2004', years: '3 yrs', color: '#E87722', logo: Logo212, size: 42, description: logo212Desc },
+    { name: 'Orbitz', title: ['Director', 'Information Architecture'], start: '2004', end: '2012', years: '8 yrs', color: '#0099D8', logo: OrbitzLogo, size: 90, description: orbitzDesc },
+    { name: 'Dateable', title: ['Founder', 'Product/Design'], start: '2012', end: '2014', years: '1.5 yrs', color: '#5B4B9E', logo: DateableLogo, size: 38, description: dateableDesc },
+    { name: 'Groupon', title: ['Director', 'Consumer & Merchant Experience'], start: '2014', end: '2021', years: '8 yrs', color: '#53A318', logo: GrouponLogo, size: 90, description: grouponDesc },
+    { name: 'DoorDash', title: ['Director of Design', 'Core Consumer'], start: '2021', end: '2025', years: '4 yrs', color: '#FF3008', logo: DoorDashLogo, size: 75, description: doordashDesc },
   ]
 
   const handleCompanyClick = (index) => {
@@ -48,97 +48,91 @@ const CareerPath = () => {
   }
 
   return (
-    <div className={`career-path ${isExpanded ? 'career-path--expanded' : ''}`}>
-      {/* Timeline View */}
-      <div
-        className="career-path__timeline"
-        onMouseEnter={() => !isExpanded && setIsTimelineHovered(true)}
-        onMouseLeave={() => setIsTimelineHovered(false)}
-      >
-        <svg
-          viewBox="0 0 900 200"
-          className={`experience__illustration ${!isExpanded && isTimelineHovered ? 'experience__illustration--hovered' : ''}`}
-          preserveAspectRatio="xMidYMid meet"
-          onClick={() => !isExpanded && handleCompanyClick(0)}
-          style={{ cursor: isExpanded ? 'default' : 'pointer' }}
+    <div className="career-path">
+      {/* Timeline View - hidden when expanded */}
+      {!isExpanded && (
+        <div
+          className="career-path__timeline"
+          onMouseEnter={() => setIsTimelineHovered(true)}
+          onMouseLeave={() => setIsTimelineHovered(false)}
         >
-          {/* Background track - centered between logos and names */}
-          <line x1="60" y1="100" x2="760" y2="100" stroke="var(--color-border-light)" strokeWidth="1" />
-          {/* Animated progress line */}
-          <line x1="60" y1="100" x2="760" y2="100" stroke="var(--color-text-tertiary)" strokeWidth="1" className="experience__progress-line" />
-
-          {/* Company nodes */}
-          {companies.map((company, index) => {
-            const x = 60 + index * 140
-            const delay = 300 + index * 400
-            return (
-              <g
-                key={index}
-                className="experience__node"
-                style={{ '--delay': `${delay}ms`, '--company-color': company.color }}
-              >
-                {/* Logo above timeline */}
-                <image
-                  href={company.logo}
-                  x={x - company.size / 2}
-                  y={55 - company.size / 2}
-                  width={company.size}
-                  height={company.size}
-                  className="experience__logo"
-                  preserveAspectRatio="xMidYMid meet"
-                />
-                {/* Timeline dot and pulse - centered */}
-                <circle cx={x} cy="100" r="4" fill={company.color} className="experience__dot" />
-                <circle cx={x} cy="100" r="4" fill="none" stroke={company.color} strokeWidth="1" className="experience__pulse" />
-                {/* Timeline endpoint labels */}
-                {index === 0 && (
-                  <text x={x - 20} y="104" textAnchor="end" className="experience__endpoint-year">1995</text>
-                )}
-                {index === companies.length - 1 && (
-                  <text x={x + 20} y="104" textAnchor="start" className="experience__endpoint-year">2025</text>
-                )}
-                {/* Company name below timeline */}
-                <text x={x} y="130" textAnchor="middle" className="experience__company-name">{company.name}</text>
-                {/* Titles below company name */}
-                <g className="experience__titles">
-                  {company.title.map((line, i) => (
-                    <text key={i} x={x} y={152 + i * 14} textAnchor="middle" className="experience__title-label">{line}</text>
-                  ))}
-                </g>
-              </g>
-            )
-          })}
-
-        </svg>
-
-        {/* Toggle button - upper right corner */}
-        {(isTimelineHovered || isExpanded) && (
-          <button
-            className={`career-path__toggle ${isExpanded ? 'career-path__toggle--expanded' : ''}`}
-            onClick={(e) => {
-              e.stopPropagation()
-              isExpanded ? handleClose() : handleCompanyClick(0)
-            }}
+          <svg
+            viewBox="0 0 900 200"
+            className={`experience__illustration ${isTimelineHovered ? 'experience__illustration--hovered' : ''}`}
+            preserveAspectRatio="xMidYMid meet"
+            onClick={() => handleCompanyClick(0)}
+            style={{ cursor: 'pointer' }}
           >
-            <span className="career-path__toggle-label">{isExpanded ? 'Less' : 'More'}</span>
-            <svg viewBox="0 0 16 12" className="career-path__toggle-arrows">
-              {isExpanded ? (
-                <>
-                  <path d="M3 9 L8 4 L13 9" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="career-path__toggle-arrow career-path__toggle-arrow--1" />
-                  <path d="M3 6 L8 1 L13 6" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="career-path__toggle-arrow career-path__toggle-arrow--2" />
-                </>
-              ) : (
-                <>
-                  <path d="M3 1 L8 6 L13 1" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="career-path__toggle-arrow career-path__toggle-arrow--1" />
-                  <path d="M3 5 L8 10 L13 5" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="career-path__toggle-arrow career-path__toggle-arrow--2" />
-                </>
-              )}
-            </svg>
-          </button>
-        )}
-      </div>
+            {/* Background track */}
+            <line x1="70" y1="80" x2="830" y2="80" stroke="var(--color-border-light)" strokeWidth="1" />
 
-      {/* Expanded View */}
+            {/* Traveling pulse along timeline - thin red line */}
+            <line x1="70" y1="80" x2="110" y2="80" stroke="#FF3008" strokeWidth="1" className="experience__traveling-pulse" />
+
+            {/* Company nodes */}
+            {companies.map((company, index) => {
+              const x = 70 + index * 152
+              const delay = 300 + index * 400
+              return (
+                <g
+                  key={index}
+                  className="experience__node"
+                  style={{ '--delay': `${delay}ms`, '--company-color': company.color }}
+                >
+                  {/* Logo above timeline */}
+                  <image
+                    href={company.logo}
+                    x={x - company.size / 2}
+                    y={35 - company.size / 2}
+                    width={company.size}
+                    height={company.size}
+                    className="experience__logo"
+                    preserveAspectRatio="xMidYMid meet"
+                  />
+                  {/* Timeline dot and pulse - centered */}
+                  <circle cx={x} cy="80" r="4" fill={company.color} className="experience__dot" />
+                  <circle cx={x} cy="80" r="4" fill="none" stroke={company.color} strokeWidth="1" className="experience__pulse" />
+                  {/* Timeline endpoint labels */}
+                  {index === 0 && (
+                    <text x={x - 20} y="84" textAnchor="end" className="experience__endpoint-year">1995</text>
+                  )}
+                  {index === companies.length - 1 && (
+                    <text x={x + 20} y="84" textAnchor="start" className="experience__endpoint-year">2025</text>
+                  )}
+                  {/* Company name below timeline */}
+                  <text x={x} y="125" textAnchor="middle" className="experience__company-name">{company.name}</text>
+                  {/* Titles below company name */}
+                  <g className="experience__titles">
+                    {company.title.map((line, i) => (
+                      <text key={i} x={x} y={157 + i * 14} textAnchor="middle" className="experience__title-label">{line}</text>
+                    ))}
+                  </g>
+                </g>
+              )
+            })}
+
+          </svg>
+
+          {/* Toggle button - shown on hover */}
+          {isTimelineHovered && (
+            <button
+              className="career-path__toggle"
+              onClick={(e) => {
+                e.stopPropagation()
+                handleCompanyClick(0)
+              }}
+            >
+              <span className="career-path__toggle-label">More</span>
+              <svg viewBox="0 0 16 12" className="career-path__toggle-arrows">
+                <path d="M3 1 L8 6 L13 1" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="career-path__toggle-arrow career-path__toggle-arrow--1" />
+                <path d="M3 5 L8 10 L13 5" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="career-path__toggle-arrow career-path__toggle-arrow--2" />
+              </svg>
+            </button>
+          )}
+        </div>
+      )}
+
+      {/* Expanded View - replaces timeline */}
       {isExpanded && (
         <div className="career-path__expanded">
           <div className="career-path__tabs">
@@ -169,6 +163,13 @@ const CareerPath = () => {
               </div>
             )}
           </div>
+          <button className="career-path__collapse" onClick={handleClose}>
+            <svg viewBox="0 0 16 12" className="career-path__collapse-arrows">
+              <path d="M3 9 L8 4 L13 9" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              <path d="M3 6 L8 1 L13 6" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+            <span className="career-path__collapse-label">Less</span>
+          </button>
         </div>
       )}
     </div>

@@ -75,69 +75,96 @@
   display: block;
 }
 
-/* Progress line animation - draws left to right */
-.experience__progress-line {
-  stroke-dasharray: 700;
-  stroke-dashoffset: 700;
+/* Traveling pulse animation - subtle glow moves across timeline with pause */
+.experience__traveling-pulse {
+  opacity: 0;
 }
 
-.experience__content--visible .experience__progress-line {
-  animation: draw-progress 2.4s ease-out forwards;
+.experience__content--visible .experience__traveling-pulse {
+  animation: travel-pulse 8s linear infinite;
 }
 
-@keyframes draw-progress {
-  to {
-    stroke-dashoffset: 0;
+@keyframes travel-pulse {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  25% {
+    transform: translateX(720px);
+    opacity: 1;
+  }
+  26% {
+    transform: translateX(720px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(720px);
+    opacity: 0;
   }
 }
 
-/* Node animations - appear sequentially as line reaches them */
+/* Node animations */
 .experience__node {
   opacity: 1;
 }
 
 .experience__dot {
-  transform: scale(0);
   transform-origin: center;
   transform-box: fill-box;
 }
 
-.experience__content--visible .experience__dot {
-  animation: pop-dot 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-  animation-delay: var(--delay);
-}
-
-@keyframes pop-dot {
-  0% {
-    transform: scale(0);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
-/* Pulse rings - sequential left to right with pause */
+/* Pulse rings - triggered instantly as traveling pulse crosses */
 .experience__pulse {
   transform-origin: center;
   transform-box: fill-box;
   opacity: 0;
-  transition: filter 0.3s ease-out;
 }
 
 .experience__content--visible .experience__pulse {
-  animation: pulse-ring-sequential 6s ease-out infinite;
+  animation: pulse-ring-sync 8s ease-out infinite;
 }
 
-/* Stagger pulses left to right */
+/* Sync pulses to traveling pulse position (720px over 2s = 25% of 8s cycle) */
+/* Line front reaches each dot at: 0px, 112px, 264px, 416px, 568px, 720px */
+/* Delays: 0s, 0.31s, 0.73s, 1.16s, 1.58s, 2.0s */
 .experience__content--visible .experience__node:nth-child(3) .experience__pulse { animation-delay: 0s; }
-.experience__content--visible .experience__node:nth-child(4) .experience__pulse { animation-delay: 0.3s; }
-.experience__content--visible .experience__node:nth-child(5) .experience__pulse { animation-delay: 0.6s; }
-.experience__content--visible .experience__node:nth-child(6) .experience__pulse { animation-delay: 0.9s; }
-.experience__content--visible .experience__node:nth-child(7) .experience__pulse { animation-delay: 1.2s; }
-.experience__content--visible .experience__node:nth-child(8) .experience__pulse { animation-delay: 1.5s; }
+.experience__content--visible .experience__node:nth-child(4) .experience__pulse { animation-delay: 0.31s; }
+.experience__content--visible .experience__node:nth-child(5) .experience__pulse { animation-delay: 0.73s; }
+.experience__content--visible .experience__node:nth-child(6) .experience__pulse { animation-delay: 1.16s; }
+.experience__content--visible .experience__node:nth-child(7) .experience__pulse { animation-delay: 1.58s; }
+.experience__content--visible .experience__node:nth-child(8) .experience__pulse { animation-delay: 2.0s; }
 
-/* Timeline hover state */
+@keyframes pulse-ring-sync {
+  0% {
+    transform: scale(1);
+    opacity: 0;
+  }
+  0.1% {
+    transform: scale(1);
+    opacity: 0.7;
+    stroke: var(--company-color);
+    stroke-width: 3;
+  }
+  4% {
+    transform: scale(3);
+    opacity: 0;
+    stroke: var(--company-color);
+    stroke-width: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+
+/* Timeline hover state - pause animations */
+.experience__illustration--hovered .experience__traveling-pulse {
+  animation-play-state: paused;
+  opacity: 0;
+}
+
 .experience__illustration--hovered .experience__pulse {
+  animation-play-state: paused;
   filter: opacity(0);
   transition: filter 0.3s ease-out;
 }
@@ -176,20 +203,6 @@
   }
 }
 
-@keyframes pulse-ring-sequential {
-  0% {
-    transform: scale(1);
-    opacity: 0.6;
-  }
-  15% {
-    transform: scale(4);
-    opacity: 0;
-  }
-  100% {
-    transform: scale(4);
-    opacity: 0;
-  }
-}
 
 /* Logo and text fade in with each node */
 .experience__logo,
@@ -221,14 +234,14 @@
 /* Text styles */
 .experience__company-name {
   font-family: var(--font-body);
-  font-size: 11px;
+  font-size: 15px;
   font-weight: 700;
   fill: var(--color-text-primary);
 }
 
 .experience__title-label {
   font-family: var(--font-body);
-  font-size: 9px;
+  font-size: 11px;
   font-weight: 500;
   fill: var(--color-text-tertiary);
 }
@@ -242,7 +255,7 @@
 
 .experience__endpoint-year {
   font-family: var(--font-body);
-  font-size: 9px;
+  font-size: 11px;
   font-weight: 600;
   fill: var(--color-text-tertiary);
 }
@@ -256,41 +269,22 @@
   position: relative;
 }
 
-/* Greyscale and fade timeline when expanded (not arrows) */
-.career-path--expanded .experience__node,
-.career-path--expanded .experience__progress-line {
-  filter: grayscale(100%);
-  opacity: 0.2;
-  transition: filter 0.3s ease-out, opacity 0.3s ease-out;
-}
+/* Timeline hidden when expanded - no overlay needed */
 
-.career-path:not(.career-path--expanded) .experience__node,
-.career-path:not(.career-path--expanded) .experience__progress-line {
-  filter: grayscale(0%);
-  opacity: 1;
-  transition: filter 0.3s ease-out, opacity 0.3s ease-out;
-}
-
-/* Stop pulsing when expanded */
-.career-path--expanded .experience__pulse {
-  animation: none;
-  opacity: 0;
-}
-
-/* Toggle button - aligned with centered timeline line (y=100 in 200 height = 50%) */
+/* Toggle button - positioned at bottom center */
 .career-path__toggle {
   position: absolute;
-  top: 50%;
-  right: 2%;
-  transform: translateY(-50%);
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  gap: 2px;
+  gap: 6px;
   background: none;
   border: none;
   cursor: pointer;
-  padding: var(--space-xs);
+  padding: var(--space-xs) var(--space-sm);
   color: var(--color-text-tertiary);
   transition: color 0.2s ease;
   z-index: 10;
@@ -365,26 +359,23 @@
   }
 }
 
-/* Expanded View - slides up to cover timeline */
+/* Expanded View - replaces timeline cleanly */
 .career-path__expanded {
   display: flex;
   gap: var(--space-md);
-  margin-top: -120px;
-  padding-top: var(--space-md);
-  background: linear-gradient(to bottom, transparent 0%, white 20px, white 100%);
+  padding: var(--space-sm) 0;
   position: relative;
-  z-index: 5;
-  animation: expand-slide-up 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  animation: expand-fade-in 0.3s ease-out forwards;
 }
 
-@keyframes expand-slide-up {
+@keyframes expand-fade-in {
   from {
     opacity: 0;
-    margin-top: 0;
+    transform: translateY(10px);
   }
   to {
     opacity: 1;
-    margin-top: -120px;
+    transform: translateY(0);
   }
 }
 
@@ -460,7 +451,7 @@
 .career-path__detail {
   background: white;
   border-radius: 8px;
-  padding: var(--space-lg);
+  padding: var(--space-md);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   border-top: 3px solid var(--detail-color);
   animation: detail-appear 0.3s ease-out forwards;
@@ -543,6 +534,38 @@
   font-size: var(--text-sm);
 }
 
+/* Collapse button in expanded view */
+.career-path__collapse {
+  position: absolute;
+  top: var(--space-sm);
+  right: var(--space-sm);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: var(--space-xs);
+  color: var(--color-text-tertiary);
+  transition: color 0.2s ease;
+}
+
+.career-path__collapse:hover {
+  color: var(--color-accent-primary);
+}
+
+.career-path__collapse-arrows {
+  width: 16px;
+  height: 12px;
+}
+
+.career-path__collapse-label {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 500;
+}
+
 /* Mobile adjustments for expanded view */
 @media (max-width: 768px) {
   .career-path__expanded {
@@ -592,11 +615,11 @@
 
   .experience__illustration-wrapper {
     padding: var(--space-sm);
-    overflow-x: auto;
   }
 
   .experience__illustration {
-    min-width: 600px;
+    /* Allow SVG to scale down naturally on small screens */
+    width: 100%;
   }
 
   .experience__number {
