@@ -1,4 +1,4 @@
-# Built a ~200 person Ux team to deliver a multi-brand global platform
+# Led design at the premier online travel agency
 &nbsp;
 
 

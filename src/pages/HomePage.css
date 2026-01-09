@@ -407,18 +407,18 @@
   cursor: pointer;
   transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
   text-align: left;
-  border-left: 3px solid transparent;
+  border-top: 3px solid transparent;
 }
 
 .career-path__tab:hover {
   background: white;
-  transform: translateX(4px);
+  transform: translateY(-2px);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 .career-path__tab--active {
   background: white;
-  border-left-color: var(--tab-color);
+  border-top-color: var(--tab-color);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
@@ -560,13 +560,10 @@
     flex-direction: column;
     min-width: 80px;
     padding: var(--space-sm);
-    border-left: none;
-    border-bottom: 3px solid transparent;
   }
 
   .career-path__tab--active {
-    border-left-color: transparent;
-    border-bottom-color: var(--tab-color);
+    border-top-color: var(--tab-color);
   }
 
   .career-path__tab:hover {
@@ -581,6 +578,7 @@
   .career-path__tab-years {
     display: none;
   }
+
 }
 
 @media (max-width: 640px) {
@@ -759,4 +757,48 @@
     grid-template-columns: 1fr;
     gap: var(--space-md);
   }
+}
+
+/* Footer */
+.home-footer {
+  padding: var(--space-xl) 0;
+  background: linear-gradient(
+    135deg,
+    var(--color-bg-secondary) 0%,
+    #e8e4df 50%,
+    var(--color-bg-secondary) 100%
+  );
+  text-align: center;
+}
+
+.home-footer__text {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-style: italic;
+  color: var(--color-text-tertiary);
+  margin: 0 0 var(--space-md) 0;
+  letter-spacing: 0.02em;
+}
+
+.home-footer__github {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--color-text-tertiary);
+  color: white;
+  transition: all 0.2s ease;
+}
+
+.home-footer__github:hover {
+  background-color: var(--color-text-primary);
+  color: white;
+  transform: scale(1.1);
+}
+
+.home-footer__github-icon {
+  width: 20px;
+  height: 20px;
 }

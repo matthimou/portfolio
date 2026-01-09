@@ -1,6 +1,6 @@
-# Served as CTO and Travel Practice Director
+# Technology & design leadership at a traditional advertising agency turned web services firm
 &nbsp;
 
-Joined an advertising agency that went public during the dot com boom. Became the CTO of Quantum Leap (a web services subsidiary of Leapnet). After serving as CTO for 2 years I launched a travel practice after leading the design of American Airlines first web experience. This work launched the first half of my career which was heavily focussed on leading the design efforts of travel experience teams.
+Joined an advertising agency that went public during the dot com boom. Became the CTO of a subsidiary. Served as CTO for 2 years when I got the chance to lead our efforts to design American Airlines first web experience. After launching American's site left the CTO post and launched a travel practice where I became the Director to manage a growing list of travel clients. This work launched much of the first half of my career which was heavily focussed on the online travel space.
 
-Clients: Chicago Tribune, MSNBC, Nike, US Robotics, American Airlines, Cathay Pacific Airlines, British Airways, Hilton Hotels, Sam's Club, Walmart.
+Projects: American Airlines, Cathay Pacific Airlines, British Airways, a joint venture between Hilton, Forte, & Accor Hotels, Sam's Club, Walmart, Chicago Tribune, MSNBC, Nike, US Robotics
