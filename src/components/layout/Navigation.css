@@ -46,18 +46,19 @@
   pointer-events: auto;
 }
 
-/* Home arrow indicator */
-.navigation__brand::before {
-  content: '←';
-  font-size: 0.9em;
-  color: var(--color-accent-primary);
-  opacity: 0.6;
+/* Avatar indicator */
+.navigation__avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  object-fit: cover;
+  opacity: 0.8;
   transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
-.navigation__brand:hover::before {
+.navigation__brand:hover .navigation__avatar {
   opacity: 1;
-  transform: translateX(-2px);
+  transform: scale(1.05);
 }
 
 .navigation__brand:hover {

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import { useScrollProgress } from '../../hooks/useScrollProgress'
 import { navigationLinks, brandName } from '../../data/navigation'
+import avatarImage from '../../assets/MatthewHansonAvatar.jpg'
 import './Navigation.css'
 
 const Navigation = () => {
@@ -49,6 +50,7 @@ const Navigation = () => {
             }
           }}
         >
+          <img src={avatarImage} alt="" className="navigation__avatar" />
           {brandName}
         </Link>
 

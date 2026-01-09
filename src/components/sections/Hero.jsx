@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import VideoBackground from '../ui/VideoBackground'
+import avatarImage from '../../assets/MatthewHansonAvatar.jpg'
 import './Hero.css'
 
 const Hero = ({ name = 'Your Name', title = 'Design Director', hideBackground = false }) => {
@@ -19,7 +20,7 @@ const Hero = ({ name = 'Your Name', title = 'Design Director', hideBackground = 
       <div className="hero__content">
         <div className="hero__avatar">
           <img
-            src="/images/avatar-placeholder.svg"
+            src={avatarImage}
             alt={`${name} avatar`}
             className="hero__avatar-image"
           />
