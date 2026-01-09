@@ -1,8 +1,10 @@
-# Led Consumer Design at this local delivery marketplace
+# Led Consumer Design at the worlds leading delivery service
 &nbsp;
 
-Originally hired as Director of Design for International, 3 months into my tenure the Director of Consumer Design left and I stepped in to backfill this role. I lead all of Consumer Design for about 1.5 years while I helped hire a Senior Director of Consumer Design, then turned my focus to the Core Consumer Platform team. 
+Director, International Product Design --> Director, Consumer Design --> Director, Core Consumer Platform Design.
 
-Responsible for the "Golden Flow" (all the key revenue generating pages in the primary consumer experience). My team was organized by the customer journey into Discovery > Order Experience > Delivery Experience charters (with multiple surface PODs in each charter) and covered all facets of the core customer journey from discovery through delivery. 
+Responsible for the "Golden Flow" (the key revenue generating pages in the consumer experience). My team was organized by the customer journey into 3 charters -- Discovery, Order Experience, and Delivery Experience (with multiple surface teams in each charter), and covered all facets of the core customer journey from discovery through delivery. 
 
-My team was also responsible for the Cx Design System and maintaining a high bar for craft and quality across the consumer journey as surface owners. I led the Consumer Design Review there for most of my tenure, where all projects that get shipped to customers get reviewed and approved by design and product.
+Responsible for the Cx Design System and maintaining a high bar for craft and quality across the consumer journey. As key surface owners my team played a dual role as both design leads for the core products and surface owners helping the rest of the consumer teams integrate their features into the key surfaces we owned. I led the Consumer Design Review for most of my tenure, where all project teams reviewed and got work aproved before shipping to customers.
+
+Over my tenure product planning & strategy shifted from reactive ad-hoc requests coming out of quarterly planning to design-led & sprint-based co-planning across disciplines, empowering design to more effectively contribute to & shape the strategy and roadmap.
