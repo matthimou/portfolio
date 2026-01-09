@@ -245,24 +245,82 @@
   position: relative;
 }
 
-/* Expand hint arrows */
-.experience__expand-hint {
-  opacity: 0;
-  animation: fade-in-hint 0.3s ease-out 0.1s forwards;
+/* Greyscale and fade timeline when expanded (not arrows) */
+.career-path--expanded .experience__node,
+.career-path--expanded .experience__progress-line {
+  filter: grayscale(100%);
+  opacity: 0.5;
+  transition: filter 0.3s ease-out, opacity 0.3s ease-out;
 }
 
-.experience__arrow {
-  stroke: var(--color-accent-primary);
-  opacity: 0.5;
+.career-path:not(.career-path--expanded) .experience__node,
+.career-path:not(.career-path--expanded) .experience__progress-line {
+  filter: grayscale(0%);
+  opacity: 1;
+  transition: filter 0.3s ease-out, opacity 0.3s ease-out;
+}
+
+/* Stop pulsing when expanded */
+.career-path--expanded .experience__pulse {
+  animation: none;
+  opacity: 0;
+}
+
+/* Toggle button - aligned with timeline line (y=90 in 200 height = 45%) */
+.career-path__toggle {
+  position: absolute;
+  top: 45%;
+  right: 2%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: var(--space-xs);
+  color: var(--color-text-tertiary);
+  transition: color 0.2s ease;
+  z-index: 10;
+  animation: fade-in-hint 0.3s ease-out forwards;
+}
+
+/* More action: always active when hovering module */
+.career-path__timeline:hover .career-path__toggle:not(.career-path__toggle--expanded) {
+  color: var(--color-accent-primary);
+}
+
+/* Less action: only active on direct hover */
+.career-path__toggle--expanded:hover {
+  color: var(--color-accent-primary);
+}
+
+.career-path__toggle-label {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.career-path__toggle-arrows {
+  width: 16px;
+  height: 12px;
+}
+
+.career-path__toggle-arrow {
   animation: arrow-bounce 1s ease-in-out infinite;
 }
 
-.experience__arrow--1 {
+.career-path__toggle-arrow--1 {
   animation-delay: 0s;
 }
 
-.experience__arrow--2 {
+.career-path__toggle-arrow--2 {
   animation-delay: 0.15s;
+}
+
+.career-path__toggle--expanded .career-path__toggle-arrow {
+  animation-name: arrow-bounce-up;
 }
 
 @keyframes fade-in-hint {
@@ -280,46 +338,9 @@
     opacity: 0.3;
   }
   50% {
-    transform: translateY(3px);
+    transform: translateY(2px);
     opacity: 0.7;
   }
-}
-
-/* Expanded View */
-.career-path__expanded {
-  display: flex;
-  gap: var(--space-md);
-  margin-top: var(--space-md);
-  animation: expand-appear 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-}
-
-@keyframes expand-appear {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Collapse hint (upward arrows) when expanded */
-.experience__collapse-hint {
-  opacity: 1;
-}
-
-.experience__arrow--up-1,
-.experience__arrow--up-2 {
-  animation: arrow-bounce-up 1s ease-in-out infinite;
-}
-
-.experience__arrow--up-1 {
-  animation-delay: 0.15s;
-}
-
-.experience__arrow--up-2 {
-  animation-delay: 0s;
 }
 
 @keyframes arrow-bounce-up {
@@ -328,8 +349,31 @@
     opacity: 0.3;
   }
   50% {
-    transform: translateY(-3px);
+    transform: translateY(-2px);
     opacity: 0.7;
+  }
+}
+
+/* Expanded View - slides up to cover timeline */
+.career-path__expanded {
+  display: flex;
+  gap: var(--space-md);
+  margin-top: -120px;
+  padding-top: var(--space-md);
+  background: linear-gradient(to bottom, transparent 0%, white 20px, white 100%);
+  position: relative;
+  z-index: 5;
+  animation: expand-slide-up 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes expand-slide-up {
+  from {
+    opacity: 0;
+    margin-top: 0;
+  }
+  to {
+    opacity: 1;
+    margin-top: -120px;
   }
 }
 

@@ -50,13 +50,15 @@ const CareerPath = () => {
   return (
     <div className={`career-path ${isExpanded ? 'career-path--expanded' : ''}`}>
       {/* Timeline View */}
-      <div className="career-path__timeline">
+      <div
+        className="career-path__timeline"
+        onMouseEnter={() => !isExpanded && setIsTimelineHovered(true)}
+        onMouseLeave={() => setIsTimelineHovered(false)}
+      >
         <svg
           viewBox="0 0 900 200"
           className={`experience__illustration ${!isExpanded && isTimelineHovered ? 'experience__illustration--hovered' : ''}`}
           preserveAspectRatio="xMidYMid meet"
-          onMouseEnter={() => !isExpanded && setIsTimelineHovered(true)}
-          onMouseLeave={() => setIsTimelineHovered(false)}
           onClick={() => !isExpanded && handleCompanyClick(0)}
           style={{ cursor: isExpanded ? 'default' : 'pointer' }}
         >
@@ -105,25 +107,33 @@ const CareerPath = () => {
             )
           })}
 
-          {/* Expand arrows on hover */}
-          {!isExpanded && isTimelineHovered && (
-            <g className="experience__expand-hint">
-              <path d="M400 172 L410 182 L420 172" fill="none" stroke="var(--color-text-tertiary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="experience__arrow experience__arrow--1" />
-              <path d="M400 180 L410 190 L420 180" fill="none" stroke="var(--color-text-tertiary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="experience__arrow experience__arrow--2" />
-            </g>
-          )}
-
-          {/* Collapse arrows when expanded */}
-          {isExpanded && (
-            <g className="experience__collapse-hint" onClick={handleClose} style={{ cursor: 'pointer' }}>
-              {/* Invisible hit area */}
-              <rect x="380" y="160" width="60" height="40" fill="transparent" />
-              <path d="M400 182 L410 172 L420 182" fill="none" stroke="var(--color-accent-primary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="experience__arrow experience__arrow--up-1" />
-              <path d="M400 190 L410 180 L420 190" fill="none" stroke="var(--color-accent-primary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="experience__arrow experience__arrow--up-2" />
-            </g>
-          )}
         </svg>
 
+        {/* Toggle button - upper right corner */}
+        {(isTimelineHovered || isExpanded) && (
+          <button
+            className={`career-path__toggle ${isExpanded ? 'career-path__toggle--expanded' : ''}`}
+            onClick={(e) => {
+              e.stopPropagation()
+              isExpanded ? handleClose() : handleCompanyClick(0)
+            }}
+          >
+            <span className="career-path__toggle-label">{isExpanded ? 'Less' : 'More'}</span>
+            <svg viewBox="0 0 16 12" className="career-path__toggle-arrows">
+              {isExpanded ? (
+                <>
+                  <path d="M3 9 L8 4 L13 9" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="career-path__toggle-arrow career-path__toggle-arrow--1" />
+                  <path d="M3 6 L8 1 L13 6" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="career-path__toggle-arrow career-path__toggle-arrow--2" />
+                </>
+              ) : (
+                <>
+                  <path d="M3 1 L8 6 L13 1" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="career-path__toggle-arrow career-path__toggle-arrow--1" />
+                  <path d="M3 5 L8 10 L13 5" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="career-path__toggle-arrow career-path__toggle-arrow--2" />
+                </>
+              )}
+            </svg>
+          </button>
+        )}
       </div>
 
       {/* Expanded View */}
