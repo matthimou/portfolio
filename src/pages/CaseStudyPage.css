@@ -27,6 +27,36 @@
   color: var(--color-accent-primary);
 }
 
+/* Video hero variant - full bleed video with overlay back button */
+.case-study-page--video-hero {
+  padding-top: 0;
+}
+
+.case-study-page--video-hero .case-study-page__container {
+  padding-top: 0;
+}
+
+.case-study-page--video-hero .case-study-page__back {
+  position: absolute;
+  top: calc(var(--nav-height) + var(--space-md));
+  left: var(--content-padding-mobile);
+  z-index: 10;
+  margin: 0;
+  padding: 0;
+}
+
+@media (min-width: 768px) {
+  .case-study-page--video-hero .case-study-page__back {
+    left: var(--content-padding-tablet);
+  }
+}
+
+@media (min-width: 1024px) {
+  .case-study-page--video-hero .case-study-page__back {
+    left: var(--content-padding-desktop);
+  }
+}
+
 .case-study-page__content {
   margin-bottom: var(--space-3xl);
 }

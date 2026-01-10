@@ -61,6 +61,7 @@
   color: var(--color-text-secondary);
   line-height: var(--leading-relaxed);
   margin-top: var(--space-lg);
+  margin-bottom: var(--space-lg);
   padding: var(--space-md);
   background-color: var(--color-bg-secondary);
   border-radius: 4px;
@@ -132,6 +133,79 @@
   border-radius: 4px;
 }
 
+/* Media Gallery */
+.case-study-content__media {
+  margin-top: var(--space-xl);
+}
+
+.case-study-content__media-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-lg);
+  margin-top: var(--space-md);
+  max-width: 75%;
+  padding-left: var(--space-xl);
+}
+
+.case-study-content__media-item {
+  margin: 0;
+}
+
+.case-study-content__media-image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.case-study-content__media-caption {
+  font-size: var(--text-sm);
+  color: var(--color-text-tertiary);
+  text-align: center;
+  margin-top: var(--space-sm);
+}
+
+.case-study-content__media-footer {
+  margin-top: var(--space-xl);
+}
+
+.case-study-content__media-footer-figure {
+  margin: var(--space-lg) 0 0 0;
+  max-width: 40%;
+  padding-left: var(--space-xl);
+}
+
+.case-study-content__media-footer-video {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Video */
+.case-study-content__video {
+  margin-top: var(--space-xl);
+}
+
+.case-study-content__video-wrapper {
+  margin: var(--space-md) 0 0 0;
+}
+
+.case-study-content__video-player {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background-color: var(--color-bg-secondary);
+}
+
+.case-study-content__video-caption {
+  font-size: var(--text-sm);
+  color: var(--color-text-tertiary);
+  text-align: center;
+  margin-top: var(--space-sm);
+}
+
 /* Responsive */
 @media (max-width: 640px) {
   .case-study-content__heading {
@@ -144,5 +218,9 @@
 
   .case-study-content__text {
     font-size: var(--text-base);
+  }
+
+  .case-study-content__media-grid {
+    grid-template-columns: 1fr;
   }
 }

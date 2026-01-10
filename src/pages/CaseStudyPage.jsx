@@ -18,8 +18,10 @@ const CaseStudyPage = () => {
   const prevProject = currentIndex > 0 ? caseStudies[currentIndex - 1] : null
   const nextProject = currentIndex < caseStudies.length - 1 ? caseStudies[currentIndex + 1] : null
 
+  const hasVideoHero = !!study.hero.video
+
   return (
-    <div className="case-study-page">
+    <div className={`case-study-page ${hasVideoHero ? 'case-study-page--video-hero' : ''}`}>
       <div className="case-study-page__container">
         {/* Back Button */}
         <Link to="/work" className="case-study-page__back">
@@ -33,6 +35,7 @@ const CaseStudyPage = () => {
             title={study.meta.title}
             hero={study.hero}
             meta={study.meta}
+            hideHeader={!!study.hero.video}
           />
 
           <div className="case-study-page__body">

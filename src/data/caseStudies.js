@@ -5,6 +5,107 @@
 
 export const caseStudies = [
   {
+    id: 'groupon-cx90',
+    meta: {
+      title: 'CX90: Groupon Homepage Transformation',
+      client: 'Groupon',
+      timeline: '90-day initiative, 2019-2020',
+      role: 'Director, Consumer & Merchant Experience',
+      team: {
+        size: 15,
+        composition: 'Product design, UX research, engineering, merchandising'
+      }
+    },
+    hero: {
+      src: '/images/groupon-cx90-hero.png',
+      video: '/images/groupon-cx90-hero-video.mp4',
+      alt: 'Groupon CX90 redesigned homepage on mobile and desktop',
+      caption: 'Building systems instead of features',
+      overlay: {
+        title: 'Cx 90',
+        text: 'Transforming Groupon in 90 days'
+      }
+    },
+    problem: {
+      heading: 'The Challenge',
+      context: 'Groupon\'s homepage had become a "thrift store" experience—cluttered, poorly personalized, and failing to showcase the breadth of local experiences available. Customers were stuck in category silos, unaware of offerings beyond their first purchase.',
+      contextSecondary: 'Senior leadership challenged the product and design organization to get radical and see how far we could push and launch an experience overhaul in 90 days. Challenge accepted.',
+      userPainPointsDescription: 'We already knew key pain points we wanted to solve for from our existing UX research.',
+      userPainPoints: [
+        'Overwhelming, cluttered interface that felt like "digging through junk"',
+        'Poor personalization that pigeonholed users based on single purchases',
+        'Lack of awareness about delivery, local services, and experience breadth',
+        'Random-seeming deal presentation that forced users to rely on search'
+      ],
+      businessOpportunity: 'Reposition Groupon as the premier local experiences marketplace while building scalable systems that could adapt to changing business needs.'
+    },
+    solution: {
+      heading: 'The Approach',
+      strategy: 'Rather than shipping features, we built capabilities—a modular design system with clear ownership, configuration rules, and merchandising tools that could be composed and reconfigured without engineering work.',
+      execution: [
+        {
+          phase: 'Research & Competitive Analysis',
+          description: 'Studied AirBnb, DoorDash, Yelp, and Jet to understand marketplace patterns. Established ongoing UX research cadence.',
+          duration: '2 weeks'
+        },
+        {
+          phase: 'Design System Foundation',
+          description: 'Created design tokens and theming system. Developed module playbook defining ownership, configuration, and specs for each component type.',
+          duration: '4 weeks'
+        },
+        {
+          phase: 'Cross-Platform Implementation',
+          description: 'Delivered unified experience across mobile and desktop with new category navigation, personalized modules, and merchandising placements.',
+          duration: '6 weeks'
+        }
+      ],
+      collaboration: 'Partnered closely with merchandising, product management, and engineering to ensure the system could be operated by non-designers.',
+      mediaHeading: 'A New Design Vision',
+      mediaDescription: 'The team produced a new design vision in 3 weeks and built rich prototypes demonstrating the impact across the end-to-end consumer experience.',
+      media: [
+        {
+          src: '/images/groupon-cx90-light.gif',
+          alt: 'Groupon CX90 light mode animated walkthrough',
+          caption: 'Light Mode'
+        },
+        {
+          src: '/images/groupon-cx90-dark.gif',
+          alt: 'Groupon CX90 dark mode animated walkthrough',
+          caption: 'Dark Mode'
+        }
+      ],
+      mediaFooterHeading: 'Managing Scope',
+      mediaFooterDescription: 'After the vision work was complete we worked with engineering and product to scope the effort down to something we could launch within our 90 day window, and decided to focus on the home page surface and global navigation as the most impactful areas to tackle first.',
+      mediaFooterDescriptionSecondary: 'The design below represents where we landed after scoping. We went with a bolder header setup that transitioned to the updated and cleaner look of the design vision as the customer scrolled, and finalized our modular designs for a variety of home page carousels.',
+      mediaFooterMedia: {
+        src: '/images/groupon-cx90-launch-state.mp4',
+        caption: 'Launch state designs'
+      },
+      video: {
+        src: '/images/groupon-cx90-overview.mp4',
+        caption: 'The modular widget system enabled merchandising teams to configure and target content without engineering work.'
+      }
+    },
+    impact: {
+      heading: 'The Results',
+      metrics: [
+        { label: 'Launch Timeline', value: '90 days', context: 'Delivered on aggressive timeline as promised' },
+        { label: 'Local Billings Growth', value: '+20%', context: 'North America Q2 following launch' },
+        { label: 'Category Page Views', value: '+110%', context: 'Customers exploring beyond homepage' },
+        { label: 'Bounce Rate', value: '-8%', context: 'Homepage engagement improved' },
+        { label: 'Ad Revenue', value: '2x', context: 'Sponsorship placements doubled projections' },
+        { label: 'Dev Cycle Time', value: 'Weeks→Days', context: 'Module system enabled rapid iteration' }
+      ],
+      narrative: 'The CX90 initiative proved that investing in systems over features pays dividends. When the pandemic hit months later, the foundations we built enabled Groupon to pivot rapidly—capitalizing on organizational urgency while competitors scrambled.',
+      businessImpact: 'Share successfully shifted from goods back to local experiences, aligning with brand strategy and improving profitability.',
+      testimonial: {
+        quote: 'It\'s clean. It\'s not overwhelming...there\'s a lot more engaging photography. It feels more like an actual shopping experience versus listing after listing.',
+        author: 'Laura',
+        role: 'NYC, Research Participant'
+      }
+    }
+  },
+  {
     id: 'fintech-platform',
     meta: {
       title: 'Enterprise Fintech Platform Redesign',
