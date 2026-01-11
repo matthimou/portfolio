@@ -5,6 +5,82 @@
 
 export const caseStudies = [
   {
+    id: 'doordash-evidence',
+    meta: {
+      title: 'Contextual Store Evidence',
+      client: 'DoorDash',
+      timeline: '2025',
+      role: null,
+      team: null
+    },
+    hero: {
+      src: '/images/doordash-evidence-hero.png',
+      alt: 'Evidence types and ranking system showing priority from high to low',
+      caption: 'A systematic approach to surfacing the right information at the right time'
+    },
+    problem: {
+      heading: 'The Challenge',
+      context: 'Customers have trouble deciding what restaurant or dish to choose among relevant options. They\'re often overwhelmed by options and are looking for help to compare.',
+      contextSecondary: 'Over time DoorDash started to get cluttered as new indicators popped up across the broader system of products. To much diversity overwhelms customers and the user experience degrades. Instead of helping customers differentiate between options, it feels like the UI is screaming at them everywhere "notice me!"',
+      contextTertiary: 'Design took the lead on this initiative, proposing the approach to product in a design review and gaining alignment to get the work funded. We worked closely with our Ux Research partner both to understand the highest value items to highlight (based on existing research), as well as to run some quick tests of our concepts once we refined the scope.',
+      userPainPoints: [
+        'Too many options with no clear way to differentiate quality',
+        'Lack of contextual information to support decision-making',
+        'Generic presentation that doesn\'t adapt to customer intent',
+        'No visibility into why certain restaurants might be a good fit'
+      ],
+      businessOpportunity: 'Surface contextual evidence and badges that help customers make confident decisions faster, reducing choice paralysis and improving conversion.'
+    },
+    solution: {
+      heading: 'The Approach',
+      strategy: 'Developed a systematic evidence ranking framework that prioritizes contextual information based on relevance and customer intent. The system adapts what information surfaces based on query type, customer history, and merchant attributes.'
+    },
+    features: [
+      {
+        id: 'dish-evidence',
+        title: 'Broad Query Intelligence',
+        description: 'Highlight the top dish each merchant is known for when customers search broad categories like "thai", "italian", or "breakfast".',
+        thumbnail: '/images/doordash-evidence-small-card-hero.png',
+        image: '/images/doordash-evidence-dish.png',
+        details: 'Leaderboard-style ranking helps surface customer favorites and trending items.'
+      },
+      {
+        id: 'budget-evidence',
+        title: 'Great Value Badges',
+        description: 'Badging high-value stores for budget-conscious customers with "Great value" leaderboards.',
+        thumbnail: '/images/doordash-evidence-hero02.png',
+        image: '/images/doordash-evidence-budget.png',
+        details: 'Works in conjunction with updated price-per-person metadata to help value-seekers find the right fit.'
+      },
+      {
+        id: 'dietary-evidence',
+        title: 'Personalized Dietary Preferences',
+        description: 'Prioritize showing dietary tags when we detect certain dietary preferences based on past orders and browsing.',
+        thumbnail: '/images/doordash-evidence-hero03.png',
+        image: '/images/doordash-evidence-dietary.png',
+        details: 'Dishes must meet criteria before being counted as an option. Storepage organization reflects customer preferences.'
+      },
+      {
+        id: 'speed-evidence',
+        title: 'Fastest Delivery Indicators',
+        description: 'Testing different color treatments to call out speedy stores near the customer.',
+        thumbnail: '/images/doordash-evidence-hero04.png',
+        image: '/images/doordash-evidence-speed.png',
+        details: '"Fastest" designation based on dayparting, district, and selection algorithms.'
+      }
+    ],
+    impact: {
+      heading: 'The Framework',
+      metrics: [
+        { label: 'Evidence Types', value: '8+', context: 'Categories in ranking system' },
+        { label: 'Priority Levels', value: 'Dynamic', context: 'Adapts to context and intent' },
+        { label: 'Use Cases', value: '4 key areas', context: 'Dish, budget, dietary, speed' }
+      ],
+      narrative: 'The evidence ranking framework provides a systematic way to determine what contextual information surfaces on store cards. From legal requirements (sponsored badges) at highest priority to closing-soon indicators at lowest, each evidence type has a clear place in the hierarchy.',
+      businessImpact: 'Reducing decision fatigue leads to faster conversions and higher customer satisfaction with their choices.'
+    }
+  },
+  {
     id: 'groupon-cx90',
     meta: {
       title: 'CX90: Groupon Homepage Transformation',

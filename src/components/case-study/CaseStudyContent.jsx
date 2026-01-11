@@ -1,7 +1,75 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState, useCallback } from 'react'
 import CaseStudyMetrics from './CaseStudyMetrics'
 import CaseStudyTestimonial from './CaseStudyTestimonial'
 import './CaseStudyContent.css'
+
+const ImageLightbox = ({ images, currentIndex, onClose, onPrev, onNext }) => {
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') onClose()
+      if (e.key === 'ArrowLeft') onPrev()
+      if (e.key === 'ArrowRight') onNext()
+    }
+    document.addEventListener('keydown', handleKeyDown)
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown)
+      document.body.style.overflow = ''
+    }
+  }, [onClose, onPrev, onNext])
+
+  const currentImage = images[currentIndex]
+
+  return (
+    <div className="lightbox" onClick={onClose}>
+      <button className="lightbox__close" onClick={onClose} aria-label="Close lightbox">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <path d="M18 6L6 18M6 6l12 12" />
+        </svg>
+      </button>
+
+      <div className="lightbox__content" onClick={(e) => e.stopPropagation()}>
+        <img
+          src={currentImage.image}
+          alt={currentImage.title}
+          className="lightbox__image"
+        />
+        <div className="lightbox__caption">
+          <h4 className="lightbox__title">{currentImage.title}</h4>
+          {currentImage.description && (
+            <p className="lightbox__description">{currentImage.description}</p>
+          )}
+        </div>
+      </div>
+
+      {images.length > 1 && (
+        <>
+          <button
+            className="lightbox__nav lightbox__nav--prev"
+            onClick={(e) => { e.stopPropagation(); onPrev() }}
+            aria-label="Previous image"
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M15 18l-6-6 6-6" />
+            </svg>
+          </button>
+          <button
+            className="lightbox__nav lightbox__nav--next"
+            onClick={(e) => { e.stopPropagation(); onNext() }}
+            aria-label="Next image"
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M9 18l6-6-6-6" />
+            </svg>
+          </button>
+          <div className="lightbox__counter">
+            {currentIndex + 1} / {images.length}
+          </div>
+        </>
+      )}
+    </div>
+  )
+}
 
 const AutoPlayVideo = ({ src, caption }) => {
   const videoRef = useRef(null)
@@ -45,7 +113,34 @@ const AutoPlayVideo = ({ src, caption }) => {
   )
 }
 
-const CaseStudyContent = ({ problem, solution, impact }) => {
+const CaseStudyContent = ({ problem, solution, impact, features }) => {
+  const [lightboxOpen, setLightboxOpen] = useState(false)
+  const [lightboxIndex, setLightboxIndex] = useState(0)
+
+  // Filter features that have images for the lightbox
+  const featuresWithImages = features?.filter(f => f.image) || []
+
+  const openLightbox = useCallback((index) => {
+    setLightboxIndex(index)
+    setLightboxOpen(true)
+  }, [])
+
+  const closeLightbox = useCallback(() => {
+    setLightboxOpen(false)
+  }, [])
+
+  const goToPrev = useCallback(() => {
+    setLightboxIndex((prev) =>
+      prev === 0 ? featuresWithImages.length - 1 : prev - 1
+    )
+  }, [featuresWithImages.length])
+
+  const goToNext = useCallback(() => {
+    setLightboxIndex((prev) =>
+      prev === featuresWithImages.length - 1 ? 0 : prev + 1
+    )
+  }, [featuresWithImages.length])
+
   return (
     <div className="case-study-content">
       {/* Problem Section */}
@@ -55,6 +150,24 @@ const CaseStudyContent = ({ problem, solution, impact }) => {
           <p className="case-study-content__text">{problem.context}</p>
           {problem.contextSecondary && (
             <p className="case-study-content__text">{problem.contextSecondary}</p>
+          )}
+          {problem.contextTertiary && (
+            <p className="case-study-content__text">{problem.contextTertiary}</p>
+          )}
+
+          {problem.contextImage && (
+            <figure className="case-study-content__context-image">
+              <img
+                src={problem.contextImage.src}
+                alt={problem.contextImage.alt}
+                className="case-study-content__context-image-img"
+              />
+              {problem.contextImage.caption && (
+                <figcaption className="case-study-content__context-image-caption">
+                  {problem.contextImage.caption}
+                </figcaption>
+              )}
+            </figure>
           )}
 
           {problem.userPainPoints && problem.userPainPoints.length > 0 && (
@@ -181,6 +294,62 @@ const CaseStudyContent = ({ problem, solution, impact }) => {
           )}
 
         </section>
+      )}
+
+      {/* Features Section - Deep-dive into specific features */}
+      {features && features.length > 0 && (
+        <section className="case-study-content__section case-study-content__features">
+          <h4 className="case-study-content__heading">Feature Highlights</h4>
+          <div className="case-study-content__features-grid">
+            {features.map((feature, index) => {
+              const imageIndex = featuresWithImages.findIndex(f => f === feature)
+              return (
+                <div
+                  key={index}
+                  className={`case-study-content__feature ${feature.image ? 'case-study-content__feature--clickable' : ''}`}
+                  onClick={() => feature.image && openLightbox(imageIndex)}
+                  role={feature.image ? 'button' : undefined}
+                  tabIndex={feature.image ? 0 : undefined}
+                  onKeyDown={(e) => feature.image && e.key === 'Enter' && openLightbox(imageIndex)}
+                >
+                  {(feature.image || feature.thumbnail) && (
+                    <figure className="case-study-content__feature-image-wrapper">
+                      <img
+                        src={feature.thumbnail || feature.image}
+                        alt={feature.title}
+                        className="case-study-content__feature-image"
+                      />
+                      <div className="case-study-content__feature-zoom-hint">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <circle cx="11" cy="11" r="8" />
+                          <path d="M21 21l-4.35-4.35M11 8v6M8 11h6" />
+                        </svg>
+                      </div>
+                    </figure>
+                  )}
+                  <div className="case-study-content__feature-content">
+                    <h5 className="case-study-content__feature-title">{feature.title}</h5>
+                    <p className="case-study-content__feature-description">{feature.description}</p>
+                    {feature.details && (
+                      <p className="case-study-content__feature-details">{feature.details}</p>
+                    )}
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+        </section>
+      )}
+
+      {/* Lightbox */}
+      {lightboxOpen && featuresWithImages.length > 0 && (
+        <ImageLightbox
+          images={featuresWithImages}
+          currentIndex={lightboxIndex}
+          onClose={closeLightbox}
+          onPrev={goToPrev}
+          onNext={goToNext}
+        />
       )}
 
       {/* Impact Section */}

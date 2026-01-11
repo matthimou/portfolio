@@ -22,6 +22,76 @@ const CareerPath = () => {
   const [activeCompany, setActiveCompany] = useState(null)
   const [isExpanded, setIsExpanded] = useState(false)
   const [isTimelineHovered, setIsTimelineHovered] = useState(null)
+  const [pulsingNodes, setPulsingNodes] = useState({})
+  const [travelingPulseX, setTravelingPulseX] = useState(70)
+  const [isPulseVisible, setIsPulseVisible] = useState(false)
+  const animationRef = useRef(null)
+  const pulseAnimationRef = useRef(null)
+
+  // Randomized traveling pulse animation
+  useEffect(() => {
+    if (isExpanded || isTimelineHovered) return
+
+    const startX = 70
+    const endX = 830
+    const totalDistance = endX - startX
+    const nodePositions = [70, 222, 374, 526, 678, 830] // x positions of each node
+
+    const runPulseCycle = () => {
+      // Randomize the travel speed: 1.5s to 2.5s for the pulse to cross
+      const travelDuration = 1500 + Math.random() * 1000
+      const startTime = performance.now()
+
+      setIsPulseVisible(true)
+      setTravelingPulseX(startX)
+
+      // Track which nodes have been triggered this cycle
+      const triggeredNodes = new Set()
+
+      const animate = (currentTime) => {
+        const elapsed = currentTime - startTime
+        const progress = Math.min(elapsed / travelDuration, 1)
+        const currentX = startX + (totalDistance * progress)
+
+        setTravelingPulseX(currentX)
+
+        // Check if pulse has passed each node and trigger effects
+        nodePositions.forEach((nodeX, index) => {
+          if (currentX >= nodeX && !triggeredNodes.has(index)) {
+            triggeredNodes.add(index)
+            setPulsingNodes(prev => ({ ...prev, [index]: true }))
+
+            // Reset after animation completes
+            setTimeout(() => {
+              setPulsingNodes(prev => ({ ...prev, [index]: false }))
+            }, 400)
+          }
+        })
+
+        if (progress < 1) {
+          pulseAnimationRef.current = requestAnimationFrame(animate)
+        } else {
+          // Pulse reached the end, fade out
+          setIsPulseVisible(false)
+
+          // Schedule next cycle with random pause (4-8 seconds)
+          const pauseDuration = 4000 + Math.random() * 4000
+          animationRef.current = setTimeout(runPulseCycle, pauseDuration)
+        }
+      }
+
+      pulseAnimationRef.current = requestAnimationFrame(animate)
+    }
+
+    // Start the animation cycle after initial delay
+    const initialDelay = setTimeout(runPulseCycle, 1000)
+
+    return () => {
+      clearTimeout(initialDelay)
+      if (animationRef.current) clearTimeout(animationRef.current)
+      if (pulseAnimationRef.current) cancelAnimationFrame(pulseAnimationRef.current)
+    }
+  }, [isExpanded, isTimelineHovered])
 
   const companies = [
     { name: 'LeapNet', title: ['CTO', 'Dir Travel Practice'], start: '1995', end: '2001', years: '6 yrs', color: '#1a1a1a', logo: LeapnetLogo, size: 65, tabSize: 34, description: leapnetDesc },
@@ -67,16 +137,28 @@ const CareerPath = () => {
             <line x1="70" y1="80" x2="830" y2="80" stroke="var(--color-border-light)" strokeWidth="1" />
 
             {/* Traveling pulse along timeline - thin red line */}
-            <line x1="70" y1="80" x2="110" y2="80" stroke="#FF3008" strokeWidth="1" className="experience__traveling-pulse" />
+            {isPulseVisible && (
+              <line
+                x1={travelingPulseX - 40}
+                y1="80"
+                x2={travelingPulseX}
+                y2="80"
+                stroke="#FF3008"
+                strokeWidth="2"
+                strokeLinecap="round"
+                style={{ opacity: isPulseVisible ? 1 : 0 }}
+              />
+            )}
 
             {/* Company nodes */}
             {companies.map((company, index) => {
               const x = 70 + index * 152
               const delay = 300 + index * 400
+              const isPulsing = pulsingNodes[index]
               return (
                 <g
                   key={index}
-                  className="experience__node"
+                  className={`experience__node ${isPulsing ? 'experience__node--pulsing' : ''}`}
                   style={{ '--delay': `${delay}ms`, '--company-color': company.color }}
                 >
                   {/* Logo above timeline */}
@@ -86,12 +168,12 @@ const CareerPath = () => {
                     y={35 - company.size / 2}
                     width={company.size}
                     height={company.size}
-                    className="experience__logo"
+                    className={`experience__logo ${isPulsing ? 'experience__logo--pulsing' : ''}`}
                     preserveAspectRatio="xMidYMid meet"
                   />
                   {/* Timeline dot and pulse - centered */}
                   <circle cx={x} cy="80" r="4" fill={company.color} className="experience__dot" />
-                  <circle cx={x} cy="80" r="4" fill="none" stroke={company.color} strokeWidth="1" className="experience__pulse" />
+                  <circle cx={x} cy="80" r="4" fill="none" stroke={company.color} strokeWidth="1" className={`experience__pulse ${isPulsing ? 'experience__pulse--active' : ''}`} />
                   {/* Timeline endpoint labels */}
                   {index === 0 && (
                     <text x={x - 20} y="84" textAnchor="end" className="experience__endpoint-year">1995</text>
@@ -237,7 +319,7 @@ const HomePage = () => {
       <section className="home-work">
         <div className="container">
           <div className="home-work__header">
-            <h2 className="home-work__heading">Featured Work</h2>
+            <h2 className="home-work__heading">Case Studies</h2>
             <Link to="/work" className="home-work__view-all">
               View All Projects →
             </Link>

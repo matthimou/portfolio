@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import ScrollToTop from './components/ScrollToTop'
 import Navigation from './components/layout/Navigation'
 import HomePage from './pages/HomePage'
 import WorkPage from './pages/WorkPage'
@@ -10,6 +11,7 @@ import './App.css'
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <div className="app">
         {/* Fixed Navigation */}
         <Navigation />

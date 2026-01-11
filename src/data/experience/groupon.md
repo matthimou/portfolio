@@ -1,7 +1,7 @@
-# Scaled design globally at the pioneer of local commerce
+# Built the marketplace for the pioneer of local commerce
 &nbsp;
 
-Led Consumer and Merchant design through the transition from a single Groupon a day to establishing a rich local marketplace, and a pandemic that almost destroyed it. I started here on the consumer side of design, and added merchant in the later half of my tenure. Groupon was a mix of many 0-1 projects (POS for Restaurants, Dating (true story), Beauty Booking, Food Delivery, Restaurant Reservations, etc), and large gnarly platform efforts.
+Led Consumer and Merchant design through the transition from a single Groupon a day to establishing a rich local marketplace, and a pandemic that almost destroyed it. Groupon was a good mix of 0-1 projects (POS for restaurants, dating, beauty booking, food delivery, restaurant reservations, just to name a few...), and large gnarly platform  or architecture efforts to scale the business.
 
 - **Managed global team** across 3 continents
 - **Launched successful consumer platform** and E2E redesign serving multiple countries, languages, and product lines

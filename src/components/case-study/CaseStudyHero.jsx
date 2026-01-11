@@ -14,13 +14,21 @@ const CaseStudyHero = ({ id, title, hero, meta, hideHeader = false }) => {
             <span className="case-study-hero__separator">•</span>
             <span className="case-study-hero__timeline">{meta.timeline}</span>
           </div>
-          <div className="case-study-hero__team">
-            <span className="case-study-hero__role">{meta.role}</span>
-            <span className="case-study-hero__separator">•</span>
-            <span className="case-study-hero__team-info">
-              Led team of {meta.team.size}: {meta.team.composition}
-            </span>
-          </div>
+          {(meta.role || meta.team?.composition) && (
+            <div className="case-study-hero__team">
+              {meta.role && (
+                <>
+                  <span className="case-study-hero__role">{meta.role}</span>
+                  {meta.team?.composition && <span className="case-study-hero__separator">•</span>}
+                </>
+              )}
+              {meta.team?.composition && (
+                <span className="case-study-hero__team-info">
+                  {meta.team.size ? `Led team of ${meta.team.size}: ${meta.team.composition}` : meta.team.composition}
+                </span>
+              )}
+            </div>
+          )}
         </div>
       )}
 
@@ -40,6 +48,7 @@ const CaseStudyHero = ({ id, title, hero, meta, hideHeader = false }) => {
             src={hero.src}
             alt={hero.alt}
             className="case-study-hero__image"
+            style={hero.aspectRatio ? { aspectRatio: hero.aspectRatio, objectFit: 'contain' } : {}}
             loading="lazy"
           />
         )}

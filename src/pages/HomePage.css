@@ -75,33 +75,7 @@
   display: block;
 }
 
-/* Traveling pulse animation - subtle glow moves across timeline with pause */
-.experience__traveling-pulse {
-  opacity: 0;
-}
-
-.experience__content--visible .experience__traveling-pulse {
-  animation: travel-pulse 8s linear infinite;
-}
-
-@keyframes travel-pulse {
-  0% {
-    transform: translateX(0);
-    opacity: 1;
-  }
-  25% {
-    transform: translateX(720px);
-    opacity: 1;
-  }
-  26% {
-    transform: translateX(720px);
-    opacity: 0;
-  }
-  100% {
-    transform: translateX(720px);
-    opacity: 0;
-  }
-}
+/* Traveling pulse is now JavaScript-controlled for randomized timing */
 
 /* Node animations */
 .experience__node {
@@ -120,41 +94,10 @@
   opacity: 0;
 }
 
-.experience__content--visible .experience__pulse {
-  animation: pulse-ring-sync 8s ease-out infinite;
-}
-
-/* Sync pulses to traveling pulse position (720px over 2s = 25% of 8s cycle) */
-/* Line front reaches each dot at: 0px, 112px, 264px, 416px, 568px, 720px */
-/* Delays: 0s, 0.31s, 0.73s, 1.16s, 1.58s, 2.0s */
-.experience__content--visible .experience__node:nth-child(3) .experience__pulse { animation-delay: 0s; }
-.experience__content--visible .experience__node:nth-child(4) .experience__pulse { animation-delay: 0.31s; }
-.experience__content--visible .experience__node:nth-child(5) .experience__pulse { animation-delay: 0.73s; }
-.experience__content--visible .experience__node:nth-child(6) .experience__pulse { animation-delay: 1.16s; }
-.experience__content--visible .experience__node:nth-child(7) .experience__pulse { animation-delay: 1.58s; }
-.experience__content--visible .experience__node:nth-child(8) .experience__pulse { animation-delay: 2.0s; }
-
-@keyframes pulse-ring-sync {
-  0% {
-    transform: scale(1);
-    opacity: 0;
-  }
-  0.1% {
-    transform: scale(1);
-    opacity: 0.7;
-    stroke: var(--company-color);
-    stroke-width: 3;
-  }
-  4% {
-    transform: scale(3);
-    opacity: 0;
-    stroke: var(--company-color);
-    stroke-width: 1;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 0;
-  }
+/* Old CSS-based pulse animation - now replaced by JavaScript for randomization */
+/* Keeping pulse-ring-sync keyframes for reference but not actively used */
+.experience__pulse {
+  opacity: 0;
 }
 
 /* Timeline hover state - pause animations */
@@ -229,6 +172,42 @@
 /* Logo base styles */
 .experience__logo {
   transform: translateY(0);
+  transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* JavaScript-triggered logo bounce on pulse */
+.experience__logo--pulsing {
+  animation: logo-pulse-bounce 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes logo-pulse-bounce {
+  0% {
+    transform: translateY(0);
+  }
+  30% {
+    transform: translateY(-4px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* JavaScript-triggered pulse ring */
+.experience__pulse--active {
+  animation: js-pulse-ring 0.4s ease-out forwards;
+}
+
+@keyframes js-pulse-ring {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+    stroke-width: 3;
+  }
+  100% {
+    transform: scale(3.5);
+    opacity: 0;
+    stroke-width: 1;
+  }
 }
 
 /* Text styles */
@@ -446,6 +425,7 @@
 .career-path__content {
   flex: 1;
   min-height: 200px;
+  margin-right: 60px; /* Space for collapse button */
 }
 
 .career-path__detail {
@@ -602,6 +582,9 @@
     display: none;
   }
 
+  .career-path__content {
+    margin-right: 0;
+  }
 }
 
 @media (max-width: 640px) {
