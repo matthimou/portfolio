@@ -709,6 +709,35 @@
       transform: translateY(0);
     }
   }
+
+  .career-path__mobile-show-all {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-xs);
+    width: 100%;
+    padding: var(--space-sm);
+    background: var(--color-bg-secondary);
+    border: 1px dashed var(--color-border-light);
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--color-text-tertiary);
+    transition: all 0.2s ease;
+  }
+
+  .career-path__mobile-show-all:hover {
+    background: white;
+    color: var(--color-text-secondary);
+    border-color: var(--color-text-tertiary);
+  }
+
+  .career-path__mobile-show-all svg {
+    width: 16px;
+    height: 16px;
+  }
 }
 
 /* Desktop: Hide mobile list */

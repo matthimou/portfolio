@@ -28,6 +28,7 @@ const CareerPath = () => {
   const [travelingPulseX, setTravelingPulseX] = useState(70)
   const [isPulseVisible, setIsPulseVisible] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
+  const [showAllMobile, setShowAllMobile] = useState(false)
   const animationRef = useRef(null)
   const pulseAnimationRef = useRef(null)
 
@@ -141,46 +142,59 @@ const CareerPath = () => {
       {/* Mobile: Vertical accordion list */}
       {isMobile && (
         <div className="career-path__mobile-list">
-          {[...companies].reverse().map((company, reverseIndex) => {
-            const index = companies.length - 1 - reverseIndex
-            return (
-              <div
-                key={index}
-                className={`career-path__mobile-item ${activeCompany === index ? 'career-path__mobile-item--active' : ''}`}
-                style={{ '--company-color': company.color }}
-              >
-                <button
-                  className="career-path__mobile-header"
-                  onClick={() => handleCompanyClick(index)}
+          {[...companies].reverse()
+            .slice(0, showAllMobile ? companies.length : 4)
+            .map((company, reverseIndex) => {
+              const index = companies.length - 1 - reverseIndex
+              return (
+                <div
+                  key={index}
+                  className={`career-path__mobile-item ${activeCompany === index ? 'career-path__mobile-item--active' : ''}`}
+                  style={{ '--company-color': company.color }}
                 >
-                  <div className="career-path__mobile-logo-wrapper">
-                    <img src={company.logo} alt={company.name} className="career-path__mobile-logo" />
-                  </div>
-                  <div className="career-path__mobile-info">
-                    <span className="career-path__mobile-name">{company.name}</span>
-                    <span className="career-path__mobile-years">{company.start}–{company.end}</span>
-                  </div>
-                  <span className="career-path__mobile-title">{company.title.join(', ')}</span>
-                  <svg
-                    className={`career-path__mobile-chevron ${activeCompany === index ? 'career-path__mobile-chevron--open' : ''}`}
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
+                  <button
+                    className="career-path__mobile-header"
+                    onClick={() => handleCompanyClick(index)}
                   >
-                    <polyline points="6 9 12 15 18 9" />
-                  </svg>
-                </button>
-                {activeCompany === index && (
-                  <div className="career-path__mobile-content">
-                    <ReactMarkdown>{company.description}</ReactMarkdown>
-                  </div>
-                )}
-              </div>
-            )
-          })}
+                    <div className="career-path__mobile-logo-wrapper">
+                      <img src={company.logo} alt={company.name} className="career-path__mobile-logo" />
+                    </div>
+                    <div className="career-path__mobile-info">
+                      <span className="career-path__mobile-name">{company.name}</span>
+                      <span className="career-path__mobile-years">{company.start}–{company.end}</span>
+                    </div>
+                    <span className="career-path__mobile-title">{company.title.join(', ')}</span>
+                    <svg
+                      className={`career-path__mobile-chevron ${activeCompany === index ? 'career-path__mobile-chevron--open' : ''}`}
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <polyline points="6 9 12 15 18 9" />
+                    </svg>
+                  </button>
+                  {activeCompany === index && (
+                    <div className="career-path__mobile-content">
+                      <ReactMarkdown>{company.description}</ReactMarkdown>
+                    </div>
+                  )}
+                </div>
+              )
+            })}
+          {!showAllMobile && (
+            <button
+              className="career-path__mobile-show-all"
+              onClick={() => setShowAllMobile(true)}
+            >
+              See all experience
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="6 9 12 15 18 9" />
+              </svg>
+            </button>
+          )}
         </div>
       )}
 
