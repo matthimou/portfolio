@@ -1,12 +1,21 @@
 import { useEffect, useRef, useState } from 'react'
 import { caseStudies } from '../data/caseStudies'
 import ProjectCard from '../components/ui/ProjectCard'
+import LockedCard from '../components/ui/LockedCard'
+import { useAuth } from '../context/AuthContext'
 import './WorkPage.css'
 
-const WorkPage = () => {
+const WorkPage = ({ onOpenLogin }) => {
   const [headerVisible, setHeaderVisible] = useState(false)
   const [cardsVisible, setCardsVisible] = useState(false)
   const gridRef = useRef(null)
+  const { isAuthenticated } = useAuth()
+
+  // Filter case studies based on auth state
+  const visibleStudies = isAuthenticated
+    ? caseStudies
+    : caseStudies.filter(s => !s.protected)
+  const protectedCount = caseStudies.filter(s => s.protected).length
 
   useEffect(() => {
     // Trigger header animation on mount
@@ -43,7 +52,7 @@ const WorkPage = () => {
 
         {/* Projects Grid */}
         <div className="work-page__grid" ref={gridRef}>
-          {caseStudies.map((project, index) => (
+          {visibleStudies.map((project, index) => (
             <div
               key={project.id}
               className={`work-page__card-wrapper ${cardsVisible ? 'work-page__card-wrapper--visible' : ''}`}
@@ -55,6 +64,14 @@ const WorkPage = () => {
               />
             </div>
           ))}
+          {!isAuthenticated && protectedCount > 0 && (
+            <div
+              className={`work-page__card-wrapper ${cardsVisible ? 'work-page__card-wrapper--visible' : ''}`}
+              style={{ transitionDelay: `${visibleStudies.length * 100}ms` }}
+            >
+              <LockedCard count={protectedCount} onOpenLogin={onOpenLogin} />
+            </div>
+          )}
         </div>
       </div>
     </div>

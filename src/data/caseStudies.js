@@ -6,6 +6,7 @@
 export const caseStudies = [
   {
     id: 'doordash-evidence',
+    protected: false,
     meta: {
       title: 'Contextual Store Evidence',
       client: 'DoorDash',
@@ -82,6 +83,7 @@ export const caseStudies = [
   },
   {
     id: 'groupon-cx90',
+    protected: false,
     meta: {
       title: 'CX90: Groupon Homepage Transformation',
       client: 'Groupon',
@@ -183,6 +185,7 @@ export const caseStudies = [
   },
   {
     id: 'fintech-platform',
+    protected: true,
     meta: {
       title: 'Enterprise Fintech Platform Redesign',
       client: 'FinTech Corp',
@@ -254,6 +257,7 @@ export const caseStudies = [
   },
   {
     id: 'healthcare-app',
+    protected: true,
     meta: {
       title: 'Patient Care Mobile App',
       client: 'HealthCare Plus',
@@ -325,6 +329,7 @@ export const caseStudies = [
   },
   {
     id: 'ecommerce-platform',
+    protected: true,
     meta: {
       title: 'E-commerce Checkout Optimization',
       client: 'RetailCo',

@@ -1,11 +1,13 @@
 import { useParams, Link, Navigate } from 'react-router-dom'
 import { caseStudies } from '../data/caseStudies'
+import { useAuth } from '../context/AuthContext'
 import CaseStudyHero from '../components/case-study/CaseStudyHero'
 import CaseStudyContent from '../components/case-study/CaseStudyContent'
 import './CaseStudyPage.css'
 
-const CaseStudyPage = () => {
+const CaseStudyPage = ({ onOpenLogin }) => {
   const { projectId } = useParams()
+  const { isAuthenticated } = useAuth()
   const study = caseStudies.find(s => s.id === projectId)
 
   // Redirect to work page if project not found
@@ -13,10 +15,20 @@ const CaseStudyPage = () => {
     return <Navigate to="/work" replace />
   }
 
-  // Find current project index for navigation
-  const currentIndex = caseStudies.findIndex(s => s.id === projectId)
-  const prevProject = currentIndex > 0 ? caseStudies[currentIndex - 1] : null
-  const nextProject = currentIndex < caseStudies.length - 1 ? caseStudies[currentIndex + 1] : null
+  // Redirect to work page if trying to access protected study without auth
+  if (study.protected && !isAuthenticated) {
+    return <Navigate to="/work" replace />
+  }
+
+  // Filter visible studies based on auth state
+  const visibleStudies = isAuthenticated
+    ? caseStudies
+    : caseStudies.filter(s => !s.protected)
+
+  // Find current project index for navigation (within visible studies)
+  const currentIndex = visibleStudies.findIndex(s => s.id === projectId)
+  const prevProject = currentIndex > 0 ? visibleStudies[currentIndex - 1] : null
+  const nextProject = currentIndex < visibleStudies.length - 1 ? visibleStudies[currentIndex + 1] : null
 
   const hasFullBleedHero = !!study.hero.video || !!study.hero.fullBleed
 

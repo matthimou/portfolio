@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Hero from '../components/sections/Hero'
 import VideoBackground from '../components/ui/VideoBackground'
+import LockedCard from '../components/ui/LockedCard'
+import { useAuth } from '../context/AuthContext'
 import { caseStudies } from '../data/caseStudies'
 import LeapnetLogo from '../assets/LeapnetLogo.png'
 import Logo212 from '../assets/212Logo.png'
@@ -258,11 +260,18 @@ const CareerPath = () => {
   )
 }
 
-const HomePage = () => {
+const HomePage = ({ onOpenLogin }) => {
   const [cardsVisible, setCardsVisible] = useState(false)
   const [experienceVisible, setExperienceVisible] = useState(false)
   const gridRef = useRef(null)
   const experienceRef = useRef(null)
+  const { isAuthenticated } = useAuth()
+
+  // Filter case studies based on auth state
+  const visibleStudies = isAuthenticated
+    ? caseStudies
+    : caseStudies.filter(s => !s.protected)
+  const protectedCount = caseStudies.filter(s => s.protected).length
 
   useEffect(() => {
     const cardObserver = new IntersectionObserver(
@@ -326,7 +335,7 @@ const HomePage = () => {
           </div>
 
           <div className="home-work__grid" ref={gridRef}>
-            {caseStudies.map((project, index) => (
+            {visibleStudies.map((project, index) => (
               <Link
                 key={project.id}
                 to={`/work/${project.id}`}
@@ -347,6 +356,14 @@ const HomePage = () => {
                 </div>
               </Link>
             ))}
+            {!isAuthenticated && protectedCount > 0 && (
+              <div
+                className={`home-work__card ${cardsVisible ? 'home-work__card--visible' : ''}`}
+                style={{ transitionDelay: `${visibleStudies.length * 100}ms` }}
+              >
+                <LockedCard count={protectedCount} onOpenLogin={onOpenLogin} />
+              </div>
+            )}
           </div>
         </div>
       </section>
