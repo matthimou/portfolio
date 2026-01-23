@@ -274,22 +274,20 @@ const CareerPath = () => {
 
           </svg>
 
-          {/* Toggle button - shown on hover */}
-          {isTimelineHovered && (
-            <button
-              className="career-path__toggle"
-              onClick={(e) => {
-                e.stopPropagation()
-                handleCompanyClick(0)
-              }}
-            >
-              <span className="career-path__toggle-label">More</span>
-              <svg viewBox="0 0 16 12" className="career-path__toggle-arrows">
-                <path d="M3 1 L8 6 L13 1" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="career-path__toggle-arrow career-path__toggle-arrow--1" />
-                <path d="M3 5 L8 10 L13 5" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="career-path__toggle-arrow career-path__toggle-arrow--2" />
-              </svg>
-            </button>
-          )}
+          {/* Toggle button - visible on hover (desktop) or always (touch) */}
+          <button
+            className={`career-path__toggle ${isTimelineHovered ? 'career-path__toggle--visible' : ''}`}
+            onClick={(e) => {
+              e.stopPropagation()
+              handleCompanyClick(0)
+            }}
+          >
+            <span className="career-path__toggle-label">More</span>
+            <svg viewBox="0 0 16 12" className="career-path__toggle-arrows">
+              <path d="M3 1 L8 6 L13 1" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="career-path__toggle-arrow career-path__toggle-arrow--1" />
+              <path d="M3 5 L8 10 L13 5" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="career-path__toggle-arrow career-path__toggle-arrow--2" />
+            </svg>
+          </button>
         </div>
       )}
 

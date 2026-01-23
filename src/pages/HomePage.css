@@ -265,9 +265,20 @@
   cursor: pointer;
   padding: var(--space-xs) var(--space-sm);
   color: var(--color-text-tertiary);
-  transition: color 0.2s ease;
+  transition: color 0.2s ease, opacity 0.2s ease;
   z-index: 10;
-  animation: fade-in-hint 0.3s ease-out forwards;
+  opacity: 0;
+}
+
+.career-path__toggle--visible {
+  opacity: 1;
+}
+
+/* Always show toggle on touch devices (no hover capability) */
+@media (hover: none) {
+  .career-path__toggle {
+    opacity: 1;
+  }
 }
 
 /* More action: always active when hovering module */
