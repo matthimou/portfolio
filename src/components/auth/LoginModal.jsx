@@ -160,6 +160,7 @@ const LoginModal = ({ isOpen, onClose }) => {
                 className={`login-modal__input ${status === 'error' ? 'login-modal__input--error' : ''}`}
                 disabled={status === 'loading'}
                 autoComplete="off"
+                autoCapitalize="off"
                 spellCheck="false"
               />
               {error && (
