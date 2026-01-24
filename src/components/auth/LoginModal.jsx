@@ -156,6 +156,13 @@ const LoginModal = ({ isOpen, onClose }) => {
                   if (error) setError('')
                   if (status === 'error') setStatus('idle')
                 }}
+                onFocus={() => {
+                  if (status === 'error') {
+                    setCode('')
+                    setError('')
+                    setStatus('idle')
+                  }
+                }}
                 placeholder="Access code"
                 className={`login-modal__input ${status === 'error' ? 'login-modal__input--error' : ''}`}
                 disabled={status === 'loading'}
