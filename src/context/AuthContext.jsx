@@ -41,11 +41,6 @@ export const AuthProvider = ({ children }) => {
 
     const normalizedCode = code.trim().toUpperCase()
 
-    // DEBUG - remove after testing
-    console.log('Valid codes:', validCodes)
-    console.log('Entered code:', normalizedCode)
-    console.log('Match:', validCodes.includes(normalizedCode))
-
     if (validCodes.includes(normalizedCode)) {
       sessionStorage.setItem('portfolio_auth', 'true')
       sessionStorage.setItem('portfolio_auth_code', normalizedCode)
