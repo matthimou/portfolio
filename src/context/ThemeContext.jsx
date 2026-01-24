@@ -11,10 +11,17 @@ export const ThemeProvider = ({ children }) => {
     return stored === 'dark' ? 'dark' : 'light'
   })
 
-  // Apply theme to document
+  // Apply theme to document and update meta theme-color
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme)
     localStorage.setItem(STORAGE_KEY, theme)
+
+    // Update meta theme-color for mobile browser chrome
+    const themeColor = theme === 'dark' ? '#0F0F12' : '#FAFAF9'
+    const metaThemeColor = document.querySelector('meta[name="theme-color"]')
+    if (metaThemeColor) {
+      metaThemeColor.setAttribute('content', themeColor)
+    }
   }, [theme])
 
   const toggleTheme = () => {
