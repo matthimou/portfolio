@@ -349,7 +349,7 @@ const CareerPath = () => {
             style={{ cursor: 'pointer' }}
           >
             {/* Logo area background - visible in dark mode */}
-            <rect x="0" y="0" width="900" height="70" className="experience__logo-band" rx="4" />
+            <rect x="20" y="0" width="860" height="70" className="experience__logo-band" rx="4" />
 
             {/* Background track */}
             <line x1="70" y1="100" x2="830" y2="100" stroke="var(--color-border-light)" strokeWidth="1" />
