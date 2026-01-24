@@ -361,6 +361,212 @@
   }
 }
 
+/* ===== SUCCESS CELEBRATION ===== */
+
+/* Overlay transforms to celebration */
+.login-modal__overlay--success {
+  background: linear-gradient(
+    135deg,
+    rgba(99, 102, 241, 0.9),
+    rgba(168, 85, 247, 0.9),
+    rgba(236, 72, 153, 0.9),
+    rgba(251, 146, 60, 0.9)
+  );
+  background-size: 400% 400%;
+  animation: celebration-gradient 3s ease infinite;
+}
+
+@keyframes celebration-gradient {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Celebration container */
+.login-modal__celebration {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* Radiant rays */
+.login-modal__rays {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200vmax;
+  height: 200vmax;
+  transform: translate(-50%, -50%);
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    rgba(255, 255, 255, 0.1) 10deg,
+    transparent 20deg,
+    transparent 30deg,
+    rgba(255, 255, 255, 0.1) 40deg,
+    transparent 50deg,
+    transparent 60deg,
+    rgba(255, 255, 255, 0.08) 70deg,
+    transparent 80deg,
+    transparent 90deg
+  );
+  animation: rays-rotate 20s linear infinite;
+}
+
+@keyframes rays-rotate {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Floating particles */
+.login-modal__particles {
+  position: absolute;
+  inset: 0;
+}
+
+.login-modal__particle {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: white;
+  opacity: 0;
+  animation: particle-float 2s ease-out forwards;
+  animation-delay: calc(var(--i) * 0.1s);
+}
+
+.login-modal__particle:nth-child(odd) {
+  background: #fbbf24;
+}
+
+.login-modal__particle:nth-child(3n) {
+  background: #a78bfa;
+  width: 6px;
+  height: 6px;
+}
+
+.login-modal__particle:nth-child(1) { left: 50%; top: 50%; }
+.login-modal__particle:nth-child(2) { left: 45%; top: 45%; }
+.login-modal__particle:nth-child(3) { left: 55%; top: 45%; }
+.login-modal__particle:nth-child(4) { left: 40%; top: 50%; }
+.login-modal__particle:nth-child(5) { left: 60%; top: 50%; }
+.login-modal__particle:nth-child(6) { left: 45%; top: 55%; }
+.login-modal__particle:nth-child(7) { left: 55%; top: 55%; }
+.login-modal__particle:nth-child(8) { left: 35%; top: 45%; }
+.login-modal__particle:nth-child(9) { left: 65%; top: 45%; }
+.login-modal__particle:nth-child(10) { left: 35%; top: 55%; }
+.login-modal__particle:nth-child(11) { left: 65%; top: 55%; }
+.login-modal__particle:nth-child(12) { left: 50%; top: 40%; }
+
+@keyframes particle-float {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(0);
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(
+      calc(-50% + (var(--i) - 6) * 30px),
+      calc(-50% - 100px)
+    ) scale(1);
+  }
+}
+
+/* Modal success state */
+.login-modal--success {
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 0 60px rgba(255, 255, 255, 0.5);
+  animation: modal-glow-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes modal-glow-pulse {
+  0%, 100% { box-shadow: 0 0 40px rgba(255, 255, 255, 0.4); }
+  50% { box-shadow: 0 0 80px rgba(255, 255, 255, 0.7); }
+}
+
+/* Clouds that part */
+.login-modal__cloud {
+  position: absolute;
+  width: 150px;
+  height: 80px;
+  background:
+    radial-gradient(ellipse 60% 60% at 30% 50%, rgba(255, 255, 255, 0.9) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 50% at 70% 50%, rgba(255, 255, 255, 0.8) 0%, transparent 70%),
+    radial-gradient(ellipse 70% 70% at 50% 60%, rgba(255, 255, 255, 0.85) 0%, transparent 60%);
+  filter: blur(8px);
+  z-index: 1;
+}
+
+.login-modal__cloud--left {
+  top: 20%;
+  left: 0;
+  animation: cloud-part-left 1s ease-out forwards;
+}
+
+.login-modal__cloud--right {
+  top: 20%;
+  right: 0;
+  animation: cloud-part-right 1s ease-out forwards;
+}
+
+@keyframes cloud-part-left {
+  0% { transform: translateX(50%); opacity: 0.9; }
+  100% { transform: translateX(-100%); opacity: 0; }
+}
+
+@keyframes cloud-part-right {
+  0% { transform: translateX(-50%); opacity: 0.9; }
+  100% { transform: translateX(100%); opacity: 0; }
+}
+
+/* Glowing lock effect */
+.login-modal__glow {
+  position: absolute;
+  inset: -20px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(251, 191, 36, 0.6) 0%,
+    rgba(251, 191, 36, 0.3) 40%,
+    transparent 70%
+  );
+  animation: glow-pulse 1s ease-in-out infinite;
+}
+
+@keyframes glow-pulse {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.2); opacity: 1; }
+}
+
+/* Enhanced success lock styling */
+.login-modal__icon--success .login-modal__lock {
+  color: #fbbf24;
+  filter: drop-shadow(0 0 8px rgba(251, 191, 36, 0.8));
+  animation: lock-success-spin 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes lock-success-spin {
+  0% { transform: rotateY(0deg) scale(1); }
+  50% { transform: rotateY(180deg) scale(1.2); }
+  100% { transform: rotateY(360deg) scale(1.1); }
+}
+
+/* Enhanced shackle unlock for success */
+.login-modal__icon--success .login-modal__shackle {
+  animation: shackle-unlock-success 0.6s ease-out 0.6s forwards;
+  transform-origin: 17px 7px;
+}
+
+@keyframes shackle-unlock-success {
+  0% { transform: translateY(0) rotate(0deg); }
+  30% { transform: translateY(-2px) rotate(0deg); }
+  60% { transform: translateY(-5px) rotate(-15deg); }
+  100% { transform: translateY(-6px) rotate(-35deg); }
+}
+
 /* Responsive */
 @media (max-width: 480px) {
   .login-modal {

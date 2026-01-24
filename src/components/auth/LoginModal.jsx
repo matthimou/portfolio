@@ -177,7 +177,7 @@ const LoginModal = ({ isOpen, onClose }) => {
       playSuccessSound()
       setTimeout(() => {
         onClose()
-      }, 1500)
+      }, 3000) // Extended to enjoy the celebration
     } else {
       setStatus('error')
       setError('invalid')
@@ -188,18 +188,39 @@ const LoginModal = ({ isOpen, onClose }) => {
   if (!isOpen) return null
 
   return (
-    <div className="login-modal__overlay" onClick={onClose}>
+    <div className={`login-modal__overlay ${status === 'success' ? 'login-modal__overlay--success' : ''}`} onClick={onClose}>
+      {/* Success celebration background */}
+      {status === 'success' && (
+        <div className="login-modal__celebration">
+          <div className="login-modal__rays" />
+          <div className="login-modal__particles">
+            {[...Array(12)].map((_, i) => (
+              <div key={i} className="login-modal__particle" style={{ '--i': i }} />
+            ))}
+          </div>
+        </div>
+      )}
+
       <div
-        className="login-modal"
+        className={`login-modal ${status === 'success' ? 'login-modal--success' : ''}`}
         onClick={e => e.stopPropagation()}
         role="dialog"
         aria-modal="true"
         aria-labelledby="login-modal-title"
       >
+        {/* Clouds that part on success */}
+        {status === 'success' && (
+          <>
+            <div className="login-modal__cloud login-modal__cloud--left" />
+            <div className="login-modal__cloud login-modal__cloud--right" />
+          </>
+        )}
+
         <button
           className="login-modal__close"
           onClick={onClose}
           aria-label="Close modal"
+          style={{ display: status === 'success' ? 'none' : undefined }}
         >
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <path d="M18 6L6 18M6 6l12 12" />
@@ -207,6 +228,8 @@ const LoginModal = ({ isOpen, onClose }) => {
         </button>
 
         <div className={`login-modal__icon ${showUnlockAnimation ? 'login-modal__icon--animating' : ''} ${status === 'success' ? 'login-modal__icon--success' : ''} ${status === 'error' ? 'login-modal__icon--error' : ''}`}>
+          {/* Glow effect on success */}
+          {status === 'success' && <div className="login-modal__glow" />}
           {/* Rainbow burst on open and success */}
           {showUnlockAnimation && status !== 'error' && (
             <div className="login-modal__rainbow" />
