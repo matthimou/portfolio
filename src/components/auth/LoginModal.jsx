@@ -2,13 +2,12 @@ import { useState, useEffect, useRef } from 'react'
 import { useAuth } from '../../context/AuthContext'
 import './LoginModal.css'
 
-// Play unlock sound using Web Audio API
-const playUnlockSound = () => {
+// Play heavenly success sound using Web Audio API
+const playSuccessSound = () => {
   try {
     const audioContext = new (window.AudioContext || window.webkitAudioContext)()
 
-    // Create a "chest opening" sound with multiple tones
-    const playTone = (freq, startTime, duration, type = 'sine') => {
+    const playTone = (freq, startTime, duration, type = 'sine', volume = 0.2) => {
       const oscillator = audioContext.createOscillator()
       const gainNode = audioContext.createGain()
 
@@ -18,27 +17,56 @@ const playUnlockSound = () => {
       oscillator.frequency.value = freq
       oscillator.type = type
 
-      gainNode.gain.setValueAtTime(0.3, audioContext.currentTime + startTime)
+      gainNode.gain.setValueAtTime(volume, audioContext.currentTime + startTime)
       gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + startTime + duration)
 
       oscillator.start(audioContext.currentTime + startTime)
       oscillator.stop(audioContext.currentTime + startTime + duration)
     }
 
-    // Creak/unlock sound
-    playTone(120, 0, 0.15, 'sawtooth')
-    playTone(180, 0.05, 0.1, 'square')
-    // Click
-    playTone(800, 0.12, 0.05, 'square')
-    // Whoosh for rainbow
-    playTone(400, 0.15, 0.3, 'sine')
-    playTone(600, 0.2, 0.25, 'sine')
-    playTone(800, 0.25, 0.2, 'sine')
-    // Sparkle
-    playTone(1200, 0.35, 0.15, 'sine')
-    playTone(1400, 0.4, 0.1, 'sine')
+    // Heavenly chord (C major arpeggio going up)
+    playTone(523, 0, 0.4, 'sine', 0.15)      // C5
+    playTone(659, 0.1, 0.4, 'sine', 0.15)    // E5
+    playTone(784, 0.2, 0.5, 'sine', 0.15)    // G5
+    playTone(1047, 0.3, 0.6, 'sine', 0.2)    // C6
+    // Sparkle on top
+    playTone(1568, 0.5, 0.3, 'sine', 0.1)    // G6
+    playTone(2093, 0.6, 0.25, 'sine', 0.08)  // C7
+    // Click sound for lock
+    playTone(1200, 0.4, 0.05, 'square', 0.3)
   } catch (e) {
-    // Audio not supported, fail silently
+    // Audio not supported
+  }
+}
+
+// Play buzzer/error sound
+const playErrorSound = () => {
+  try {
+    const audioContext = new (window.AudioContext || window.webkitAudioContext)()
+
+    const playTone = (freq, startTime, duration, type = 'sine', volume = 0.2) => {
+      const oscillator = audioContext.createOscillator()
+      const gainNode = audioContext.createGain()
+
+      oscillator.connect(gainNode)
+      gainNode.connect(audioContext.destination)
+
+      oscillator.frequency.value = freq
+      oscillator.type = type
+
+      gainNode.gain.setValueAtTime(volume, audioContext.currentTime + startTime)
+      gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + startTime + duration)
+
+      oscillator.start(audioContext.currentTime + startTime)
+      oscillator.stop(audioContext.currentTime + startTime + duration)
+    }
+
+    // Harsh buzzer sound
+    playTone(150, 0, 0.15, 'sawtooth', 0.3)
+    playTone(150, 0.2, 0.15, 'sawtooth', 0.3)
+    playTone(100, 0.4, 0.2, 'sawtooth', 0.25)
+  } catch (e) {
+    // Audio not supported
   }
 }
 
@@ -50,11 +78,9 @@ const LoginModal = ({ isOpen, onClose }) => {
   const inputRef = useRef(null)
   const { login } = useAuth()
 
-  // Focus input and trigger unlock animation when modal opens
+  // Focus input when modal opens
   useEffect(() => {
     if (isOpen) {
-      setShowUnlockAnimation(true)
-      playUnlockSound()
       setTimeout(() => inputRef.current?.focus(), 100)
     }
   }, [isOpen])
@@ -111,12 +137,15 @@ const LoginModal = ({ isOpen, onClose }) => {
 
     if (result.success) {
       setStatus('success')
+      setShowUnlockAnimation(true)
+      playSuccessSound()
       setTimeout(() => {
         onClose()
-      }, 500)
+      }, 1500)
     } else {
       setStatus('error')
-      setError(result.error)
+      setError('Nope! You need a proper access code. Email matthimou@gmail.com if you need one.')
+      playErrorSound()
     }
   }
 
@@ -141,23 +170,17 @@ const LoginModal = ({ isOpen, onClose }) => {
           </svg>
         </button>
 
-        <div className={`login-modal__icon ${showUnlockAnimation ? 'login-modal__icon--animating' : ''}`}>
-          {/* Rainbow burst */}
-          {showUnlockAnimation && (
+        <div className={`login-modal__icon ${showUnlockAnimation ? 'login-modal__icon--animating' : ''} ${status === 'error' ? 'login-modal__icon--error' : ''}`}>
+          {/* Rainbow burst on success */}
+          {showUnlockAnimation && status === 'success' && (
             <div className="login-modal__rainbow" />
           )}
-          {status === 'success' ? (
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="login-modal__icon-check">
-              <path d="M20 6L9 17l-5-5" />
-            </svg>
-          ) : (
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="login-modal__lock">
-              {/* Lock body */}
-              <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
-              {/* Shackle - animated */}
-              <path d="M7 11V7a5 5 0 0 1 10 0v4" className="login-modal__shackle" />
-            </svg>
-          )}
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="login-modal__lock">
+            {/* Lock body */}
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+            {/* Shackle */}
+            <path d="M7 11V7a5 5 0 0 1 10 0v4" className="login-modal__shackle" />
+          </svg>
         </div>
 
         <h2 id="login-modal-title" className="login-modal__title">

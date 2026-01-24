@@ -126,6 +126,21 @@
   100% { transform: translateY(-4px) rotate(-30deg); }
 }
 
+/* Error shake animation */
+.login-modal__icon--error {
+  animation: lock-shake 0.5s ease-in-out;
+}
+
+.login-modal__icon--error .login-modal__lock {
+  color: #ef4444;
+}
+
+@keyframes lock-shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-4px); }
+  20%, 40%, 60%, 80% { transform: translateX(4px); }
+}
+
 /* Rainbow burst - single radial gradient */
 .login-modal__rainbow {
   position: absolute;
