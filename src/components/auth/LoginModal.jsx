@@ -78,9 +78,10 @@ const LoginModal = ({ isOpen, onClose }) => {
   const inputRef = useRef(null)
   const { login } = useAuth()
 
-  // Focus input when modal opens
+  // Focus input and trigger intro animation when modal opens
   useEffect(() => {
     if (isOpen) {
+      setShowUnlockAnimation(true)
       setTimeout(() => inputRef.current?.focus(), 100)
     }
   }, [isOpen])
@@ -170,9 +171,9 @@ const LoginModal = ({ isOpen, onClose }) => {
           </svg>
         </button>
 
-        <div className={`login-modal__icon ${showUnlockAnimation ? 'login-modal__icon--animating' : ''} ${status === 'error' ? 'login-modal__icon--error' : ''}`}>
-          {/* Rainbow burst on success */}
-          {showUnlockAnimation && status === 'success' && (
+        <div className={`login-modal__icon ${showUnlockAnimation ? 'login-modal__icon--animating' : ''} ${status === 'success' ? 'login-modal__icon--success' : ''} ${status === 'error' ? 'login-modal__icon--error' : ''}`}>
+          {/* Rainbow burst on open and success */}
+          {showUnlockAnimation && status !== 'error' && (
             <div className="login-modal__rainbow" />
           )}
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="login-modal__lock">
