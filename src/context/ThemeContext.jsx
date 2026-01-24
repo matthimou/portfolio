@@ -22,6 +22,9 @@ export const ThemeProvider = ({ children }) => {
     if (metaThemeColor) {
       metaThemeColor.setAttribute('content', themeColor)
     }
+
+    // Update color-scheme for iOS Safari
+    document.documentElement.style.colorScheme = theme
   }, [theme])
 
   const toggleTheme = () => {
