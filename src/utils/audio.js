@@ -1,5 +1,6 @@
 // Shared audio context for low-latency sound effects
 let audioContext = null
+let isWarmedUp = false
 
 const getAudioContext = () => {
   if (!audioContext) {
@@ -10,6 +11,36 @@ const getAudioContext = () => {
     audioContext.resume()
   }
   return audioContext
+}
+
+// Warm up the audio context on first user interaction
+// This helps eliminate latency on desktop browsers
+export const warmUpAudio = () => {
+  if (isWarmedUp) return
+
+  try {
+    const ctx = getAudioContext()
+    // Play a silent tone to prime the audio pipeline
+    const oscillator = ctx.createOscillator()
+    const gainNode = ctx.createGain()
+    oscillator.connect(gainNode)
+    gainNode.connect(ctx.destination)
+    gainNode.gain.value = 0 // Silent
+    oscillator.start()
+    oscillator.stop(ctx.currentTime + 0.001)
+    isWarmedUp = true
+  } catch (e) {}
+}
+
+// Auto-warmup on any click/touch
+if (typeof window !== 'undefined') {
+  const warmupHandler = () => {
+    warmUpAudio()
+    document.removeEventListener('click', warmupHandler)
+    document.removeEventListener('touchstart', warmupHandler)
+  }
+  document.addEventListener('click', warmupHandler, { once: true })
+  document.addEventListener('touchstart', warmupHandler, { once: true })
 }
 
 const playTone = (ctx, freq, startTime, duration, type = 'sine', volume = 0.1) => {
