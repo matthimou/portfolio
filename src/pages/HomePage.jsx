@@ -482,7 +482,26 @@ const HomePage = ({ onOpenLogin }) => {
 
       {/* Footer */}
       <footer className="home-footer">
-        <div className="container">
+        {/* Vibe coding illustration */}
+        <svg className="home-footer__illustration" viewBox="0 0 400 120" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          {/* Floating code brackets */}
+          <text x="40" y="30" className="home-footer__code">&lt;/&gt;</text>
+          <text x="320" y="90" className="home-footer__code">{ }</text>
+          <text x="180" y="25" className="home-footer__code">**</text>
+          <text x="280" y="40" className="home-footer__code">;</text>
+          <text x="90" y="100" className="home-footer__code">//</text>
+
+          {/* Sparkles */}
+          <circle cx="150" cy="60" r="2" className="home-footer__sparkle" />
+          <circle cx="250" cy="30" r="1.5" className="home-footer__sparkle" />
+          <circle cx="70" cy="70" r="1.5" className="home-footer__sparkle" />
+          <circle cx="340" cy="55" r="2" className="home-footer__sparkle" />
+
+          {/* Wavy lines */}
+          <path d="M0 80 Q50 70, 100 80 T200 80 T300 80 T400 80" className="home-footer__wave" />
+          <path d="M0 95 Q50 85, 100 95 T200 95 T300 95 T400 95" className="home-footer__wave home-footer__wave--delayed" />
+        </svg>
+        <div className="container home-footer__content">
           <p className="home-footer__text">I vibecoded this, so any glitches are on Claude</p>
           <a
             href="https://github.com/matthimou/portfolio"
