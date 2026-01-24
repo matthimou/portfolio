@@ -265,6 +265,13 @@ const CareerPath = () => {
     setActiveCompany(null)
   }
 
+  const handleTabClick = (index) => {
+    if (index === activeCompany) return // Already active, no sound
+    const pitchMultiplier = 0.65 + (index / (companies.length - 1)) * 0.35
+    playOpenSound(pitchMultiplier)
+    setActiveCompany(index)
+  }
+
   return (
     <div className="career-path">
       {/* Mobile: Vertical accordion list */}
@@ -454,7 +461,7 @@ const CareerPath = () => {
                 <button
                   key={index}
                   className={`career-path__tab ${activeCompany === index ? 'career-path__tab--active' : ''}`}
-                  onClick={() => setActiveCompany(index)}
+                  onClick={() => handleTabClick(index)}
                   style={{ '--tab-color': tabColor }}
                 >
                   <div className="career-path__tab-logo-wrapper">
