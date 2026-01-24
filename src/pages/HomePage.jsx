@@ -348,8 +348,25 @@ const CareerPath = () => {
             onClick={() => handleCompanyClick(0)}
             style={{ cursor: 'pointer' }}
           >
+            {/* Inset shadow filter for logo band */}
+            <defs>
+              <filter id="inset-shadow" x="-50%" y="-50%" width="200%" height="200%">
+                <feComponentTransfer in="SourceAlpha">
+                  <feFuncA type="table" tableValues="1 0" />
+                </feComponentTransfer>
+                <feGaussianBlur stdDeviation="3" />
+                <feOffset dx="0" dy="2" result="offsetblur" />
+                <feFlood floodColor="rgba(0,0,0,0.15)" result="color" />
+                <feComposite in2="offsetblur" operator="in" />
+                <feComposite in2="SourceAlpha" operator="in" />
+                <feMerge>
+                  <feMergeNode in="SourceGraphic" />
+                  <feMergeNode />
+                </feMerge>
+              </filter>
+            </defs>
             {/* Logo area background - visible in dark mode */}
-            <rect x="10" y="0" width="880" height="70" className="experience__logo-band" rx="4" />
+            <rect x="10" y="0" width="880" height="70" className="experience__logo-band" rx="4" filter="url(#inset-shadow)" />
 
             {/* Background track */}
             <line x1="70" y1="100" x2="830" y2="100" stroke="var(--color-border-light)" strokeWidth="1" />
