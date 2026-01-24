@@ -19,107 +19,8 @@ import orbitzDesc from '../data/experience/orbitz.md?raw'
 import dateableDesc from '../data/experience/dateable.md?raw'
 import grouponDesc from '../data/experience/groupon.md?raw'
 import doordashDesc from '../data/experience/doordash.md?raw'
+import { playAccordionOpen, playAccordionClose, playCaseStudySound } from '../utils/audio'
 import './HomePage.css'
-
-// Subtle door opening sound
-// Experience accordion open - quick ascending swoosh
-// pitchMultiplier: 1.0 for newest (DoorDash), decreasing for older jobs
-const playOpenSound = (pitchMultiplier = 1.0) => {
-  try {
-    const audioContext = new (window.AudioContext || window.webkitAudioContext)()
-
-    const playTone = (freq, startTime, duration, type = 'sine', volume = 0.1) => {
-      const oscillator = audioContext.createOscillator()
-      const gainNode = audioContext.createGain()
-
-      oscillator.connect(gainNode)
-      gainNode.connect(audioContext.destination)
-
-      oscillator.frequency.value = freq * pitchMultiplier
-      oscillator.type = type
-
-      gainNode.gain.setValueAtTime(0, audioContext.currentTime + startTime)
-      gainNode.gain.linearRampToValueAtTime(volume, audioContext.currentTime + startTime + 0.015)
-      gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + startTime + duration)
-
-      oscillator.start(audioContext.currentTime + startTime)
-      oscillator.stop(audioContext.currentTime + startTime + duration)
-    }
-
-    // Quick ascending swoosh
-    playTone(200, 0, 0.08, 'sine', 0.05)
-    playTone(400, 0.02, 0.1, 'sine', 0.07)
-    playTone(600, 0.05, 0.1, 'sine', 0.05)
-  } catch (e) {
-    // Audio not supported
-  }
-}
-
-// Case study navigation - mechanical unfolding with latch
-const playWhooshSound = () => {
-  try {
-    const audioContext = new (window.AudioContext || window.webkitAudioContext)()
-
-    const playTone = (freq, startTime, duration, type = 'sine', volume = 0.1) => {
-      const oscillator = audioContext.createOscillator()
-      const gainNode = audioContext.createGain()
-
-      oscillator.connect(gainNode)
-      gainNode.connect(audioContext.destination)
-
-      oscillator.frequency.value = freq
-      oscillator.type = type
-
-      gainNode.gain.setValueAtTime(0, audioContext.currentTime + startTime)
-      gainNode.gain.linearRampToValueAtTime(volume, audioContext.currentTime + startTime + 0.02)
-      gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + startTime + duration)
-
-      oscillator.start(audioContext.currentTime + startTime)
-      oscillator.stop(audioContext.currentTime + startTime + duration)
-    }
-
-    // Soft mechanical unfolding - lower, more textured
-    playTone(120, 0, 0.08, 'triangle', 0.06)
-    playTone(150, 0.03, 0.1, 'triangle', 0.07)
-    playTone(180, 0.08, 0.12, 'sine', 0.05)
-    // Soft latch click
-    playTone(1200, 0.15, 0.02, 'square', 0.03)
-  } catch (e) {
-    // Audio not supported
-  }
-}
-
-// Experience accordion close - descending with thunk
-const playCloseSound = (pitchMultiplier = 1.0) => {
-  try {
-    const audioContext = new (window.AudioContext || window.webkitAudioContext)()
-
-    const playTone = (freq, startTime, duration, type = 'sine', volume = 0.1) => {
-      const oscillator = audioContext.createOscillator()
-      const gainNode = audioContext.createGain()
-
-      oscillator.connect(gainNode)
-      gainNode.connect(audioContext.destination)
-
-      oscillator.frequency.value = freq * pitchMultiplier
-      oscillator.type = type
-
-      gainNode.gain.setValueAtTime(0, audioContext.currentTime + startTime)
-      gainNode.gain.linearRampToValueAtTime(volume, audioContext.currentTime + startTime + 0.015)
-      gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + startTime + duration)
-
-      oscillator.start(audioContext.currentTime + startTime)
-      oscillator.stop(audioContext.currentTime + startTime + duration)
-    }
-
-    // Quick descending swoosh
-    playTone(600, 0, 0.08, 'sine', 0.05)
-    playTone(400, 0.02, 0.1, 'sine', 0.07)
-    playTone(200, 0.05, 0.1, 'sine', 0.05)
-  } catch (e) {
-    // Audio not supported
-  }
-}
 
 const CareerPath = () => {
   const [activeCompany, setActiveCompany] = useState(null)
@@ -235,21 +136,21 @@ const CareerPath = () => {
     if (isMobile) {
       // Mobile: accordion behavior - toggle same company, switch to new
       if (activeCompany === index) {
-        playCloseSound(pitchMultiplier)
+        playAccordionClose(pitchMultiplier)
         setActiveCompany(null)
       } else {
-        playOpenSound(pitchMultiplier)
+        playAccordionOpen(pitchMultiplier)
         setActiveCompany(index)
       }
     } else {
       // Desktop: expand view behavior
       if (!isExpanded) {
-        playOpenSound(1.0) // Always highest pitch for initial expand
+        playAccordionOpen(1.0) // Always highest pitch for initial expand
         setIsExpanded(true)
         // Always start with most recent company (DoorDash)
         setActiveCompany(companies.length - 1)
       } else {
-        playOpenSound(pitchMultiplier)
+        playAccordionOpen(pitchMultiplier)
         setActiveCompany(index)
       }
     }
@@ -260,7 +161,7 @@ const CareerPath = () => {
     const pitchMultiplier = activeCompany !== null
       ? 0.65 + (activeCompany / (companies.length - 1)) * 0.35
       : 1.0
-    playCloseSound(pitchMultiplier)
+    playAccordionClose(pitchMultiplier)
     setIsExpanded(false)
     setActiveCompany(null)
   }
@@ -268,7 +169,7 @@ const CareerPath = () => {
   const handleTabClick = (index) => {
     if (index === activeCompany) return // Already active, no sound
     const pitchMultiplier = 0.65 + (index / (companies.length - 1)) * 0.35
-    playOpenSound(pitchMultiplier)
+    playAccordionOpen(pitchMultiplier)
     setActiveCompany(index)
   }
 
@@ -522,7 +423,7 @@ const HomePage = ({ onOpenLogin }) => {
 
   const handleCardClick = (e, path) => {
     e.preventDefault()
-    playWhooshSound()
+    playCaseStudySound()
     setTimeout(() => navigate(path), 80)
   }
 

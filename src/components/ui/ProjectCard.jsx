@@ -1,46 +1,13 @@
 import { Link, useNavigate } from 'react-router-dom'
+import { playCaseStudySound } from '../../utils/audio'
 import './ProjectCard.css'
-
-// Case study navigation - mechanical unfolding with latch
-const playWhooshSound = () => {
-  try {
-    const audioContext = new (window.AudioContext || window.webkitAudioContext)()
-
-    const playTone = (freq, startTime, duration, type = 'sine', volume = 0.1) => {
-      const oscillator = audioContext.createOscillator()
-      const gainNode = audioContext.createGain()
-
-      oscillator.connect(gainNode)
-      gainNode.connect(audioContext.destination)
-
-      oscillator.frequency.value = freq
-      oscillator.type = type
-
-      gainNode.gain.setValueAtTime(0, audioContext.currentTime + startTime)
-      gainNode.gain.linearRampToValueAtTime(volume, audioContext.currentTime + startTime + 0.02)
-      gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + startTime + duration)
-
-      oscillator.start(audioContext.currentTime + startTime)
-      oscillator.stop(audioContext.currentTime + startTime + duration)
-    }
-
-    // Soft mechanical unfolding - lower, more textured
-    playTone(120, 0, 0.08, 'triangle', 0.06)
-    playTone(150, 0.03, 0.1, 'triangle', 0.07)
-    playTone(180, 0.08, 0.12, 'sine', 0.05)
-    // Soft latch click
-    playTone(1200, 0.15, 0.02, 'square', 0.03)
-  } catch (e) {
-    // Audio not supported
-  }
-}
 
 const ProjectCard = ({ project, featured = false }) => {
   const navigate = useNavigate()
 
   const handleClick = (e) => {
     e.preventDefault()
-    playWhooshSound()
+    playCaseStudySound()
     setTimeout(() => navigate(`/work/${project.id}`), 80)
   }
 

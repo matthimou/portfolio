@@ -1,108 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { useAuth } from '../../context/AuthContext'
+import { playLoginOpenSound, playLoginSuccessSound, playLoginErrorSound } from '../../utils/audio'
 import './LoginModal.css'
-
-// Play heavenly success sound using Web Audio API
-const playSuccessSound = () => {
-  try {
-    const audioContext = new (window.AudioContext || window.webkitAudioContext)()
-
-    const playTone = (freq, startTime, duration, type = 'sine', volume = 0.2) => {
-      const oscillator = audioContext.createOscillator()
-      const gainNode = audioContext.createGain()
-
-      oscillator.connect(gainNode)
-      gainNode.connect(audioContext.destination)
-
-      oscillator.frequency.value = freq
-      oscillator.type = type
-
-      gainNode.gain.setValueAtTime(volume, audioContext.currentTime + startTime)
-      gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + startTime + duration)
-
-      oscillator.start(audioContext.currentTime + startTime)
-      oscillator.stop(audioContext.currentTime + startTime + duration)
-    }
-
-    // Heavenly chord (C major arpeggio going up)
-    playTone(523, 0, 0.4, 'sine', 0.15)      // C5
-    playTone(659, 0.1, 0.4, 'sine', 0.15)    // E5
-    playTone(784, 0.2, 0.5, 'sine', 0.15)    // G5
-    playTone(1047, 0.3, 0.6, 'sine', 0.2)    // C6
-    // Sparkle on top
-    playTone(1568, 0.5, 0.3, 'sine', 0.1)    // G6
-    playTone(2093, 0.6, 0.25, 'sine', 0.08)  // C7
-    // Click sound for lock
-    playTone(1200, 0.4, 0.05, 'square', 0.3)
-  } catch (e) {
-    // Audio not supported
-  }
-}
-
-// Play opening whoosh/sparkle sound
-const playOpenSound = () => {
-  try {
-    const audioContext = new (window.AudioContext || window.webkitAudioContext)()
-
-    const playTone = (freq, startTime, duration, type = 'sine', volume = 0.2) => {
-      const oscillator = audioContext.createOscillator()
-      const gainNode = audioContext.createGain()
-
-      oscillator.connect(gainNode)
-      gainNode.connect(audioContext.destination)
-
-      oscillator.frequency.value = freq
-      oscillator.type = type
-
-      gainNode.gain.setValueAtTime(volume, audioContext.currentTime + startTime)
-      gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + startTime + duration)
-
-      oscillator.start(audioContext.currentTime + startTime)
-      oscillator.stop(audioContext.currentTime + startTime + duration)
-    }
-
-    // Whoosh for rainbow burst
-    playTone(300, 0, 0.2, 'sine', 0.15)
-    playTone(500, 0.05, 0.25, 'sine', 0.15)
-    playTone(700, 0.1, 0.3, 'sine', 0.12)
-    // Sparkle
-    playTone(1200, 0.25, 0.15, 'sine', 0.1)
-    playTone(1500, 0.3, 0.1, 'sine', 0.08)
-  } catch (e) {
-    // Audio not supported
-  }
-}
-
-// Play buzzer/error sound
-const playErrorSound = () => {
-  try {
-    const audioContext = new (window.AudioContext || window.webkitAudioContext)()
-
-    const playTone = (freq, startTime, duration, type = 'sine', volume = 0.2) => {
-      const oscillator = audioContext.createOscillator()
-      const gainNode = audioContext.createGain()
-
-      oscillator.connect(gainNode)
-      gainNode.connect(audioContext.destination)
-
-      oscillator.frequency.value = freq
-      oscillator.type = type
-
-      gainNode.gain.setValueAtTime(volume, audioContext.currentTime + startTime)
-      gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + startTime + duration)
-
-      oscillator.start(audioContext.currentTime + startTime)
-      oscillator.stop(audioContext.currentTime + startTime + duration)
-    }
-
-    // Harsh buzzer sound
-    playTone(150, 0, 0.15, 'sawtooth', 0.3)
-    playTone(150, 0.2, 0.15, 'sawtooth', 0.3)
-    playTone(100, 0.4, 0.2, 'sawtooth', 0.25)
-  } catch (e) {
-    // Audio not supported
-  }
-}
 
 const LoginModal = ({ isOpen, onClose }) => {
   const [code, setCode] = useState('')
@@ -116,7 +15,7 @@ const LoginModal = ({ isOpen, onClose }) => {
   useEffect(() => {
     if (isOpen) {
       setShowUnlockAnimation(true)
-      playOpenSound()
+      playLoginOpenSound()
       setTimeout(() => inputRef.current?.focus(), 100)
     }
   }, [isOpen])
@@ -174,14 +73,14 @@ const LoginModal = ({ isOpen, onClose }) => {
     if (result.success) {
       setStatus('success')
       setShowUnlockAnimation(true)
-      playSuccessSound()
+      playLoginSuccessSound()
       setTimeout(() => {
         onClose()
       }, 3000) // Extended to enjoy the celebration
     } else {
       setStatus('error')
       setError('invalid')
-      playErrorSound()
+      playLoginErrorSound()
     }
   }
 
