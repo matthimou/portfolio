@@ -2,16 +2,59 @@ import { useState, useEffect, useRef } from 'react'
 import { useAuth } from '../../context/AuthContext'
 import './LoginModal.css'
 
+// Play unlock sound using Web Audio API
+const playUnlockSound = () => {
+  try {
+    const audioContext = new (window.AudioContext || window.webkitAudioContext)()
+
+    // Create a "chest opening" sound with multiple tones
+    const playTone = (freq, startTime, duration, type = 'sine') => {
+      const oscillator = audioContext.createOscillator()
+      const gainNode = audioContext.createGain()
+
+      oscillator.connect(gainNode)
+      gainNode.connect(audioContext.destination)
+
+      oscillator.frequency.value = freq
+      oscillator.type = type
+
+      gainNode.gain.setValueAtTime(0.3, audioContext.currentTime + startTime)
+      gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + startTime + duration)
+
+      oscillator.start(audioContext.currentTime + startTime)
+      oscillator.stop(audioContext.currentTime + startTime + duration)
+    }
+
+    // Creak/unlock sound
+    playTone(120, 0, 0.15, 'sawtooth')
+    playTone(180, 0.05, 0.1, 'square')
+    // Click
+    playTone(800, 0.12, 0.05, 'square')
+    // Whoosh for rainbow
+    playTone(400, 0.15, 0.3, 'sine')
+    playTone(600, 0.2, 0.25, 'sine')
+    playTone(800, 0.25, 0.2, 'sine')
+    // Sparkle
+    playTone(1200, 0.35, 0.15, 'sine')
+    playTone(1400, 0.4, 0.1, 'sine')
+  } catch (e) {
+    // Audio not supported, fail silently
+  }
+}
+
 const LoginModal = ({ isOpen, onClose }) => {
   const [code, setCode] = useState('')
   const [error, setError] = useState('')
   const [status, setStatus] = useState('idle') // idle, loading, error, success
+  const [showUnlockAnimation, setShowUnlockAnimation] = useState(false)
   const inputRef = useRef(null)
   const { login } = useAuth()
 
-  // Focus input when modal opens
+  // Focus input and trigger unlock animation when modal opens
   useEffect(() => {
-    if (isOpen && inputRef.current) {
+    if (isOpen) {
+      setShowUnlockAnimation(true)
+      playUnlockSound()
       setTimeout(() => inputRef.current?.focus(), 100)
     }
   }, [isOpen])
@@ -22,6 +65,7 @@ const LoginModal = ({ isOpen, onClose }) => {
       setCode('')
       setError('')
       setStatus('idle')
+      setShowUnlockAnimation(false)
     }
   }, [isOpen])
 
@@ -97,15 +141,28 @@ const LoginModal = ({ isOpen, onClose }) => {
           </svg>
         </button>
 
-        <div className="login-modal__icon">
+        <div className={`login-modal__icon ${showUnlockAnimation ? 'login-modal__icon--animating' : ''}`}>
+          {/* Rainbow burst */}
+          {showUnlockAnimation && (
+            <div className="login-modal__rainbow">
+              <div className="login-modal__rainbow-arc login-modal__rainbow-arc--1" />
+              <div className="login-modal__rainbow-arc login-modal__rainbow-arc--2" />
+              <div className="login-modal__rainbow-arc login-modal__rainbow-arc--3" />
+              <div className="login-modal__rainbow-arc login-modal__rainbow-arc--4" />
+              <div className="login-modal__rainbow-arc login-modal__rainbow-arc--5" />
+              <div className="login-modal__rainbow-arc login-modal__rainbow-arc--6" />
+            </div>
+          )}
           {status === 'success' ? (
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="login-modal__icon-check">
               <path d="M20 6L9 17l-5-5" />
             </svg>
           ) : (
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="login-modal__lock">
+              {/* Lock body */}
               <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
-              <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+              {/* Shackle - animated */}
+              <path d="M7 11V7a5 5 0 0 1 10 0v4" className="login-modal__shackle" />
             </svg>
           )}
         </div>
