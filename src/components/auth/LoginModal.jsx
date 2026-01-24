@@ -180,7 +180,7 @@ const LoginModal = ({ isOpen, onClose }) => {
       }, 1500)
     } else {
       setStatus('error')
-      setError('Nope! You need a proper access code. Email matthimou@gmail.com if you need one.')
+      setError('invalid')
       playErrorSound()
     }
   }
@@ -249,7 +249,9 @@ const LoginModal = ({ isOpen, onClose }) => {
                 spellCheck="false"
               />
               {error && (
-                <p className="login-modal__error">{error}</p>
+                <p className="login-modal__error">
+                  You need a <span className="login-modal__rainbow-text">proper</span> access code
+                </p>
               )}
             </div>
 
@@ -264,6 +266,19 @@ const LoginModal = ({ isOpen, onClose }) => {
                 'Submit'
               )}
             </button>
+
+            {status === 'error' && (
+              <a
+                href="mailto:matthimou@gmail.com?subject=Portfolio%20Access%20Code%20Request"
+                className="login-modal__email-link"
+              >
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                  <polyline points="22,6 12,13 2,6" />
+                </svg>
+                Email Matthew
+              </a>
+            )}
           </form>
         )}
       </div>

@@ -257,6 +257,58 @@
   80% { transform: translateX(4px); }
 }
 
+/* Rainbow cycling text for "proper" */
+.login-modal__rainbow-text {
+  font-weight: 700;
+  background: linear-gradient(
+    90deg,
+    #ff0000,
+    #ff8c00,
+    #ffff00,
+    #00ff00,
+    #0099ff,
+    #9900ff,
+    #ff0000
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: rainbow-cycle 2s linear infinite;
+}
+
+@keyframes rainbow-cycle {
+  0% { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+
+/* Email link below submit */
+.login-modal__email-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+  margin-top: var(--space-md);
+  padding: var(--space-sm);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  border-radius: 8px;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.login-modal__email-link:hover {
+  color: var(--color-accent-primary);
+  background-color: var(--color-bg-secondary);
+}
+
+.login-modal__email-link svg {
+  width: 18px;
+  height: 18px;
+}
+
 /* Submit Button */
 .login-modal__submit {
   width: 100%;
