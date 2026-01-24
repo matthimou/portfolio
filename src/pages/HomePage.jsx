@@ -126,7 +126,7 @@ const CareerPath = () => {
     { name: 'Orbitz', title: ['Director', 'Information Architecture'], start: '2004', end: '2012', years: '8 yrs', color: '#0099D8', logo: OrbitzLogo, size: 90, description: orbitzDesc },
     { name: 'Dateable', title: ['Founder', 'Product/Design'], start: '2012', end: '2014', years: '1.5 yrs', color: '#5B4B9E', logo: DateableLogo, size: 38, description: dateableDesc },
     { name: 'Groupon', title: ['Director', 'Consumer & Merchant Experience'], start: '2014', end: '2021', years: '8 yrs', color: '#53A318', logo: GrouponLogo, size: 90, description: grouponDesc },
-    { name: 'DoorDash', title: ['Director of Design', 'Core Consumer'], start: '2021', end: '2025', years: '4 yrs', color: '#FF3008', logo: DoorDashLogo, size: 75, description: doordashDesc },
+    { name: 'DoorDash', title: ['Director of Design', 'Core Consumer'], start: '2021', end: '2025', years: '4 yrs', color: '#FF3008', logo: DoorDashLogo, size: 50, description: doordashDesc },
   ]
 
   const handleCompanyClick = (index) => {
@@ -255,9 +255,9 @@ const CareerPath = () => {
                 <feComponentTransfer in="SourceAlpha">
                   <feFuncA type="table" tableValues="1 0" />
                 </feComponentTransfer>
-                <feGaussianBlur stdDeviation="6" />
-                <feOffset dx="0" dy="4" result="offsetblur" />
-                <feFlood floodColor="rgba(0,0,0,0.3)" result="color" />
+                <feGaussianBlur stdDeviation="10" />
+                <feOffset dx="0" dy="6" result="offsetblur" />
+                <feFlood floodColor="rgba(0,0,0,0.45)" result="color" />
                 <feComposite in2="offsetblur" operator="in" />
                 <feComposite in2="SourceAlpha" operator="in" />
                 <feMerge>
