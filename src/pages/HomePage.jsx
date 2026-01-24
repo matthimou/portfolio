@@ -23,7 +23,8 @@ import './HomePage.css'
 
 // Subtle door opening sound
 // Experience accordion open - quick ascending swoosh
-const playOpenSound = () => {
+// pitchMultiplier: 1.0 for newest (DoorDash), decreasing for older jobs
+const playOpenSound = (pitchMultiplier = 1.0) => {
   try {
     const audioContext = new (window.AudioContext || window.webkitAudioContext)()
 
@@ -34,7 +35,7 @@ const playOpenSound = () => {
       oscillator.connect(gainNode)
       gainNode.connect(audioContext.destination)
 
-      oscillator.frequency.value = freq
+      oscillator.frequency.value = freq * pitchMultiplier
       oscillator.type = type
 
       gainNode.gain.setValueAtTime(0, audioContext.currentTime + startTime)
@@ -228,23 +229,27 @@ const CareerPath = () => {
   ]
 
   const handleCompanyClick = (index) => {
+    // Pitch multiplier: newest job (index 5) = 1.0, oldest (index 0) = 0.65
+    const pitchMultiplier = 0.65 + (index / (companies.length - 1)) * 0.35
+
     if (isMobile) {
       // Mobile: accordion behavior - toggle same company, switch to new
       if (activeCompany === index) {
         playCloseSound()
         setActiveCompany(null)
       } else {
-        playOpenSound()
+        playOpenSound(pitchMultiplier)
         setActiveCompany(index)
       }
     } else {
       // Desktop: expand view behavior
       if (!isExpanded) {
-        playOpenSound()
+        playOpenSound(1.0) // Always highest pitch for initial expand
         setIsExpanded(true)
         // Always start with most recent company (DoorDash)
         setActiveCompany(companies.length - 1)
       } else {
+        playOpenSound(pitchMultiplier)
         setActiveCompany(index)
       }
     }
