@@ -354,9 +354,9 @@ const CareerPath = () => {
                 <feComponentTransfer in="SourceAlpha">
                   <feFuncA type="table" tableValues="1 0" />
                 </feComponentTransfer>
-                <feGaussianBlur stdDeviation="3" />
-                <feOffset dx="0" dy="2" result="offsetblur" />
-                <feFlood floodColor="rgba(0,0,0,0.15)" result="color" />
+                <feGaussianBlur stdDeviation="6" />
+                <feOffset dx="0" dy="4" result="offsetblur" />
+                <feFlood floodColor="rgba(0,0,0,0.3)" result="color" />
                 <feComposite in2="offsetblur" operator="in" />
                 <feComposite in2="SourceAlpha" operator="in" />
                 <feMerge>
