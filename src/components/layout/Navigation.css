@@ -163,9 +163,9 @@
 /* Mobile styles */
 @media (max-width: 640px) {
   .navigation__brand {
-    font-size: var(--text-base);
+    font-size: var(--text-sm);
     line-height: 1.15;
-    max-width: 120px;
+    max-width: 110px;
     text-align: left;
   }
 
