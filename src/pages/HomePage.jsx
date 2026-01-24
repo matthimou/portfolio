@@ -55,6 +55,38 @@ const playOpenSound = () => {
   }
 }
 
+// Subtle whoosh for navigating to case study
+const playWhooshSound = () => {
+  try {
+    const audioContext = new (window.AudioContext || window.webkitAudioContext)()
+
+    const playTone = (freq, startTime, duration, type = 'sine', volume = 0.1) => {
+      const oscillator = audioContext.createOscillator()
+      const gainNode = audioContext.createGain()
+
+      oscillator.connect(gainNode)
+      gainNode.connect(audioContext.destination)
+
+      oscillator.frequency.value = freq
+      oscillator.type = type
+
+      gainNode.gain.setValueAtTime(0, audioContext.currentTime + startTime)
+      gainNode.gain.linearRampToValueAtTime(volume, audioContext.currentTime + startTime + 0.015)
+      gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + startTime + duration)
+
+      oscillator.start(audioContext.currentTime + startTime)
+      oscillator.stop(audioContext.currentTime + startTime + duration)
+    }
+
+    // Quick ascending swoosh
+    playTone(200, 0, 0.08, 'sine', 0.05)
+    playTone(400, 0.02, 0.1, 'sine', 0.07)
+    playTone(600, 0.05, 0.1, 'sine', 0.05)
+  } catch (e) {
+    // Audio not supported
+  }
+}
+
 // Subtle door closing sound
 const playCloseSound = () => {
   try {
@@ -517,7 +549,7 @@ const HomePage = ({ onOpenLogin }) => {
         <div className="container">
           <div className="home-work__header">
             <h2 className="home-work__heading">Case Studies</h2>
-            <Link to="/work" className="home-work__view-all">
+            <Link to="/work" className="home-work__view-all" onClick={playWhooshSound}>
               View All Projects →
             </Link>
           </div>
@@ -529,6 +561,7 @@ const HomePage = ({ onOpenLogin }) => {
                 to={`/work/${project.id}`}
                 className={`home-work__card ${cardsVisible ? 'home-work__card--visible' : ''}`}
                 style={{ transitionDelay: `${index * 100}ms` }}
+                onClick={playWhooshSound}
               >
                 <div className="home-work__image-wrapper">
                   <img
