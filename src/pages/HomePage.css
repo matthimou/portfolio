@@ -599,8 +599,8 @@
   }
 
   .career-path__mobile-logo-wrapper {
-    width: 40px;
-    height: 40px;
+    width: 48px;
+    height: 48px;
     flex-shrink: 0;
     display: flex;
     align-items: center;
@@ -608,8 +608,8 @@
   }
 
   .career-path__mobile-logo {
-    max-width: 36px;
-    max-height: 36px;
+    max-width: 44px;
+    max-height: 44px;
     object-fit: contain;
   }
 
@@ -656,7 +656,7 @@
   }
 
   .career-path__mobile-content {
-    padding: 0 var(--space-sm) var(--space-sm) calc(40px + var(--space-sm) + var(--space-sm));
+    padding: 0 var(--space-sm) var(--space-sm) calc(48px + var(--space-sm) + var(--space-sm));
     border-top: 1px solid var(--color-border-light);
     animation: mobile-slide-down 0.2s ease-out;
   }
