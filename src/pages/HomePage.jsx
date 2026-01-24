@@ -55,7 +55,7 @@ const CareerPath = () => {
 
   // Randomized traveling pulse animation
   useEffect(() => {
-    if (isExpanded || isTimelineHovered) return
+    if (isExpanded) return
 
     const startX = 70
     const endX = 830
@@ -116,7 +116,7 @@ const CareerPath = () => {
       if (animationRef.current) clearTimeout(animationRef.current)
       if (pulseAnimationRef.current) cancelAnimationFrame(pulseAnimationRef.current)
     }
-  }, [isExpanded, isTimelineHovered])
+  }, [isExpanded])
 
   const { isDark } = useTheme()
 
