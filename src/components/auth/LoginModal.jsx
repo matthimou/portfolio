@@ -208,14 +208,6 @@ const LoginModal = ({ isOpen, onClose }) => {
         aria-modal="true"
         aria-labelledby="login-modal-title"
       >
-        {/* Clouds that part on success */}
-        {status === 'success' && (
-          <>
-            <div className="login-modal__cloud login-modal__cloud--left" />
-            <div className="login-modal__cloud login-modal__cloud--right" />
-          </>
-        )}
-
         <button
           className="login-modal__close"
           onClick={onClose}
