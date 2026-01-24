@@ -101,6 +101,7 @@
 /* Unlock animation */
 .login-modal__icon--animating {
   perspective: 200px;
+  overflow: visible;
 }
 
 .login-modal__icon--animating .login-modal__lock {
@@ -494,14 +495,17 @@
 
 .login-modal--success .login-modal__icon {
   width: 120px;
-  height: 120px;
+  height: 140px;
+  padding-top: 20px;
   background: transparent;
   margin-bottom: var(--space-lg);
+  overflow: visible;
 }
 
 .login-modal--success .login-modal__icon svg {
   width: 80px;
   height: 80px;
+  overflow: visible;
 }
 
 /* Glowing lock effect */
