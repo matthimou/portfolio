@@ -42,6 +42,23 @@
   justify-content: center;
 }
 
+/* Dark mode - lighten card to stand out from background */
+[data-theme="dark"] .locked-card__layer {
+  background-color: #2A2A30;
+}
+
+[data-theme="dark"] .locked-card__layer--3 {
+  background-color: #232328;
+}
+
+[data-theme="dark"] .locked-card__layer--2 {
+  background-color: #262630;
+}
+
+[data-theme="dark"] .locked-card__layer--1 {
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+}
+
 /* Hover state - subtle lift */
 .locked-card:hover .locked-card__layer--1 {
   transform: translateY(-4px);
