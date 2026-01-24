@@ -39,6 +39,40 @@ const playSuccessSound = () => {
   }
 }
 
+// Play opening whoosh/sparkle sound
+const playOpenSound = () => {
+  try {
+    const audioContext = new (window.AudioContext || window.webkitAudioContext)()
+
+    const playTone = (freq, startTime, duration, type = 'sine', volume = 0.2) => {
+      const oscillator = audioContext.createOscillator()
+      const gainNode = audioContext.createGain()
+
+      oscillator.connect(gainNode)
+      gainNode.connect(audioContext.destination)
+
+      oscillator.frequency.value = freq
+      oscillator.type = type
+
+      gainNode.gain.setValueAtTime(volume, audioContext.currentTime + startTime)
+      gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + startTime + duration)
+
+      oscillator.start(audioContext.currentTime + startTime)
+      oscillator.stop(audioContext.currentTime + startTime + duration)
+    }
+
+    // Whoosh for rainbow burst
+    playTone(300, 0, 0.2, 'sine', 0.15)
+    playTone(500, 0.05, 0.25, 'sine', 0.15)
+    playTone(700, 0.1, 0.3, 'sine', 0.12)
+    // Sparkle
+    playTone(1200, 0.25, 0.15, 'sine', 0.1)
+    playTone(1500, 0.3, 0.1, 'sine', 0.08)
+  } catch (e) {
+    // Audio not supported
+  }
+}
+
 // Play buzzer/error sound
 const playErrorSound = () => {
   try {
@@ -82,6 +116,7 @@ const LoginModal = ({ isOpen, onClose }) => {
   useEffect(() => {
     if (isOpen) {
       setShowUnlockAnimation(true)
+      playOpenSound()
       setTimeout(() => inputRef.current?.focus(), 100)
     }
   }, [isOpen])
