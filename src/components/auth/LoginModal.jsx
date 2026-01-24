@@ -158,11 +158,9 @@ const LoginModal = ({ isOpen, onClose }) => {
                 }}
                 onFocus={() => {
                   if (status === 'error') {
-                    setTimeout(() => {
-                      setCode('')
-                      setError('')
-                      setStatus('idle')
-                    }, 0)
+                    setCode('')
+                    setError('')
+                    setStatus('idle')
                   }
                 }}
                 placeholder="Access code"
