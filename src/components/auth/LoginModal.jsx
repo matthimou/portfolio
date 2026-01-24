@@ -14,9 +14,12 @@ const LoginModal = ({ isOpen, onClose }) => {
   // Focus input and trigger intro animation when modal opens
   useEffect(() => {
     if (isOpen) {
-      setShowUnlockAnimation(true)
-      playLoginOpenSound()
-      setTimeout(() => inputRef.current?.focus(), 100)
+      // Delay intro animation until modal has finished sliding in
+      setTimeout(() => {
+        setShowUnlockAnimation(true)
+        playLoginOpenSound()
+      }, 300)
+      setTimeout(() => inputRef.current?.focus(), 400)
     }
   }, [isOpen])
 
@@ -80,6 +83,7 @@ const LoginModal = ({ isOpen, onClose }) => {
     } else {
       setStatus('error')
       setError('invalid')
+      setShowUnlockAnimation(false)
       playLoginErrorSound()
     }
   }
@@ -161,6 +165,7 @@ const LoginModal = ({ isOpen, onClose }) => {
                     setCode('')
                     setError('')
                     setStatus('idle')
+                    setShowUnlockAnimation(false)
                   }
                 }}
                 placeholder="Access code"
