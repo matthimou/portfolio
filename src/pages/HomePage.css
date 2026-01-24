@@ -955,12 +955,15 @@
 [data-theme="dark"] .home-footer {
   background: linear-gradient(
     135deg,
-    #1a1a2e 0%,
-    #16213e 25%,
-    #0f3460 50%,
-    #533483 75%,
-    #e94560 100%
+    rgba(42, 42, 48, 0.8) 0%,
+    rgba(50, 50, 58, 0.6) 50%,
+    rgba(42, 42, 48, 0.8) 100%
   );
+  backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 -10px 40px rgba(0, 0, 0, 0.2);
 }
 
 .home-footer__text {
