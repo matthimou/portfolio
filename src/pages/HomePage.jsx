@@ -21,6 +21,74 @@ import grouponDesc from '../data/experience/groupon.md?raw'
 import doordashDesc from '../data/experience/doordash.md?raw'
 import './HomePage.css'
 
+// Subtle door opening sound
+const playOpenSound = () => {
+  try {
+    const audioContext = new (window.AudioContext || window.webkitAudioContext)()
+
+    const playTone = (freq, startTime, duration, type = 'sine', volume = 0.1) => {
+      const oscillator = audioContext.createOscillator()
+      const gainNode = audioContext.createGain()
+
+      oscillator.connect(gainNode)
+      gainNode.connect(audioContext.destination)
+
+      oscillator.frequency.value = freq
+      oscillator.type = type
+
+      gainNode.gain.setValueAtTime(0, audioContext.currentTime + startTime)
+      gainNode.gain.linearRampToValueAtTime(volume, audioContext.currentTime + startTime + 0.02)
+      gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + startTime + duration)
+
+      oscillator.start(audioContext.currentTime + startTime)
+      oscillator.stop(audioContext.currentTime + startTime + duration)
+    }
+
+    // Soft creak/whoosh ascending
+    playTone(180, 0, 0.12, 'sine', 0.06)
+    playTone(250, 0.04, 0.15, 'sine', 0.08)
+    playTone(350, 0.1, 0.12, 'sine', 0.06)
+    // Soft click at end
+    playTone(800, 0.18, 0.03, 'square', 0.04)
+  } catch (e) {
+    // Audio not supported
+  }
+}
+
+// Subtle door closing sound
+const playCloseSound = () => {
+  try {
+    const audioContext = new (window.AudioContext || window.webkitAudioContext)()
+
+    const playTone = (freq, startTime, duration, type = 'sine', volume = 0.1) => {
+      const oscillator = audioContext.createOscillator()
+      const gainNode = audioContext.createGain()
+
+      oscillator.connect(gainNode)
+      gainNode.connect(audioContext.destination)
+
+      oscillator.frequency.value = freq
+      oscillator.type = type
+
+      gainNode.gain.setValueAtTime(0, audioContext.currentTime + startTime)
+      gainNode.gain.linearRampToValueAtTime(volume, audioContext.currentTime + startTime + 0.02)
+      gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + startTime + duration)
+
+      oscillator.start(audioContext.currentTime + startTime)
+      oscillator.stop(audioContext.currentTime + startTime + duration)
+    }
+
+    // Soft whoosh descending
+    playTone(300, 0, 0.1, 'sine', 0.06)
+    playTone(200, 0.05, 0.12, 'sine', 0.07)
+    // Soft thud at end
+    playTone(100, 0.12, 0.08, 'sine', 0.08)
+    playTone(80, 0.14, 0.06, 'triangle', 0.05)
+  } catch (e) {
+    // Audio not supported
+  }
+}
+
 const CareerPath = () => {
   const [activeCompany, setActiveCompany] = useState(null)
   const [isExpanded, setIsExpanded] = useState(false)
@@ -131,10 +199,17 @@ const CareerPath = () => {
   const handleCompanyClick = (index) => {
     if (isMobile) {
       // Mobile: accordion behavior - toggle same company, switch to new
-      setActiveCompany(activeCompany === index ? null : index)
+      if (activeCompany === index) {
+        playCloseSound()
+        setActiveCompany(null)
+      } else {
+        playOpenSound()
+        setActiveCompany(index)
+      }
     } else {
       // Desktop: expand view behavior
       if (!isExpanded) {
+        playOpenSound()
         setIsExpanded(true)
         // Always start with most recent company (DoorDash)
         setActiveCompany(companies.length - 1)
@@ -145,6 +220,7 @@ const CareerPath = () => {
   }
 
   const handleClose = () => {
+    playCloseSound()
     setIsExpanded(false)
     setActiveCompany(null)
   }
