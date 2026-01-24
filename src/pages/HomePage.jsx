@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Hero from '../components/sections/Hero'
 import VideoBackground from '../components/ui/VideoBackground'
 import LockedCard from '../components/ui/LockedCard'
@@ -486,6 +486,13 @@ const HomePage = ({ onOpenLogin }) => {
   const gridRef = useRef(null)
   const experienceRef = useRef(null)
   const { isAuthenticated } = useAuth()
+  const navigate = useNavigate()
+
+  const handleCardClick = (e, path) => {
+    e.preventDefault()
+    playWhooshSound()
+    setTimeout(() => navigate(path), 80)
+  }
 
   // Filter case studies based on auth state
   const visibleStudies = isAuthenticated
@@ -549,7 +556,7 @@ const HomePage = ({ onOpenLogin }) => {
         <div className="container">
           <div className="home-work__header">
             <h2 className="home-work__heading">Case Studies</h2>
-            <Link to="/work" className="home-work__view-all" onClick={playWhooshSound}>
+            <Link to="/work" className="home-work__view-all" onClick={(e) => handleCardClick(e, '/work')}>
               View All Projects →
             </Link>
           </div>
@@ -561,7 +568,7 @@ const HomePage = ({ onOpenLogin }) => {
                 to={`/work/${project.id}`}
                 className={`home-work__card ${cardsVisible ? 'home-work__card--visible' : ''}`}
                 style={{ transitionDelay: `${index * 100}ms` }}
-                onClick={playWhooshSound}
+                onClick={(e) => handleCardClick(e, `/work/${project.id}`)}
               >
                 <div className="home-work__image-wrapper">
                   <img
