@@ -105,31 +105,20 @@
   100% { transform: scale(1); }
 }
 
-/* Shackle unlock animation */
+/* Shackle unlock animation - delayed to start after rainbow */
 .login-modal__icon--animating .login-modal__shackle {
-  animation: shackle-unlock 0.6s ease-out forwards;
+  animation: shackle-unlock 0.5s ease-out 0.3s forwards;
   transform-origin: 17px 7px;
 }
 
 @keyframes shackle-unlock {
   0% { transform: translateY(0) rotate(0deg); }
-  30% { transform: translateY(-2px) rotate(0deg); }
-  60% { transform: translateY(-4px) rotate(-30deg); }
-  100% { transform: translateY(-3px) rotate(-25deg); }
+  40% { transform: translateY(-3px) rotate(0deg); }
+  100% { transform: translateY(-4px) rotate(-30deg); }
 }
 
-/* Rainbow burst */
+/* Rainbow burst - single radial gradient */
 .login-modal__rainbow {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 200px;
-  height: 200px;
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-}
-
-.login-modal__rainbow-arc {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -137,32 +126,17 @@
   height: 20px;
   border-radius: 50%;
   transform: translate(-50%, -50%);
-  animation: rainbow-burst 0.8s ease-out forwards;
-}
-
-.login-modal__rainbow-arc--1 {
-  background: #ff0000;
-  animation-delay: 0s;
-}
-.login-modal__rainbow-arc--2 {
-  background: #ff8c00;
-  animation-delay: 0.05s;
-}
-.login-modal__rainbow-arc--3 {
-  background: #ffff00;
-  animation-delay: 0.1s;
-}
-.login-modal__rainbow-arc--4 {
-  background: #00ff00;
-  animation-delay: 0.15s;
-}
-.login-modal__rainbow-arc--5 {
-  background: #0099ff;
-  animation-delay: 0.2s;
-}
-.login-modal__rainbow-arc--6 {
-  background: #9900ff;
-  animation-delay: 0.25s;
+  pointer-events: none;
+  background: conic-gradient(
+    #ff0000,
+    #ff8c00,
+    #ffff00,
+    #00ff00,
+    #0099ff,
+    #9900ff,
+    #ff0000
+  );
+  animation: rainbow-burst 0.4s ease-out forwards;
 }
 
 @keyframes rainbow-burst {
@@ -170,11 +144,11 @@
     transform: translate(-50%, -50%) scale(0.5);
     opacity: 1;
   }
-  50% {
-    opacity: 0.8;
+  60% {
+    opacity: 0.9;
   }
   100% {
-    transform: translate(-50%, -50%) scale(8);
+    transform: translate(-50%, -50%) scale(6);
     opacity: 0;
   }
 }

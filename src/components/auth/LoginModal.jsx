@@ -144,14 +144,7 @@ const LoginModal = ({ isOpen, onClose }) => {
         <div className={`login-modal__icon ${showUnlockAnimation ? 'login-modal__icon--animating' : ''}`}>
           {/* Rainbow burst */}
           {showUnlockAnimation && (
-            <div className="login-modal__rainbow">
-              <div className="login-modal__rainbow-arc login-modal__rainbow-arc--1" />
-              <div className="login-modal__rainbow-arc login-modal__rainbow-arc--2" />
-              <div className="login-modal__rainbow-arc login-modal__rainbow-arc--3" />
-              <div className="login-modal__rainbow-arc login-modal__rainbow-arc--4" />
-              <div className="login-modal__rainbow-arc login-modal__rainbow-arc--5" />
-              <div className="login-modal__rainbow-arc login-modal__rainbow-arc--6" />
-            </div>
+            <div className="login-modal__rainbow" />
           )}
           {status === 'success' ? (
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="login-modal__icon-check">
