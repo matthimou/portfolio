@@ -1,7 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom'
 import './ProjectCard.css'
 
-// Subtle whoosh for navigating to case study
+// Case study navigation - mechanical unfolding with latch
 const playWhooshSound = () => {
   try {
     const audioContext = new (window.AudioContext || window.webkitAudioContext)()
@@ -17,17 +17,19 @@ const playWhooshSound = () => {
       oscillator.type = type
 
       gainNode.gain.setValueAtTime(0, audioContext.currentTime + startTime)
-      gainNode.gain.linearRampToValueAtTime(volume, audioContext.currentTime + startTime + 0.015)
+      gainNode.gain.linearRampToValueAtTime(volume, audioContext.currentTime + startTime + 0.02)
       gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + startTime + duration)
 
       oscillator.start(audioContext.currentTime + startTime)
       oscillator.stop(audioContext.currentTime + startTime + duration)
     }
 
-    // Quick ascending swoosh
-    playTone(200, 0, 0.08, 'sine', 0.05)
-    playTone(400, 0.02, 0.1, 'sine', 0.07)
-    playTone(600, 0.05, 0.1, 'sine', 0.05)
+    // Soft mechanical unfolding - lower, more textured
+    playTone(120, 0, 0.08, 'triangle', 0.06)
+    playTone(150, 0.03, 0.1, 'triangle', 0.07)
+    playTone(180, 0.08, 0.12, 'sine', 0.05)
+    // Soft latch click
+    playTone(1200, 0.15, 0.02, 'square', 0.03)
   } catch (e) {
     // Audio not supported
   }

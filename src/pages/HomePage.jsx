@@ -22,7 +22,40 @@ import doordashDesc from '../data/experience/doordash.md?raw'
 import './HomePage.css'
 
 // Subtle door opening sound
+// Experience accordion open - quick ascending swoosh
 const playOpenSound = () => {
+  try {
+    const audioContext = new (window.AudioContext || window.webkitAudioContext)()
+
+    const playTone = (freq, startTime, duration, type = 'sine', volume = 0.1) => {
+      const oscillator = audioContext.createOscillator()
+      const gainNode = audioContext.createGain()
+
+      oscillator.connect(gainNode)
+      gainNode.connect(audioContext.destination)
+
+      oscillator.frequency.value = freq
+      oscillator.type = type
+
+      gainNode.gain.setValueAtTime(0, audioContext.currentTime + startTime)
+      gainNode.gain.linearRampToValueAtTime(volume, audioContext.currentTime + startTime + 0.015)
+      gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + startTime + duration)
+
+      oscillator.start(audioContext.currentTime + startTime)
+      oscillator.stop(audioContext.currentTime + startTime + duration)
+    }
+
+    // Quick ascending swoosh
+    playTone(200, 0, 0.08, 'sine', 0.05)
+    playTone(400, 0.02, 0.1, 'sine', 0.07)
+    playTone(600, 0.05, 0.1, 'sine', 0.05)
+  } catch (e) {
+    // Audio not supported
+  }
+}
+
+// Case study navigation - mechanical unfolding with latch
+const playWhooshSound = () => {
   try {
     const audioContext = new (window.AudioContext || window.webkitAudioContext)()
 
@@ -55,8 +88,8 @@ const playOpenSound = () => {
   }
 }
 
-// Subtle whoosh for navigating to case study
-const playWhooshSound = () => {
+// Experience accordion close - descending with thunk
+const playCloseSound = () => {
   try {
     const audioContext = new (window.AudioContext || window.webkitAudioContext)()
 
@@ -78,44 +111,10 @@ const playWhooshSound = () => {
       oscillator.stop(audioContext.currentTime + startTime + duration)
     }
 
-    // Quick ascending swoosh
-    playTone(200, 0, 0.08, 'sine', 0.05)
+    // Quick descending swoosh
+    playTone(600, 0, 0.08, 'sine', 0.05)
     playTone(400, 0.02, 0.1, 'sine', 0.07)
-    playTone(600, 0.05, 0.1, 'sine', 0.05)
-  } catch (e) {
-    // Audio not supported
-  }
-}
-
-// Subtle door closing sound
-const playCloseSound = () => {
-  try {
-    const audioContext = new (window.AudioContext || window.webkitAudioContext)()
-
-    const playTone = (freq, startTime, duration, type = 'sine', volume = 0.1) => {
-      const oscillator = audioContext.createOscillator()
-      const gainNode = audioContext.createGain()
-
-      oscillator.connect(gainNode)
-      gainNode.connect(audioContext.destination)
-
-      oscillator.frequency.value = freq
-      oscillator.type = type
-
-      gainNode.gain.setValueAtTime(0, audioContext.currentTime + startTime)
-      gainNode.gain.linearRampToValueAtTime(volume, audioContext.currentTime + startTime + 0.02)
-      gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + startTime + duration)
-
-      oscillator.start(audioContext.currentTime + startTime)
-      oscillator.stop(audioContext.currentTime + startTime + duration)
-    }
-
-    // Soft folding back - mechanical feel
-    playTone(180, 0, 0.06, 'triangle', 0.05)
-    playTone(140, 0.04, 0.08, 'triangle', 0.06)
-    // Soft thunk to close
-    playTone(90, 0.1, 0.1, 'sine', 0.08)
-    playTone(60, 0.12, 0.08, 'sine', 0.06)
+    playTone(200, 0.05, 0.1, 'sine', 0.05)
   } catch (e) {
     // Audio not supported
   }
