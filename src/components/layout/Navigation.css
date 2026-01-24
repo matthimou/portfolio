@@ -163,8 +163,8 @@
 /* Mobile Menu (Future Enhancement) */
 @media (max-width: 640px) {
   .navigation__brand {
-    font-size: var(--text-base);
-    line-height: 1.1;
+    font-size: var(--text-sm);
+    line-height: 1.15;
   }
 
   .navigation__links {
