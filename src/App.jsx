@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { ThemeProvider } from './context/ThemeContext'
 import { AuthProvider } from './context/AuthContext'
 import ScrollToTop from './components/ScrollToTop'
 import Navigation from './components/layout/Navigation'
@@ -18,29 +19,31 @@ function App() {
   const closeLoginModal = () => setIsLoginModalOpen(false)
 
   return (
-    <AuthProvider>
-      <Router>
-        <ScrollToTop />
-        <div className="app">
-          {/* Fixed Navigation */}
-          <Navigation />
+    <ThemeProvider>
+      <AuthProvider>
+        <Router>
+          <ScrollToTop />
+          <div className="app">
+            {/* Fixed Navigation */}
+            <Navigation />
 
-          {/* Main Content with Routes */}
-          <main id="main-content">
-            <Routes>
-              <Route path="/" element={<HomePage onOpenLogin={openLoginModal} />} />
-              <Route path="/work" element={<WorkPage onOpenLogin={openLoginModal} />} />
-              <Route path="/work/:projectId" element={<CaseStudyPage onOpenLogin={openLoginModal} />} />
-              <Route path="/about" element={<AboutPage />} />
-              <Route path="/contact" element={<ContactPage />} />
-            </Routes>
-          </main>
+            {/* Main Content with Routes */}
+            <main id="main-content">
+              <Routes>
+                <Route path="/" element={<HomePage onOpenLogin={openLoginModal} />} />
+                <Route path="/work" element={<WorkPage onOpenLogin={openLoginModal} />} />
+                <Route path="/work/:projectId" element={<CaseStudyPage onOpenLogin={openLoginModal} />} />
+                <Route path="/about" element={<AboutPage />} />
+                <Route path="/contact" element={<ContactPage />} />
+              </Routes>
+            </main>
 
-          {/* Login Modal */}
-          <LoginModal isOpen={isLoginModalOpen} onClose={closeLoginModal} />
-        </div>
-      </Router>
-    </AuthProvider>
+            {/* Login Modal */}
+            <LoginModal isOpen={isLoginModalOpen} onClose={closeLoginModal} />
+          </div>
+        </Router>
+      </AuthProvider>
+    </ThemeProvider>
   )
 }
 

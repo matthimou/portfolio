@@ -25,7 +25,7 @@
 }
 
 .login-modal {
-  background: white;
+  background: var(--color-surface);
   border-radius: 12px;
   padding: var(--space-xl);
   width: 100%;
@@ -144,7 +144,7 @@
 
 .login-modal__input:focus {
   border-color: var(--color-accent-primary);
-  background-color: white;
+  background-color: var(--color-surface);
 }
 
 .login-modal__input--error {

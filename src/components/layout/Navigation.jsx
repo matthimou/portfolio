@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import { useScrollProgress } from '../../hooks/useScrollProgress'
 import { navigationLinks, brandName } from '../../data/navigation'
+import ThemeToggle from '../ui/ThemeToggle'
 import avatarImage from '../../assets/MatthewHansonAvatar.jpg'
 import './Navigation.css'
 
@@ -54,21 +55,24 @@ const Navigation = () => {
           {brandName}
         </Link>
 
-        {/* Navigation Links */}
-        <ul className="navigation__links">
-          {navigationLinks.map((link) => (
-            <li key={link.id}>
-              <NavLink
-                to={link.href}
-                className={({ isActive }) =>
-                  `navigation__link ${isActive ? 'navigation__link--active' : ''}`
-                }
-              >
-                {link.label}
-              </NavLink>
-            </li>
-          ))}
-        </ul>
+        {/* Navigation Links and Actions */}
+        <div className="navigation__actions">
+          <ul className="navigation__links">
+            {navigationLinks.map((link) => (
+              <li key={link.id}>
+                <NavLink
+                  to={link.href}
+                  className={({ isActive }) =>
+                    `navigation__link ${isActive ? 'navigation__link--active' : ''}`
+                  }
+                >
+                  {link.label}
+                </NavLink>
+              </li>
+            ))}
+          </ul>
+          <ThemeToggle />
+        </div>
       </div>
 
       {/* Scroll Progress Indicator */}

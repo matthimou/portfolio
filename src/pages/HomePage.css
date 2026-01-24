@@ -57,7 +57,7 @@
 /* Career Path Illustration */
 .experience__illustration-wrapper {
   position: relative;
-  background-color: white;
+  background-color: var(--color-surface);
   border-radius: 8px;
   padding: var(--space-sm);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
@@ -73,6 +73,11 @@
   width: 100%;
   height: auto;
   display: block;
+}
+
+/* Traveling pulse dot glow animation */
+.experience__traveling-dot {
+  filter: drop-shadow(0 0 3px currentColor);
 }
 
 /* Traveling pulse is now JavaScript-controlled for randomized timing */
@@ -167,6 +172,16 @@
   opacity: 1;
   transition: opacity 0.3s ease-out;
   transition-delay: var(--delay);
+}
+
+/* Logo area background band - hidden in light mode, light grey in dark mode */
+.experience__logo-band {
+  fill: transparent;
+  transition: fill 0.3s ease;
+}
+
+[data-theme="dark"] .experience__logo-band {
+  fill: #FFFFFF;
 }
 
 /* Logo base styles */
@@ -392,13 +407,13 @@
 }
 
 .career-path__tab:hover {
-  background: white;
+  background: var(--color-surface);
   transform: translateY(-2px);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 .career-path__tab--active {
-  background: white;
+  background: var(--color-surface);
   border-top-color: var(--tab-color);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
@@ -410,6 +425,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+[data-theme="dark"] .career-path__tab-logo-wrapper {
+  background-color: rgba(255, 255, 255, 0.9);
 }
 
 .career-path__tab-logo {
@@ -440,7 +461,7 @@
 }
 
 .career-path__detail {
-  background: white;
+  background: var(--color-surface);
   border-radius: 8px;
   padding: var(--space-md);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
@@ -575,7 +596,7 @@
   }
 
   .career-path__mobile-item {
-    background: white;
+    background: var(--color-surface);
     border-radius: 8px;
     overflow: hidden;
     border-left: 3px solid var(--company-color);
@@ -605,6 +626,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+  }
+
+  [data-theme="dark"] .career-path__mobile-logo-wrapper {
+    background-color: rgba(255, 255, 255, 0.9);
   }
 
   .career-path__mobile-logo {
@@ -738,7 +765,7 @@
   }
 
   .career-path__mobile-show-all:hover {
-    background: white;
+    background: var(--color-surface);
     color: var(--color-text-secondary);
     border-color: var(--color-text-tertiary);
   }
@@ -815,7 +842,7 @@
   display: block;
   text-decoration: none;
   color: inherit;
-  background-color: white;
+  background-color: var(--color-surface);
   border-radius: 8px;
   overflow: hidden;
   opacity: 0;

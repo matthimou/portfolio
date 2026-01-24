@@ -20,6 +20,23 @@
   --color-border-light: #E7E5E4;      /* Visible dividers */
   --color-border-subtle: #F5F5F4;     /* Subtle separations */
 
+  /* Surface color for cards */
+  --color-surface: #FFFFFF;
+
+  /* Nav background */
+  --color-nav-bg: rgba(250, 250, 249, 0.95);
+
+  /* Canvas illustration colors */
+  --color-canvas-bg: #FAF9F7;
+  --color-canvas-grid: rgba(194, 65, 12, 0.06);
+  --color-canvas-grid-strong: rgba(194, 65, 12, 0.12);
+  --color-canvas-dot: rgba(194, 65, 12, 0.15);
+  --color-canvas-stroke: rgba(194, 65, 12, 0.4);
+  --color-canvas-vignette: rgba(250, 249, 247, 0.4);
+
+  /* Timeline pulse */
+  --color-timeline-pulse: #FF3008;
+
   /* Typography */
   --font-display: 'Outfit', sans-serif;    /* Headers, hero */
   --font-body: 'Inter', sans-serif;        /* Body text, navigation */
@@ -83,4 +100,47 @@
   --shadow-subtle: 0 1px 2px rgba(0, 0, 0, 0.05);
   --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
   --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Dark Mode */
+[data-theme="dark"] {
+  /* Backgrounds - Deep charcoal */
+  --color-bg-primary: #0F0F12;
+  --color-bg-secondary: #1A1A1F;
+
+  /* Text - Warm whites */
+  --color-text-primary: #F5F5F4;
+  --color-text-secondary: #A8A29E;
+  --color-text-tertiary: #78716C;
+
+  /* Accent - Brighter for dark bg */
+  --color-accent-primary: #EA580C;
+  --color-accent-light: #431407;
+  --color-accent-subtle: #1C0A04;
+
+  /* Borders */
+  --color-border-light: #2A2A30;
+  --color-border-subtle: #1F1F24;
+
+  /* Surface */
+  --color-surface: #1A1A1F;
+
+  /* Nav */
+  --color-nav-bg: rgba(15, 15, 18, 0.95);
+
+  /* Canvas - Dark blueprint style */
+  --color-canvas-bg: #0D1117;
+  --color-canvas-grid: rgba(234, 88, 12, 0.08);
+  --color-canvas-grid-strong: rgba(234, 88, 12, 0.15);
+  --color-canvas-dot: rgba(234, 88, 12, 0.2);
+  --color-canvas-stroke: rgba(234, 88, 12, 0.5);
+  --color-canvas-vignette: rgba(13, 17, 23, 0.5);
+
+  /* Timeline */
+  --color-timeline-pulse: #FF4D2A;
+
+  /* Shadows */
+  --shadow-subtle: 0 1px 2px rgba(0, 0, 0, 0.2);
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.3);
 }

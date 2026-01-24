@@ -4,6 +4,7 @@ import Hero from '../components/sections/Hero'
 import VideoBackground from '../components/ui/VideoBackground'
 import LockedCard from '../components/ui/LockedCard'
 import { useAuth } from '../context/AuthContext'
+import { useTheme } from '../context/ThemeContext'
 import { caseStudies } from '../data/caseStudies'
 import LeapnetLogo from '../assets/LeapnetLogo.png'
 import Logo212 from '../assets/212Logo.png'
@@ -29,8 +30,17 @@ const CareerPath = () => {
   const [isPulseVisible, setIsPulseVisible] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
   const [showAllMobile, setShowAllMobile] = useState(false)
+  const [pulseColor, setPulseColor] = useState('#FF3008')
   const animationRef = useRef(null)
   const pulseAnimationRef = useRef(null)
+  const { theme } = useTheme()
+
+  // Read timeline pulse color from CSS variables
+  useEffect(() => {
+    const color = getComputedStyle(document.documentElement)
+      .getPropertyValue('--color-timeline-pulse').trim()
+    setPulseColor(color || '#FF3008')
+  }, [theme])
 
   // Mobile detection
   useEffect(() => {
@@ -107,8 +117,10 @@ const CareerPath = () => {
     }
   }, [isExpanded, isTimelineHovered])
 
+  const { isDark } = useTheme()
+
   const companies = [
-    { name: 'LeapNet', title: ['CTO', 'Dir Travel Practice'], start: '1995', end: '2001', years: '6 yrs', color: '#1a1a1a', logo: LeapnetLogo, size: 65, tabSize: 34, description: leapnetDesc },
+    { name: 'LeapNet', title: ['CTO', 'Dir Travel Practice'], start: '1995', end: '2001', years: '6 yrs', color: '#1a1a1a', darkColor: '#4ECDC4', logo: LeapnetLogo, size: 65, tabSize: 34, description: leapnetDesc },
     { name: '212°', title: ['Founder', 'CEO'], start: '2001', end: '2004', years: '3 yrs', color: '#E87722', logo: Logo212, size: 42, description: logo212Desc },
     { name: 'Orbitz', title: ['Director', 'Information Architecture'], start: '2004', end: '2012', years: '8 yrs', color: '#0099D8', logo: OrbitzLogo, size: 90, description: orbitzDesc },
     { name: 'Dateable', title: ['Founder', 'Product/Design'], start: '2012', end: '2014', years: '1.5 yrs', color: '#5B4B9E', logo: DateableLogo, size: 38, description: dateableDesc },
@@ -146,11 +158,12 @@ const CareerPath = () => {
             .slice(0, showAllMobile ? companies.length : 4)
             .map((company, reverseIndex) => {
               const index = companies.length - 1 - reverseIndex
+              const mobileColor = isDark && company.darkColor ? company.darkColor : company.color
               return (
                 <div
                   key={index}
                   className={`career-path__mobile-item ${activeCompany === index ? 'career-path__mobile-item--active' : ''}`}
-                  style={{ '--company-color': company.color }}
+                  style={{ '--company-color': mobileColor }}
                 >
                   <button
                     className="career-path__mobile-header"
@@ -206,27 +219,49 @@ const CareerPath = () => {
           onMouseLeave={() => setIsTimelineHovered(false)}
         >
           <svg
-            viewBox="0 0 900 200"
+            viewBox="0 0 900 220"
             className={`experience__illustration ${isTimelineHovered ? 'experience__illustration--hovered' : ''}`}
             preserveAspectRatio="xMidYMid meet"
             onClick={() => handleCompanyClick(0)}
             style={{ cursor: 'pointer' }}
           >
-            {/* Background track */}
-            <line x1="70" y1="80" x2="830" y2="80" stroke="var(--color-border-light)" strokeWidth="1" />
+            {/* Logo area background - visible in dark mode */}
+            <rect x="0" y="0" width="900" height="70" className="experience__logo-band" rx="4" />
 
-            {/* Traveling pulse along timeline - thin red line */}
+            {/* Background track */}
+            <line x1="70" y1="100" x2="830" y2="100" stroke="var(--color-border-light)" strokeWidth="1" />
+
+            {/* Traveling pulse along timeline - dot with fading trail */}
             {isPulseVisible && (
-              <line
-                x1={travelingPulseX - 40}
-                y1="80"
-                x2={travelingPulseX}
-                y2="80"
-                stroke="#FF3008"
-                strokeWidth="2"
-                strokeLinecap="round"
-                style={{ opacity: isPulseVisible ? 1 : 0 }}
-              />
+              <g>
+                {/* Trail dots - fading behind */}
+                {[...Array(8)].map((_, i) => (
+                  <circle
+                    key={i}
+                    cx={travelingPulseX - (i + 1) * 6}
+                    cy="100"
+                    r={3 - i * 0.3}
+                    fill={pulseColor}
+                    opacity={0.5 - i * 0.06}
+                  />
+                ))}
+                {/* Outer glow */}
+                <circle
+                  cx={travelingPulseX}
+                  cy="100"
+                  r="7"
+                  fill={pulseColor}
+                  opacity="0.25"
+                />
+                {/* Main dot at front */}
+                <circle
+                  cx={travelingPulseX}
+                  cy="100"
+                  r="4"
+                  fill={pulseColor}
+                  className="experience__traveling-dot"
+                />
+              </g>
             )}
 
             {/* Company nodes */}
@@ -234,11 +269,12 @@ const CareerPath = () => {
               const x = 70 + index * 152
               const delay = 300 + index * 400
               const isPulsing = pulsingNodes[index]
+              const dotColor = isDark && company.darkColor ? company.darkColor : company.color
               return (
                 <g
                   key={index}
                   className={`experience__node ${isPulsing ? 'experience__node--pulsing' : ''}`}
-                  style={{ '--delay': `${delay}ms`, '--company-color': company.color }}
+                  style={{ '--delay': `${delay}ms`, '--company-color': dotColor }}
                 >
                   {/* Logo above timeline */}
                   <image
@@ -251,21 +287,21 @@ const CareerPath = () => {
                     preserveAspectRatio="xMidYMid meet"
                   />
                   {/* Timeline dot and pulse - centered */}
-                  <circle cx={x} cy="80" r="4" fill={company.color} className="experience__dot" />
-                  <circle cx={x} cy="80" r="4" fill="none" stroke={company.color} strokeWidth="1" className={`experience__pulse ${isPulsing ? 'experience__pulse--active' : ''}`} />
+                  <circle cx={x} cy="100" r="4" fill={dotColor} className="experience__dot" />
+                  <circle cx={x} cy="100" r="4" fill="none" stroke={dotColor} strokeWidth="1" className={`experience__pulse ${isPulsing ? 'experience__pulse--active' : ''}`} />
                   {/* Timeline endpoint labels */}
                   {index === 0 && (
-                    <text x={x - 20} y="84" textAnchor="end" className="experience__endpoint-year">1995</text>
+                    <text x={x - 20} y="104" textAnchor="end" className="experience__endpoint-year">1995</text>
                   )}
                   {index === companies.length - 1 && (
-                    <text x={x + 20} y="84" textAnchor="start" className="experience__endpoint-year">2025</text>
+                    <text x={x + 20} y="104" textAnchor="start" className="experience__endpoint-year">2025</text>
                   )}
                   {/* Company name below timeline */}
-                  <text x={x} y="125" textAnchor="middle" className="experience__company-name">{company.name}</text>
+                  <text x={x} y="145" textAnchor="middle" className="experience__company-name">{company.name}</text>
                   {/* Titles below company name */}
                   <g className="experience__titles">
                     {company.title.map((line, i) => (
-                      <text key={i} x={x} y={157 + i * 14} textAnchor="middle" className="experience__title-label">{line}</text>
+                      <text key={i} x={x} y={177 + i * 14} textAnchor="middle" className="experience__title-label">{line}</text>
                     ))}
                   </g>
                 </g>
@@ -297,12 +333,13 @@ const CareerPath = () => {
           <div className="career-path__tabs">
             {[...companies].reverse().map((company, reverseIndex) => {
               const index = companies.length - 1 - reverseIndex
+              const tabColor = isDark && company.darkColor ? company.darkColor : company.color
               return (
                 <button
                   key={index}
                   className={`career-path__tab ${activeCompany === index ? 'career-path__tab--active' : ''}`}
                   onClick={() => setActiveCompany(index)}
-                  style={{ '--tab-color': company.color }}
+                  style={{ '--tab-color': tabColor }}
                 >
                   <div className="career-path__tab-logo-wrapper">
                     <img src={company.logo} alt={company.name} className="career-path__tab-logo" style={company.tabSize ? { width: company.tabSize, height: company.tabSize } : {}} />
@@ -315,7 +352,7 @@ const CareerPath = () => {
           </div>
           <div className="career-path__content">
             {activeCompany !== null && (
-              <div className="career-path__detail" style={{ '--detail-color': companies[activeCompany].color }}>
+              <div className="career-path__detail" style={{ '--detail-color': isDark && companies[activeCompany].darkColor ? companies[activeCompany].darkColor : companies[activeCompany].color }}>
                 <div className="career-path__detail-description">
                   <ReactMarkdown>{companies[activeCompany].description}</ReactMarkdown>
                 </div>
