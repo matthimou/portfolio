@@ -90,7 +90,7 @@ const playWhooshSound = () => {
 }
 
 // Experience accordion close - descending with thunk
-const playCloseSound = () => {
+const playCloseSound = (pitchMultiplier = 1.0) => {
   try {
     const audioContext = new (window.AudioContext || window.webkitAudioContext)()
 
@@ -101,7 +101,7 @@ const playCloseSound = () => {
       oscillator.connect(gainNode)
       gainNode.connect(audioContext.destination)
 
-      oscillator.frequency.value = freq
+      oscillator.frequency.value = freq * pitchMultiplier
       oscillator.type = type
 
       gainNode.gain.setValueAtTime(0, audioContext.currentTime + startTime)
@@ -235,7 +235,7 @@ const CareerPath = () => {
     if (isMobile) {
       // Mobile: accordion behavior - toggle same company, switch to new
       if (activeCompany === index) {
-        playCloseSound()
+        playCloseSound(pitchMultiplier)
         setActiveCompany(null)
       } else {
         playOpenSound(pitchMultiplier)
@@ -256,7 +256,11 @@ const CareerPath = () => {
   }
 
   const handleClose = () => {
-    playCloseSound()
+    // Use active company's pitch for close sound
+    const pitchMultiplier = activeCompany !== null
+      ? 0.65 + (activeCompany / (companies.length - 1)) * 0.35
+      : 1.0
+    playCloseSound(pitchMultiplier)
     setIsExpanded(false)
     setActiveCompany(null)
   }
