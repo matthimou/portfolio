@@ -44,12 +44,12 @@ const playOpenSound = () => {
       oscillator.stop(audioContext.currentTime + startTime + duration)
     }
 
-    // Soft creak/whoosh ascending
-    playTone(180, 0, 0.12, 'sine', 0.06)
-    playTone(250, 0.04, 0.15, 'sine', 0.08)
-    playTone(350, 0.1, 0.12, 'sine', 0.06)
-    // Soft click at end
-    playTone(800, 0.18, 0.03, 'square', 0.04)
+    // Soft mechanical unfolding - lower, more textured
+    playTone(120, 0, 0.08, 'triangle', 0.06)
+    playTone(150, 0.03, 0.1, 'triangle', 0.07)
+    playTone(180, 0.08, 0.12, 'sine', 0.05)
+    // Soft latch click
+    playTone(1200, 0.15, 0.02, 'square', 0.03)
   } catch (e) {
     // Audio not supported
   }
@@ -110,12 +110,12 @@ const playCloseSound = () => {
       oscillator.stop(audioContext.currentTime + startTime + duration)
     }
 
-    // Soft whoosh descending
-    playTone(300, 0, 0.1, 'sine', 0.06)
-    playTone(200, 0.05, 0.12, 'sine', 0.07)
-    // Soft thud at end
-    playTone(100, 0.12, 0.08, 'sine', 0.08)
-    playTone(80, 0.14, 0.06, 'triangle', 0.05)
+    // Soft folding back - mechanical feel
+    playTone(180, 0, 0.06, 'triangle', 0.05)
+    playTone(140, 0.04, 0.08, 'triangle', 0.06)
+    // Soft thunk to close
+    playTone(90, 0.1, 0.1, 'sine', 0.08)
+    playTone(60, 0.12, 0.08, 'sine', 0.06)
   } catch (e) {
     // Audio not supported
   }
