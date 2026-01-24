@@ -156,9 +156,9 @@ const LoginModal = ({ isOpen, onClose }) => {
                   if (error) setError('')
                   if (status === 'error') setStatus('idle')
                 }}
-                onFocus={() => {
+                onFocus={(e) => {
                   if (status === 'error') {
-                    setCode('')
+                    e.target.select()
                     setError('')
                     setStatus('idle')
                   }
