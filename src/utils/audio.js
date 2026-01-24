@@ -54,12 +54,15 @@ const playTone = (ctx, freq, startTime, duration, type = 'sine', volume = 0.1) =
   oscillator.type = type
 
   const now = ctx.currentTime
+  // Start silent, ramp up at startTime, then decay
+  gainNode.gain.setValueAtTime(0, now)
   gainNode.gain.setValueAtTime(0, now + startTime)
-  gainNode.gain.linearRampToValueAtTime(volume, now + startTime + 0.015)
-  gainNode.gain.exponentialRampToValueAtTime(0.01, now + startTime + duration)
+  gainNode.gain.linearRampToValueAtTime(volume, now + startTime + 0.01)
+  gainNode.gain.exponentialRampToValueAtTime(0.001, now + startTime + duration)
 
-  oscillator.start(now + startTime)
-  oscillator.stop(now + startTime + duration)
+  // Start immediately (Chrome latency fix) - gain envelope handles timing
+  oscillator.start(0)
+  oscillator.stop(now + startTime + duration + 0.1)
 }
 
 // Theme toggle sounds
