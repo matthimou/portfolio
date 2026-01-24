@@ -90,24 +90,33 @@
   height: 28px;
 }
 
+.login-modal__lock {
+  filter: drop-shadow(2px 2px 0 rgba(0, 0, 0, 0.15));
+}
+
 .login-modal__icon-check {
   color: #22c55e;
 }
 
 /* Unlock animation */
 .login-modal__icon--animating {
-  animation: icon-bounce 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  perspective: 200px;
 }
 
-@keyframes icon-bounce {
-  0% { transform: scale(0.8); }
-  50% { transform: scale(1.2); }
-  100% { transform: scale(1); }
+.login-modal__icon--animating .login-modal__lock {
+  animation: lock-spin 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s forwards;
+  transform-style: preserve-3d;
 }
 
-/* Shackle unlock animation - delayed to start after rainbow */
+@keyframes lock-spin {
+  0% { transform: rotateY(0deg) scale(1); }
+  50% { transform: rotateY(180deg) scale(1.1); }
+  100% { transform: rotateY(360deg) scale(1); }
+}
+
+/* Shackle unlock animation - starts after spin */
 .login-modal__icon--animating .login-modal__shackle {
-  animation: shackle-unlock 0.5s ease-out 0.3s forwards;
+  animation: shackle-unlock 0.4s ease-out 1s forwards;
   transform-origin: 17px 7px;
 }
 
