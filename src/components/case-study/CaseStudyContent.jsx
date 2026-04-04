@@ -172,7 +172,7 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
           {introduction.closing && (
             <p className="case-study-content__text">{introduction.closing}</p>
           )}
-          {(introduction.videoAfterClosing || introduction.closingAfterVideo || introduction.closingFinal) && (
+          {(introduction.videoAfterClosing || introduction.closingAfterVideo || (introduction.closingFinal && !introduction.closingFinalBelowVideo)) && (
             <div className="case-study-content__two-column case-study-content__two-column--video">
               {introduction.videoAfterClosing && (
                 <div className="case-study-content__two-column-video">
@@ -184,14 +184,20 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                 </div>
               )}
               <div className="case-study-content__two-column-content">
-                {introduction.closingAfterVideo && (
-                  <p className="case-study-content__text">{introduction.closingAfterVideo}</p>
-                )}
-                {introduction.closingFinal && (
+                {introduction.closingAfterVideo && introduction.closingAfterVideo.split('\n\n').map((para, index) => (
+                  <p key={index} className="case-study-content__text">{para}</p>
+                ))}
+                {introduction.closingFinal && !introduction.closingFinalBelowVideo && (
                   <p className="case-study-content__text">{introduction.closingFinal}</p>
                 )}
               </div>
             </div>
+          )}
+          {introduction.closingFinalHeading && introduction.closingFinalBelowVideo && (
+            <h4 className="case-study-content__heading">{introduction.closingFinalHeading}</h4>
+          )}
+          {introduction.closingFinal && introduction.closingFinalBelowVideo && (
+            <p className="case-study-content__text">{introduction.closingFinal}</p>
           )}
           {introduction.imageFinal && (
             <figure className="case-study-content__section-image">
@@ -206,9 +212,9 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
             <p className="case-study-content__text">{introduction.closingFinalSecondary}</p>
           )}
           {introduction.opportunity && (
-            <p className="case-study-content__opportunity">
-              <strong>Hypothesis:</strong> {introduction.opportunity}
-            </p>
+            <div className={`case-study-content__opportunity ${introduction.opportunityCallout ? 'case-study-content__opportunity--callout' : ''}`}>
+              <strong>{introduction.opportunityCallout ? 'The Opportunity' : 'Hypothesis'}:</strong> {introduction.opportunity}
+            </div>
           )}
         </section>
       )}
@@ -456,6 +462,12 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
               {solution.timeline[1]?.sectionContentTertiary && (
                 <p className="case-study-content__text">{solution.timeline[1].sectionContentTertiary}</p>
               )}
+              {solution.timeline[1]?.sectionContentAfterPlanning && (
+                <p className="case-study-content__text">{solution.timeline[1].sectionContentAfterPlanning}</p>
+              )}
+              {solution.timeline[1]?.sectionContentTeamBuilding && (
+                <p className="case-study-content__text">{solution.timeline[1].sectionContentTeamBuilding}</p>
+              )}
               {solution.timeline[1]?.sectionHeadingTertiary && (
                 <h4 className="case-study-content__heading">{solution.timeline[1].sectionHeadingTertiary}</h4>
               )}
@@ -701,6 +713,9 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                     </figcaption>
                   )}
                 </figure>
+              )}
+              {solution.timeline[1]?.sectionContentCrossPlatform && (
+                <p className="case-study-content__text">{solution.timeline[1].sectionContentCrossPlatform}</p>
               )}
               {solution.timeline[1]?.desktopVideo && (
                 <figure className="case-study-content__desktop-video">
@@ -998,6 +1013,14 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
               ))}
             </div>
           )}
+
+          {/* Lessons from Failure */}
+          {impact.lessonsHeading && (
+            <h4 className="case-study-content__heading">{impact.lessonsHeading}</h4>
+          )}
+          {impact.lessonsNarrative && impact.lessonsNarrative.split('\n\n').map((para, index) => (
+            <p key={index} className="case-study-content__text">{para}</p>
+          ))}
 
           {/* Impact Heading */}
           {impact.impactHeading && (

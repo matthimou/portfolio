@@ -87,7 +87,7 @@
   padding: var(--space-lg);
   border: 1px solid var(--color-border-light);
   border-radius: 8px;
-  background-color: white;
+  background-color: var(--color-bg-primary);
   transition: all var(--duration-fast) var(--easing-default);
 }
 
@@ -108,7 +108,7 @@
 .case-study-page__nav-label {
   font-size: var(--text-sm);
   font-weight: var(--font-weight-medium);
-  color: var(--color-text-tertiary);
+  color: var(--color-text-secondary);
 }
 
 .case-study-page__nav-title {
