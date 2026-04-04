@@ -71,7 +71,7 @@ const ImageLightbox = ({ images, currentIndex, onClose, onPrev, onNext }) => {
   )
 }
 
-const AutoPlayVideo = ({ src, caption }) => {
+const AutoPlayVideo = ({ src, caption, noShadow, noBorderRadius }) => {
   const videoRef = useRef(null)
 
   useEffect(() => {
@@ -102,7 +102,7 @@ const AutoPlayVideo = ({ src, caption }) => {
         loop
         playsInline
         preload="metadata"
-        className="case-study-content__video-player"
+        className={`case-study-content__video-player ${noShadow ? 'case-study-content__video-player--no-shadow' : ''} ${noBorderRadius ? 'case-study-content__video-player--no-radius' : ''}`}
       />
       {caption && (
         <figcaption className="case-study-content__video-caption">
@@ -113,9 +113,10 @@ const AutoPlayVideo = ({ src, caption }) => {
   )
 }
 
-const CaseStudyContent = ({ problem, solution, impact, features }) => {
+const CaseStudyContent = ({ introduction, problem, solution, impact, features }) => {
   const [lightboxOpen, setLightboxOpen] = useState(false)
   const [lightboxIndex, setLightboxIndex] = useState(0)
+  const [singleImageLightbox, setSingleImageLightbox] = useState(null)
 
   // Filter features that have images for the lightbox
   const featuresWithImages = features?.filter(f => f.image) || []
@@ -143,6 +144,75 @@ const CaseStudyContent = ({ problem, solution, impact, features }) => {
 
   return (
     <div className="case-study-content">
+      {/* Introduction Section */}
+      {introduction && (
+        <section className="case-study-content__section">
+          <h4 className="case-study-content__heading">{introduction.heading}</h4>
+          <p className="case-study-content__text">{introduction.content}</p>
+          {introduction.contentSecondary && (
+            <p className="case-study-content__text">{introduction.contentSecondary}</p>
+          )}
+          {introduction.contentTertiary && (
+            <p className="case-study-content__text">{introduction.contentTertiary}</p>
+          )}
+          {introduction.contentQuaternary && (
+            <p className="case-study-content__text">{introduction.contentQuaternary}</p>
+          )}
+          {introduction.videoHeading && (
+            <h4 className="case-study-content__heading">{introduction.videoHeading}</h4>
+          )}
+          {introduction.video && (
+            <div className="case-study-content__intro-video">
+              <AutoPlayVideo
+                src={introduction.video.src}
+                caption={introduction.video.caption}
+              />
+            </div>
+          )}
+          {introduction.closing && (
+            <p className="case-study-content__text">{introduction.closing}</p>
+          )}
+          {(introduction.videoAfterClosing || introduction.closingAfterVideo || introduction.closingFinal) && (
+            <div className="case-study-content__two-column case-study-content__two-column--video">
+              {introduction.videoAfterClosing && (
+                <div className="case-study-content__two-column-video">
+                  <AutoPlayVideo
+                    src={introduction.videoAfterClosing.src}
+                    caption={introduction.videoAfterClosing.caption}
+                    noShadow={introduction.videoAfterClosing.noShadow}
+                  />
+                </div>
+              )}
+              <div className="case-study-content__two-column-content">
+                {introduction.closingAfterVideo && (
+                  <p className="case-study-content__text">{introduction.closingAfterVideo}</p>
+                )}
+                {introduction.closingFinal && (
+                  <p className="case-study-content__text">{introduction.closingFinal}</p>
+                )}
+              </div>
+            </div>
+          )}
+          {introduction.imageFinal && (
+            <figure className="case-study-content__section-image">
+              <img
+                src={introduction.imageFinal.src}
+                alt={introduction.imageFinal.alt}
+                className="case-study-content__section-image-img"
+              />
+            </figure>
+          )}
+          {introduction.closingFinalSecondary && (
+            <p className="case-study-content__text">{introduction.closingFinalSecondary}</p>
+          )}
+          {introduction.opportunity && (
+            <p className="case-study-content__opportunity">
+              <strong>Hypothesis:</strong> {introduction.opportunity}
+            </p>
+          )}
+        </section>
+      )}
+
       {/* Problem Section */}
       {problem && (
         <section className="case-study-content__section">
@@ -200,7 +270,488 @@ const CaseStudyContent = ({ problem, solution, impact, features }) => {
             </p>
           )}
 
-          <p className="case-study-content__text">{solution.strategy}</p>
+          {solution.strategy && (
+            <p className="case-study-content__text">{solution.strategy}</p>
+          )}
+
+          {/* Timeline - appears after strategy text */}
+          {solution.timeline && solution.timeline.length > 0 && (
+            <>
+              <div className="case-study-content__timeline">
+                {solution.timeline.map((phase, index) => (
+                  <div
+                    key={index}
+                    className="case-study-content__timeline-phase"
+                    style={{ '--phase-index': index }}
+                  >
+                    <span className="case-study-content__timeline-date">{phase.date}</span>
+                    <h5 className="case-study-content__timeline-title">{phase.title}</h5>
+                    <p className="case-study-content__timeline-description">{phase.description}</p>
+                  </div>
+                ))}
+              </div>
+              {solution.timeline[0].sectionHeading && (
+                <h5 className="case-study-content__subheading">{solution.timeline[0].sectionHeading}</h5>
+              )}
+              {solution.timeline[0].sectionContent && (
+                <p className="case-study-content__text">{solution.timeline[0].sectionContent}</p>
+              )}
+              {solution.timeline[0].sectionContentSecondary && (
+                <p className="case-study-content__text">{solution.timeline[0].sectionContentSecondary}</p>
+              )}
+              {solution.timeline[0].sectionImages && (
+                <div className="case-study-content__image-pair">
+                  {solution.timeline[0].sectionImages.map((image, index) => (
+                    <figure key={index} className="case-study-content__image-pair-item">
+                      <img
+                        src={image.src}
+                        alt={image.alt}
+                        className="case-study-content__image-pair-img"
+                      />
+                      {image.label && (
+                        <figcaption className="case-study-content__image-pair-label">{image.label}</figcaption>
+                      )}
+                    </figure>
+                  ))}
+                </div>
+              )}
+              {solution.timeline[0].sectionContentAfterImages && (
+                <p className="case-study-content__text">{solution.timeline[0].sectionContentAfterImages}</p>
+              )}
+              {solution.timeline[0].sectionImageFlow && (
+                <figure className="case-study-content__image-flow">
+                  <div className="case-study-content__image-flow-row">
+                    {solution.timeline[0].sectionImageFlow.images.map((image, index) => (
+                      <img
+                        key={index}
+                        src={image.src}
+                        alt={image.alt}
+                        className="case-study-content__image-flow-img"
+                      />
+                    ))}
+                  </div>
+                  {solution.timeline[0].sectionImageFlow.label && (
+                    <figcaption className="case-study-content__image-flow-label">
+                      {solution.timeline[0].sectionImageFlow.label}
+                    </figcaption>
+                  )}
+                </figure>
+              )}
+              {solution.timeline[0].sectionContentAfterFlow && (
+                <p className="case-study-content__text">{solution.timeline[0].sectionContentAfterFlow}</p>
+              )}
+              {solution.timeline[0].concerns && (
+                <div className="case-study-content__concerns">
+                  <h5 className="case-study-content__concerns-heading">{solution.timeline[0].concerns.heading}</h5>
+                  <div className="case-study-content__concerns-grid">
+                    {solution.timeline[0].concerns.items.map((item, index) => (
+                      <div key={index} className="case-study-content__concerns-card">
+                        <span className="case-study-content__concerns-badge">
+                          {item.category} ({item.percentage})
+                        </span>
+                        <ul className="case-study-content__concerns-quotes">
+                          {item.quotes.map((quote, qIndex) => (
+                            <li key={qIndex}>{quote}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+              {solution.timeline[0].concernsLearnings && (
+                <div className="case-study-content__learnings">
+                  {solution.timeline[0].concernsLearnings.map((learning, index) => (
+                    <div key={index} className="case-study-content__learning">
+                      <h6 className="case-study-content__learning-title">{learning.title}</h6>
+                      <p className="case-study-content__learning-description">{learning.description}</p>
+                    </div>
+                  ))}
+                </div>
+              )}
+              {solution.timeline[0].customerQuotes && (
+                <div className="case-study-content__customer-quotes">
+                  {solution.timeline[0].customerQuotes.map((item, index) => (
+                    <blockquote key={index} className="case-study-content__quote-card">
+                      <span className="case-study-content__quote-mark case-study-content__quote-mark--open">"</span>
+                      <p className="case-study-content__quote-text">{item.quote}</p>
+                      <span className="case-study-content__quote-mark case-study-content__quote-mark--close">"</span>
+                      <cite className="case-study-content__quote-author">- {item.author}</cite>
+                    </blockquote>
+                  ))}
+                </div>
+              )}
+              {solution.timeline[0].challenges && (
+                <div className="case-study-content__challenges">
+                  {solution.timeline[0].challenges.heading && (
+                    <h5 className="case-study-content__challenges-heading">{solution.timeline[0].challenges.heading}</h5>
+                  )}
+                  {solution.timeline[0].challenges.description && (
+                    <p className="case-study-content__text">{solution.timeline[0].challenges.description}</p>
+                  )}
+                  <div className="case-study-content__challenges-grid">
+                    {solution.timeline[0].challenges.items.map((item, index) => (
+                      <div key={index} className="case-study-content__challenge-item">
+                        <div className="case-study-content__challenge-icon">
+                          <img src={item.icon} alt="" />
+                        </div>
+                        <span className="case-study-content__challenge-label">{item.label}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+              {solution.timeline[0].challengesLearnings && (
+                <div className="case-study-content__learnings">
+                  {solution.timeline[0].challengesLearnings.map((learning, index) => (
+                    <div key={index} className="case-study-content__learning">
+                      <h6 className="case-study-content__learning-title">{learning.title}</h6>
+                      <p className="case-study-content__learning-description">{learning.description}</p>
+                    </div>
+                  ))}
+                </div>
+              )}
+              {solution.timeline[0].sectionClosing && (
+                <p className="case-study-content__text case-study-content__section-closing">{solution.timeline[0].sectionClosing}</p>
+              )}
+              {solution.timeline[1]?.sectionHeading && (
+                <h5 className="case-study-content__subheading">{solution.timeline[1].sectionHeading}</h5>
+              )}
+              {solution.timeline[1]?.sectionContent && (
+                <p className="case-study-content__text">{solution.timeline[1].sectionContent}</p>
+              )}
+              {solution.timeline[1]?.successMetrics && (
+                <div className="case-study-content__success-metrics">
+                  <h5 className="case-study-content__success-metrics-heading">{solution.timeline[1].successMetrics.heading}</h5>
+                  <div className="case-study-content__success-metrics-grid">
+                    {solution.timeline[1].successMetrics.items.map((item, index) => (
+                      <div key={index} className="case-study-content__success-metric-card">
+                        <span className={`case-study-content__success-metric-badge ${item.type === 'Primary Metric' ? 'case-study-content__success-metric-badge--primary' : ''}`}>
+                          {item.type}
+                        </span>
+                        <h6 className="case-study-content__success-metric-title">{item.title}</h6>
+                        {item.description && (
+                          <p className="case-study-content__success-metric-description">{item.description}</p>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+              {solution.timeline[1]?.sectionContentAfterMetrics && (
+                <p className="case-study-content__text">{solution.timeline[1].sectionContentAfterMetrics}</p>
+              )}
+              {solution.timeline[1]?.sectionHeadingSecondary && (
+                <h4 className="case-study-content__heading">{solution.timeline[1].sectionHeadingSecondary}</h4>
+              )}
+              {solution.timeline[1]?.sectionImageSecondary && (
+                <figure className="case-study-content__section-image">
+                  <img
+                    src={solution.timeline[1].sectionImageSecondary.src}
+                    alt={solution.timeline[1].sectionImageSecondary.alt}
+                    className="case-study-content__section-image-img"
+                  />
+                </figure>
+              )}
+              {solution.timeline[1]?.sectionContentTertiary && (
+                <p className="case-study-content__text">{solution.timeline[1].sectionContentTertiary}</p>
+              )}
+              {solution.timeline[1]?.sectionHeadingTertiary && (
+                <h4 className="case-study-content__heading">{solution.timeline[1].sectionHeadingTertiary}</h4>
+              )}
+              {solution.timeline[1]?.sectionContentQuaternary && (
+                <p className="case-study-content__text">{solution.timeline[1].sectionContentQuaternary}</p>
+              )}
+              {solution.timeline[1]?.visionQuestions && (
+                <div className="case-study-content__vision-questions">
+                  <div className="case-study-content__vision-questions-grid">
+                    {solution.timeline[1].visionQuestions.items.map((item, index) => (
+                      <div key={index} className="case-study-content__vision-question-card">
+                        <span className="case-study-content__vision-question-badge">
+                          {item.category}
+                        </span>
+                        <p className="case-study-content__vision-question-text">{item.question}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+              {solution.timeline[1]?.sectionContentAfterVision && (
+                <p className="case-study-content__text">{solution.timeline[1].sectionContentAfterVision}</p>
+              )}
+              {solution.timeline[1]?.sectionImageAfterVision && (
+                <figure
+                  className="case-study-content__section-image case-study-content__section-image--clickable"
+                  onClick={() => setSingleImageLightbox(solution.timeline[1].sectionImageAfterVision)}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => e.key === 'Enter' && setSingleImageLightbox(solution.timeline[1].sectionImageAfterVision)}
+                >
+                  <img
+                    src={solution.timeline[1].sectionImageAfterVision.src}
+                    alt={solution.timeline[1].sectionImageAfterVision.alt}
+                    className="case-study-content__section-image-img"
+                  />
+                  <div className="case-study-content__section-image-zoom">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <circle cx="11" cy="11" r="8" />
+                      <path d="M21 21l-4.35-4.35M11 8v6M8 11h6" />
+                    </svg>
+                  </div>
+                </figure>
+              )}
+              {solution.timeline[1]?.sectionContentAfterTimeline && (
+                solution.timeline[1].sectionContentAfterTimeline.split('\n\n').map((paragraph, index) => (
+                  <p key={index} className="case-study-content__text">{paragraph}</p>
+                ))
+              )}
+              {solution.timeline[1]?.sectionImageMapInsight && (
+                <figure className="case-study-content__section-image">
+                  <img
+                    src={solution.timeline[1].sectionImageMapInsight.src}
+                    alt={solution.timeline[1].sectionImageMapInsight.alt}
+                    className="case-study-content__section-image-img"
+                  />
+                </figure>
+              )}
+              {solution.timeline[1]?.sectionContentBeforeVideo && (
+                <p className="case-study-content__text">{solution.timeline[1].sectionContentBeforeVideo}</p>
+              )}
+              {solution.timeline[1]?.phoneVideo && (
+                <figure className="case-study-content__phone-video">
+                  <div className="case-study-content__phone-video-container">
+                    <video
+                      src={solution.timeline[1].phoneVideo.video}
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      className="case-study-content__phone-video-player"
+                    />
+                    {solution.timeline[1].phoneVideo.frame && (
+                      <img
+                        src={solution.timeline[1].phoneVideo.frame}
+                        alt=""
+                        className="case-study-content__phone-video-frame"
+                      />
+                    )}
+                  </div>
+                  {solution.timeline[1].phoneVideo.caption && (
+                    <figcaption className="case-study-content__phone-video-caption">
+                      {solution.timeline[1].phoneVideo.caption}
+                    </figcaption>
+                  )}
+                </figure>
+              )}
+              {solution.timeline[1]?.sectionContentAfterVideo && (
+                <p className="case-study-content__text">{solution.timeline[1].sectionContentAfterVideo}</p>
+              )}
+              {solution.timeline[1]?.phoneVideoSecondary && (
+                <figure className="case-study-content__phone-video">
+                  <div className="case-study-content__phone-video-container">
+                    <video
+                      src={solution.timeline[1].phoneVideoSecondary.video}
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      className="case-study-content__phone-video-player"
+                    />
+                  </div>
+                  {solution.timeline[1].phoneVideoSecondary.caption && (
+                    <figcaption className="case-study-content__phone-video-caption">
+                      {solution.timeline[1].phoneVideoSecondary.caption}
+                    </figcaption>
+                  )}
+                </figure>
+              )}
+              {solution.timeline[1]?.sectionContentAfterVideoSecondary && (
+                <p className="case-study-content__text">{solution.timeline[1].sectionContentAfterVideoSecondary}</p>
+              )}
+              {solution.timeline[1]?.phoneVideoTertiary && (
+                <figure className="case-study-content__phone-video">
+                  <div className="case-study-content__phone-video-container">
+                    <video
+                      src={solution.timeline[1].phoneVideoTertiary.video}
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      className="case-study-content__phone-video-player"
+                    />
+                  </div>
+                  {solution.timeline[1].phoneVideoTertiary.caption && (
+                    <figcaption className="case-study-content__phone-video-caption">
+                      {solution.timeline[1].phoneVideoTertiary.caption}
+                    </figcaption>
+                  )}
+                </figure>
+              )}
+              {solution.timeline[1]?.sectionContentAfterVideoTertiary && (
+                <p className="case-study-content__text">{solution.timeline[1].sectionContentAfterVideoTertiary}</p>
+              )}
+              {solution.timeline[1]?.sectionHeadingQuaternary && (
+                <h4 className="case-study-content__heading">{solution.timeline[1].sectionHeadingQuaternary}</h4>
+              )}
+              {solution.timeline[1]?.sectionContentQuinary && (
+                <p className="case-study-content__text">{solution.timeline[1].sectionContentQuinary}</p>
+              )}
+              {solution.timeline[1]?.customerQuotesSecondary && (
+                <div className="case-study-content__customer-quotes-labeled">
+                  {solution.timeline[1].customerQuotesSecondary.map((item, index) => (
+                    <blockquote key={index} className="case-study-content__quote-card-labeled">
+                      <span className="case-study-content__quote-category">{item.category}</span>
+                      <span className="case-study-content__quote-mark case-study-content__quote-mark--open">"</span>
+                      <p className="case-study-content__quote-text">{item.quote}</p>
+                      <span className="case-study-content__quote-mark case-study-content__quote-mark--close">"</span>
+                      <cite className="case-study-content__quote-author">- {item.author}</cite>
+                    </blockquote>
+                  ))}
+                </div>
+              )}
+              {solution.timeline[1]?.sectionHeadingScoping && (
+                <h4 className="case-study-content__heading">{solution.timeline[1].sectionHeadingScoping}</h4>
+              )}
+              {solution.timeline[1]?.sectionContentScoping && (
+                solution.timeline[1].sectionContentScoping.split('\n\n').map((paragraph, index) => (
+                  <p key={index} className="case-study-content__text">{paragraph}</p>
+                ))
+              )}
+              {solution.timeline[1]?.sectionHeadingMilestone1 && (
+                <h4 className="case-study-content__heading">{solution.timeline[1].sectionHeadingMilestone1}</h4>
+              )}
+              {solution.timeline[1]?.sectionContentMilestone1 && (
+                <p className="case-study-content__text">{solution.timeline[1].sectionContentMilestone1}</p>
+              )}
+              {solution.timeline[1]?.sectionImageMilestone1 && (
+                <figure
+                  className="case-study-content__section-image case-study-content__section-image--clickable"
+                  onClick={() => setSingleImageLightbox(solution.timeline[1].sectionImageMilestone1)}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => e.key === 'Enter' && setSingleImageLightbox(solution.timeline[1].sectionImageMilestone1)}
+                >
+                  <img
+                    src={solution.timeline[1].sectionImageMilestone1.src}
+                    alt={solution.timeline[1].sectionImageMilestone1.alt}
+                    className="case-study-content__section-image-img"
+                  />
+                  <div className="case-study-content__section-image-zoom">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <circle cx="11" cy="11" r="8" />
+                      <path d="M21 21l-4.35-4.35M11 8v6M8 11h6" />
+                    </svg>
+                  </div>
+                </figure>
+              )}
+              {solution.timeline[1]?.sectionHeadingMilestone2 && (
+                <h4 className="case-study-content__heading">{solution.timeline[1].sectionHeadingMilestone2}</h4>
+              )}
+              {(solution.timeline[1]?.sectionImageMilestone2 || solution.timeline[1]?.sectionContentMilestone2) && (
+                <div className="case-study-content__two-column">
+                  {solution.timeline[1]?.sectionImageMilestone2 && (
+                    <figure className="case-study-content__two-column-image">
+                      <img
+                        src={solution.timeline[1].sectionImageMilestone2.src}
+                        alt={solution.timeline[1].sectionImageMilestone2.alt}
+                      />
+                    </figure>
+                  )}
+                  {solution.timeline[1]?.sectionContentMilestone2 && (
+                    <div className="case-study-content__two-column-content">
+                      {solution.timeline[1].sectionContentMilestone2.split('\n\n').map((paragraph, index) => (
+                        <p key={index} className="case-study-content__text">{paragraph}</p>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )}
+              {solution.timeline[1]?.sectionHeadingMilestone3 && (
+                <h4 className="case-study-content__heading">{solution.timeline[1].sectionHeadingMilestone3}</h4>
+              )}
+              {(solution.timeline[1]?.sectionImageMilestone3 || solution.timeline[1]?.sectionContentMilestone3) && (
+                <div className="case-study-content__two-column case-study-content__two-column--reverse">
+                  {solution.timeline[1]?.sectionContentMilestone3 && (
+                    <div className="case-study-content__two-column-content">
+                      {solution.timeline[1].sectionContentMilestone3.split('\n\n').map((paragraph, index) => (
+                        <p key={index} className="case-study-content__text">{paragraph}</p>
+                      ))}
+                    </div>
+                  )}
+                  {solution.timeline[1]?.sectionImageMilestone3 && (
+                    <figure className="case-study-content__two-column-image">
+                      <img
+                        src={solution.timeline[1].sectionImageMilestone3.src}
+                        alt={solution.timeline[1].sectionImageMilestone3.alt}
+                      />
+                    </figure>
+                  )}
+                </div>
+              )}
+              {solution.timeline[1]?.sectionImageCrossPlatform && (
+                <figure className="case-study-content__section-image">
+                  <img
+                    src={solution.timeline[1].sectionImageCrossPlatform.src}
+                    alt={solution.timeline[1].sectionImageCrossPlatform.alt}
+                    className="case-study-content__section-image-img"
+                  />
+                  {solution.timeline[1].sectionImageCrossPlatform.caption && (
+                    <figcaption className="case-study-content__section-image-caption">
+                      {solution.timeline[1].sectionImageCrossPlatform.caption}
+                    </figcaption>
+                  )}
+                </figure>
+              )}
+              {solution.timeline[1]?.desktopVideo && (
+                <figure className="case-study-content__desktop-video">
+                  <video
+                    src={solution.timeline[1].desktopVideo.src}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    className="case-study-content__desktop-video-player"
+                  />
+                  {solution.timeline[1].desktopVideo.caption && (
+                    <figcaption className="case-study-content__desktop-video-caption">
+                      {solution.timeline[1].desktopVideo.caption}
+                    </figcaption>
+                  )}
+                </figure>
+              )}
+
+              {solution.timeline[1]?.sectionHeadingImpact && (
+                <h3 className="case-study-content__heading">{solution.timeline[1].sectionHeadingImpact}</h3>
+              )}
+
+              {solution.timeline[1]?.sectionContentImpact && (
+                <p className="case-study-content__text">{solution.timeline[1].sectionContentImpact}</p>
+              )}
+
+              {(solution.timeline[1]?.impactImage || solution.timeline[1]?.impactMetrics) && (
+                <div className="case-study-content__impact-row">
+                  {solution.timeline[1]?.impactImage && (
+                    <div className="case-study-content__impact-image">
+                      <img
+                        src={solution.timeline[1].impactImage.src}
+                        alt={solution.timeline[1].impactImage.alt}
+                      />
+                    </div>
+                  )}
+                  {solution.timeline[1]?.impactMetrics && (
+                    <div className="case-study-content__impact-metrics">
+                      {solution.timeline[1].impactMetrics.map((metric, index) => (
+                        <div key={index} className="case-study-content__impact-metric">
+                          <span className="case-study-content__impact-value">{metric.value}</span>
+                          <span className="case-study-content__impact-label">{metric.label}</span>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )}
+            </>
+          )}
 
           {/* Solution Video - appears right after strategy text */}
           {solution.video && (
@@ -352,18 +903,138 @@ const CaseStudyContent = ({ problem, solution, impact, features }) => {
         />
       )}
 
+      {/* Single Image Lightbox */}
+      {singleImageLightbox && (
+        <div className="lightbox" onClick={() => setSingleImageLightbox(null)}>
+          <button className="lightbox__close" onClick={() => setSingleImageLightbox(null)} aria-label="Close lightbox">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M18 6L6 18M6 6l12 12" />
+            </svg>
+          </button>
+          <div className="lightbox__content" onClick={(e) => e.stopPropagation()}>
+            <img
+              src={singleImageLightbox.src}
+              alt={singleImageLightbox.alt}
+              className="lightbox__image"
+            />
+          </div>
+        </div>
+      )}
+
       {/* Impact Section */}
       {impact && (
         <section className="case-study-content__section">
-          <h4 className="case-study-content__heading">{impact.heading}</h4>
+          <h4 className={impact.headingAccent ? "case-study-content__subheading" : "case-study-content__heading"}>{impact.heading}</h4>
+
+          {/* Narrative */}
+          {impact.narrative && impact.narrative.split('\n\n').map((para, index) => (
+            <p key={index} className="case-study-content__text">{para}</p>
+          ))}
+
+          {/* Platform Images 4-up */}
+          {impact.platformImages && impact.platformImages.length > 0 && (
+            <div className="case-study-content__platform-grid">
+              {impact.platformImages.map((image, index) => (
+                <div key={index} className="case-study-content__platform-grid-item">
+                  <img src={image.src} alt={image.alt} />
+                  {image.label && <span className="case-study-content__platform-grid-label">{image.label}</span>}
+                </div>
+              ))}
+            </div>
+          )}
+
+          {/* Narrative After Images */}
+          {impact.narrativeAfterImages && (
+            <p className="case-study-content__text">{impact.narrativeAfterImages}</p>
+          )}
+
+          {/* Narrative Before Two-Up */}
+          {impact.narrativeBeforeTwoUp && (
+            <p className="case-study-content__text">{impact.narrativeBeforeTwoUp}</p>
+          )}
+
+          {/* Platform Two-Up Images */}
+          {impact.platformTwoUp && impact.platformTwoUp.length > 0 && (
+            <div className="case-study-content__platform-two-up">
+              {impact.platformTwoUp.map((image, index) => (
+                <figure key={index} className="case-study-content__platform-two-up-item">
+                  <img src={image.src} alt={image.alt} />
+                  {image.label && <figcaption className="case-study-content__platform-two-up-label">{image.label}</figcaption>}
+                </figure>
+              ))}
+            </div>
+          )}
+
+          {/* Narrative After Two-Up */}
+          {impact.narrativeAfterTwoUp && (
+            <p className="case-study-content__text">{impact.narrativeAfterTwoUp}</p>
+          )}
+
+          {/* Platform Two-Up Second */}
+          {impact.platformTwoUpSecond && impact.platformTwoUpSecond.length > 0 && (
+            <div className="case-study-content__platform-two-up">
+              {impact.platformTwoUpSecond.map((image, index) => (
+                <figure key={index} className="case-study-content__platform-two-up-item">
+                  <img src={image.src} alt={image.alt} />
+                  {image.label && <figcaption className="case-study-content__platform-two-up-label">{image.label}</figcaption>}
+                </figure>
+              ))}
+            </div>
+          )}
+
+          {/* Final Narrative */}
+          {impact.narrativeFinal && impact.narrativeFinal.split('\n\n').map((para, index) => (
+            <p key={index} className="case-study-content__text">{para}</p>
+          ))}
+
+          {/* Platform Two-Up Third */}
+          {impact.platformTwoUpThird && impact.platformTwoUpThird.length > 0 && (
+            <div className="case-study-content__platform-two-up">
+              {impact.platformTwoUpThird.map((image, index) => (
+                <figure key={index} className="case-study-content__platform-two-up-item">
+                  <img src={image.src} alt={image.alt} />
+                  {image.label && <figcaption className="case-study-content__platform-two-up-label">{image.label}</figcaption>}
+                </figure>
+              ))}
+            </div>
+          )}
+
+          {/* Impact Heading */}
+          {impact.impactHeading && (
+            <h4 className="case-study-content__heading">{impact.impactHeading}</h4>
+          )}
+
+          {/* Impact Narrative */}
+          {impact.impactNarrative && (
+            <p className="case-study-content__text">{impact.impactNarrative}</p>
+          )}
+
+          {/* Impact Image 02 with Metrics */}
+          {(impact.impactImage02 || impact.impactMetrics02) && (
+            <div className="case-study-content__impact-row">
+              {impact.impactImage02 && (
+                <div className="case-study-content__impact-image">
+                  <img
+                    src={impact.impactImage02.src}
+                    alt={impact.impactImage02.alt}
+                  />
+                </div>
+              )}
+              {impact.impactMetrics02 && (
+                <div className="case-study-content__impact-metrics">
+                  {impact.impactMetrics02.map((metric, index) => (
+                    <div key={index} className="case-study-content__impact-metric">
+                      <span className="case-study-content__impact-value">{metric.value}</span>
+                      <span className="case-study-content__impact-label">{metric.label}</span>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
 
           {/* Metrics */}
           {impact.metrics && <CaseStudyMetrics metrics={impact.metrics} />}
-
-          {/* Narrative */}
-          {impact.narrative && (
-            <p className="case-study-content__text">{impact.narrative}</p>
-          )}
 
           {/* Business Impact */}
           {impact.businessImpact && (

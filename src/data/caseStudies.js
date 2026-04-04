@@ -5,6 +5,384 @@
 
 export const caseStudies = [
   {
+    id: 'doordash-doubledash',
+    protected: false,
+    meta: {
+      title: 'Doubledash: Multi-Store Shopping',
+      client: 'DoorDash',
+      timeline: '2021-2025',
+      role: 'Director of Design, Core Consumer',
+      team: {
+        size: null, // e.g., 12
+        composition: null // e.g., 'Product design, engineering, data science, product management'
+      }
+    },
+    hero: {
+      src: '/images/doubledash-hero.png', // Replace with actual image
+      video: null, // Optional: '/images/doubledash-hero-video.mp4'
+      alt: 'Doubledash multi-store shopping experience',
+      caption: null, // Optional caption below hero
+      overlay: null // Optional: { title: 'Doubledash', text: 'Bundle across multiple stores' }
+    },
+    introduction: {
+      heading: 'Introduction',
+      content: 'How I approach product evolution over a longer time horizon as a design leader is highly variable. I believe in flexible frameworks over processes. This case study takes a 0-1 example from inception through evolution into a mature product ecosystem to demonstrate how my approach evolves as products mature.',
+      contentSecondary: 'Amazing products that customers love don\'t emerge from a single moment of brilliance. They are built piece by piece, brick by brick as teams learn what works with customers and solve complex business problems. With relentless focus and execution, each opportunity to address a new customer need or pain point compounds over time.',
+            contentQuaternary: 'Vision gives teams a clear strategy to rally behind, makes alignment simpler, and enables teams to work backwards to break down efforts into smaller milestones. This is one of design\'s superpowers, but focussing on vision too early, before teams have a clear understanding of business and customer needs, can easily lead to building the wrong product. It\'s not an either/or proposition, it\'s more of a "yes, and…".',
+      videoHeading: 'Understanding Doubledash',
+      closing: 'Have you ever craved boba tea after lunch? Wanted to order sushi while the kids demanded McDonalds? Wanted to add a protein to a salad you order, or needed comfort soup and NyQuil to nurse a bad cold?',
+      video: {
+        src: '/images/doubledash-combos.mov',
+        caption: null
+      },
+      closingAfterVideo: 'Doubledash\'s mission was to make it easy for consumers to discover and bundle across multiple stores.',
+      videoAfterClosing: {
+        src: '/images/doubledash-bundling.mov?v=2',
+        caption: null,
+        noShadow: true
+      },
+      closingFinal: 'The DoorDash marketplace in 2021 was pretty simple. Customers picked a store, added items to their cart, and placed a delivery order. But the marketplace was expanding to support multiple new vertical businesses.',
+      closingFinalSecondary: 'Our data science team identified a compelling initial signal that spawned this initiative: approximately 20% of customers were opting to place a secondary order from 7-Eleven within a 30-minute window of their primary meal delivery.',
+      imageFinal: {
+        src: '/images/ExpandedCategories.png',
+        alt: 'DoorDash expanded categories'
+      },
+      opportunity: 'If we made bundling easier for customers, we could ease the friction of placing a second order, drive attachment rates & gross marketplace volume.'
+    },
+    problem: null,
+    solution: {
+      heading: 'The Approach',
+      strategy: null,
+      timeline: [
+        {
+          date: '3 Months',
+          title: 'Discover user needs',
+          description: 'Validate customer needs through MVPs',
+          sectionHeading: 'Discovering User Needs',
+          sectionContent: 'During this phase of product development, we didn\'t have validation of the customer needs, so we optimized for learning velocity. To rapidly validate our hypothesis, we designed 2 minimal effort tests aimed at gauging customer reaction. One placement explored bundling within the cart prior to checkout, while the other utilized the order tracking surface post-purchase. To maintain learning velocity, we launched with 7-Eleven; they were the source of our initial data signal and a key partner whose national footprint enabled us to scale testing across markets with ease.',
+          sectionContentSecondary: 'We leveraged our existing store surfaces for the MVP shopping experience despite the lack of optimization. We designed a streamlined 2-step checkout flow for the secondary order and integrated a countdown timer to emphasize the bundling window and drive customer urgency.',
+          sectionImages: [
+            {
+              src: '/images/DoubledashMVP01.png',
+              alt: 'Doubledash MVP cart placement',
+              label: 'Cart'
+            },
+            {
+              src: '/images/DoubleDashMVP02.png',
+              alt: 'Doubledash MVP order tracking placement',
+              label: 'Order Tracking'
+            }
+          ],
+          sectionImageFlow: {
+            images: [
+              { src: '/images/DoubleDashMVPStoreFlow01.png', alt: 'MVP Shopping Experience step 1' },
+              { src: '/images/DoubleDashMVPStoreFlow02.png', alt: 'MVP Shopping Experience step 2' },
+              { src: '/images/DoubleDashMVPStoreFlow03.png', alt: 'MVP Shopping Experience step 3' },
+              { src: '/images/DoubleDashMVPStoreFlow04.png', alt: 'MVP Shopping Experience step 4' }
+            ],
+            label: 'MVP Shopping Experience'
+          },
+          sectionContentAfterFlow: 'After running the MVPs we worked with our research partners to reach out to customers who had been exposed to the test and found they were excited about the new feature, but they also had a range of concerns.',
+          concerns: {
+            heading: 'Top customer concerns',
+            items: [
+              {
+                category: 'Selection',
+                percentage: '52%',
+                quotes: ['I don\'t need anything from 7-Eleven']
+              },
+              {
+                category: 'Affordability',
+                percentage: '25%',
+                quotes: ['What are the fees?', 'How does tipping work?']
+              },
+              {
+                category: 'Expectations',
+                percentage: '10%',
+                quotes: ['How does this new feature work?']
+              }
+            ]
+          },
+          concernsLearnings: [
+            {
+              title: 'Selection',
+              description: 'At DoorDash the importance of selection can\'t be overstated. Taste is highly personal, and it was top concern for customers. If we didn\'t have the right selection customers wouldn\'t use the product. This pointed us towards expanding merchant selection as a key variable for success.'
+            },
+            {
+              title: 'Affordability',
+              description: 'We learned customers were confused about what extra fees they would be charged, which caused them to hesitate about placing a second order.'
+            },
+            {
+              title: 'Setting clear Expectations',
+              description: 'Bundling was new, and some customers were still struggling to understand how it worked. It was clear our content strategy needed more work.'
+            }
+          ],
+          customerQuotes: [
+            {
+              quote: 'DoorDash is already expensive, I feel guilty adding a second location and more fees.',
+              author: 'Sarah H.'
+            },
+            {
+              quote: 'I watched them pick up my pizza first, and wondered if the extra time it would take to deliver meant cold pizza?',
+              author: 'Gregory P'
+            }
+          ],
+          challenges: {
+            heading: null,
+            description: 'Furthermore, our exploration of the cart-based integration uncovered several nuanced frictions that necessitated a more substantive engineering investment and a longer development horizon to resolve.',
+            items: [
+              {
+                icon: '/images/person-user-line.svg',
+                label: 'Cart Disruption'
+              },
+              {
+                icon: '/images/merchant-line.svg',
+                label: 'Merchant Concerns'
+              },
+              {
+                icon: '/images/vehicle-bike-line.svg',
+                label: 'Delivery Quality'
+              }
+            ]
+          },
+          challengesLearnings: [
+            {
+              title: 'Cart Disruption',
+              description: 'We had concerns this would distract customers from placing orders. It also required a high engineering investment because we would have to refactor the code to handle more complex interactions.'
+            },
+            {
+              title: 'Merchant Concerns',
+              description: 'We heard from Merchants that customers might get enticed by other products and not order as much. They also raised objections to specific types of selection (from competitors for example).'
+            },
+            {
+              title: 'Delivery Quality',
+              description: 'Operating without a committed first order made it significantly harder to forecast the bundle\'s downstream impact on the delivery experience. We realized that having a confirmed order in place provided a much cleaner signal for our logistics models.'
+            }
+          ],
+          sectionClosing: 'Although we felt both MVP options had merit, these insights informed our decision to move forward with the post-purchase approach, and were foundational to the vision for the product we developed next. Getting signal fast had taught us what customers wanted. Informed with data and research insights, we were ready to move to the next stage of product evolution.'
+        },
+        {
+          date: '8 Months',
+          title: 'Foundations',
+          description: 'Lay robust foundation for shopping',
+          sectionHeading: 'Foundations',
+          sectionContent: 'With a foundational understanding of customer pain points and a validated strategic path ahead, it was time to pivot toward assembling a cross-functional team capable of sustaining momentum. Unlike our initial phase, which optimized for learning velocity, we shifted our focus to collaborating with product partners to codify the success metrics that would define our impact as the product matured.',
+          successMetrics: {
+            heading: 'Measuring Success',
+            items: [
+              {
+                type: 'Primary Metric',
+                title: 'GMV',
+                description: '(Gross Marketplace Volume)'
+              },
+              {
+                type: 'Secondary Metric',
+                title: 'Conversion'
+              },
+              {
+                type: 'Secondary Metric',
+                title: 'New Verticals Trials'
+              }
+            ]
+          },
+          sectionContentAfterMetrics: 'Gross Marketplace Volume (GMV) served as our primary success metric—representing the total sales value generated—to keep the team laser-focused on scaling the channel. We also prioritized Conversion and New Vertical Trials as secondary metrics to monitor. While Conversion offered a clear signal on the performance of the shopping experience, New Vertical Trials were a core strategic priority, particularly as we learned that a customer\'s initial trial of a new vertical fundamentally increased their overall DoorDash LTV.',
+          sectionHeadingSecondary: 'Planning cycle',
+          sectionImageSecondary: {
+            src: '/images/PlanningCycleTransparent.png',
+            alt: 'Planning cycle diagram'
+          },
+          sectionContentTertiary: 'As the product ecosystem matured, we integrated our development process into a formalized semi-annual planning cadence. Operating in half-year cycles enabled us to maintain a balance between long-term strategic goals and tactical execution. I spearheaded cross-functional vision sprints ahead of these Q1 and Q3 windows, ensuring that our product trajectory was clearly defined before being integrated into broader roadmaps. A critical component of this evolution was the active participation of product partners; this collaborative approach ensured organizational alignment on the vision, allowing our sprint outcomes to flow seamlessly into the planning process.',
+          sectionHeadingTertiary: 'Defining the Product Vision',
+          sectionContentQuaternary: 'I initiated a cross-functional vision sprint to define a strategic trajectory for the product, anchored in a brief I authored and refined through collaborative alignment with my product partners. We focused on illuminating the path forward across 3 core workstreams: discovery, the shopping experience, and order tracking.',
+          visionQuestions: {
+            items: [
+              {
+                category: 'Discovery',
+                question: 'HMW help customers discover, understand & engage with bundling?'
+              },
+              {
+                category: 'ShopEx',
+                question: 'HMW make cross-merchant shopping seamless?'
+              },
+              {
+                category: 'Order Tracking',
+                question: 'HMW ensure customers can track their order while shopping?'
+              }
+            ]
+          },
+          sectionContentAfterVision: 'We began our collaboration by deconstructing the operational mechanics of the delivery timeline, as analyzing core logistics often illuminates hidden strategic opportunities. This deep dive clarified the specific sequence of events leading to secondary dasher assignments. While our workflow requests that the original dasher fulfill the bundled order, this requires a manual acceptance within the dasher experience; though this occurred for 80% of orders, the remaining 20% necessitated the intervention of an additional dasher.',
+          sectionImageAfterVision: {
+            src: '/images/DoubleDashDeliveryTimeline.png',
+            alt: 'Doubledash delivery timeline diagram'
+          },
+          sectionContentAfterTimeline: 'This deep dive yielded further insights into the orchestration of the experience, enabling us to envision a more integrated consumer journey.\n\nFollowing order placement, Doubledash would trigger its approximately ten-minute countdown window, yet we recognized that the map interface lacked significant utility during this nascent stage of the delivery lifecycle. Because the assignment of the primary dasher and their subsequent transit to the merchant often spanned several minutes, the map remained essentially static—displaying only the store and delivery locations. A dynamic route would only surface once the dasher reached the restaurant and initiated the pickup process.',
+          sectionImageMapInsight: {
+            src: '/images/DoorDashMapoInsight.png',
+            alt: 'Map insight showing limited utility during early delivery stage'
+          },
+          sectionContentBeforeVideo: 'This foundational insight, surfaced during the early stages of our vision sprint, served as the bedrock for a redefined shopping journey. We conceptualized a paradigm that facilitated seamless multi-merchant discovery natively within the half-sheet interface to address the concerns about selection.',
+          phoneVideo: {
+            video: '/images/Doubledash01.mov?v=2',
+            alt: 'Doubledash experience on mobile',
+            caption: 'Post-order Transition'
+          },
+          sectionContentAfterVideo: 'The half-sheet interface facilitated an optimal equilibrium, ensuring prominent visibility for discovery without compromising the utility of the delivery tracking experience. This paradigm enabled customers with shopping intent to intuitively expand the component, natively signaling their interest while maintaining the flow of the primary consumer journey.',
+          phoneVideoSecondary: {
+            video: '/images/Doubledash02.mov',
+            alt: 'Doubledash half-sheet shopping experience',
+            caption: 'Setting Expectations'
+          },
+          sectionContentAfterVideoSecondary: 'This refined paradigm enabled us to iterate on our content strategy, directly addressing the feedback regarding expectation setting without compromising the core utility of the initial view. By delegating these contextual details to a secondary interaction, we successfully maintained a streamlined primary journey while ensuring that the specific cohort of customers seeking additional clarity had an intuitive path to the information they required.',
+          phoneVideoTertiary: {
+            video: '/images/Doubledash03.mov',
+            alt: 'Doubledash integrated checkout experience',
+            caption: 'Integrated Checkout'
+          },
+          sectionContentAfterVideoTertiary: 'We also conceptualized a natively integrated checkout paradigm within the half-sheet interface, facilitating a seamless completion of the transaction flow without necessitating a departure from the core order tracking experience.',
+          sectionHeadingQuaternary: 'Customer Reactions',
+          sectionContentQuinary: 'Following the completion of the vision sprint, we collaborated with our research partners to conduct concept testing of the proposed designs. The response was overwhelmingly positive, yielding critical insights that directly addressed the foundational frictions identified during our initial MVPs and providing the validation needed to advance our product trajectory.',
+          customerQuotesSecondary: [
+            {
+              category: 'Selection',
+              quote: 'With multiple stores to choose from, I\'d be much more likely to try this.',
+              author: 'Fuad M'
+            },
+            {
+              category: 'Affordability',
+              quote: 'I love that your waving the delivery fee. I\'m always looking for new ways to save.',
+              author: 'Nia S'
+            },
+            {
+              category: 'Expectations',
+              quote: 'Breaking down how it works really helps. I wonder if I\'d even try it without this.',
+              author: 'Jennifer F'
+            }
+          ],
+          sectionHeadingScoping: 'Scoping',
+          sectionContentScoping: 'Architecting a comprehensive shopping and purchase ecosystem presented a substantive development horizon. While our engineering partners shared the strategic enthusiasm, their excitement was tempered by legitimate technical considerations regarding implementation scope.\n\nThe delivery tracking interface had evolved into a sophisticated but rigid codebase, having historically accommodated disparate status messaging from multiple product teams. This architectural complexity raised valid concerns that integrating a native shopping paradigm would necessitate a systemic refactor of the existing tracking logic.\n\nBolstered by compelling customer resonance and a shared organizational conviction—spanning leadership, product and engineering—we transitioned to deconstructing our long-term vision into a sequence of actionable, manageable milestones.\n\nConsequently, we orchestrated a strategic roadmap to converge on the north star articulated during our vision sprint, deconstructing the effort into three discrete phases.',
+          sectionHeadingMilestone1: 'Milestone 1',
+          sectionContentMilestone1: 'Our initial focus centered on a comprehensive redesign of the order tracking interface, prioritized to safeguard the integrity of existing JTBD while substantively enhancing the underlying information architecture. Simultaneously, we codified a set of governing principles and integration guidelines to ensure architectural scalability for future product teams as we matured the native shopping experience.',
+          sectionImageMilestone1: {
+            src: '/images/OrderTrackerRedesign.png',
+            alt: 'Order tracking interface redesign'
+          },
+          sectionHeadingMilestone2: 'Milestone 2',
+          sectionImageMilestone2: {
+            src: '/images/Milestone2.png',
+            alt: 'Milestone 2 bottom-sheet interface'
+          },
+          sectionContentMilestone2: 'Milestone 2 facilitated the introduction of a refined bottom-sheet interface, featuring a curated "popular carousel" for each merchant; while this strategic decision initially limited selection, it afforded our engineering partners the necessary latitude to architect a robust engine for full inventory display without compromising the experience through added latency.\n\nThis phase provided a critical early read on post-purchase merchandising opportunities, illuminating the specific categories customers sought to augment their primary orders. We observed that beverages—frequently unavailable at the initial merchant—alongside desserts, treats, and snacks, emerged as the most compelling additions, offering foundational insights into consumer behavior.',
+          sectionHeadingMilestone3: 'Milestone 3',
+          sectionImageMilestone3: {
+            src: '/images/Milestone3.png',
+            alt: 'Milestone 3 integrated shopping journey'
+          },
+          sectionContentMilestone3: 'Milestone 3 represented the culmination of our strategic trajectory, as we integrated the comprehensive shopping journey natively within the order tracking interface realizing our foundational vision. Our engineering partners successfully architected a performant and scalable system, effectively overcoming the technical constraints of the legacy codebase. Throughout each discrete phase, we delivered substantive customer and business impact while codifying critical learnings that informed the product\'s ongoing maturity.',
+          sectionImageCrossPlatform: {
+            src: '/images/DoubleDashCrossPlatform.png',
+            alt: 'Doubledash cross-platform experience',
+            caption: 'Cross Platform Doubledash'
+          },
+          desktopVideo: {
+            src: '/images/DoubledashDesktop.mov',
+            caption: 'Desktop Experience'
+          },
+          sectionHeadingImpact: 'Impact',
+          sectionContentImpact: 'After rolling out all 3 milestones, we realized a series of substantive impacts that validated our strategic trajectory and demonstrated the efficacy of our iterative approach.',
+          impactImage: {
+            src: '/images/ImpactPhase2.png',
+            alt: 'Impact Phase 2'
+          },
+          impactMetrics: [
+            { value: '+35%', label: 'lift in conversion' },
+            { value: '+400%', label: 'top of funnel engagement' },
+            { value: '+20%', label: 'New Vertical Trials' }
+          ]
+        },
+        {
+          date: '1 Year',
+          title: 'Platform',
+          description: 'Scale the experience to habituate customers to cross merchant shopping'
+        }
+      ],
+      execution: [
+        // Optional execution phases:
+        // { phase: 'Phase Name', description: 'Description', duration: 'X weeks' }
+      ],
+      collaboration: null, // Optional collaboration note
+      mediaHeading: null, // Optional: 'Design Vision' or similar
+      mediaDescription: null, // Optional description for media section
+      media: [
+        // Optional media gallery:
+        // { src: '/images/...', alt: '...', caption: '...' }
+      ],
+      mediaFooterHeading: null, // Optional footer section heading
+      mediaFooterDescription: null, // Optional footer description
+      mediaFooterDescriptionSecondary: null, // Optional second paragraph
+      mediaFooterMedia: null, // Optional: { src: '/images/...', caption: '...' }
+      video: null // Optional: { src: '/images/...mp4', caption: '...' }
+    },
+    features: [
+      // Optional feature highlights:
+      // {
+      //   id: 'feature-1',
+      //   title: 'Feature Title',
+      //   description: 'Feature description',
+      //   thumbnail: '/images/feature-thumb.png',
+      //   image: '/images/feature-full.png',
+      //   details: 'Additional details shown in lightbox'
+      // }
+    ],
+    impact: {
+      heading: 'Platform',
+      headingAccent: true,
+      metrics: [
+        // Add metrics:
+        // { label: 'Metric Name', value: '+XX%', context: 'Additional context' }
+      ],
+      narrative: `To effectively scale the ecosystem and habituate consumers to multi-merchant shopping, we sustained our investment in refining the shopping journey. Our initial results provided a compelling signal that continued strategic focus would yield substantive compounding returns for the business.
+
+Our initial focus centered on expanding the ecosystem of contextual merchandising to address special occasions and personalized preferences derived from historical order frequency. This strategic evolution enabled us to surface nascent offerings—such as package delivery and alcohol—at high-intent moments within the shopping journey.`, // Results narrative paragraph
+      platformImages: [
+        { src: '/images/DbDOccasionPlatform.png', alt: 'Occasion-based merchandising', label: 'Occasions' },
+        { src: '/images/DbDDidYouForgetPlatform.png', alt: 'Did you forget feature', label: 'Did You Forget?' },
+        { src: '/images/DbDPackagesPlatform.png', alt: 'Package delivery', label: 'Package Delivery' },
+        { src: '/images/DbDAlcoholPlatform.png', alt: 'Alcohol delivery', label: 'Alcohol' }
+      ],
+      narrativeAfterImages: 'To streamline the orchestration of disparate order tracking and bottom-sheet modules, we executed a substantive initiative to unify both into a singular, cohesive interface, leveraging this transition as a strategic opportunity to perform a systemic refactor and further optimize performance. Concurrent with this evolution, we codified a set of rigorous guidelines and integration guardrails to maintain architectural integrity as demand for the surface intensified across the organization.',
+      narrativeBeforeTwoUp: 'To directly address customer feedback regarding the perceived impact on delivery logistics, we integrated incremental ETAs for each merchant, leveraging this data to enhance transparency and mitigate concerns surrounding arrival expectations.',
+      platformTwoUp: [
+        { src: '/images/DbDSingleSheetPlatform.png', alt: 'Unified single sheet interface', label: 'Combined UI' },
+        { src: '/images/DbDETAsPlatform.png', alt: 'ETAs platform', label: 'Incremental ETAs' }
+      ],
+      narrativeAfterTwoUp: 'To substantively enhance the relevance of the default view, we architected a personalized, cross-merchant "For You" feed. Furthermore, to accommodate "spearfishers" exhibiting high-intent shopping behaviors, we integrated a robust cross-merchant search.',
+      platformTwoUpSecond: [
+        { src: '/images/DbDforyouPlatform.png', alt: 'For You feed', label: 'For You Feed' },
+        { src: '/images/DbDSearchPlatform.png', alt: 'Search', label: 'Search' }
+      ],
+      narrativeFinal: `A final set of optimizations within this phase of product evolution involved the native integration of merchants within the map. This paradigm enabled customers to intuitively navigate the multi-merchant landscape, visually contextualizing the spatial proximity of disparate offerings and facilitating a seamless transition to selection through a direct tap interaction.
+
+We revisited our initial MVPs to reintegrate the cross-merchant shopping paradigm natively within the cart surface, identifying a strategic opportunity to address high-intent occasions like Mother's Day. This evolution facilitated the discovery of complimentary selection not previously available on the primary menu, leveraging this high-intent surface to further optimize the consumer journey.`,
+      platformTwoUpThird: [
+        { src: '/images/dBdMerchantsInMapPlatform.png', alt: 'Merchants on map interface', label: 'Merchants on Map' },
+        { src: '/images/DbDinCartPlatform.png', alt: 'Doubledash in cart', label: 'Doubledash In Cart' }
+      ],
+      impactHeading: 'Impact',
+      impactNarrative: 'By constructing our impact piece by piece, we realized a series of substantive outcomes. Across these diverse platform initiatives, Doubledash delivered transformative results that validated our strategy and yielded compounding business value.',
+      impactImage02: {
+        src: '/images/Impact02.png',
+        alt: 'Impact results'
+      },
+      impactMetrics02: [
+        { value: '1.7B', label: 'Gross Merchandising Value' },
+        { value: '8%', label: 'of total marketplace volume growth' },
+        { value: '22%', label: 'increase in order volume for new verticals' }
+      ],
+      businessImpact: null, // Business impact statement
+      testimonial: null // Optional: { quote: '...', author: 'Name', role: 'Title' }
+    }
+  },
+  {
     id: 'doordash-evidence',
     protected: false,
     meta: {

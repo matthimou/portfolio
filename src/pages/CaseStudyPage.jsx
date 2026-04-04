@@ -52,6 +52,7 @@ const CaseStudyPage = ({ onOpenLogin }) => {
 
           <div className="case-study-page__body">
             <CaseStudyContent
+              introduction={study.introduction}
               problem={study.problem}
               solution={study.solution}
               impact={study.impact}
