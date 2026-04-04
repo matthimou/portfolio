@@ -27,7 +27,7 @@ export const caseStudies = [
     introduction: {
       heading: 'Introduction',
       content: 'How I approach product evolution over a longer time horizon as a design leader is highly variable. I believe in flexible frameworks over processes. This case study takes a 0-1 example from inception through evolution into a mature product ecosystem to demonstrate how my approach evolves as products mature.',
-      contentSecondary: 'Amazing products that customers love don\'t emerge from a single moment of brilliance. They are built piece by piece, brick by brick as teams learn what works with customers and solve complex business problems. With relentless focus and execution, each opportunity to address a new customer need or pain point compounds over time.',
+      contentSecondary: 'Amazing products that customers love don\'t emerge from a single moment of brilliance. They are built piece by piece, brick by brick as teams learn what works with customers and solve complex business problems. With relentless focus and execution, each opportunity to address a new customer need or pain point compounds over time to drive business value.',
             contentQuaternary: 'Vision gives teams a clear strategy to rally behind, makes alignment simpler, and enables teams to work backwards to break down efforts into smaller milestones. This is one of design\'s superpowers, but focussing on vision too early, before teams have a clear understanding of business and customer needs, can easily lead to building the wrong product. It\'s not an either/or proposition, it\'s more of a "yes, and…".',
       videoHeading: 'Understanding Doubledash',
       closing: 'Have you ever craved boba tea after lunch? Wanted to order sushi while the kids demanded McDonalds? Wanted to add a protein to a salad you order, or needed comfort soup and NyQuil to nurse a bad cold?',
@@ -220,25 +220,25 @@ export const caseStudies = [
             src: '/images/DoorDashMapoInsight.png',
             alt: 'Map insight showing limited utility during early delivery stage'
           },
-          sectionContentBeforeVideo: 'This foundational insight, surfaced during the early stages of our vision sprint, served as the bedrock for a redefined shopping journey. We conceptualized a paradigm that facilitated seamless multi-merchant discovery natively within the half-sheet interface to address the concerns about selection.',
+          sectionContentBeforeVideo: 'This foundational insight, surfaced during the early stages of our vision sprint, served as the bedrock for a redefined shopping journey. We envisioned a paradigm that facilitated seamless cross-merchant discovery natively within the half-sheet to address the customer concerns about selection. By the conclusion of the sprint cycle, we had produced high-fidelity prototypes to socialize the vision and galvanize organizational support for the strategic trajectory.',
           phoneVideo: {
             video: '/images/Doubledash01.mov?v=2',
             alt: 'Doubledash experience on mobile',
             caption: 'Post-order Transition'
           },
-          sectionContentAfterVideo: 'The half-sheet interface facilitated an optimal equilibrium, ensuring prominent visibility for discovery without compromising the utility of the delivery tracking experience. This paradigm enabled customers with shopping intent to intuitively expand the component, natively signaling their interest while maintaining the flow of the primary consumer journey.',
+          sectionContentAfterVideo: 'The half-sheet facilitated an optimal equilibrium, ensuring prominent visibility for discovery without compromising the utility of the delivery tracking experience. This paradigm enabled customers with shopping intent to intuitively expand the component, natively signaling their interest while maintaining the flow of the primary consumer journey.',
           phoneVideoSecondary: {
             video: '/images/Doubledash02.mov',
             alt: 'Doubledash half-sheet shopping experience',
             caption: 'Setting Expectations'
           },
-          sectionContentAfterVideoSecondary: 'This refined paradigm enabled us to iterate on our content strategy, directly addressing the feedback regarding expectation setting without compromising the core utility of the initial view. By delegating these contextual details to a secondary interaction, we successfully maintained a streamlined primary journey while ensuring that the specific cohort of customers seeking additional clarity had an intuitive path to the information they required.',
+          sectionContentAfterVideoSecondary: 'This refined approach enabled us to iterate on our content strategy, directly addressing customer feedback regarding expectation setting without compromising the core utility of the initial view. By delegating these contextual details to a secondary interaction, we successfully maintained a streamlined primary journey while ensuring that the specific cohort of customers seeking additional clarity had an intuitive path to the information they required.',
           phoneVideoTertiary: {
             video: '/images/Doubledash03.mov',
             alt: 'Doubledash integrated checkout experience',
             caption: 'Integrated Checkout'
           },
-          sectionContentAfterVideoTertiary: 'We also conceptualized a natively integrated checkout paradigm within the half-sheet interface, facilitating a seamless completion of the transaction flow without necessitating a departure from the core order tracking experience.',
+          sectionContentAfterVideoTertiary: 'We also conceptualized a natively integrated checkout experience within the half-sheet, facilitating seamless completion of the transaction without necessitating a departure from the core order tracking experience.',
           sectionHeadingQuaternary: 'Customer Reactions',
           sectionContentQuinary: 'Following the completion of the vision sprint, we collaborated with our research partners to conduct concept testing of the proposed designs. The response was overwhelmingly positive, yielding critical insights that directly addressed the foundational frictions identified during our initial MVPs and providing the validation needed to advance our product trajectory.',
           customerQuotesSecondary: [
@@ -259,9 +259,15 @@ export const caseStudies = [
             }
           ],
           sectionHeadingScoping: 'Scoping',
-          sectionContentScoping: 'Architecting a comprehensive shopping and purchase ecosystem presented a substantive development horizon. While our engineering partners shared the strategic enthusiasm, their excitement was tempered by legitimate technical considerations regarding implementation scope.\n\nThe delivery tracking interface had evolved into a sophisticated but rigid codebase, having historically accommodated disparate status messaging from multiple product teams. This architectural complexity raised valid concerns that integrating a native shopping paradigm would necessitate a systemic refactor of the existing tracking logic.\n\nBolstered by compelling customer resonance and a shared organizational conviction—spanning leadership, product and engineering—we transitioned to deconstructing our long-term vision into a sequence of actionable, manageable milestones.\n\nConsequently, we orchestrated a strategic roadmap to converge on the north star articulated during our vision sprint, deconstructing the effort into three discrete phases.',
+          sectionContentScoping: `Architecting a new and comprehensive shopping and purchase ecosystem presented a substantial developmental effort. While our engineering partners shared the strategic enthusiasm, their excitement was tempered by legitimate technical considerations regarding scope.
+
+The delivery tracking module had evolved into a sophisticated but rigid codebase, having historically accommodated disparate status messaging from multiple product teams. This architectural complexity raised valid concerns that integrating a native shopping experience would necessitate a systemic refactor of the existing tracking logic.
+
+Bolstered by compelling customer resonance and a shared organizational conviction shared by leadership, product and engineering partners we transitioned to deconstructing our long-term vision into a sequence of actionable, manageable milestones.
+
+Consequently, we orchestrated a strategic roadmap to converge on the north star articulated during our vision sprint, deconstructing the effort into three discrete developmental phases.`,
           sectionHeadingMilestone1: 'Milestone 1',
-          sectionContentMilestone1: 'Our initial focus centered on a comprehensive redesign of the order tracking interface, prioritized to safeguard the integrity of existing JTBD while substantively enhancing the underlying information architecture. Simultaneously, we codified a set of governing principles and integration guidelines to ensure architectural scalability for future product teams as we matured the native shopping experience.',
+          sectionContentMilestone1: 'Our initial focus centered on a comprehensive redesign of the order tracking module, prioritized to safeguard the integrity of existing JTBD while enhancing the underlying information architecture. Simultaneously, we codified a set of governing principles and integration guidelines to ensure architectural scalability for future product teams as we matured the native shopping experience.',
           sectionImageMilestone1: {
             src: '/images/OrderTrackerRedesign.png',
             alt: 'Order tracking interface redesign'
@@ -271,13 +277,17 @@ export const caseStudies = [
             src: '/images/Milestone2.png',
             alt: 'Milestone 2 bottom-sheet interface'
           },
-          sectionContentMilestone2: 'Milestone 2 facilitated the introduction of a refined bottom-sheet interface, featuring a curated "popular carousel" for each merchant; while this strategic decision initially limited selection, it afforded our engineering partners the necessary latitude to architect a robust engine for full inventory display without compromising the experience through added latency.\n\nThis phase provided a critical early read on post-purchase merchandising opportunities, illuminating the specific categories customers sought to augment their primary orders. We observed that beverages—frequently unavailable at the initial merchant—alongside desserts, treats, and snacks, emerged as the most compelling additions, offering foundational insights into consumer behavior.',
+          sectionContentMilestone2: 'Milestone 2 facilitated the introduction of a refined bottom-sheet interface, featuring a curated "popular carousel" for each merchant; while this strategic decision initially limited selection, it afforded our engineering partners the necessary latitude to architect a robust engine for full inventory display without compromising the experience through added latency.\n\nThis milestone provided a critical early read on post-purchase merchandising opportunities, illuminating the specific categories customers sought to augment their primary orders. We observed that beverages—frequently unavailable at the initial merchant—alongside desserts, treats, and snacks, emerged as the most compelling additions, offering foundational insights into consumer behavior.',
           sectionHeadingMilestone3: 'Milestone 3',
           sectionImageMilestone3: {
             src: '/images/Milestone3.png',
             alt: 'Milestone 3 integrated shopping journey'
           },
-          sectionContentMilestone3: 'Milestone 3 represented the culmination of our strategic trajectory, as we integrated the comprehensive shopping journey natively within the order tracking interface realizing our foundational vision. Our engineering partners successfully architected a performant and scalable system, effectively overcoming the technical constraints of the legacy codebase. Throughout each discrete phase, we delivered substantive customer and business impact while codifying critical learnings that informed the product\'s ongoing maturity.',
+          sectionContentMilestone3: `Milestone 3 represented the culmination of our strategic trajectory, as we integrated the comprehensive shopping journey natively within the order tracker, realizing our initial sprint vision.
+
+Our engineering partners successfully architected a performant and scalable system, effectively overcoming the technical constraints of the legacy codebase.
+
+Through each discrete milestone, we delivered significant customer and business value while codifying critical learnings that informed the product's ongoing maturity.`,
           sectionImageCrossPlatform: {
             src: '/images/DoubleDashCrossPlatform.png',
             alt: 'Doubledash cross-platform experience',
@@ -288,7 +298,7 @@ export const caseStudies = [
             caption: 'Desktop Experience'
           },
           sectionHeadingImpact: 'Impact',
-          sectionContentImpact: 'After rolling out all 3 milestones, we realized a series of substantive impacts that validated our strategic trajectory and demonstrated the efficacy of our iterative approach.',
+          sectionContentImpact: 'After rolling out all 3 milestones, we realized significant impact that validated our strategic trajectory and demonstrated the efficacy of our iterative approach.',
           impactImage: {
             src: '/images/ImpactPhase2.png',
             alt: 'Impact Phase 2'
@@ -340,9 +350,9 @@ export const caseStudies = [
         // Add metrics:
         // { label: 'Metric Name', value: '+XX%', context: 'Additional context' }
       ],
-      narrative: `To effectively scale the ecosystem and habituate consumers to multi-merchant shopping, we sustained our investment in refining the shopping journey. Our initial results provided a compelling signal that continued strategic focus would yield substantive compounding returns for the business.
+      narrative: `To effectively scale the ecosystem and habituate consumers to cross-merchant discovery, we sustained our investment in refining the shopping journey. Our initial results provided a compelling signal that continued focus here would yield substantive compounding returns for the business.
 
-Our initial focus centered on expanding the ecosystem of contextual merchandising to address special occasions and personalized preferences derived from historical order frequency. This strategic evolution enabled us to surface nascent offerings—such as package delivery and alcohol—at high-intent moments within the shopping journey.`, // Results narrative paragraph
+Our initial focus centered on expanding the ecosystem of contextual merchandising to address special occasions and personalized preferences derived from historical order frequency. This evolution enabled us to surface nascent offerings—such as package delivery and alcohol—at high-intent moments within the shopping journey.`, // Results narrative paragraph
       platformImages: [
         { src: '/images/DbDOccasionPlatform.png', alt: 'Occasion-based merchandising', label: 'Occasions' },
         { src: '/images/DbDDidYouForgetPlatform.png', alt: 'Did you forget feature', label: 'Did You Forget?' },
