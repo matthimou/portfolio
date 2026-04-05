@@ -13,8 +13,8 @@ export const caseStudies = [
       timeline: '2021-2025',
       role: 'Director of Design, Core Consumer',
       team: {
-        size: null,
-        composition: null
+        size: 'Led team of 2 designers, supporting 3 PMs and 15 engineers at peak',
+        composition: 'Senior to Staff IC (promoted) + Principal hire'
       }
     },
     hero: {
@@ -26,32 +26,32 @@ export const caseStudies = [
     },
     introduction: {
       heading: 'Introduction',
-      content: 'Doubledash grew from a scrappy MVP into a $1.7B revenue channel over four years. This case study traces that journey, from initial hypothesis through validated product-market fit to a mature platform, to illustrate how I approach product evolution as a design leader.',
-      contentSecondary: 'Amazing products don\'t emerge from a single moment of brilliance. They\'re built piece by piece as teams learn what works with customers and solve complex business problems. With relentless focus and execution, each opportunity to address a customer need compounds over time to drive business value.',
-      contentQuaternary: 'Vision gives teams a clear strategy to rally behind and enables them to work backwards into smaller milestones. But focusing on vision too early (before understanding business and customer needs) can easily lead to building the wrong product. It\'s not either/or, it\'s "yes, and..."',
+      content: 'Doubledash grew from a scrappy MVP into a $1.7B revenue channel over four years. This case study traces that journey—from initial hypothesis through validated product-market fit to a mature platform—to show how I build and lead design teams through ambiguous, high-stakes product challenges.',
+      contentSecondary: null,
+      contentQuaternary: null,
       videoHeading: 'So what exactly is Doubledash?',
-      closing: 'Have you ever craved boba tea after lunch? Wanted to order sushi while the kids demanded McDonalds? Wanted to add a protein to a salad you order, or needed comfort soup and NyQuil to nurse a bad cold?',
+      closing: null,
       video: {
         src: '/images/doubledash-combos.mov',
         caption: null
       },
-      closingAfterVideo: `Doubledash's mission was to make it easy for consumers to discover and bundle across multiple stores.
+      closingAfterVideo: `Doubledash made it easy for customers to discover and bundle items from multiple stores into a single delivery.
 
-The DoorDash platform only supported single store carts at the time, and we had to work through multiple challenging constraints to bring this capability to customers.`,
+The DoorDash platform only supported single-store carts at the time, and we had to navigate significant technical and organizational constraints to bring this capability to customers.`,
       videoAfterClosing: {
         src: '/images/doubledash-bundling.mov?v=2',
         caption: null,
         noShadow: true
       },
       closingFinalHeading: 'Where We Started',
-      closingFinal: 'The DoorDash marketplace in 2021 was pretty simple. Customers picked a store, added items to their cart, and placed a delivery order. But the marketplace was expanding to support multiple new vertical businesses.',
+      closingFinal: 'In 2021, DoorDash was expanding beyond restaurant delivery into new verticals—convenience, grocery, alcohol. Our data science team identified a compelling signal: approximately 20% of customers were placing a secondary order from 7-Eleven within 30 minutes of their primary meal delivery.',
       closingFinalBelowVideo: true,
-      closingFinalSecondary: 'Our data science team identified a compelling initial signal that spawned this initiative: approximately 20% of customers were opting to place a secondary order from 7-Eleven within a 30-minute window of their primary meal delivery.',
+      closingFinalSecondary: 'This suggested latent demand for bundling—if we reduced the friction, we could capture orders that were already happening and grow overall marketplace volume.',
       imageFinal: {
         src: '/images/ExpandedCategories.png',
         alt: 'DoorDash expanded categories'
       },
-      opportunity: 'If we made bundling easier for customers, we could ease the friction of placing a second order, drive attachment rates, and grow gross marketplace volume.',
+      opportunity: 'DoorDash was betting on becoming a platform, not just a restaurant delivery app. Doubledash was central to that strategy: it would drive adoption of new verticals while increasing order value.',
       opportunityCallout: true
     },
     problem: null,
@@ -65,7 +65,7 @@ The DoorDash platform only supported single store carts at the time, and we had 
           description: 'Validate customer needs through MVPs',
           sectionHeading: 'Discovering User Needs',
           sectionContent: 'At this stage, we didn\'t know if customers actually wanted this, so we focused on learning fast. We designed two lightweight tests to gauge interest: one placed bundling in the cart before checkout, the other appeared on the order tracking screen after purchase. We launched with 7-Eleven because they were our data signal source and had a national footprint that let us test across markets quickly.',
-          sectionContentSecondary: 'We reused our existing store screens for the MVP shopping experience (imperfect as they were). We designed a simple 2-step checkout for the add-on order and added a countdown timer to create urgency around the bundling window.',
+          sectionContentSecondary: 'We designed a simple 2-step checkout for the add-on order and added a countdown timer to create urgency around the bundling window.',
           sectionImages: [
             {
               src: '/images/DoubledashMVP01.png',
@@ -197,27 +197,13 @@ The DoorDash platform only supported single store carts at the time, and we had 
             alt: 'Planning cycle diagram'
           },
           sectionContentTertiary: 'As the product matured, we moved into a semi-annual planning rhythm. Half-year cycles let us balance long-term goals with tactical execution. I planned and executed cross-functional vision sprints in advance of each Q1 and Q3 planning window. These sprints plugged into the detailed H1 and H2 plans I worked on in collaboration with the engineering and product leads to staff and sequence the work. Getting alignment early ensured our product direction was clear before it fed into broader roadmaps.',
-          sectionContentAfterPlanning: 'Translating sprint outputs into funded initiatives required close partnership with product and engineering leadership, and a lot of negotiation. I worked directly with our XFN leads to shape the scope and sequencing of each half\'s plan before they were presented to executives. This alignment work happened before each planning cycle, ensuring our design vision had organizational commitment before we sprinted and moved into detailed execution.',
-          sectionContentTeamBuilding: 'I worked with a senior designer to own the detailed design work. As I focused on strategy and cross-functional alignment, they drove the day-to-day design execution. We were close thought partners, reviewed work weekly, and developed strategic themes for sprints while I focussed on the broader product trajectory and shepherding work through the review process.',
+          sectionContentAfterPlanning: 'Translating sprint outputs into funded initiatives required close partnership with product and engineering leadership, and a lot of negotiation. I worked directly with our XFN leads to shape the scope and sequencing of each half\'s plan before they were presented to executives. This alignment work happened before each planning cycle, ensuring our design vision had organizational commitment before we moved into detailed execution.',
+          sectionContentCrossOrg: 'Building on another team\'s surface required navigating real organizational tension. The delivery experience team owned order tracking and was focused on reducing support costs—not driving commerce. They worried that cross-selling would distract customers and hurt delivery quality perception. I worked closely with their Director and PM to establish a tiered priority system that protected the primary job-to-be-done—tracking your order—while creating space for commerce. This framework became the foundation for the governance model we later expanded.',
+          sectionContentTeamBuilding: 'I started with a senior designer who became a close thought partner. Over four years I promoted them to Staff and later hired a Principal to lead our most complex systems work, growing the design team to three while collaborating with a cross-functional org that scaled from 6 to 18. We reviewed work weekly and developed strategic themes for sprints while I focused on the broader product trajectory.',
           sectionHeadingTertiary: 'Defining the Product Vision',
-          sectionContentQuaternary: 'I kicked off a cross-functional vision sprint to define where the product was headed, starting with a brief I wrote and refined with my product partners. We focused on three core areas: discovery, shopping experience, and order tracking.',
-          visionQuestions: {
-            items: [
-              {
-                category: 'Discovery',
-                question: 'HMW help customers discover, understand & engage with bundling?'
-              },
-              {
-                category: 'ShopEx',
-                question: 'HMW make cross-merchant shopping seamless?'
-              },
-              {
-                category: 'Order Tracking',
-                question: 'HMW ensure customers can track their order while shopping?'
-              }
-            ]
-          },
-          sectionContentAfterVision: 'We started by mapping out how the delivery timeline actually worked, since understanding logistics often reveals hidden opportunities. This helped us see the sequence of events that led to secondary dasher assignments. Our system asks the original dasher to handle the bundled order, but they have to accept manually. This worked 80% of the time; the other 20% needed a second dasher.',
+          sectionContentQuaternary: 'I kicked off a cross-functional vision sprint to define where the product was headed, starting with a brief I wrote and refined with my product partners. We focused on three core areas: how customers discover bundling opportunities, the cross-merchant shopping experience, and maintaining order tracking as the primary surface.',
+          visionQuestions: null,
+          sectionContentAfterVision: 'We started by mapping out how the delivery timeline actually worked, since understanding logistics often reveals hidden opportunities. This helped us see the sequence of events that led to secondary dasher assignments.',
           sectionImageAfterVision: {
             src: '/images/DoubleDashDeliveryTimeline.png',
             alt: 'Doubledash delivery timeline diagram'
@@ -268,13 +254,7 @@ After placing an order, customers had about ten minutes to add items, but during
             }
           ],
           sectionHeadingScoping: 'Scoping',
-          sectionContentScoping: `Building a complete shopping experience was a big engineering effort. Our engineering partners were excited about the vision, but they had real concerns about scope.
-
-The order tracking code had grown complex over time, with status messages from multiple teams layered on top of each other. Adding a native shopping experience would likely require refactoring a lot of existing logic.
-
-With strong customer validation and alignment across leadership, product, and engineering, we broke the long-term vision into manageable milestones.
-
-We mapped out a roadmap to reach our north star in three phases.`,
+          sectionContentScoping: 'With strong customer validation and alignment across leadership, product, and engineering, we broke the long-term vision into three milestones that could deliver value incrementally while building toward the full experience.',
           sectionHeadingMilestone1: 'Milestone 1',
           sectionContentMilestone1: 'First, we redesigned the order tracking module. We wanted to preserve what was already working while improving the information architecture. At the same time, I worked with the product lead to established design principles for post-checkout and my designer to develop integration guidelines to ensure the surface could scale as we added the shopping experience. This included standing up a governance forum where product teams could propose new use cases, a proactive move that would prove critical as demand for the surface grew.',
           sectionImageMilestone1: {
@@ -357,9 +337,9 @@ Each milestone delivered real value to customers and the business while teaching
       heading: 'Platform',
       headingAccent: true,
       metrics: [],
-      narrative: `With a solid foundation in place and strong early results, we entered an extended platform phase spanning the next year. The goal shifted from proving the concept to scaling it, making cross-merchant shopping a habit rather than a novelty.
+      narrative: `With a solid foundation in place and strong early results, we entered an extended platform phase spanning the next year. The goal shifted from proving the concept to scaling it—making cross-merchant shopping a habit rather than a novelty.
 
-We started by expanding contextual merchandising for special occasions and personalized recommendations based on order history. By this point, the senior designer I had been mentoring had grown into a Staff-level contributor, leading the merchandising expansion work with increasing autonomy. Sponsoring their promotion was a highlight of this phase, recognition of both their impact on the product and their growth as a design leader. This evolution let us surface newer offerings like package delivery and alcohol at the right moments in the shopping flow.`,
+We started by expanding contextual merchandising for special occasions and personalized recommendations based on order history. By this point, the senior designer I had been mentoring had grown into a Staff-level contributor, leading the merchandising expansion work with increasing autonomy. This evolution let us surface newer offerings like package delivery and alcohol at the right moments in the shopping flow.`,
       platformImages: [
         { src: '/images/DbDOccasionPlatform.png', alt: 'Occasion-based merchandising', label: 'Occasions' },
         { src: '/images/DbDDidYouForgetPlatform.png', alt: 'Did you forget feature', label: 'Did You Forget?' },
@@ -395,13 +375,11 @@ Because the Doubledash delivery range was gated by a primary order at another st
         alt: 'Something for Everyone store page experiment',
         caption: 'Something for Everyone'
       },
-      lessonsNarrativeAfterImage: `Because the Doubledash delivery range was gated by a primary order at another store we had limitations higher up the funnel. Customers needed to select a store, and based on that we could show other nearby stores available to bundle.
+      lessonsNarrativeAfterImage: `This led to a heavy UI treatment trying to explain the limitation, because the set of nearby stores changed based on which store page the customer was visiting.
 
-This led to a somewhat heavy UI treatment trying to explain to customers the limitation, because the set of nearby stores changed based on the store page the customer was visiting, due to technical limitations.
+We got mixed results: attach rate went up as customers discovered the capability, but cart spend went down. Customers were ordering from multiple stores but spending less, so we rolled it back.
 
-We got mixed results in this test; attach rate went up as customers discovered the capability, but cart spend went down. Customers were ordering from multiple stores but spending less, so we rolled it back.
-
-Another a/b experiment we ran was based on the concept of pairing menu we enabled on the menu item details page.`,
+Another experiment was a pairing menu on the menu item details page.`,
       lessonsVideo: {
         src: '/images/PairingmenuFailure.mov',
         alt: 'Pairing menu experiment',

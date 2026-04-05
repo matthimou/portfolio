@@ -14,19 +14,16 @@ const CaseStudyHero = ({ id, title, hero, meta, hideHeader = false }) => {
             <span className="case-study-hero__separator">•</span>
             <span className="case-study-hero__timeline">{meta.timeline}</span>
           </div>
-          {(meta.role || meta.team?.composition) && (
+          {meta.role && (
+            <div className="case-study-hero__role-line">
+              <span className="case-study-hero__role">{meta.role}</span>
+            </div>
+          )}
+          {meta.team?.composition && (
             <div className="case-study-hero__team">
-              {meta.role && (
-                <>
-                  <span className="case-study-hero__role">{meta.role}</span>
-                  {meta.team?.composition && <span className="case-study-hero__separator">•</span>}
-                </>
-              )}
-              {meta.team?.composition && (
-                <span className="case-study-hero__team-info">
-                  {meta.team.size ? `Led team of ${meta.team.size}: ${meta.team.composition}` : meta.team.composition}
-                </span>
-              )}
+              <span className="case-study-hero__team-info">
+                {meta.team.size ? `${meta.team.size}: ${meta.team.composition}` : meta.team.composition}
+              </span>
             </div>
           )}
         </div>

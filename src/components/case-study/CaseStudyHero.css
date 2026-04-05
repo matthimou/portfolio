@@ -23,6 +23,7 @@
 }
 
 .case-study-hero__details,
+.case-study-hero__role-line,
 .case-study-hero__team {
   font-size: var(--text-base);
   color: var(--color-text-secondary);
@@ -134,6 +135,7 @@
   }
 
   .case-study-hero__details,
+  .case-study-hero__role-line,
   .case-study-hero__team {
     flex-direction: column;
     gap: var(--space-xs);
