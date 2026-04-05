@@ -26,7 +26,7 @@ export const caseStudies = [
     },
     introduction: {
       heading: 'Introduction',
-      content: 'Doubledash grew from a scrappy MVP into a $1.7B revenue channel over four years. This case study traces that journey—from initial hypothesis through validated product-market fit to a mature platform—to show how I build and lead design teams through ambiguous, high-stakes product challenges.',
+      content: 'Doubledash grew from a scrappy MVP into a $1.7B revenue channel over four years. This case study traces that journey, from initial hypothesis through validated product-market fit to a mature platform, to show how I build and lead design teams through ambiguous, high-stakes product challenges.',
       contentSecondary: null,
       contentQuaternary: null,
       videoHeading: 'So what exactly is Doubledash?',
@@ -44,9 +44,9 @@ The DoorDash platform only supported single-store carts at the time, and we had 
         noShadow: true
       },
       closingFinalHeading: 'Where We Started',
-      closingFinal: 'In 2021, DoorDash was expanding beyond restaurant delivery into new verticals—convenience, grocery, alcohol. Our data science team identified a compelling signal: approximately 20% of customers were placing a secondary order from 7-Eleven within 30 minutes of their primary meal delivery.',
+      closingFinal: 'In 2021, DoorDash was expanding beyond restaurant delivery into new verticals: convenience, grocery, alcohol. Our data science team identified a compelling signal: approximately 20% of customers were placing a secondary order from 7-Eleven within 30 minutes of their primary meal delivery.',
       closingFinalBelowVideo: true,
-      closingFinalSecondary: 'This suggested latent demand for bundling—if we reduced the friction, we could capture orders that were already happening and grow overall marketplace volume.',
+      closingFinalSecondary: 'This suggested latent demand for bundling. If we reduced the friction, we could capture orders that were already happening and grow overall marketplace volume.',
       imageFinal: {
         src: '/images/ExpandedCategories.png',
         alt: 'DoorDash expanded categories'
@@ -198,8 +198,8 @@ The DoorDash platform only supported single-store carts at the time, and we had 
           },
           sectionContentTertiary: 'As the product matured, we moved into a semi-annual planning rhythm. Half-year cycles let us balance long-term goals with tactical execution. I planned and executed cross-functional vision sprints in advance of each Q1 and Q3 planning window. These sprints plugged into the detailed H1 and H2 plans I worked on in collaboration with the engineering and product leads to staff and sequence the work. Getting alignment early ensured our product direction was clear before it fed into broader roadmaps.',
           sectionContentAfterPlanning: 'Translating sprint outputs into funded initiatives required close partnership with product and engineering leadership, and a lot of negotiation. I worked directly with our XFN leads to shape the scope and sequencing of each half\'s plan before they were presented to executives. This alignment work happened before each planning cycle, ensuring our design vision had organizational commitment before we moved into detailed execution.',
-          sectionContentCrossOrg: 'Building on another team\'s surface required navigating real organizational tension. The delivery experience team owned order tracking and was focused on reducing support costs—not driving commerce. They worried that cross-selling would distract customers and hurt delivery quality perception. I worked closely with their Director and PM to establish a tiered priority system that protected the primary job-to-be-done—tracking your order—while creating space for commerce. This framework became the foundation for the governance model we later expanded.',
-          sectionContentTeamBuilding: 'I started with a senior designer who became a close thought partner. Over four years I promoted them to Staff and later hired a Principal to lead our most complex systems work, growing the design team to three while collaborating with a cross-functional org that scaled from 6 to 18. We reviewed work weekly and developed strategic themes for sprints while I focused on the broader product trajectory.',
+          sectionContentCrossOrg: 'Building on another team\'s surface required navigating real organizational tension. The delivery experience team owned order tracking and was focused on reducing support costs, not driving commerce. They worried that cross-selling would distract customers and hurt delivery quality perception. I worked closely with their Director and PM and my designers to establish a tiered priority system that protected the primary job-to-be-done (tracking your order) while creating space for commerce. This framework became the foundation for the governance model we later expanded.',
+          sectionContentTeamBuilding: 'I started with a senior designer who became a close thought partner. Over four years I promoted them to Staff and later hired a Principal to lead our most complex systems work, growing the design team to three while collaborating with a cross-functional org that scaled from 6 to 18. We reviewed work weekly and collaborated on strategic themes for sprints while I continued to partner with the product directors on planning, staffing, and strategy.',
           sectionHeadingTertiary: 'Defining the Product Vision',
           sectionContentQuaternary: 'I kicked off a cross-functional vision sprint to define where the product was headed, starting with a brief I wrote and refined with my product partners. We focused on three core areas: how customers discover bundling opportunities, the cross-merchant shopping experience, and maintaining order tracking as the primary surface.',
           visionQuestions: null,
@@ -215,7 +215,7 @@ After placing an order, customers had about ten minutes to add items, but during
             src: '/images/DoorDashMapoInsight.png',
             alt: 'Map insight showing limited utility during early delivery stage'
           },
-          sectionContentBeforeVideo: 'This insight became the foundation for a new shopping experience. We designed a half-sheet interface that let customers browse multiple merchants without leaving the order tracking screen, directly addressing their concerns about selection. By the end of the sprint, we had high-fidelity prototypes to share with the broader team and build support for the direction.',
+          sectionContentBeforeVideo: 'This insight became the foundation for a new shopping experience. We designed an experience that let customers browse multiple merchants without leaving the order tracking screen, directly addressing their concerns about selection. By the end of the sprint, we had high-fidelity prototypes to share with the broader team and build support for the direction.',
           phoneVideo: {
             video: '/images/Doubledash01.mov?v=2',
             alt: 'Doubledash experience on mobile',
@@ -227,7 +227,7 @@ After placing an order, customers had about ten minutes to add items, but during
             alt: 'Doubledash half-sheet shopping experience',
             caption: 'Setting Expectations'
           },
-          sectionContentAfterVideoSecondary: 'This approach let us address customer confusion about how bundling worked without cluttering the main view. Details were tucked into a secondary layer, keeping the primary experience clean while giving customers who wanted more context a clear path to it.',
+          sectionContentAfterVideoSecondary: 'The solution to address customer confusion about how bundling worked was added without cluttering the main view. Details were tucked into a secondary layer, keeping the primary experience clean while giving customers who wanted more context a clear path to it.',
           phoneVideoTertiary: {
             video: '/images/Doubledash03.mov',
             alt: 'Doubledash integrated checkout experience',
@@ -282,7 +282,7 @@ Each milestone delivered real value to customers and the business while teaching
             alt: 'Doubledash cross-platform experience',
             caption: 'Cross Platform Doubledash'
           },
-          sectionContentCrossPlatform: 'As we scaled to Desktop, I worked closely with the designer to ensure our principles held across platforms. The half-sheet paradigm that worked so well on mobile needed thoughtful adaptation for larger viewports, and I worked closely with the team to maintain the core interaction model while taking advantage of the additional screen real estate.',
+          sectionContentCrossPlatform: 'As we scaled to Desktop, I worked closely with the designer to ensure our principles held across platforms. The half-sheet paradigm that worked so well on mobile needed thoughtful adaptation for larger viewports. We were integrating into an existing delivery experience on the web, so we needed to leverage and extend existing layouts.',
           desktopVideo: {
             src: '/images/DoubledashDesktop.mov',
             caption: 'Desktop Experience'
@@ -337,7 +337,7 @@ Each milestone delivered real value to customers and the business while teaching
       heading: 'Platform',
       headingAccent: true,
       metrics: [],
-      narrative: `With a solid foundation in place and strong early results, we entered an extended platform phase spanning the next year. The goal shifted from proving the concept to scaling it—making cross-merchant shopping a habit rather than a novelty.
+      narrative: `With a solid foundation in place and strong early results, we entered an extended platform phase spanning the next year. The goal shifted from proving the concept to scaling it: making cross-merchant shopping a habit rather than a novelty.
 
 We started by expanding contextual merchandising for special occasions and personalized recommendations based on order history. By this point, the senior designer I had been mentoring had grown into a Staff-level contributor, leading the merchandising expansion work with increasing autonomy. This evolution let us surface newer offerings like package delivery and alcohol at the right moments in the shopping flow.`,
       platformImages: [

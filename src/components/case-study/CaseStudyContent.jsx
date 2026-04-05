@@ -465,6 +465,9 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
               {solution.timeline[1]?.sectionContentAfterPlanning && (
                 <p className="case-study-content__text">{solution.timeline[1].sectionContentAfterPlanning}</p>
               )}
+              {solution.timeline[1]?.sectionContentCrossOrg && (
+                <p className="case-study-content__text">{solution.timeline[1].sectionContentCrossOrg}</p>
+              )}
               {solution.timeline[1]?.sectionContentTeamBuilding && (
                 <p className="case-study-content__text">{solution.timeline[1].sectionContentTeamBuilding}</p>
               )}
@@ -558,6 +561,9 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
               {solution.timeline[1]?.sectionContentAfterVideo && (
                 <p className="case-study-content__text">{solution.timeline[1].sectionContentAfterVideo}</p>
               )}
+              {solution.timeline[1]?.sectionContentAfterVideoSecondary && (
+                <p className="case-study-content__text">{solution.timeline[1].sectionContentAfterVideoSecondary}</p>
+              )}
               {solution.timeline[1]?.phoneVideoSecondary && (
                 <figure className="case-study-content__phone-video">
                   <div className="case-study-content__phone-video-container">
@@ -577,8 +583,8 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                   )}
                 </figure>
               )}
-              {solution.timeline[1]?.sectionContentAfterVideoSecondary && (
-                <p className="case-study-content__text">{solution.timeline[1].sectionContentAfterVideoSecondary}</p>
+              {solution.timeline[1]?.sectionContentAfterVideoTertiary && (
+                <p className="case-study-content__text">{solution.timeline[1].sectionContentAfterVideoTertiary}</p>
               )}
               {solution.timeline[1]?.phoneVideoTertiary && (
                 <figure className="case-study-content__phone-video">
@@ -598,9 +604,6 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                     </figcaption>
                   )}
                 </figure>
-              )}
-              {solution.timeline[1]?.sectionContentAfterVideoTertiary && (
-                <p className="case-study-content__text">{solution.timeline[1].sectionContentAfterVideoTertiary}</p>
               )}
               {solution.timeline[1]?.sectionHeadingQuaternary && (
                 <h4 className="case-study-content__heading">{solution.timeline[1].sectionHeadingQuaternary}</h4>
