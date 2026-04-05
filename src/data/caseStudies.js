@@ -8,7 +8,7 @@ export const caseStudies = [
     id: 'doordash-doubledash',
     protected: false,
     meta: {
-      title: 'Doubledash: Multi-Store Shopping',
+      title: 'Doubledash',
       client: 'DoorDash',
       timeline: '2021-2025',
       role: 'Director of Design, Core Consumer',
@@ -384,8 +384,52 @@ Finally, we came back to our original MVP idea: showing bundling options in the 
         { src: '/images/dBdMerchantsInMapPlatform.png', alt: 'Merchants on map interface', label: 'Merchants on Map' },
         { src: '/images/DbDinCartPlatform.png', alt: 'Doubledash in cart', label: 'Doubledash In Cart' }
       ],
-      lessonsHeading: 'Lessons from Failure',
-      lessonsNarrative: null,
+      lessonsHeading: 'Learning from Failure',
+      lessonsNarrative: `Not all of our tests worked. In fact we spent significant effort trying to add bundling to the store page through a series of experiments which showed promise, but often came with compromises we weren't willing to make.
+
+Our first attempt that met with mixed results was a store page feature we called Something for Everyone. The target for this feature was families or groups with mixed appetites or dietary needs.
+
+Because the Doubledash delivery range was gated by a primary order at another store we had limitations higher up the funnel. Customers needed to select a store, and based on that we could show other nearby stores available to bundle.`,
+      lessonsImage: {
+        src: '/images/S4Efailure.png',
+        alt: 'Something for Everyone store page experiment',
+        caption: 'Something for Everyone'
+      },
+      lessonsNarrativeAfterImage: `Because the Doubledash delivery range was gated by a primary order at another store we had limitations higher up the funnel. Customers needed to select a store, and based on that we could show other nearby stores available to bundle.
+
+This led to a somewhat heavy UI treatment trying to explain to customers the limitation, because the set of nearby stores changed based on the store page the customer was visiting, due to technical limitations.
+
+We got mixed results in this test; attach rate went up as customers discovered the capability, but cart spend went down. Customers were ordering from multiple stores but spending less, so we rolled it back.
+
+Another a/b experiment we ran was based on the concept of pairing menu we enabled on the menu item details page.`,
+      lessonsVideo: {
+        src: '/images/PairingmenuFailure.mov',
+        alt: 'Pairing menu experiment',
+        caption: 'Pairing Menu'
+      },
+      lessonsNarrativeAfterVideo: 'Given how Doubledash worked in post-purchase we also attempted to launch the bottom sheet behavior directly on the store page.',
+      lessonsVideo02: {
+        src: '/images/BottomSheetOnStoreFailure.mov',
+        alt: 'Bottom sheet on store page experiment',
+        caption: 'Bottom Sheet'
+      },
+      lessonsNarrativeAfterVideo02: `Overall we found store page engagement was low.
+
+In some cases (like the pairing menu) visibility was low, and customers simply missed it. In the more aggressive cases it could cause confusion instead of increasing awareness as intended.
+
+Customers with high intent were visiting a specific store they wanted to order from, and were confronted with multiple stores instead. Many would simply scroll the store page to see the menu as a learned behavior from ordering and forget bundling was available.`,
+      lessonsNarrativeConclusion: `We learned from all these failures the importance of not disrupting existing customer behaviors or mental models in the service of visibility.
+
+We did eventually find a place for Doubledash on store pages, and it mirrored other learnings.
+
+By incorporating alcohol directly into the store page menu as a complimentary offering for restaurants that didn't serve alcohol we found a model that appealed to customers (increased Alcohol trials, and drove +15% attachment rate).
+
+Because we simply added a menu category, customers that were acclimated to ordering items from the menu would add alcohol items naturally because it matched their existing mental model for ordering.`,
+      lessonsImageConclusion: {
+        src: '/images/AlcoholMenu.png',
+        alt: 'Alcohol menu integrated into restaurant store page',
+        caption: 'Alcohol in Menu'
+      },
       impactHeading: 'Impact',
       impactNarrative: 'By building incrementally, we delivered meaningful results at each stage. Across all these platform initiatives, Doubledash achieved results that validated our strategy and compounded over time.',
       impactImage02: {

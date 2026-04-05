@@ -35,11 +35,6 @@ const CaseStudyPage = ({ onOpenLogin }) => {
   return (
     <div className={`case-study-page ${hasFullBleedHero ? 'case-study-page--video-hero' : ''}`}>
       <div className="case-study-page__container">
-        {/* Back Button */}
-        <Link to="/work" className="case-study-page__back">
-          ← Back to Work
-        </Link>
-
         {/* Case Study Content */}
         <article className="case-study-page__content">
           <CaseStudyHero
