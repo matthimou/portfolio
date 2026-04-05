@@ -419,8 +419,8 @@ Because we simply added a menu category, customers that were acclimated to order
         { value: '8%', label: 'of total marketplace volume growth' },
         { value: '22%', label: 'increase in order volume for new verticals' }
       ],
-      futureExplorationsHeading: 'Pointing Towards the Future',
-      futureExplorationsNarrative: 'I always push my teams to stay ahead of product capabilities - it is key to pushing products beyond their current limitations. The concepts below from sprints I ran before leaving explored what the future could look like for Doubledash if we brought it to the home page. Giving customers a clear idea of what bundling is and use cases it can serve without having to place an order.',
+      futureExplorationsHeading: 'Future Forward',
+      futureExplorationsNarrative: 'I always push my teams to stay ahead of product capabilities as a tactic for pushing products beyond their current limitations. The concepts below from sprints I ran before leaving explored what the future could look like for Doubledash if we brought it to the home page. Giving customers a clear idea of what bundling is and use cases it can serve without having to place an order.',
       futureExplorationsImages: [
         { src: '/images/Future01.png', alt: 'Future exploration concept 1' },
         { src: '/images/Future02.png', alt: 'Future exploration concept 2' },
