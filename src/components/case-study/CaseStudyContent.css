@@ -445,6 +445,17 @@
   text-align: center;
 }
 
+.case-study-content__future-grid-wrapper {
+  margin: 0;
+}
+
+.case-study-content__grid-label {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  text-align: center;
+  margin-top: var(--space-md);
+}
+
 /* Platform Two-Up */
 .case-study-content__platform-two-up {
   display: flex;
@@ -469,6 +480,18 @@
   border-radius: var(--radius-lg);
 }
 
+.case-study-content__platform-two-up-video-container {
+  border-radius: 26px;
+  overflow: hidden;
+}
+
+.case-study-content__platform-two-up-video {
+  width: auto;
+  height: auto;
+  max-height: 540px;
+  display: block;
+}
+
 .case-study-content__platform-two-up-label {
   font-size: var(--text-sm);
   color: var(--color-text-secondary);
@@ -482,7 +505,8 @@
     align-items: center;
   }
 
-  .case-study-content__platform-two-up-item img {
+  .case-study-content__platform-two-up-item img,
+  .case-study-content__platform-two-up-video {
     max-width: 300px;
   }
 }

@@ -1157,6 +1157,51 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
             </div>
           )}
 
+          {/* Future Explorations */}
+          {impact.futureExplorationsHeading && (
+            <h3 className="case-study-content__heading">{impact.futureExplorationsHeading}</h3>
+          )}
+          {impact.futureExplorationsNarrative && (
+            <p className="case-study-content__text">{impact.futureExplorationsNarrative}</p>
+          )}
+          {impact.futureExplorationsImages && impact.futureExplorationsImages.length > 0 && (
+            <figure className="case-study-content__future-grid-wrapper">
+              <div className="case-study-content__platform-grid">
+                {impact.futureExplorationsImages.map((image, index) => (
+                  <div key={index} className="case-study-content__platform-grid-item">
+                    <img src={image.src} alt={image.alt} />
+                  </div>
+                ))}
+              </div>
+              {impact.futureExplorationsImagesLabel && (
+                <figcaption className="case-study-content__grid-label">{impact.futureExplorationsImagesLabel}</figcaption>
+              )}
+            </figure>
+          )}
+          {impact.futureTwoUp && impact.futureTwoUp.length > 0 && (
+            <div className="case-study-content__platform-two-up">
+              {impact.futureTwoUp.map((item, index) => (
+                <figure key={index} className="case-study-content__platform-two-up-item">
+                  {item.type === 'video' ? (
+                    <div className="case-study-content__platform-two-up-video-container">
+                      <video
+                        src={item.src}
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                        className="case-study-content__platform-two-up-video"
+                      />
+                    </div>
+                  ) : (
+                    <img src={item.src} alt={item.alt} />
+                  )}
+                  {item.label && <figcaption className="case-study-content__platform-two-up-label">{item.label}</figcaption>}
+                </figure>
+              ))}
+            </div>
+          )}
+
           {/* Metrics */}
           {impact.metrics && <CaseStudyMetrics metrics={impact.metrics} />}
 

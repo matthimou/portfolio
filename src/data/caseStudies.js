@@ -419,6 +419,19 @@ Because we simply added a menu category, customers that were acclimated to order
         { value: '8%', label: 'of total marketplace volume growth' },
         { value: '22%', label: 'increase in order volume for new verticals' }
       ],
+      futureExplorationsHeading: 'Future Vision',
+      futureExplorationsNarrative: 'Always staying ahead of the product capabilities is key to pushing products beyond their current limitations. The concepts below explored what the future could look like for Doubledash. Bringing visibility at the top of the funnel through discovery, and envisioning a native multi-store experience for the cart and delivery experience.',
+      futureExplorationsImages: [
+        { src: '/images/Future01.png', alt: 'Future exploration concept 1' },
+        { src: '/images/Future02.png', alt: 'Future exploration concept 2' },
+        { src: '/images/Future03.png', alt: 'Future exploration concept 3' },
+        { src: '/images/Future04.png', alt: 'Future exploration concept 4' }
+      ],
+      futureExplorationsImagesLabel: 'Discovery Concepts',
+      futureTwoUp: [
+        { src: '/images/FutureCart.png', alt: 'Future cart concept', type: 'image' },
+        { src: '/images/FutureDelivery.mov', alt: 'Future delivery concept', type: 'video' }
+      ],
       businessImpact: null,
       testimonial: null
     }
