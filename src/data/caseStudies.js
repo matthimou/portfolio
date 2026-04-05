@@ -419,8 +419,8 @@ Because we simply added a menu category, customers that were acclimated to order
         { value: '8%', label: 'of total marketplace volume growth' },
         { value: '22%', label: 'increase in order volume for new verticals' }
       ],
-      futureExplorationsHeading: 'Future Vision',
-      futureExplorationsNarrative: 'Always staying ahead of the product capabilities is key to pushing products beyond their current limitations. The concepts below explored what the future could look like for Doubledash. Bringing visibility at the top of the funnel through discovery, and envisioning a native multi-store experience for the cart and delivery experience.',
+      futureExplorationsHeading: 'Pointing Towards the Future',
+      futureExplorationsNarrative: 'I always push my teams to stay ahead of product capabilities - it is key to pushing products beyond their current limitations. The concepts below from sprints I ran before leaving explored what the future could look like for Doubledash if we brought it to the home page. Giving customers a clear idea of what bundling is and use cases it can serve without having to place an order.',
       futureExplorationsImages: [
         { src: '/images/Future01.png', alt: 'Future exploration concept 1' },
         { src: '/images/Future02.png', alt: 'Future exploration concept 2' },
@@ -428,6 +428,7 @@ Because we simply added a menu category, customers that were acclimated to order
         { src: '/images/Future04.png', alt: 'Future exploration concept 4' }
       ],
       futureExplorationsImagesLabel: 'Discovery Concepts',
+      futureTwoUpNarrative: 'This last concept envisions Doordash as a natively multi-store shopping destination. A cart that can manage items from multiple stores, and a multi-store delivery experience where Doubledashing is just how customers shop.',
       futureTwoUp: [
         { src: '/images/FutureCart.png', alt: 'Future cart concept', type: 'image' },
         { src: '/images/FutureDelivery.mov', alt: 'Future delivery concept', type: 'video' }

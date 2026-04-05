@@ -1168,8 +1168,18 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
             <figure className="case-study-content__future-grid-wrapper">
               <div className="case-study-content__platform-grid">
                 {impact.futureExplorationsImages.map((image, index) => (
-                  <div key={index} className="case-study-content__platform-grid-item">
+                  <div
+                    key={index}
+                    className="case-study-content__platform-grid-item case-study-content__platform-grid-item--clickable"
+                    onClick={() => setSingleImageLightbox(image)}
+                  >
                     <img src={image.src} alt={image.alt} />
+                    <div className="case-study-content__platform-grid-zoom">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <circle cx="11" cy="11" r="8" />
+                        <path d="M21 21l-4.35-4.35" />
+                      </svg>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -1177,6 +1187,9 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                 <figcaption className="case-study-content__grid-label">{impact.futureExplorationsImagesLabel}</figcaption>
               )}
             </figure>
+          )}
+          {impact.futureTwoUpNarrative && (
+            <p className="case-study-content__text">{impact.futureTwoUpNarrative}</p>
           )}
           {impact.futureTwoUp && impact.futureTwoUp.length > 0 && (
             <div className="case-study-content__platform-two-up">

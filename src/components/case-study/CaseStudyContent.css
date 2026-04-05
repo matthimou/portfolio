@@ -439,6 +439,43 @@
   border-radius: var(--radius-lg);
 }
 
+.case-study-content__platform-grid-item--clickable {
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.2s ease;
+}
+
+.case-study-content__platform-grid-item--clickable:hover {
+  transform: scale(1.02);
+}
+
+.case-study-content__platform-grid-zoom {
+  position: absolute;
+  bottom: var(--space-sm);
+  right: var(--space-sm);
+  width: 32px;
+  height: 32px;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.case-study-content__platform-grid-zoom svg {
+  width: 18px;
+  height: 18px;
+  color: white;
+}
+
+.case-study-content__platform-grid-item--clickable:hover .case-study-content__platform-grid-zoom {
+  opacity: 1;
+  transform: scale(1);
+}
+
 .case-study-content__platform-grid-label {
   font-size: var(--text-sm);
   color: var(--color-text-secondary);
@@ -454,6 +491,7 @@
   color: var(--color-text-secondary);
   text-align: center;
   margin-top: var(--space-md);
+  margin-bottom: var(--space-xl);
 }
 
 /* Platform Two-Up */
