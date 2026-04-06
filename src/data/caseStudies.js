@@ -6,7 +6,8 @@
 export const caseStudies = [
   {
     id: 'doordash-doubledash',
-    protected: false,
+    status: 'published',
+    protected: true,
     meta: {
       title: 'Doubledash',
       client: 'DoorDash',
@@ -435,7 +436,8 @@ Because we simply added a menu category, customers that were acclimated to order
   },
   {
     id: 'doordash-metab',
-    protected: false,
+    status: 'published',
+    protected: true,
     hiddenFromNav: false,
     meta: {
       title: 'Me Tab',
@@ -715,6 +717,7 @@ Second, I assigned a senior product designer from the Discovery team to lead des
   },
   {
     id: 'doordash-evidence',
+    status: 'draft',
     protected: false,
     meta: {
       title: 'Contextual Store Evidence',
@@ -792,6 +795,7 @@ Second, I assigned a senior product designer from the Discovery team to lead des
   },
   {
     id: 'groupon-cx90',
+    status: 'draft',
     protected: false,
     meta: {
       title: 'CX90: Groupon Homepage Transformation',
@@ -894,6 +898,7 @@ Second, I assigned a senior product designer from the Discovery team to lead des
   },
   {
     id: 'fintech-platform',
+    status: 'draft',
     protected: true,
     meta: {
       title: 'Enterprise Fintech Platform Redesign',
@@ -966,6 +971,7 @@ Second, I assigned a senior product designer from the Discovery team to lead des
   },
   {
     id: 'healthcare-app',
+    status: 'draft',
     protected: true,
     meta: {
       title: 'Patient Care Mobile App',
@@ -1038,6 +1044,7 @@ Second, I assigned a senior product designer from the Discovery team to lead des
   },
   {
     id: 'ecommerce-platform',
+    status: 'draft',
     protected: true,
     meta: {
       title: 'E-commerce Checkout Optimization',

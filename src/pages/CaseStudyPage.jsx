@@ -5,25 +5,30 @@ import CaseStudyHero from '../components/case-study/CaseStudyHero'
 import CaseStudyContent from '../components/case-study/CaseStudyContent'
 import './CaseStudyPage.css'
 
+// Only published case studies are shown on the main site
+const publishedStudies = caseStudies.filter(s => s.status === 'published')
+
 const CaseStudyPage = ({ onOpenLogin }) => {
   const { projectId } = useParams()
   const { isAuthenticated } = useAuth()
-  const study = caseStudies.find(s => s.id === projectId)
 
-  // Redirect to work page if project not found
+  // Only allow published case studies
+  const study = publishedStudies.find(s => s.id === projectId)
+
+  // Redirect to home if project not found or not published
   if (!study) {
-    return <Navigate to="/work" replace />
+    return <Navigate to="/" replace />
   }
 
-  // Redirect to work page if trying to access protected study without auth
+  // Redirect to home if trying to access protected study without auth
   if (study.protected && !isAuthenticated) {
-    return <Navigate to="/work" replace />
+    return <Navigate to="/" replace />
   }
 
-  // Filter visible studies based on auth state
+  // Navigation only shows published studies the user can access
   const visibleStudies = isAuthenticated
-    ? caseStudies
-    : caseStudies.filter(s => !s.protected)
+    ? publishedStudies
+    : publishedStudies.filter(s => !s.protected)
 
   // Find current project index for navigation (within visible studies)
   const currentIndex = visibleStudies.findIndex(s => s.id === projectId)

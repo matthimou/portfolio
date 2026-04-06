@@ -6,6 +6,7 @@ import LockedCard from '../components/ui/LockedCard'
 import { useAuth } from '../context/AuthContext'
 import { useTheme } from '../context/ThemeContext'
 import { caseStudies } from '../data/caseStudies'
+import { contactInfo } from '../data/navigation'
 import LeapnetLogo from '../assets/LeapnetLogo.png'
 import Logo212 from '../assets/212Logo.png'
 import OrbitzLogo from '../assets/OrbitzLogo.png'
@@ -21,6 +22,9 @@ import grouponDesc from '../data/experience/groupon.md?raw'
 import doordashDesc from '../data/experience/doordash.md?raw'
 import { playAccordionOpen, playAccordionClose, playCaseStudySound } from '../utils/audio'
 import './HomePage.css'
+
+// Only show published case studies on the home page
+const publishedStudies = caseStudies.filter(s => s.status === 'published')
 
 const CareerPath = () => {
   const [activeCompany, setActiveCompany] = useState(null)
@@ -416,8 +420,10 @@ const CareerPath = () => {
 const HomePage = ({ onOpenLogin }) => {
   const [cardsVisible, setCardsVisible] = useState(false)
   const [experienceVisible, setExperienceVisible] = useState(false)
+  const [introVisible, setIntroVisible] = useState(false)
   const gridRef = useRef(null)
   const experienceRef = useRef(null)
+  const introRef = useRef(null)
   const { isAuthenticated } = useAuth()
   const navigate = useNavigate()
 
@@ -427,11 +433,11 @@ const HomePage = ({ onOpenLogin }) => {
     setTimeout(() => navigate(path), 80)
   }
 
-  // Filter case studies based on auth state
+  // Show published case studies, with auth check for protected ones
   const visibleStudies = isAuthenticated
-    ? caseStudies
-    : caseStudies.filter(s => !s.protected)
-  const protectedCount = caseStudies.filter(s => s.protected).length
+    ? publishedStudies
+    : publishedStudies.filter(s => !s.protected)
+  const protectedCount = publishedStudies.filter(s => s.protected).length
 
   useEffect(() => {
     const cardObserver = new IntersectionObserver(
@@ -454,44 +460,51 @@ const HomePage = ({ onOpenLogin }) => {
       { threshold: 0.2 }
     )
 
+    const introObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIntroVisible(true)
+          introObserver.disconnect()
+        }
+      },
+      { threshold: 0.2 }
+    )
+
     if (gridRef.current) cardObserver.observe(gridRef.current)
     if (experienceRef.current) experienceObserver.observe(experienceRef.current)
+    if (introRef.current) introObserver.observe(introRef.current)
 
     return () => {
       cardObserver.disconnect()
       experienceObserver.disconnect()
+      introObserver.disconnect()
     }
   }, [])
 
   return (
     <div className="home-page">
+      {/* Hero Section */}
       <div className="hero-experience-wrapper">
         <VideoBackground />
         <Hero name="Matthew Hanson" title="Design Leadership" hideBackground />
+      </div>
 
-        {/* Experience Section */}
-        <section className="experience" ref={experienceRef}>
+      {/* About/Intro Section */}
+      <section className="home-intro" ref={introRef}>
         <div className="container">
-          <div className={`experience__content ${experienceVisible ? 'experience__content--visible' : ''}`}>
-            <div className="experience__header">
-              <h2 className="experience__heading">Experience</h2>
-            </div>
-            <div className="experience__illustration-wrapper">
-              <CareerPath />
-            </div>
+          <div className={`home-intro__content ${introVisible ? 'home-intro__content--visible' : ''}`}>
+            <p className="home-intro__text">
+              Multidisciplinary design and product leader with a rich history of building high-performing teams inside fast-moving companies. I help design teams grow, build agency, and reduce ambiguity while improving their ability to make high-quality decisions.
+            </p>
           </div>
         </div>
       </section>
-      </div>
 
       {/* Featured Work Section */}
       <section className="home-work">
         <div className="container">
           <div className="home-work__header">
-            <h2 className="home-work__heading">Case Studies</h2>
-            <Link to="/work" className="home-work__view-all" onClick={(e) => handleCardClick(e, '/work')}>
-              View All Projects →
-            </Link>
+            <h2 className="home-work__heading">Selected Work</h2>
           </div>
 
           <div className="home-work__grid" ref={gridRef}>
@@ -510,10 +523,26 @@ const HomePage = ({ onOpenLogin }) => {
                     className="home-work__image"
                     loading="lazy"
                   />
+                  {project.protected && (
+                    <div className="home-work__protected-badge">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                      </svg>
+                      <span>Password Protected</span>
+                    </div>
+                  )}
                 </div>
                 <div className="home-work__content">
+                  <div className="home-work__meta">
+                    <span className="home-work__client">{project.meta.client}</span>
+                    <span className="home-work__divider">·</span>
+                    <span className="home-work__timeline">{project.meta.timeline}</span>
+                  </div>
                   <h3 className="home-work__title">{project.meta.title}</h3>
-                  <p className="home-work__client">{project.meta.client}</p>
+                  <p className="home-work__description">
+                    {project.introduction?.content?.substring(0, 150)}...
+                  </p>
                 </div>
               </Link>
             ))}
@@ -529,40 +558,53 @@ const HomePage = ({ onOpenLogin }) => {
         </div>
       </section>
 
-      {/* Footer */}
+      {/* Experience Section - demoted below work */}
+      <section className="experience experience--demoted" ref={experienceRef}>
+        <div className="container">
+          <div className={`experience__content ${experienceVisible ? 'experience__content--visible' : ''}`}>
+            <div className="experience__header">
+              <h2 className="experience__heading">Experience</h2>
+            </div>
+            <div className="experience__illustration-wrapper">
+              <CareerPath />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer with Contact Info */}
       <footer className="home-footer">
-        {/* Vibe coding illustration */}
-        <svg className="home-footer__illustration" viewBox="0 0 400 120" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-          {/* Floating code brackets */}
-          <text x="40" y="30" className="home-footer__code">&lt;/&gt;</text>
-          <text x="320" y="90" className="home-footer__code">{ }</text>
-          <text x="180" y="25" className="home-footer__code">**</text>
-          <text x="280" y="40" className="home-footer__code">;</text>
-          <text x="90" y="100" className="home-footer__code">//</text>
-
-          {/* Sparkles */}
-          <circle cx="150" cy="60" r="2" className="home-footer__sparkle" />
-          <circle cx="250" cy="30" r="1.5" className="home-footer__sparkle" />
-          <circle cx="70" cy="70" r="1.5" className="home-footer__sparkle" />
-          <circle cx="340" cy="55" r="2" className="home-footer__sparkle" />
-
-          {/* Wavy lines */}
-          <path d="M0 80 Q50 70, 100 80 T200 80 T300 80 T400 80" className="home-footer__wave" />
-          <path d="M0 95 Q50 85, 100 95 T200 95 T300 95 T400 95" className="home-footer__wave home-footer__wave--delayed" />
-        </svg>
         <div className="container home-footer__content">
-          <p className="home-footer__text">I vibecoded this, so any glitches are on Claude</p>
-          <a
-            href="https://github.com/matthimou/portfolio"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="home-footer__github"
-            aria-label="GitHub Profile"
-          >
-            <svg viewBox="0 0 24 24" fill="currentColor" className="home-footer__github-icon">
-              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-            </svg>
-          </a>
+          <div className="home-footer__contact">
+            <span className="home-footer__contact-label">Get in touch</span>
+            <div className="home-footer__contact-links">
+              <a href={`mailto:${contactInfo.email}`} className="home-footer__contact-link">
+                {contactInfo.email}
+              </a>
+              <a
+                href={contactInfo.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="home-footer__contact-link"
+              >
+                LinkedIn
+              </a>
+            </div>
+          </div>
+          <div className="home-footer__credits">
+            <p className="home-footer__text">I vibecoded this, so any glitches are on Claude</p>
+            <a
+              href="https://github.com/matthimou/portfolio"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="home-footer__github"
+              aria-label="GitHub Profile"
+            >
+              <svg viewBox="0 0 24 24" fill="currentColor" className="home-footer__github-icon">
+                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+              </svg>
+            </a>
+          </div>
         </div>
       </footer>
     </div>

@@ -1,15 +1,13 @@
 import { useState } from 'react'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
 import { ThemeProvider } from './context/ThemeContext'
 import { AuthProvider } from './context/AuthContext'
 import ScrollToTop from './components/ScrollToTop'
 import Navigation from './components/layout/Navigation'
 import LoginModal from './components/auth/LoginModal'
 import HomePage from './pages/HomePage'
-import WorkPage from './pages/WorkPage'
 import CaseStudyPage from './pages/CaseStudyPage'
-import AboutPage from './pages/AboutPage'
-import ContactPage from './pages/ContactPage'
+import DevCaseStudyPage from './pages/DevCaseStudyPage'
 import './App.css'
 
 function App() {
@@ -30,11 +28,17 @@ function App() {
             {/* Main Content with Routes */}
             <main id="main-content">
               <Routes>
+                {/* Main routes */}
                 <Route path="/" element={<HomePage onOpenLogin={openLoginModal} />} />
-                <Route path="/work" element={<WorkPage onOpenLogin={openLoginModal} />} />
                 <Route path="/work/:projectId" element={<CaseStudyPage onOpenLogin={openLoginModal} />} />
-                <Route path="/about" element={<AboutPage />} />
-                <Route path="/contact" element={<ContactPage />} />
+
+                {/* Dev routes for draft case studies (not in navigation) */}
+                <Route path="/dev/work/:projectId" element={<DevCaseStudyPage />} />
+
+                {/* Redirects for removed routes */}
+                <Route path="/work" element={<Navigate to="/" replace />} />
+                <Route path="/about" element={<Navigate to="/" replace />} />
+                <Route path="/contact" element={<Navigate to="/" replace />} />
               </Routes>
             </main>
 
