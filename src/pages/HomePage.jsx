@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import Hero from '../components/sections/Hero'
 import VideoBackground from '../components/ui/VideoBackground'
-import LockedCard from '../components/ui/LockedCard'
 import { useAuth } from '../context/AuthContext'
 import { useTheme } from '../context/ThemeContext'
 import { caseStudies } from '../data/caseStudies'
@@ -427,17 +426,20 @@ const HomePage = ({ onOpenLogin }) => {
   const { isAuthenticated } = useAuth()
   const navigate = useNavigate()
 
-  const handleCardClick = (e, path) => {
+  const handleCardClick = (e, project) => {
     e.preventDefault()
     playCaseStudySound()
-    setTimeout(() => navigate(path), 80)
+
+    // If protected and not authenticated, open login modal
+    if (project.protected && !isAuthenticated) {
+      setTimeout(() => onOpenLogin(), 80)
+    } else {
+      setTimeout(() => navigate(`/work/${project.id}`), 80)
+    }
   }
 
-  // Show published case studies, with auth check for protected ones
-  const visibleStudies = isAuthenticated
-    ? publishedStudies
-    : publishedStudies.filter(s => !s.protected)
-  const protectedCount = publishedStudies.filter(s => s.protected).length
+  // Show all published case studies (badges indicate protection)
+  const visibleStudies = publishedStudies
 
   useEffect(() => {
     const cardObserver = new IntersectionObserver(
@@ -514,7 +516,7 @@ const HomePage = ({ onOpenLogin }) => {
                 to={`/work/${project.id}`}
                 className={`home-work__card ${cardsVisible ? 'home-work__card--visible' : ''}`}
                 style={{ transitionDelay: `${index * 100}ms` }}
-                onClick={(e) => handleCardClick(e, `/work/${project.id}`)}
+                onClick={(e) => handleCardClick(e, project)}
               >
                 <div className="home-work__image-wrapper">
                   <img
@@ -546,14 +548,6 @@ const HomePage = ({ onOpenLogin }) => {
                 </div>
               </Link>
             ))}
-            {!isAuthenticated && protectedCount > 0 && (
-              <div
-                className={`home-work__card ${cardsVisible ? 'home-work__card--visible' : ''}`}
-                style={{ transitionDelay: `${visibleStudies.length * 100}ms` }}
-              >
-                <LockedCard count={protectedCount} onOpenLogin={onOpenLogin} />
-              </div>
-            )}
           </div>
         </div>
       </section>
