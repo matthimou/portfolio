@@ -23,6 +23,8 @@ const ProjectCard = ({ project, featured = false }) => {
           src={project.hero.src}
           alt={project.hero.alt}
           className="project-card__image"
+          width={600}
+          height={400}
           loading="lazy"
         />
         <div className="project-card__overlay">

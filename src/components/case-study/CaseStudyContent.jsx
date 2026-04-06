@@ -196,8 +196,26 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
           {introduction.closingFinalHeading && introduction.closingFinalBelowVideo && (
             <h4 className="case-study-content__heading">{introduction.closingFinalHeading}</h4>
           )}
-          {introduction.closingFinal && introduction.closingFinalBelowVideo && (
+          {introduction.closingFinal && introduction.closingFinalBelowVideo && introduction.closingFinalImage && (
+            <div className="case-study-content__two-column case-study-content__two-column--text-heavy">
+              <div className="case-study-content__two-column-content">
+                {introduction.closingFinal.split('\n\n').map((para, index) => (
+                  <p key={index} className="case-study-content__text">{para}</p>
+                ))}
+              </div>
+              <figure className="case-study-content__two-column-image">
+                <img
+                  src={introduction.closingFinalImage.src}
+                  alt={introduction.closingFinalImage.alt}
+                />
+              </figure>
+            </div>
+          )}
+          {introduction.closingFinal && introduction.closingFinalBelowVideo && !introduction.closingFinalImage && (
             <p className="case-study-content__text">{introduction.closingFinal}</p>
+          )}
+          {introduction.closingFinalSecondary && (
+            <p className="case-study-content__text">{introduction.closingFinalSecondary}</p>
           )}
           {introduction.imageFinal && (
             <figure className="case-study-content__section-image">
@@ -207,9 +225,6 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                 className="case-study-content__section-image-img"
               />
             </figure>
-          )}
-          {introduction.closingFinalSecondary && (
-            <p className="case-study-content__text">{introduction.closingFinalSecondary}</p>
           )}
           {introduction.opportunity && (
             <div className={`case-study-content__opportunity ${introduction.opportunityCallout ? 'case-study-content__opportunity--callout' : ''}`}>
@@ -283,27 +298,46 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
           {/* Timeline - appears after strategy text */}
           {solution.timeline && solution.timeline.length > 0 && (
             <>
-              <div className="case-study-content__timeline">
-                {solution.timeline.map((phase, index) => (
-                  <div
-                    key={index}
-                    className="case-study-content__timeline-phase"
-                    style={{ '--phase-index': index }}
-                  >
-                    <span className="case-study-content__timeline-date">{phase.date}</span>
-                    <h5 className="case-study-content__timeline-title">{phase.title}</h5>
-                    <p className="case-study-content__timeline-description">{phase.description}</p>
-                  </div>
-                ))}
-              </div>
+              {/* Only show timeline visualization if phases have dates */}
+              {solution.timeline.some(phase => phase.date) && (
+                <div className="case-study-content__timeline">
+                  {solution.timeline.map((phase, index) => (
+                    <div
+                      key={index}
+                      className="case-study-content__timeline-phase"
+                      style={{ '--phase-index': index }}
+                    >
+                      <span className="case-study-content__timeline-date">{phase.date}</span>
+                      <h5 className="case-study-content__timeline-title">{phase.title}</h5>
+                      <p className="case-study-content__timeline-description">{phase.description}</p>
+                    </div>
+                  ))}
+                </div>
+              )}
               {solution.timeline[0].sectionHeading && (
-                <h5 className="case-study-content__subheading">{solution.timeline[0].sectionHeading}</h5>
+                <h5 className={`case-study-content__subheading ${solution.neutralHeadings ? 'case-study-content__subheading--neutral' : ''}`}>{solution.timeline[0].sectionHeading}</h5>
               )}
               {solution.timeline[0].sectionContent && (
-                <p className="case-study-content__text">{solution.timeline[0].sectionContent}</p>
+                solution.timeline[0].sectionContent.split('\n\n').map((para, index) => (
+                  <p key={index} className="case-study-content__text">{para}</p>
+                ))
+              )}
+              {solution.timeline[0].sectionImagesThreeUp && (
+                <div className="case-study-content__image-three-up">
+                  {solution.timeline[0].sectionImagesThreeUp.map((image, index) => (
+                    <figure key={index} className="case-study-content__image-three-up-item">
+                      <img src={image.src} alt={image.alt} />
+                      {image.label && (
+                        <figcaption className="case-study-content__image-three-up-label">{image.label}</figcaption>
+                      )}
+                    </figure>
+                  ))}
+                </div>
               )}
               {solution.timeline[0].sectionContentSecondary && (
-                <p className="case-study-content__text">{solution.timeline[0].sectionContentSecondary}</p>
+                solution.timeline[0].sectionContentSecondary.split('\n\n').map((para, index) => (
+                  <p key={index} className="case-study-content__text">{para}</p>
+                ))
               )}
               {solution.timeline[0].sectionImages && (
                 <div className="case-study-content__image-pair">
@@ -421,10 +455,64 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                 <p className="case-study-content__text case-study-content__section-closing">{solution.timeline[0].sectionClosing}</p>
               )}
               {solution.timeline[1]?.sectionHeading && (
-                <h5 className="case-study-content__subheading">{solution.timeline[1].sectionHeading}</h5>
+                <h5 className={`case-study-content__subheading ${solution.neutralHeadings ? 'case-study-content__subheading--neutral' : ''}`}>{solution.timeline[1].sectionHeading}</h5>
               )}
               {solution.timeline[1]?.sectionContent && (
-                <p className="case-study-content__text">{solution.timeline[1].sectionContent}</p>
+                solution.timeline[1].sectionContent.split('\n\n').map((para, index) => (
+                  <p key={index} className="case-study-content__text">{para}</p>
+                ))
+              )}
+              {solution.timeline[1]?.sectionImagesTwoUp && (
+                <div className="case-study-content__image-two-up">
+                  {solution.timeline[1].sectionImagesTwoUp.map((image, index) => (
+                    <figure key={index} className="case-study-content__image-two-up-item">
+                      <img src={image.src} alt={image.alt} />
+                      {image.label && (
+                        <figcaption className="case-study-content__image-two-up-label">{image.label}</figcaption>
+                      )}
+                    </figure>
+                  ))}
+                </div>
+              )}
+              {solution.timeline[1]?.sectionContentAfterImages && (
+                solution.timeline[1].sectionContentAfterImages.split('\n\n').map((para, index) => (
+                  <p key={index} className="case-study-content__text">{para}</p>
+                ))
+              )}
+              {solution.timeline[1]?.sectionImagesThreeUp && (
+                <div className="case-study-content__image-three-up">
+                  {solution.timeline[1].sectionImagesThreeUp.map((image, index) => (
+                    <figure key={index} className="case-study-content__image-three-up-item">
+                      <img src={image.src} alt={image.alt} />
+                      {image.label && (
+                        <figcaption className="case-study-content__image-three-up-label">{image.label}</figcaption>
+                      )}
+                    </figure>
+                  ))}
+                </div>
+              )}
+              {solution.timeline[1]?.sectionContentAfterThreeUp && (
+                solution.timeline[1].sectionContentAfterThreeUp.split('\n\n').map((para, index) => (
+                  <p key={index} className="case-study-content__text">{para}</p>
+                ))
+              )}
+              {solution.timeline[1]?.sectionOpportunity && (
+                <div className="case-study-content__opportunity case-study-content__opportunity--callout">
+                  <strong>The Opportunity:</strong> {solution.timeline[1].sectionOpportunity}
+                </div>
+              )}
+              {solution.timeline[1]?.fullBleedImage && (
+                <figure className={`case-study-content__full-bleed ${solution.timeline[1].fullBleedImage.ratio ? `case-study-content__full-bleed--ratio-${solution.timeline[1].fullBleedImage.ratio}` : ''}`}>
+                  <img
+                    src={solution.timeline[1].fullBleedImage.src}
+                    alt={solution.timeline[1].fullBleedImage.alt}
+                  />
+                  {solution.timeline[1].fullBleedImage.caption && (
+                    <figcaption className="case-study-content__full-bleed-caption">
+                      {solution.timeline[1].fullBleedImage.caption}
+                    </figcaption>
+                  )}
+                </figure>
               )}
               {solution.timeline[1]?.successMetrics && (
                 <div className="case-study-content__success-metrics">
@@ -460,7 +548,385 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                 </figure>
               )}
               {solution.timeline[1]?.sectionContentTertiary && (
-                <p className="case-study-content__text">{solution.timeline[1].sectionContentTertiary}</p>
+                solution.timeline[1].sectionContentTertiary.split('\n\n').map((para, index) => (
+                  <p key={index} className="case-study-content__text">{para}</p>
+                ))
+              )}
+              {solution.timeline[1]?.sectionHeadingTeam && (
+                <h5 className={`case-study-content__subheading ${solution.neutralHeadings ? 'case-study-content__subheading--neutral' : ''}`}>{solution.timeline[1].sectionHeadingTeam}</h5>
+              )}
+              {solution.timeline[1]?.sectionTeamImage && (
+                <figure className="case-study-content__section-image">
+                  <img
+                    src={solution.timeline[1].sectionTeamImage.src}
+                    alt={solution.timeline[1].sectionTeamImage.alt}
+                    className="case-study-content__section-image-img"
+                  />
+                  {solution.timeline[1].sectionTeamImage.caption && (
+                    <figcaption className="case-study-content__section-image-caption">
+                      {solution.timeline[1].sectionTeamImage.caption}
+                    </figcaption>
+                  )}
+                </figure>
+              )}
+              {solution.timeline[1]?.sectionContentAfterTeam && (
+                solution.timeline[1].sectionContentAfterTeam.split('\n\n').map((para, index) => (
+                  <p key={index} className="case-study-content__text">{para}</p>
+                ))
+              )}
+              {solution.timeline[1]?.sectionImageAfterTeam && (
+                <figure className="case-study-content__section-image">
+                  <img
+                    src={solution.timeline[1].sectionImageAfterTeam.src}
+                    alt={solution.timeline[1].sectionImageAfterTeam.alt}
+                    className="case-study-content__section-image-img"
+                  />
+                </figure>
+              )}
+              {solution.timeline[1]?.sectionContentAfterBrainstorm && (
+                <p className="case-study-content__text">{solution.timeline[1].sectionContentAfterBrainstorm}</p>
+              )}
+              {solution.timeline[1]?.designPrinciples && (
+                <div className="case-study-content__principles">
+                  {solution.timeline[1].designPrinciples.map((principle, index) => (
+                    <div key={index} className="case-study-content__principle">
+                      <div className="case-study-content__principle-image-wrapper">
+                        <img
+                          src={principle.image}
+                          alt={principle.title}
+                          className="case-study-content__principle-image"
+                        />
+                      </div>
+                      <div className="case-study-content__principle-content">
+                        <h6 className="case-study-content__principle-title">{principle.title}</h6>
+                        <p className="case-study-content__principle-description">{principle.description}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+              {/* Measuring Success Section */}
+              {solution.timeline[1]?.measuringSuccessHeading && (
+                <h4 className="case-study-content__heading">{solution.timeline[1].measuringSuccessHeading}</h4>
+              )}
+              {solution.timeline[1]?.measuringSuccessContent && (
+                <p className="case-study-content__text">{solution.timeline[1].measuringSuccessContent}</p>
+              )}
+              {solution.timeline[1]?.measuringSuccessMetrics && (
+                <div className="case-study-content__success-metrics">
+                  <div className="case-study-content__success-metrics-grid">
+                    {solution.timeline[1].measuringSuccessMetrics.map((item, index) => (
+                      <div key={index} className="case-study-content__success-metric-card">
+                        <span className={`case-study-content__success-metric-badge ${item.type === 'Primary Metric' ? 'case-study-content__success-metric-badge--primary' : ''}`}>
+                          {item.type}
+                        </span>
+                        <h6 className="case-study-content__success-metric-title">{item.title}</h6>
+                        {item.description && (
+                          <p className="case-study-content__success-metric-description">{item.description}</p>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+              {/* Sprint Section */}
+              {solution.timeline[1]?.sprintFullBleedImage && (
+                <figure className="case-study-content__full-bleed">
+                  <img
+                    src={solution.timeline[1].sprintFullBleedImage.src}
+                    alt={solution.timeline[1].sprintFullBleedImage.alt}
+                  />
+                </figure>
+              )}
+              {solution.timeline[1]?.sprintHeading && (
+                <h4 className="case-study-content__heading">{solution.timeline[1].sprintHeading}</h4>
+              )}
+              {solution.timeline[1]?.sprintDay01Subheading && (
+                <h5 className={`case-study-content__subheading ${solution.neutralHeadings ? 'case-study-content__subheading--neutral' : ''}`}>{solution.timeline[1].sprintDay01Subheading}</h5>
+              )}
+              {solution.timeline[1]?.sprintDay01Content && (
+                solution.timeline[1].sprintDay01Content.split('\n\n').map((para, index) => (
+                  <p key={index} className="case-study-content__text">{para}</p>
+                ))
+              )}
+              {solution.timeline[1]?.sprintDay01Image && (
+                <figure className={`case-study-content__section-image ${solution.timeline[1].sprintDay01Image.small ? 'case-study-content__section-image--small' : ''}`}>
+                  <img src={solution.timeline[1].sprintDay01Image.src} alt={solution.timeline[1].sprintDay01Image.alt} className="case-study-content__section-image-img" />
+                </figure>
+              )}
+              {solution.timeline[1]?.sprintDay01ContentAfterImage && (
+                solution.timeline[1].sprintDay01ContentAfterImage.split('\n\n').map((para, index) => (
+                  <p key={index} className="case-study-content__text">{para}</p>
+                ))
+              )}
+              {(solution.timeline[1]?.sprintDay01TwoColumnText || solution.timeline[1]?.sprintDay01TwoColumnImage) && (
+                <div className="case-study-content__two-column case-study-content__two-column--text-heavy">
+                  <div className="case-study-content__two-column-content">
+                    {solution.timeline[1]?.sprintDay01TwoColumnText && solution.timeline[1].sprintDay01TwoColumnText.split('\n\n').map((para, index) => (
+                      <p key={index} className="case-study-content__text">{para}</p>
+                    ))}
+                  </div>
+                  {solution.timeline[1]?.sprintDay01TwoColumnImage && (
+                    <figure className="case-study-content__two-column-image">
+                      <img src={solution.timeline[1].sprintDay01TwoColumnImage.src} alt={solution.timeline[1].sprintDay01TwoColumnImage.alt} />
+                    </figure>
+                  )}
+                </div>
+              )}
+              {solution.timeline[1]?.sprintDay01Summary && (
+                <p className="case-study-content__text">{solution.timeline[1].sprintDay01Summary}</p>
+              )}
+              {solution.timeline[1]?.sprintDay02Subheading && (
+                <h5 className={`case-study-content__subheading ${solution.neutralHeadings ? 'case-study-content__subheading--neutral' : ''}`}>{solution.timeline[1].sprintDay02Subheading}</h5>
+              )}
+              {solution.timeline[1]?.sprintDay02Content && (
+                solution.timeline[1].sprintDay02Content.split('\n\n').map((para, index) => (
+                  <p key={index} className="case-study-content__text">{para}</p>
+                ))
+              )}
+              {solution.timeline[1]?.sprintDay02Image && (
+                <figure className="case-study-content__section-image">
+                  <img src={solution.timeline[1].sprintDay02Image.src} alt={solution.timeline[1].sprintDay02Image.alt} className="case-study-content__section-image-img" />
+                </figure>
+              )}
+              {solution.timeline[1]?.sprintDay02ContentAfterImage && (
+                solution.timeline[1].sprintDay02ContentAfterImage.split('\n\n').map((para, index) => (
+                  <p key={index} className="case-study-content__text">{para}</p>
+                ))
+              )}
+              {solution.timeline[1]?.sprintDay02ProblemOpportunity && (
+                <div className="case-study-content__problem-opportunity">
+                  <div className="case-study-content__problem-opportunity-item">
+                    <span className="case-study-content__problem-opportunity-label">Problem</span>
+                    <p className="case-study-content__problem-opportunity-text">{solution.timeline[1].sprintDay02ProblemOpportunity.problem}</p>
+                    {solution.timeline[1].sprintDay02ProblemOpportunity.problemImage && (
+                      <img src={solution.timeline[1].sprintDay02ProblemOpportunity.problemImage} alt="Problem" className="case-study-content__problem-opportunity-image" />
+                    )}
+                  </div>
+                  <div className="case-study-content__problem-opportunity-item">
+                    <span className="case-study-content__problem-opportunity-label">Opportunity</span>
+                    <p className="case-study-content__problem-opportunity-text">{solution.timeline[1].sprintDay02ProblemOpportunity.opportunity}</p>
+                    {solution.timeline[1].sprintDay02ProblemOpportunity.opportunityImage && (
+                      <img src={solution.timeline[1].sprintDay02ProblemOpportunity.opportunityImage} alt="Opportunity" className={`case-study-content__problem-opportunity-image ${solution.timeline[1].sprintDay02ProblemOpportunity.opportunityImageHalf ? 'case-study-content__problem-opportunity-image--half' : ''}`} />
+                    )}
+                  </div>
+                </div>
+              )}
+              {solution.timeline[1]?.sprintDay02ProblemOpportunity02 && (
+                <div className="case-study-content__problem-opportunity">
+                  <div className="case-study-content__problem-opportunity-item">
+                    <span className="case-study-content__problem-opportunity-label">Problem</span>
+                    <p className="case-study-content__problem-opportunity-text">{solution.timeline[1].sprintDay02ProblemOpportunity02.problem}</p>
+                    {solution.timeline[1].sprintDay02ProblemOpportunity02.problemImage && (
+                      <img src={solution.timeline[1].sprintDay02ProblemOpportunity02.problemImage} alt="Problem" className="case-study-content__problem-opportunity-image" />
+                    )}
+                  </div>
+                  <div className="case-study-content__problem-opportunity-item">
+                    <span className="case-study-content__problem-opportunity-label">Opportunity</span>
+                    <p className="case-study-content__problem-opportunity-text">{solution.timeline[1].sprintDay02ProblemOpportunity02.opportunity}</p>
+                    {solution.timeline[1].sprintDay02ProblemOpportunity02.opportunityImage && (
+                      <img src={solution.timeline[1].sprintDay02ProblemOpportunity02.opportunityImage} alt="Opportunity" className={`case-study-content__problem-opportunity-image ${solution.timeline[1].sprintDay02ProblemOpportunity02.opportunityImageHalf ? 'case-study-content__problem-opportunity-image--half' : ''}`} />
+                    )}
+                  </div>
+                </div>
+              )}
+              {solution.timeline[1]?.sprintDay02ProblemOpportunity03 && (
+                <div className="case-study-content__problem-opportunity">
+                  <div className="case-study-content__problem-opportunity-item">
+                    <span className="case-study-content__problem-opportunity-label">Problem</span>
+                    <p className="case-study-content__problem-opportunity-text">{solution.timeline[1].sprintDay02ProblemOpportunity03.problem}</p>
+                    {solution.timeline[1].sprintDay02ProblemOpportunity03.problemImage && (
+                      <img src={solution.timeline[1].sprintDay02ProblemOpportunity03.problemImage} alt="Problem" className={`case-study-content__problem-opportunity-image ${solution.timeline[1].sprintDay02ProblemOpportunity03.problemImageSmall ? 'case-study-content__problem-opportunity-image--small' : ''}`} />
+                    )}
+                  </div>
+                  <div className="case-study-content__problem-opportunity-item">
+                    <span className="case-study-content__problem-opportunity-label">Opportunity</span>
+                    <p className="case-study-content__problem-opportunity-text">{solution.timeline[1].sprintDay02ProblemOpportunity03.opportunity}</p>
+                    {solution.timeline[1].sprintDay02ProblemOpportunity03.opportunityImage && (
+                      <img src={solution.timeline[1].sprintDay02ProblemOpportunity03.opportunityImage} alt="Opportunity" className={`case-study-content__problem-opportunity-image ${solution.timeline[1].sprintDay02ProblemOpportunity03.opportunityImageHalf ? 'case-study-content__problem-opportunity-image--half' : ''}`} />
+                    )}
+                  </div>
+                </div>
+              )}
+              {solution.timeline[1]?.sprintDay02ImageSecondary && (
+                <figure className="case-study-content__section-image">
+                  <img src={solution.timeline[1].sprintDay02ImageSecondary.src} alt={solution.timeline[1].sprintDay02ImageSecondary.alt} className="case-study-content__section-image-img" />
+                </figure>
+              )}
+              {solution.timeline[1]?.sprintDay02ContentAfterImageSecondary && (
+                solution.timeline[1].sprintDay02ContentAfterImageSecondary.split('\n\n').map((para, index) => (
+                  <p key={index} className="case-study-content__text">{para}</p>
+                ))
+              )}
+              {/* Leadership Section */}
+              {solution.timeline[1]?.leadershipHeading && (
+                <h4 className="case-study-content__heading">{solution.timeline[1].leadershipHeading}</h4>
+              )}
+              {solution.timeline[1]?.leadershipContent && (
+                solution.timeline[1].leadershipContent.split('\n\n').map((para, index) => (
+                  <p key={index} className="case-study-content__text">{para}</p>
+                ))
+              )}
+              {/* Sprint Day 03 */}
+              {solution.timeline[1]?.sprintDay03Subheading && (
+                <h5 className={`case-study-content__subheading ${solution.neutralHeadings ? 'case-study-content__subheading--neutral' : ''}`}>{solution.timeline[1].sprintDay03Subheading}</h5>
+              )}
+              {solution.timeline[1]?.sprintDay03Content && (
+                solution.timeline[1].sprintDay03Content.split('\n\n').map((para, index) => (
+                  <p key={index} className="case-study-content__text">{para}</p>
+                ))
+              )}
+              {solution.timeline[1]?.sprintDay03Image && (
+                <figure className={`case-study-content__section-image ${solution.timeline[1].sprintDay03Image.small ? 'case-study-content__section-image--small' : ''}`}>
+                  <img src={solution.timeline[1].sprintDay03Image.src} alt={solution.timeline[1].sprintDay03Image.alt} className="case-study-content__section-image-img" />
+                </figure>
+              )}
+              {solution.timeline[1]?.sprintDay03ContentAfterImage && (
+                solution.timeline[1].sprintDay03ContentAfterImage.split('\n\n').map((para, index) => (
+                  <p key={index} className="case-study-content__text">{para}</p>
+                ))
+              )}
+              {/* Customer Feedback Section */}
+              {solution.timeline[1]?.customerFeedbackHeading && (
+                <h4 className="case-study-content__heading">{solution.timeline[1].customerFeedbackHeading}</h4>
+              )}
+              {solution.timeline[1]?.customerFeedbackContent && (
+                <p className="case-study-content__text">{solution.timeline[1].customerFeedbackContent}</p>
+              )}
+              {solution.timeline[1]?.customerFeedbackQuotes && (
+                <div className="case-study-content__customer-quotes">
+                  {solution.timeline[1].customerFeedbackQuotes.map((item, index) => (
+                    <blockquote key={index} className="case-study-content__quote-card">
+                      <span className="case-study-content__quote-mark case-study-content__quote-mark--open">"</span>
+                      <p className="case-study-content__quote-text">{item.quote}</p>
+                      <span className="case-study-content__quote-mark case-study-content__quote-mark--close">"</span>
+                      <cite className="case-study-content__quote-author">- {item.author}</cite>
+                    </blockquote>
+                  ))}
+                </div>
+              )}
+              {solution.timeline[1]?.customerFeedbackClosing && (
+                <p className="case-study-content__text">{solution.timeline[1].customerFeedbackClosing}</p>
+              )}
+              {/* What We Released Section */}
+              {solution.timeline[1]?.whatWeReleasedHeading && (
+                <h4 className="case-study-content__heading">{solution.timeline[1].whatWeReleasedHeading}</h4>
+              )}
+              {solution.timeline[1]?.whatWeReleasedImage && (
+                <figure
+                  className="case-study-content__section-image case-study-content__section-image--clickable"
+                  onClick={() => setSingleImageLightbox(solution.timeline[1].whatWeReleasedImage)}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => e.key === 'Enter' && setSingleImageLightbox(solution.timeline[1].whatWeReleasedImage)}
+                >
+                  <img src={solution.timeline[1].whatWeReleasedImage.src} alt={solution.timeline[1].whatWeReleasedImage.alt} className="case-study-content__section-image-img" />
+                  <div className="case-study-content__section-image-zoom">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <circle cx="11" cy="11" r="8" />
+                      <path d="M21 21l-4.35-4.35M11 8v6M8 11h6" />
+                    </svg>
+                  </div>
+                </figure>
+              )}
+              {solution.timeline[1]?.whatWeReleasedContent && (
+                <p className="case-study-content__text">{solution.timeline[1].whatWeReleasedContent}</p>
+              )}
+              {solution.timeline[1]?.whatWeReleasedArchitectureImage && (
+                <figure className="case-study-content__section-image">
+                  <img src={solution.timeline[1].whatWeReleasedArchitectureImage.src} alt={solution.timeline[1].whatWeReleasedArchitectureImage.alt} className="case-study-content__section-image-img" />
+                </figure>
+              )}
+              {solution.timeline[1]?.whatWeReleasedPrinciple1Heading && (
+                <h5 className={`case-study-content__subheading ${solution.neutralHeadings ? 'case-study-content__subheading--neutral' : ''}`}>{solution.timeline[1].whatWeReleasedPrinciple1Heading}</h5>
+              )}
+              {solution.timeline[1]?.whatWeReleasedPrinciple1Image && (
+                <figure
+                  className="case-study-content__section-image case-study-content__section-image--clickable"
+                  onClick={() => setSingleImageLightbox(solution.timeline[1].whatWeReleasedPrinciple1Image)}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => e.key === 'Enter' && setSingleImageLightbox(solution.timeline[1].whatWeReleasedPrinciple1Image)}
+                >
+                  <img src={solution.timeline[1].whatWeReleasedPrinciple1Image.src} alt={solution.timeline[1].whatWeReleasedPrinciple1Image.alt} className="case-study-content__section-image-img" />
+                  <div className="case-study-content__section-image-zoom">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <circle cx="11" cy="11" r="8" />
+                      <path d="M21 21l-4.35-4.35M11 8v6M8 11h6" />
+                    </svg>
+                  </div>
+                </figure>
+              )}
+              {solution.timeline[1]?.whatWeReleasedPrinciple1Content && (
+                <p className="case-study-content__text">{solution.timeline[1].whatWeReleasedPrinciple1Content}</p>
+              )}
+              {solution.timeline[1]?.whatWeReleasedPrinciple2Heading && (
+                <h5 className={`case-study-content__subheading ${solution.neutralHeadings ? 'case-study-content__subheading--neutral' : ''}`}>{solution.timeline[1].whatWeReleasedPrinciple2Heading}</h5>
+              )}
+              {solution.timeline[1]?.whatWeReleasedPrinciple2Image && (
+                <figure
+                  className="case-study-content__section-image case-study-content__section-image--clickable"
+                  onClick={() => setSingleImageLightbox(solution.timeline[1].whatWeReleasedPrinciple2Image)}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => e.key === 'Enter' && setSingleImageLightbox(solution.timeline[1].whatWeReleasedPrinciple2Image)}
+                >
+                  <img src={solution.timeline[1].whatWeReleasedPrinciple2Image.src} alt={solution.timeline[1].whatWeReleasedPrinciple2Image.alt} className="case-study-content__section-image-img" />
+                  <div className="case-study-content__section-image-zoom">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <circle cx="11" cy="11" r="8" />
+                      <path d="M21 21l-4.35-4.35M11 8v6M8 11h6" />
+                    </svg>
+                  </div>
+                </figure>
+              )}
+              {solution.timeline[1]?.whatWeReleasedPrinciple2Content && (
+                <p className="case-study-content__text">{solution.timeline[1].whatWeReleasedPrinciple2Content}</p>
+              )}
+              {solution.timeline[1]?.whatWeReleasedPrinciple3Heading && (
+                <h5 className={`case-study-content__subheading ${solution.neutralHeadings ? 'case-study-content__subheading--neutral' : ''}`}>{solution.timeline[1].whatWeReleasedPrinciple3Heading}</h5>
+              )}
+              {solution.timeline[1]?.whatWeReleasedPrinciple3Image && (
+                <figure
+                  className="case-study-content__section-image case-study-content__section-image--clickable"
+                  onClick={() => setSingleImageLightbox(solution.timeline[1].whatWeReleasedPrinciple3Image)}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => e.key === 'Enter' && setSingleImageLightbox(solution.timeline[1].whatWeReleasedPrinciple3Image)}
+                >
+                  <img src={solution.timeline[1].whatWeReleasedPrinciple3Image.src} alt={solution.timeline[1].whatWeReleasedPrinciple3Image.alt} className="case-study-content__section-image-img" />
+                  <div className="case-study-content__section-image-zoom">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <circle cx="11" cy="11" r="8" />
+                      <path d="M21 21l-4.35-4.35M11 8v6M8 11h6" />
+                    </svg>
+                  </div>
+                </figure>
+              )}
+              {solution.timeline[1]?.whatWeReleasedPrinciple3Content && (
+                <p className="case-study-content__text">{solution.timeline[1].whatWeReleasedPrinciple3Content}</p>
+              )}
+              {/* Operational Framework Section */}
+              {solution.timeline[1]?.operationalFrameworkHeading && (
+                <h4 className="case-study-content__heading">{solution.timeline[1].operationalFrameworkHeading}</h4>
+              )}
+              {solution.timeline[1]?.operationalFrameworkContent && (
+                solution.timeline[1].operationalFrameworkContent.split('\n\n').map((para, index) => (
+                  <p key={index} className="case-study-content__text">{para}</p>
+                ))
+              )}
+              {solution.timeline[1]?.operationalFrameworkImage && (
+                <figure className="case-study-content__section-image">
+                  <img src={solution.timeline[1].operationalFrameworkImage.src} alt={solution.timeline[1].operationalFrameworkImage.alt} className="case-study-content__section-image-img" />
+                </figure>
+              )}
+              {solution.timeline[1]?.reflectionHeading && (
+                <h4 className="case-study-content__heading">{solution.timeline[1].reflectionHeading}</h4>
+              )}
+              {solution.timeline[1]?.reflectionContent && (
+                solution.timeline[1].reflectionContent.split('\n\n').map((para, index) => (
+                  <p key={index} className="case-study-content__text">{para}</p>
+                ))
               )}
               {solution.timeline[1]?.sectionContentAfterPlanning && (
                 <p className="case-study-content__text">{solution.timeline[1].sectionContentAfterPlanning}</p>

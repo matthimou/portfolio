@@ -137,16 +137,18 @@ const LoginModal = ({ isOpen, onClose }) => {
           </svg>
         </div>
 
-        <h2 id="login-modal-title" className="login-modal__title">
-          {status === 'success' ? 'Access Granted' : 'Protected Content'}
-        </h2>
+        <div aria-live="polite" aria-atomic="true">
+          <h2 id="login-modal-title" className="login-modal__title">
+            {status === 'success' ? 'Access Granted' : 'Protected Content'}
+          </h2>
 
-        <p className="login-modal__description">
-          {status === 'success'
-            ? 'Loading protected case studies...'
-            : 'Enter your access code to view protected case studies.'
-          }
-        </p>
+          <p className="login-modal__description">
+            {status === 'success'
+              ? 'Loading protected case studies...'
+              : 'Enter your access code to view protected case studies.'
+            }
+          </p>
+        </div>
 
         {status !== 'success' && (
           <form onSubmit={handleSubmit} className="login-modal__form">
@@ -175,11 +177,13 @@ const LoginModal = ({ isOpen, onClose }) => {
                 autoCapitalize="off"
                 spellCheck="false"
               />
-              {error && (
-                <p className="login-modal__error">
-                  You need a <span className="login-modal__rainbow-text">proper</span> access code
-                </p>
-              )}
+              <div aria-live="polite" aria-atomic="true">
+                {error && (
+                  <p className="login-modal__error">
+                    You need a <span className="login-modal__rainbow-text">proper</span> access code
+                  </p>
+                )}
+              </div>
             </div>
 
             <button

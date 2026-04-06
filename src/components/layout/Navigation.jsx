@@ -51,7 +51,7 @@ const Navigation = () => {
             }
           }}
         >
-          <img src={avatarImage} alt="" className="navigation__avatar" />
+          <img src={avatarImage} alt="" className="navigation__avatar" width={32} height={32} />
           {brandName}
         </Link>
 

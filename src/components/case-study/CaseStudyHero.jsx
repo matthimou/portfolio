@@ -19,10 +19,12 @@ const CaseStudyHero = ({ id, title, hero, meta, hideHeader = false }) => {
               <span className="case-study-hero__role">{meta.role}</span>
             </div>
           )}
-          {meta.team?.composition && (
+          {(meta.team?.composition || meta.team?.size) && (
             <div className="case-study-hero__team">
               <span className="case-study-hero__team-info">
-                {meta.team.size ? `${meta.team.size}: ${meta.team.composition}` : meta.team.composition}
+                {meta.team.size && meta.team.composition
+                  ? `${meta.team.size}: ${meta.team.composition}`
+                  : meta.team.size || meta.team.composition}
               </span>
             </div>
           )}
