@@ -1471,16 +1471,27 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
             <p key={index} className="case-study-content__text">{para}</p>
           ))}
 
-          {/* Platform Two-Up Third */}
+          {/* Platform Two-Up Third (or 4-up when 4 items) */}
           {impact.platformTwoUpThird && impact.platformTwoUpThird.length > 0 && (
-            <div className="case-study-content__platform-two-up">
-              {impact.platformTwoUpThird.map((image, index) => (
-                <figure key={index} className="case-study-content__platform-two-up-item">
-                  <img src={image.src} alt={image.alt} />
-                  {image.label && <figcaption className="case-study-content__platform-two-up-label">{image.label}</figcaption>}
-                </figure>
-              ))}
-            </div>
+            impact.platformTwoUpThird.length === 4 ? (
+              <div className="case-study-content__platform-grid">
+                {impact.platformTwoUpThird.map((image, index) => (
+                  <div key={index} className="case-study-content__platform-grid-item">
+                    <img src={image.src} alt={image.alt} />
+                    {image.label && <span className="case-study-content__platform-grid-label">{image.label}</span>}
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="case-study-content__platform-two-up">
+                {impact.platformTwoUpThird.map((image, index) => (
+                  <figure key={index} className="case-study-content__platform-two-up-item">
+                    <img src={image.src} alt={image.alt} />
+                    {image.label && <figcaption className="case-study-content__platform-two-up-label">{image.label}</figcaption>}
+                  </figure>
+                ))}
+              </div>
+            )
           )}
 
           {/* Lessons from Failure */}

@@ -635,6 +635,7 @@
   grid-template-columns: repeat(4, 1fr);
   gap: var(--space-md);
   margin: var(--space-lg) 0;
+  align-items: end;
 }
 
 .case-study-content__platform-grid-item {

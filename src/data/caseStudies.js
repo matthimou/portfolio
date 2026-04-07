@@ -202,7 +202,7 @@ export const caseStudies = [
           },
           sectionContentAfterTimeline: `This analysis gave us a clearer picture of how to design a more integrated customer journey.
 
-After placing an order, customers had about ten minutes to add items, but during this time the map wasn't very useful. The dasher hadn't been assigned yet, and even after assignment it took several minutes for them to reach the restaurant. Until then, the map just showed the store and delivery locations with no route.`,
+After placing an order, customers had about ten minutes to add items from another store, but during this time the map wasn't very useful. The dasher hadn't been assigned yet, and even after assignment it took several minutes for them to reach the restaurant. Until then, the map just showed the store and delivery locations with no route.`,
           sectionImageMapInsight: {
             src: '/images/DoorDashMapoInsight.png',
             alt: 'Map insight showing limited utility during early delivery stage'
@@ -331,20 +331,22 @@ Each milestone delivered real value to customers and the business while teaching
       metrics: [],
       narrative: `With a solid foundation in place and strong early results, we entered an extended platform phase spanning the next year. The goal shifted from proving the concept to scaling it: making cross-merchant shopping a habit rather than a novelty.
 
-We started by expanding contextual merchandising for special occasions and personalized recommendations based on order history. By this point, the senior designer I had been mentoring had grown into a Staff-level contributor, leading the merchandising expansion work with increasing autonomy. This evolution let us surface newer offerings like package delivery and alcohol at the right moments in the shopping flow.`,
+We started by expanding contextual merchandising for special occasions and personalized recommendations based on order history. By this point, the senior designer I had been mentoring had grown into a Staff-level contributor, leading the merchandising expansion work as we built up his strategic muscle. His designer archetype was high craft with strong execution, but he was still growing in his ability to impact product strategy. Bringing him into the brief writing process and setting up the sprint cadence allowed me to start transitioning him into the lead role not just on execution, but in setting the strategic focus for each half year.
+
+This evolution in the product let us surface newer offerings like package delivery and alcohol at the right moments in the shopping flow. By this stage the team had grown to 2 PMs and 10 engineers, so helping my designer navigate timelines and priorities became a much bigger part of the challenge. I worked closely with the Senior Director of Consumer product to prioritize across the two PMs who were leading independent teams staffed with 5 engineers each to ensure my designer had clear visibility into sequencing the work.`,
       platformImages: [
         { src: '/images/DbDOccasionPlatform.png', alt: 'Occasion-based merchandising', label: 'Occasions' },
         { src: '/images/DbDDidYouForgetPlatform.png', alt: 'Did you forget feature', label: 'Did You Forget?' },
         { src: '/images/DbDPackagesPlatform.png', alt: 'Package delivery', label: 'Package Delivery' },
         { src: '/images/DbDAlcoholPlatform.png', alt: 'Alcohol delivery', label: 'Alcohol' }
       ],
-      narrativeAfterImages: 'Unifying order tracking and the shopping bottom-sheet into a single interface was our most ambitious technical design challenge. To tackle it, I hired a Principal Designer with deep systems expertise to lead the effort and expand our team\'s capacity. Together, we used the opportunity to refactor the code, improve performance, and codify guidelines to keep the architecture clean. The governance forum I had established during Foundations became increasingly vital as more teams wanted to build on this surface. We evolved the original guidelines into a comprehensive framework, and the forum met regularly to review proposals and maintain design coherence across a growing number of use cases.',
-      narrativeBeforeTwoUp: 'To address customer concerns about delivery timing, we added incremental ETAs for each merchant, making it clear how the extra stop would affect arrival.',
+      narrativeAfterImages: 'Unifying order tracking and the shopping bottom-sheet into a single interface was our most ambitious technical design challenge. To tackle it, I hired a Principal Designer with deep systems expertise to lead the effort and expand our team\'s capacity. Together, we used the opportunity to refactor the code, improve performance, and codify guidelines to keep the architecture clean. The governance forum I had established during Foundations became increasingly vital as more teams wanted to build on this surface. We evolved the original guidelines into a comprehensive framework with the PM supporting the delivery surface, and the forum met regularly to review proposals and maintain design coherence across a growing number of use cases. I now had a senior lead who could advise teams, which allowed us to get in front of problems early, and help teams craft features that met the surface guidelines or explain why their ideas wouldn\'t work here.',
+      narrativeBeforeTwoUp: 'To address customer concerns from our research about delivery timing impacts, we added incremental ETAs for each merchant, making it clear how the extra stop would affect arrival.',
       platformTwoUp: [
         { src: '/images/DbDSingleSheetPlatform.png', alt: 'Unified single sheet interface', label: 'Combined UI' },
         { src: '/images/DbDETAsPlatform.png', alt: 'ETAs platform', label: 'Incremental ETAs' }
       ],
-      narrativeAfterTwoUp: 'To make the default view more relevant, we built a personalized "For You" feed that pulled from multiple merchants. For customers who knew exactly what they wanted, we added cross-merchant search.',
+      narrativeAfterTwoUp: 'To make the default view more relevant, we built a personalized "For You" feed that pulled from multiple merchants, offering a highly merchandised and relevant default view. For customers who knew exactly what they wanted, we added cross-merchant search. Each new feature completed a new use case to expand the capabilities of the shopping experience.',
       platformTwoUpSecond: [
         { src: '/images/DbDforyouPlatform.png', alt: 'For You feed', label: 'For You Feed' },
         { src: '/images/DbDSearchPlatform.png', alt: 'Search' }
@@ -353,25 +355,25 @@ We started by expanding contextual merchandising for special occasions and perso
 
 Finally, we came back to our original MVP idea: showing bundling options in the cart. For high-intent moments like Mother's Day, this helped customers discover add-ons that weren't on the original menu.`,
       platformTwoUpThird: [
+        { src: '/images/doubledash-mother-day.png', alt: 'Mothers Day promotion', label: 'Mothers Day' },
+        { src: '/images/doubledash-deserts.png', alt: 'Deserts promotion', label: 'Deserts' },
         { src: '/images/dBdMerchantsInMapPlatform.png', alt: 'Merchants on map interface', label: 'Merchants on Map' },
         { src: '/images/DbDinCartPlatform.png', alt: 'Doubledash in cart', label: 'Doubledash In Cart' }
       ],
       lessonsHeading: 'Learning from Failure',
       lessonsNarrative: `Not all of our tests worked. In fact we spent significant effort trying to add bundling to the store page through a series of experiments which showed promise, but often came with compromises we weren't willing to make.
 
-Our first attempt that met with mixed results was a store page feature we called Something for Everyone. The target for this feature was families or groups with mixed appetites or dietary needs.
-
-Because the Doubledash delivery range was gated by a primary order at another store we had limitations higher up the funnel. Customers needed to select a store, and based on that we could show other nearby stores available to bundle.`,
+Our first attempt that met with mixed results was a store page feature we called Something for Everyone. The target for this feature was families or groups with mixed appetites or dietary needs. Because the Doubledash delivery range was gated by a primary order at another store we had limitations higher up the funnel. Customers needed to select a store, and based on that we could show other nearby stores available to bundle.`,
       lessonsImage: {
         src: '/images/S4Efailure.png',
         alt: 'Something for Everyone store page experiment',
         caption: 'Something for Everyone'
       },
-      lessonsNarrativeAfterImage: `This led to a heavy UI treatment trying to explain the limitation, because the set of nearby stores changed based on which store page the customer was visiting.
+      lessonsNarrativeAfterImage: `I worked with my store page design team for this effort to reduce the load on my Doubledash designer. Our COO took a particular interest in this effort, and wanted to get involved, so for 4 weeks we met twice weekly to workshop approaches directly with them, and two senior product directors on the consumer team. The technical constraints ultimately led to a heavy UI treatment trying to explain the limitation, because the set of nearby stores changed based on which store page the customer was visiting. The tab system meant customers needed to navigate the store content using a bottom nav instead of just scrolling as customers were used to.
 
 We got mixed results: attach rate went up as customers discovered the capability, but cart spend went down. Customers were ordering from multiple stores but spending less, so we rolled it back.
 
-Another experiment was a pairing menu on the menu item details page.`,
+Another experiment was a pairing menu on the menu item details page. I felt this approach lacked the prominence necessary, but the PM pushed to test it. We agreed to do so with guardrails in place to limit the number of customers exposed (by only launching in a couple markets). I'm open to being wrong, and flexible in cases like this. Testing can resolve disagreements efficiently, as long as we limit the blast radius.`,
       lessonsVideo: {
         src: '/images/PairingmenuFailure.mov',
         alt: 'Pairing menu experiment',
@@ -392,7 +394,7 @@ Customers with high intent were visiting a specific store they wanted to order f
 
 We did eventually find a place for Doubledash on store pages, and it mirrored other learnings.
 
-By incorporating alcohol directly into the store page menu as a complimentary offering for restaurants that didn't serve alcohol we found a model that appealed to customers (increased Alcohol trials, and drove +15% attachment rate).
+We collaborated with a New Vertical designer for Alcohol who lead this effort. By incorporating alcohol directly into the store page menu as a complimentary offering for restaurants that didn't serve alcohol we found a model that appealed to customers (increased Alcohol trials, and drove +15% attachment rate).
 
 Because we simply added a menu category, customers that were acclimated to ordering items from the menu would add alcohol items naturally because it matched their existing mental model for ordering.`,
       lessonsImageConclusion: {
@@ -401,7 +403,7 @@ Because we simply added a menu category, customers that were acclimated to order
         caption: 'Alcohol in Menu'
       },
       impactHeading: 'Impact',
-      impactNarrative: 'By building incrementally, we delivered meaningful results at each stage. Across all these platform initiatives, Doubledash achieved results that validated our strategy and compounded over time.',
+      impactNarrative: 'By building incrementally, we delivered meaningful results at each stage. Across all these platform initiatives, Doubledash achieved results that validated our strategy and compounded over time. Getting creative about staffing, hiring and adding a Principle designer to increase capacity and strategic weight, working with senior product leaders to resolve priority conflicts, and workshopping directly with the senior leadership team increased the visibility and impact of my team\'s contributions.',
       impactImage02: {
         src: '/images/Impact02.png',
         alt: 'Impact results'
@@ -412,7 +414,7 @@ Because we simply added a menu category, customers that were acclimated to order
         { value: '22%', label: 'increase in order volume for new verticals' }
       ],
       futureExplorationsHeading: 'Future Forward',
-      futureExplorationsNarrative: 'I always push my teams to stay ahead of product capabilities as a tactic for pushing products beyond their current limitations. The concepts below from sprints I ran before leaving explored what the future could look like for Doubledash if we brought it to the home page. Giving customers a clear idea of what bundling is and use cases it can serve without having to place an order.',
+      futureExplorationsNarrative: 'I always push my teams to stay ahead of product capabilities as a tactic for pushing products beyond their current limitations. The concepts below from sprints I ran on my team before leaving Doordash explored what the future could look like for Doubledash if we brought it to the home page. Giving customers a clear idea of what bundling is and use cases it can serve without having to place an order.',
       futureExplorationsImages: [
         { src: '/images/Future01.png', alt: 'Future exploration concept 1' },
         { src: '/images/Future02.png', alt: 'Future exploration concept 2' },
