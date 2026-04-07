@@ -702,6 +702,15 @@
   color: var(--color-text-primary);
 }
 
+.home-intro__headline {
+  font-family: var(--font-display);
+  font-size: var(--text-3xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  line-height: var(--leading-tight);
+  margin: 0 0 var(--space-md) 0;
+}
+
 .home-intro__text p {
   margin: 0 0 var(--space-sm) 0;
 }

@@ -254,8 +254,8 @@ const HomePage = ({ onOpenLogin }) => {
         <div className="container">
           <div className={`home-intro__content ${introVisible ? 'home-intro__content--visible' : ''}`}>
             <div className="home-intro__text">
-              <p>I lead design teams that ship products customers love.</p>
-              <p>Across DoorDash, Groupon, and Orbitz, I've scaled design in fast-moving environments. Staying focussed on what makes great products feel human, and building teams that operate with purpose. I've launched 0→1 products, built platforms and systems that serve organizations, and helped teams consistently do their best work. I have a history of building self-driven and engaged teams, investing in systems to make their workflow efficient, nurturing their growth and career development, and partnering closely with cross-functional leaders to create the right operating context for design to be successful.</p>
+              <h2 className="home-intro__headline">I lead design teams that ship products customers love.</h2>
+              <p>Across DoorDash, Groupon, and Orbitz, I've scaled design in fast-moving environments. Staying focussed on what makes great products feel human, and building teams that operate with purpose. I've launched 0→1 products, built platforms and systems that serve organizations, and helped teams consistently do their best work.</p>
               <p>I am based in Chicago.</p>
             </div>
             <div className="home-intro__image-wrapper">
