@@ -165,7 +165,7 @@
   .navigation__brand {
     font-size: var(--text-sm);
     line-height: 1.15;
-    max-width: 110px;
+    white-space: nowrap;
     text-align: left;
   }
 
@@ -181,7 +181,7 @@
 /* Very small screens */
 @media (max-width: 380px) {
   .navigation__brand {
-    font-size: var(--text-sm);
-    max-width: 100px;
+    font-size: var(--text-xs);
+    white-space: nowrap;
   }
 }
