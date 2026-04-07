@@ -36,6 +36,7 @@ const validateCode = async (code) => {
 
 export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const [isAuthLoading, setIsAuthLoading] = useState(true)
 
   // Check sessionStorage on mount
   useEffect(() => {
@@ -43,6 +44,7 @@ export const AuthProvider = ({ children }) => {
     if (authStatus === 'true') {
       setIsAuthenticated(true)
     }
+    setIsAuthLoading(false)
   }, [])
 
   const login = async (code) => {
@@ -69,7 +71,7 @@ export const AuthProvider = ({ children }) => {
   }
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
+    <AuthContext.Provider value={{ isAuthenticated, isAuthLoading, login, logout }}>
       {children}
     </AuthContext.Provider>
   )

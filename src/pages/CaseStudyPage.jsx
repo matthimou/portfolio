@@ -10,7 +10,7 @@ const publishedStudies = caseStudies.filter(s => s.status === 'published')
 
 const CaseStudyPage = ({ onOpenLogin }) => {
   const { projectId } = useParams()
-  const { isAuthenticated } = useAuth()
+  const { isAuthenticated, isAuthLoading } = useAuth()
 
   // Only allow published case studies
   const study = publishedStudies.find(s => s.id === projectId)
@@ -18,6 +18,11 @@ const CaseStudyPage = ({ onOpenLogin }) => {
   // Redirect to home if project not found or not published
   if (!study) {
     return <Navigate to="/" replace />
+  }
+
+  // Wait for auth to initialize before checking protected access
+  if (isAuthLoading) {
+    return null
   }
 
   // Redirect to home if trying to access protected study without auth
