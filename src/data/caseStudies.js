@@ -510,7 +510,7 @@ But the business was evolving. Data showed a tipping point in customer stickines
           title: null,
           description: null,
           sectionHeading: 'Reframing the Problem',
-          sectionContent: `As is often the case in larger organizations, other teams were navigating major shifts at the same time. DashPass, our loyalty program, was buried in account settings. It was the company's top strategic priority with aggressive subscriber growth goals that needed support, but customers couldn't find it.`,
+          sectionContent: `As is often the case in larger organizations, other teams were navigating major shifts at the same time. DashPass, our loyalty program, was buried in account settings. It was the company's top strategic priority with aggressive subscriber growth goals that needed support, but customers couldn't find it. Discovery for non-members was brittle as we relied on ad placements on the home page which could be deprioritized due to other campaigns.`,
           sectionImagesTwoUp: [
             { src: '/images/metab-dashpass-buried01.png', alt: 'DashPass buried in settings', label: 'DashPass Signup' },
             { src: '/images/metab-dashpass-buried02.png', alt: 'DashPass visibility issue', label: 'DashPass Account' }
@@ -641,7 +641,7 @@ At the end of the review, I asked him to meet privately. The Discovery PM hadn't
               author: 'Wanda D.'
             }
           ],
-          customerFeedbackClosing: `Given the positive feedback, I worked the design lead to finalize the designs. We had specs ready for engineering within a week of completing user tests.
+          customerFeedbackClosing: `Given the positive feedback, I worked with the design lead to finalize the designs. The reality was if we had uncovered major issues it would have stopped the momentum, which was another validation to keep the designs focussed for V1. We had specs ready for engineering within a week of completing user tests.
 
 All consumer app launches went through the Consumer Product Review, where I served as design approver alongside the Senior Director of Consumer Product. This gave me the visibility to ensure Me Tab met the bar on the first review.`,
           whatWeReleasedHeading: 'What We Released',
@@ -669,17 +669,11 @@ All consumer app launches went through the Consumer Product Review, where I serv
           },
           whatWeReleasedPrinciple3Content: 'Easy navigation to DashPass account settings for members or signup for non-members. Direct access to order history, and a combined settings/account surface.',
           operationalFrameworkHeading: 'Operational Framework',
-          operationalFrameworkContent: `Because we were launching a new surface, it was important to develop guidelines and governance for the larger organization. I worked with the designer and PM to build out a framework document, not just for designers, but for operators and product managers. This included surface principles, dos and don'ts, how the feed was structured, and how third-party teams could plug in to get the most out of the surface.`,
+          operationalFrameworkContent: `Because we were launching a new surface, it was important to develop guidelines and governance for the larger organization. I worked with the designer and PM to build out a framework, not just for designers, but for operators and product managers. This included surface principles, dos and don'ts, how the feed was structured, and how third-party teams could plug in to get the most out of the surface. We set up a weekly forum where teams could come learn about the new surface, propose features, and get feedback and direction on how to make them fit.`,
           operationalFrameworkImage: {
             src: '/images/metab-framework.png',
             alt: 'Me Tab Framework'
-          },
-          reflectionHeading: 'What I\'d Do Differently',
-          reflectionContent: `Two things stand out in hindsight.
-
-First, I recognized during planning that replacing a surface would require extra cross-org alignment. But I addressed it indirectly—through principles and success criteria—rather than confronting it head-on with leadership before the sprint. It wasn't until tension surfaced mid-sprint that I took direct action. My product partner was less tuned in to the political dynamics, so I should have trusted my gut sooner and escalated earlier.
-
-Second, I assigned a senior product designer from the Discovery team to lead design—it was a growth opportunity, and they owned the initiative. But they were working alongside more senior designers from DashPass and Social, and the shift from collating others' work to truly driving the design took more coaching than I anticipated. We got there, but the extra cycles at the start were a cost I could have reduced with more structured support upfront.`
+          }
         }
       ],
       execution: [],
@@ -705,7 +699,11 @@ Second, I assigned a senior product designer from the Discovery team to lead des
         { value: '12%', label: 'MAU placed at least 1 order from surface' }
       ],
       businessImpact: 'Critically, the increase in order frequency came entirely from reorders—new merchant trial rates stayed neutral. Me Tab drove repeat purchases without hurting discovery and exploration. For DashPass, we observed a 2.4% decrease in annual subscription cancellations, and customer savings from fees and exclusive promotions increased by 20 cents per DashPass member.',
-      testimonial: null
+      testimonial: null,
+      reflectionHeading: 'What I\'d Do Differently',
+      reflectionContent: `I recognized during planning that replacing a surface would require extra cross-org alignment. But I addressed it indirectly—through principles and success criteria—rather than confronting it head-on with leadership before the sprint. It wasn't until tension surfaced mid-sprint that I took direct action. My product partner was less tuned in to the political dynamics, so I should have trusted my gut sooner and escalated earlier.
+
+Second, I assigned a senior product designer from the Discovery team to lead design—it was a growth opportunity, and they owned the initiative. But they were working alongside more senior designers from DashPass and Social, and the shift from collating others' work to truly driving the design took more coaching than I anticipated. We got there, but the extra cycles at the start were a cost I could have reduced with more structured support upfront.`
     }
   },
   {

@@ -922,15 +922,7 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                   <img src={solution.timeline[1].operationalFrameworkImage.src} alt={solution.timeline[1].operationalFrameworkImage.alt} className="case-study-content__section-image-img" />
                 </figure>
               )}
-              {solution.timeline[1]?.reflectionHeading && (
-                <h4 className="case-study-content__heading">{solution.timeline[1].reflectionHeading}</h4>
-              )}
-              {solution.timeline[1]?.reflectionContent && (
-                solution.timeline[1].reflectionContent.split('\n\n').map((para, index) => (
-                  <p key={index} className="case-study-content__text">{para}</p>
-                ))
-              )}
-              {solution.timeline[1]?.sectionContentAfterPlanning && (
+                            {solution.timeline[1]?.sectionContentAfterPlanning && (
                 <p className="case-study-content__text">{solution.timeline[1].sectionContentAfterPlanning}</p>
               )}
               {solution.timeline[1]?.sectionContentCrossOrg && (
@@ -1706,6 +1698,16 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
 
           {/* Testimonial */}
           {impact.testimonial && <CaseStudyTestimonial testimonial={impact.testimonial} />}
+
+          {/* Reflection / What I'd Do Differently */}
+          {impact.reflectionHeading && (
+            <h4 className="case-study-content__heading">{impact.reflectionHeading}</h4>
+          )}
+          {impact.reflectionContent && (
+            impact.reflectionContent.split('\n\n').map((para, index) => (
+              <p key={index} className="case-study-content__text">{para}</p>
+            ))
+          )}
         </section>
       )}
     </div>
