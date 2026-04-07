@@ -260,112 +260,7 @@
   position: relative;
 }
 
-.career-path__timeline {
-  position: relative;
-}
-
-/* Timeline hidden when expanded - no overlay needed */
-
-/* Toggle button - positioned at bottom center */
-.career-path__toggle {
-  position: absolute;
-  bottom: -15px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 6px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: var(--space-xs) var(--space-sm);
-  color: var(--color-text-tertiary);
-  transition: color 0.2s ease, opacity 0.2s ease;
-  z-index: 10;
-  opacity: 0;
-}
-
-.career-path__toggle--visible {
-  opacity: 1;
-}
-
-/* Always show toggle on touch devices (no hover capability) */
-@media (hover: none) {
-  .career-path__toggle {
-    opacity: 1;
-  }
-}
-
-/* More action: always active when hovering module */
-.career-path__timeline:hover .career-path__toggle:not(.career-path__toggle--expanded) {
-  color: var(--color-accent-primary);
-}
-
-/* Less action: only active on direct hover */
-.career-path__toggle--expanded:hover {
-  color: var(--color-accent-primary);
-}
-
-.career-path__toggle-label {
-  font-family: var(--font-body);
-  font-size: 11px;
-  font-weight: 500;
-}
-
-.career-path__toggle-arrows {
-  width: 16px;
-  height: 12px;
-}
-
-.career-path__toggle-arrow {
-  animation: arrow-bounce 1s ease-in-out infinite;
-}
-
-.career-path__toggle-arrow--1 {
-  animation-delay: 0s;
-}
-
-.career-path__toggle-arrow--2 {
-  animation-delay: 0.15s;
-}
-
-.career-path__toggle--expanded .career-path__toggle-arrow {
-  animation-name: arrow-bounce-up;
-}
-
-@keyframes fade-in-hint {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes arrow-bounce {
-  0%, 100% {
-    transform: translateY(0);
-    opacity: 0.3;
-  }
-  50% {
-    transform: translateY(2px);
-    opacity: 0.7;
-  }
-}
-
-@keyframes arrow-bounce-up {
-  0%, 100% {
-    transform: translateY(0);
-    opacity: 0.3;
-  }
-  50% {
-    transform: translateY(-2px);
-    opacity: 0.7;
-  }
-}
-
-/* Expanded View - replaces timeline cleanly */
+/* Tabbed View */
 .career-path__expanded {
   display: flex;
   gap: var(--space-md);
@@ -458,7 +353,6 @@
 .career-path__content {
   flex: 1;
   min-height: 200px;
-  margin-right: 60px; /* Space for collapse button */
 }
 
 .career-path__detail {
@@ -547,37 +441,6 @@
   font-size: var(--text-sm);
 }
 
-/* Collapse button in expanded view */
-.career-path__collapse {
-  position: absolute;
-  top: var(--space-sm);
-  right: var(--space-sm);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: var(--space-xs);
-  color: var(--color-text-tertiary);
-  transition: color 0.2s ease;
-}
-
-.career-path__collapse:hover {
-  color: var(--color-accent-primary);
-}
-
-.career-path__collapse-arrows {
-  width: 16px;
-  height: 12px;
-}
-
-.career-path__collapse-label {
-  font-family: var(--font-body);
-  font-size: 11px;
-  font-weight: 500;
-}
 
 /* Mobile: Vertical accordion list */
 .career-path__mobile-list {
@@ -585,8 +448,8 @@
 }
 
 @media (max-width: 768px) {
-  /* Hide desktop timeline on mobile */
-  .career-path__timeline {
+  /* Hide desktop tabbed view on mobile */
+  .career-path__expanded {
     display: none;
   }
 

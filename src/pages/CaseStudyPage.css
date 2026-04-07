@@ -7,7 +7,7 @@
 }
 
 .case-study-page__container {
-  padding: var(--space-3xl) 0;
+  padding: 0 0 var(--space-3xl) 0;
 }
 
 .case-study-page__back {
@@ -145,7 +145,7 @@
 
 @media (max-width: 640px) {
   .case-study-page__container {
-    padding: var(--space-2xl) 0;
+    padding: 0 0 var(--space-2xl) 0;
   }
 
   .case-study-page__nav-content {

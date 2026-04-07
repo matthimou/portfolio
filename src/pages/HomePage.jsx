@@ -26,25 +26,10 @@ import './HomePage.css'
 const publishedStudies = caseStudies.filter(s => s.status === 'published')
 
 const CareerPath = () => {
-  const [activeCompany, setActiveCompany] = useState(null)
-  const [isExpanded, setIsExpanded] = useState(false)
-  const [isTimelineHovered, setIsTimelineHovered] = useState(null)
-  const [pulsingNodes, setPulsingNodes] = useState({})
-  const [travelingPulseX, setTravelingPulseX] = useState(70)
-  const [isPulseVisible, setIsPulseVisible] = useState(false)
+  const [activeCompany, setActiveCompany] = useState(5) // Default to DoorDash (most recent)
   const [isMobile, setIsMobile] = useState(false)
   const [showAllMobile, setShowAllMobile] = useState(false)
-  const [pulseColor, setPulseColor] = useState('#FF3008')
-  const animationRef = useRef(null)
-  const pulseAnimationRef = useRef(null)
   const { theme } = useTheme()
-
-  // Read timeline pulse color from CSS variables
-  useEffect(() => {
-    const color = getComputedStyle(document.documentElement)
-      .getPropertyValue('--color-timeline-pulse').trim()
-    setPulseColor(color || '#FF3008')
-  }, [theme])
 
   // Mobile detection
   useEffect(() => {
@@ -55,71 +40,6 @@ const CareerPath = () => {
     window.addEventListener('resize', checkMobile)
     return () => window.removeEventListener('resize', checkMobile)
   }, [])
-
-  // Randomized traveling pulse animation
-  useEffect(() => {
-    if (isExpanded) return
-
-    const startX = 70
-    const endX = 830
-    const totalDistance = endX - startX
-    const nodePositions = [70, 222, 374, 526, 678, 830] // x positions of each node
-
-    const runPulseCycle = () => {
-      // Randomize the travel speed: 1.5s to 2.5s for the pulse to cross
-      const travelDuration = 1500 + Math.random() * 1000
-      const startTime = performance.now()
-
-      setIsPulseVisible(true)
-      setTravelingPulseX(startX)
-
-      // Track which nodes have been triggered this cycle
-      const triggeredNodes = new Set()
-
-      const animate = (currentTime) => {
-        const elapsed = currentTime - startTime
-        const progress = Math.min(elapsed / travelDuration, 1)
-        const currentX = startX + (totalDistance * progress)
-
-        setTravelingPulseX(currentX)
-
-        // Check if pulse has passed each node and trigger effects
-        nodePositions.forEach((nodeX, index) => {
-          if (currentX >= nodeX && !triggeredNodes.has(index)) {
-            triggeredNodes.add(index)
-            setPulsingNodes(prev => ({ ...prev, [index]: true }))
-
-            // Reset after animation completes
-            setTimeout(() => {
-              setPulsingNodes(prev => ({ ...prev, [index]: false }))
-            }, 400)
-          }
-        })
-
-        if (progress < 1) {
-          pulseAnimationRef.current = requestAnimationFrame(animate)
-        } else {
-          // Pulse reached the end, fade out
-          setIsPulseVisible(false)
-
-          // Schedule next cycle with random pause (4-8 seconds)
-          const pauseDuration = 4000 + Math.random() * 4000
-          animationRef.current = setTimeout(runPulseCycle, pauseDuration)
-        }
-      }
-
-      pulseAnimationRef.current = requestAnimationFrame(animate)
-    }
-
-    // Start the animation cycle after initial delay
-    const initialDelay = setTimeout(runPulseCycle, 1000)
-
-    return () => {
-      clearTimeout(initialDelay)
-      if (animationRef.current) clearTimeout(animationRef.current)
-      if (pulseAnimationRef.current) cancelAnimationFrame(pulseAnimationRef.current)
-    }
-  }, [isExpanded])
 
   const { isDark } = useTheme()
 
@@ -146,34 +66,12 @@ const CareerPath = () => {
         setActiveCompany(index)
       }
     } else {
-      // Desktop: expand view behavior
-      if (!isExpanded) {
-        playAccordionOpen(1.0) // Always highest pitch for initial expand
-        setIsExpanded(true)
-        // Always start with most recent company (DoorDash)
-        setActiveCompany(companies.length - 1)
-      } else {
+      // Desktop: just switch tabs
+      if (index !== activeCompany) {
         playAccordionOpen(pitchMultiplier)
         setActiveCompany(index)
       }
     }
-  }
-
-  const handleClose = () => {
-    // Use active company's pitch for close sound
-    const pitchMultiplier = activeCompany !== null
-      ? 0.65 + (activeCompany / (companies.length - 1)) * 0.35
-      : 1.0
-    playAccordionClose(pitchMultiplier)
-    setIsExpanded(false)
-    setActiveCompany(null)
-  }
-
-  const handleTabClick = (index) => {
-    if (index === activeCompany) return // Already active, no sound
-    const pitchMultiplier = 0.65 + (index / (companies.length - 1)) * 0.35
-    playAccordionOpen(pitchMultiplier)
-    setActiveCompany(index)
   }
 
   return (
@@ -238,141 +136,8 @@ const CareerPath = () => {
         </div>
       )}
 
-      {/* Desktop: Timeline View - hidden when expanded */}
-      {!isMobile && !isExpanded && (
-        <div
-          className="career-path__timeline"
-          onMouseEnter={() => setIsTimelineHovered(true)}
-          onMouseLeave={() => setIsTimelineHovered(false)}
-        >
-          <svg
-            viewBox="0 0 900 220"
-            className={`experience__illustration ${isTimelineHovered ? 'experience__illustration--hovered' : ''}`}
-            preserveAspectRatio="xMidYMid meet"
-            onClick={() => handleCompanyClick(0)}
-            style={{ cursor: 'pointer' }}
-          >
-            {/* Inset shadow filter for logo band */}
-            <defs>
-              <filter id="inset-shadow" x="-50%" y="-50%" width="200%" height="200%">
-                <feComponentTransfer in="SourceAlpha">
-                  <feFuncA type="table" tableValues="1 0" />
-                </feComponentTransfer>
-                <feGaussianBlur stdDeviation="10" />
-                <feOffset dx="0" dy="6" result="offsetblur" />
-                <feFlood floodColor="rgba(0,0,0,0.45)" result="color" />
-                <feComposite in2="offsetblur" operator="in" />
-                <feComposite in2="SourceAlpha" operator="in" />
-                <feMerge>
-                  <feMergeNode in="SourceGraphic" />
-                  <feMergeNode />
-                </feMerge>
-              </filter>
-            </defs>
-            {/* Logo area background - visible in dark mode */}
-            <rect x="0" y="0" width="900" height="70" className="experience__logo-band" rx="4" filter="url(#inset-shadow)" />
-
-            {/* Background track */}
-            <line x1="70" y1="100" x2="830" y2="100" stroke="var(--color-border-light)" strokeWidth="1" />
-
-            {/* Traveling pulse along timeline - dot with fading trail */}
-            {isPulseVisible && (
-              <g>
-                {/* Trail dots - fading behind */}
-                {[...Array(8)].map((_, i) => (
-                  <circle
-                    key={i}
-                    cx={travelingPulseX - (i + 1) * 6}
-                    cy="100"
-                    r={3 - i * 0.3}
-                    fill={pulseColor}
-                    opacity={0.5 - i * 0.06}
-                  />
-                ))}
-                {/* Outer glow */}
-                <circle
-                  cx={travelingPulseX}
-                  cy="100"
-                  r="7"
-                  fill={pulseColor}
-                  opacity="0.25"
-                />
-                {/* Main dot at front */}
-                <circle
-                  cx={travelingPulseX}
-                  cy="100"
-                  r="4"
-                  fill={pulseColor}
-                  className="experience__traveling-dot"
-                />
-              </g>
-            )}
-
-            {/* Company nodes */}
-            {companies.map((company, index) => {
-              const x = 70 + index * 152
-              const delay = 300 + index * 400
-              const isPulsing = pulsingNodes[index]
-              const dotColor = isDark && company.darkColor ? company.darkColor : company.color
-              return (
-                <g
-                  key={index}
-                  className={`experience__node ${isPulsing ? 'experience__node--pulsing' : ''}`}
-                  style={{ '--delay': `${delay}ms`, '--company-color': dotColor }}
-                >
-                  {/* Logo above timeline */}
-                  <image
-                    href={company.logo}
-                    x={x - company.size / 2}
-                    y={35 - company.size / 2}
-                    width={company.size}
-                    height={company.size}
-                    className={`experience__logo ${isPulsing ? 'experience__logo--pulsing' : ''}`}
-                    preserveAspectRatio="xMidYMid meet"
-                  />
-                  {/* Timeline dot and pulse - centered */}
-                  <circle cx={x} cy="100" r="4" fill={dotColor} className="experience__dot" />
-                  <circle cx={x} cy="100" r="4" fill="none" stroke={dotColor} strokeWidth="1" className={`experience__pulse ${isPulsing ? 'experience__pulse--active' : ''}`} />
-                  {/* Timeline endpoint labels */}
-                  {index === 0 && (
-                    <text x={x - 20} y="104" textAnchor="end" className="experience__endpoint-year">1995</text>
-                  )}
-                  {index === companies.length - 1 && (
-                    <text x={x + 20} y="104" textAnchor="start" className="experience__endpoint-year">2025</text>
-                  )}
-                  {/* Company name below timeline */}
-                  <text x={x} y="145" textAnchor="middle" className="experience__company-name">{company.name}</text>
-                  {/* Titles below company name */}
-                  <g className="experience__titles">
-                    {company.title.map((line, i) => (
-                      <text key={i} x={x} y={177 + i * 14} textAnchor="middle" className="experience__title-label">{line}</text>
-                    ))}
-                  </g>
-                </g>
-              )
-            })}
-
-          </svg>
-
-          {/* Toggle button - visible on hover (desktop) or always (touch) */}
-          <button
-            className={`career-path__toggle ${isTimelineHovered ? 'career-path__toggle--visible' : ''}`}
-            onClick={(e) => {
-              e.stopPropagation()
-              handleCompanyClick(0)
-            }}
-          >
-            <span className="career-path__toggle-label">More</span>
-            <svg viewBox="0 0 16 12" className="career-path__toggle-arrows">
-              <path d="M3 1 L8 6 L13 1" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="career-path__toggle-arrow career-path__toggle-arrow--1" />
-              <path d="M3 5 L8 10 L13 5" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="career-path__toggle-arrow career-path__toggle-arrow--2" />
-            </svg>
-          </button>
-        </div>
-      )}
-
-      {/* Desktop: Expanded View - replaces timeline */}
-      {!isMobile && isExpanded && (
+      {/* Desktop: Tabbed View */}
+      {!isMobile && (
         <div className="career-path__expanded">
           <div className="career-path__tabs">
             {[...companies].reverse().map((company, reverseIndex) => {
@@ -382,7 +147,7 @@ const CareerPath = () => {
                 <button
                   key={index}
                   className={`career-path__tab ${activeCompany === index ? 'career-path__tab--active' : ''}`}
-                  onClick={() => handleTabClick(index)}
+                  onClick={() => handleCompanyClick(index)}
                   style={{ '--tab-color': tabColor }}
                 >
                   <div className="career-path__tab-logo-wrapper">
@@ -403,13 +168,6 @@ const CareerPath = () => {
               </div>
             )}
           </div>
-          <button className="career-path__collapse" onClick={handleClose}>
-            <svg viewBox="0 0 16 12" className="career-path__collapse-arrows">
-              <path d="M3 9 L8 4 L13 9" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-              <path d="M3 6 L8 1 L13 6" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-            <span className="career-path__collapse-label">Less</span>
-          </button>
         </div>
       )}
     </div>
@@ -496,8 +254,8 @@ const HomePage = ({ onOpenLogin }) => {
         <div className="container">
           <div className={`home-intro__content ${introVisible ? 'home-intro__content--visible' : ''}`}>
             <div className="home-intro__text">
-              <p>I'm a product design leader with a rich history of building high-performing design teams inside fast-moving companies. I help design teams grow, build agency, and reduce ambiguity while improving their ability to make high-quality decisions.</p>
-              <p>Across my leadership roles, I've managed the entire lifecycle of design orgs from recruiting to retaining, and have transformed how teams communicate, align, and work. I love working with cross-functional partners to refine what matters, why it matters, and how to act on it.</p>
+              <p>I lead design teams that ship products customers love.</p>
+              <p>Across DoorDash, Groupon, and Orbitz, I've scaled design in fast-moving environments. Staying focussed on what makes great products feel human, and building teams that operate with purpose. I've launched 0→1 products, built platforms and systems that serve organizations, and helped teams consistently do their best work. I have a history of building self-driven and engaged teams, investing in systems to make their workflow efficient, nurturing their growth and career development, and partnering closely with cross-functional leaders to create the right operating context for design to be successful.</p>
               <p>I am based in Chicago.</p>
             </div>
             <div className="home-intro__image-wrapper">

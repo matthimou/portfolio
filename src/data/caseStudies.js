@@ -450,7 +450,7 @@ Because we simply added a menu category, customers that were acclimated to order
       }
     },
     hero: {
-      src: '/images/MeTabHero.png',
+      src: '/images/metab-hero.png',
       video: null,
       alt: 'Me Tab experience',
       caption: null,
@@ -619,11 +619,11 @@ I set up the sprint to build shared context quickly: data science presented reor
           sprintDay02ProblemOpportunity03: null,
           sprintDay02ContentAfterImageSecondary: `When stakeholders reviewed the explorations that afternoon, the breadth of ideas gave us early signals on directions to pursue and built alignment with leadership on the core concept. But it also surfaced a conflict I needed to address.`,
           leadershipHeading: 'Navigating Organizational Tension',
-          leadershipContent: `In that first stakeholder review, it was clear the Senior Product Director for DashPass wasn't happy that reorder was getting so much weight. He was disruptive throughout, pushing for things we felt were outside V1 scope. My direct partner, the Product Director of Discovery, was excited about the direction but distracted by the work—he missed the tension building in the room.
+          leadershipContent: `In that first stakeholder review, it was clear the Senior Product Director for DashPass wasn't happy that reorder was getting so much weight. He was disruptive throughout, pushing for things we felt were outside V1 scope.
 
 I recognized this could derail our strategy. If I let this play out, we'd either miss the window or ship something that failed its primary metric. The DashPass designers were being pushed to give identity even more weight, but the version of DashPass he was advocating for wouldn't exist in the product for months. We were launching in seven weeks.
 
-At the end of the review, I asked both product directors to meet privately. The Discovery PM hadn't noticed the conflict, but the DashPass PM confirmed my read. I reminded him we were replacing a significant source of reorder revenue, and if our tests failed we wouldn't get a V2. I agreed with his longer-term vision, but pointed out that both our metrics and principles reflected V1 priorities. To get him on board, I realized he needed assurance that he would get support for his longer term vision. I committed to run another sprint after initial release to go deeper on his ideas for the next iteration. This lowered the temperature. He agreed to focus on reorders for V1, and later became an advocate for the work.`,
+At the end of the review, I asked him to meet privately. The Discovery PM hadn't noticed the conflict, but the DashPass PM confirmed my read. I reminded him we were replacing a significant source of reorder revenue, and if our tests failed we wouldn't get a chance for a V2. I agreed with his longer-term vision, but pointed out that both our metrics and principles reflected V1 priorities. To get him on board, I realized he needed assurance that he would get support for his longer term vision. I committed to run another sprint after initial release to go deeper on his ideas for the next iteration. This lowered the temperature. He agreed to focus on reorders for V1, and later became an advocate for the work.`,
           sprintDay03Subheading: null,
           sprintDay03Content: `On day three, one team focused on page architecture while others refined explorations based on stakeholder feedback. Because we'd organized problems by product category, the solutions were modular—we could see how the surface would come together.`,
           sprintDay03Image: {

@@ -8,16 +8,21 @@
   margin-top: 0;
 }
 
+/* Force dark mode styling on meta section (always dark regardless of theme) */
 .case-study-hero__meta {
-  margin-bottom: var(--space-2xl);
+  margin-bottom: 0;
   text-align: center;
+  background-color: #0F0F12;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  padding: var(--space-2xl) var(--content-padding-mobile);
 }
 
 .case-study-hero__title {
   font-family: var(--font-display);
   font-size: var(--text-3xl);
   font-weight: var(--font-weight-semibold);
-  color: var(--color-text-primary);
+  color: #F5F5F4; /* Dark mode text-primary */
   margin: 0 0 var(--space-md) 0;
   line-height: var(--leading-tight);
 }
@@ -26,7 +31,7 @@
 .case-study-hero__role-line,
 .case-study-hero__team {
   font-size: var(--text-base);
-  color: var(--color-text-secondary);
+  color: #A8A29E; /* Dark mode text-secondary */
   margin-bottom: var(--space-sm);
   display: flex;
   align-items: center;
@@ -41,7 +46,7 @@
 }
 
 .case-study-hero__separator {
-  color: var(--color-text-tertiary);
+  color: #78716C; /* Dark mode text-tertiary */
 }
 
 .case-study-hero__team-info {
@@ -114,6 +119,10 @@
 
 /* Responsive */
 @media (min-width: 768px) {
+  .case-study-hero__meta {
+    padding: var(--space-2xl) var(--content-padding-tablet);
+  }
+
   .case-study-hero__title {
     font-size: var(--text-4xl);
   }
@@ -124,6 +133,10 @@
 }
 
 @media (min-width: 1024px) {
+  .case-study-hero__meta {
+    padding: var(--space-2xl) var(--content-padding-desktop);
+  }
+
   .case-study-hero__caption {
     padding: 0 var(--content-padding-desktop);
   }
