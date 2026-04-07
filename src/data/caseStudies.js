@@ -36,18 +36,13 @@ export const caseStudies = [
         src: '/images/doubledash-combos.mov',
         caption: null
       },
-      closingAfterVideo: `Doubledash made it easy for customers to discover and bundle items from multiple stores into a single delivery.
-
-The DoorDash platform only supported single-store carts at the time, and we had to navigate significant technical and organizational constraints to bring this capability to customers.`,
+      closingAfterVideo: `Doubledash made it easy for customers to discover and bundle items from multiple stores into a single delivery.`,
       videoAfterClosing: null,
       closingFinalHeading: 'Where We Started',
       closingFinal: 'In 2021, DoorDash was expanding beyond restaurant delivery into new verticals: convenience, grocery, alcohol. Our data science team identified a compelling signal: approximately 20% of customers were placing a secondary order from 7-Eleven within 30 minutes of their primary meal delivery.',
       closingFinalBelowVideo: true,
       closingFinalSecondary: 'This suggested latent demand for bundling. If we reduced the friction, we could capture orders that were already happening and grow overall marketplace volume.',
-      imageFinal: {
-        src: '/images/ExpandedCategories.png',
-        alt: 'DoorDash expanded categories'
-      },
+      imageFinal: null,
       opportunity: 'DoorDash was betting on becoming a platform, not just a restaurant delivery app. Doubledash was central to that strategy: it would drive adoption of new verticals while increasing order value.',
       opportunityCallout: true
     },
