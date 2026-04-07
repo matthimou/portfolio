@@ -167,6 +167,15 @@
     line-height: 1.15;
     white-space: nowrap;
     text-align: left;
+    flex-shrink: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .navigation__avatar {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
   }
 
   .navigation__links {
@@ -183,5 +192,11 @@
   .navigation__brand {
     font-size: var(--text-xs);
     white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .navigation__avatar {
+    width: 18px;
+    height: 18px;
   }
 }
