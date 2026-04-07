@@ -1,6 +1,10 @@
 /**
  * Google Apps Script for Portfolio Authentication
  *
+ * This script handles two actions:
+ * - "validate": Legacy code validation (if not using Cloudflare Worker)
+ * - "log": Log login attempts (called by Cloudflare Worker after validation)
+ *
  * SETUP INSTRUCTIONS:
  * 1. Create a new Google Sheet with two tabs:
  *    - "Codes" with headers: code, party_name, email, notes, active, created_date, expires_date
@@ -13,7 +17,12 @@
  * 6. Set "Execute as" to "Me"
  * 7. Set "Who has access" to "Anyone"
  * 8. Click Deploy and copy the web app URL
- * 9. Add the URL to your .env.local as VITE_AUTH_API_URL
+ * 9. Add the URL to Cloudflare Worker as SHEETS_API_URL environment variable
+ *
+ * CLOUDFLARE WORKER INTEGRATION:
+ * When using the Cloudflare Worker (see cloudflare-worker.js), this script
+ * only handles logging. The Worker validates codes against KV storage for
+ * fast (~50ms) responses, then fires an async request here to log the attempt.
  */
 
 // Configuration
@@ -31,10 +40,38 @@ function doPost(e) {
       return validateCode(data);
     }
 
+    // Log-only action for Cloudflare Worker integration
+    if (data.action === 'log') {
+      return logLoginOnly(data);
+    }
+
     return jsonResponse({ success: false, error: 'Unknown action' });
   } catch (error) {
     return jsonResponse({ success: false, error: 'Server error: ' + error.message });
   }
+}
+
+/**
+ * Log a login attempt (called by Cloudflare Worker after validation)
+ */
+function logLoginOnly(data) {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const loginsSheet = ss.getSheetByName(LOGINS_SHEET_NAME);
+
+  if (!loginsSheet) {
+    return jsonResponse({ success: false, error: 'Logins sheet not found' });
+  }
+
+  logLogin(
+    loginsSheet,
+    data.code || '',
+    data.partyName || '',
+    data.userAgent || '',
+    data.referrer || '',
+    data.success === true
+  );
+
+  return jsonResponse({ success: true });
 }
 
 /**

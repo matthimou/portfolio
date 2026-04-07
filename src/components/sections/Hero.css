@@ -58,7 +58,7 @@
 
 .hero__title {
   font-family: var(--font-display);
-  font-size: var(--text-xl);
+  font-size: var(--text-lg);
   font-weight: var(--font-weight-normal);
   color: #A8A29E;
   margin: 0;
@@ -81,7 +81,7 @@
   }
 
   .hero__title {
-    font-size: var(--text-2xl);
+    font-size: var(--text-xl);
   }
 }
 
@@ -101,6 +101,6 @@
   }
 
   .hero__title {
-    font-size: var(--text-xl);
+    font-size: var(--text-base);
   }
 }
