@@ -1,11 +1,9 @@
 import { useEffect, useRef } from 'react'
-import { useTheme } from '../../context/ThemeContext'
 import './VideoBackground.css'
 
 const VideoBackground = () => {
   const canvasRef = useRef(null)
   const animationRef = useRef(null)
-  const { theme } = useTheme()
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -14,16 +12,15 @@ const VideoBackground = () => {
     const ctx = canvas.getContext('2d')
     let time = 0
 
-    // Read CSS variables for canvas colors
+    // Always use dark mode colors for the hero canvas
     const getCanvasColors = () => {
-      const styles = getComputedStyle(document.documentElement)
       return {
-        bg: styles.getPropertyValue('--color-canvas-bg').trim(),
-        grid: styles.getPropertyValue('--color-canvas-grid').trim(),
-        gridStrong: styles.getPropertyValue('--color-canvas-grid-strong').trim(),
-        dot: styles.getPropertyValue('--color-canvas-dot').trim(),
-        stroke: styles.getPropertyValue('--color-canvas-stroke').trim(),
-        vignette: styles.getPropertyValue('--color-canvas-vignette').trim()
+        bg: '#0D1117',
+        grid: 'rgba(234, 88, 12, 0.08)',
+        gridStrong: 'rgba(234, 88, 12, 0.15)',
+        dot: 'rgba(234, 88, 12, 0.2)',
+        stroke: 'rgba(234, 88, 12, 0.5)',
+        vignette: 'rgba(13, 17, 23, 0.5)'
       }
     }
 
@@ -180,7 +177,7 @@ const VideoBackground = () => {
         cancelAnimationFrame(animationRef.current)
       }
     }
-  }, [theme])
+  }, [])
 
   return (
     <div className="video-background">

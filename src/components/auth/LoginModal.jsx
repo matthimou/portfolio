@@ -1,9 +1,11 @@
 import { useState, useEffect, useRef } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../../context/AuthContext'
 import { playLoginOpenSound, playLoginSuccessSound, playLoginErrorSound } from '../../utils/audio'
 import './LoginModal.css'
 
-const LoginModal = ({ isOpen, onClose }) => {
+const LoginModal = ({ isOpen, onClose, redirectPath }) => {
+  const navigate = useNavigate()
   const [code, setCode] = useState('')
   const [error, setError] = useState('')
   const [status, setStatus] = useState('idle') // idle, loading, error, success
@@ -79,7 +81,11 @@ const LoginModal = ({ isOpen, onClose }) => {
       playLoginSuccessSound()
       setTimeout(() => {
         onClose()
-      }, 3000) // Extended to enjoy the celebration
+        // Navigate to the case study if a redirect path was provided
+        if (redirectPath) {
+          navigate(redirectPath)
+        }
+      }, 1500) // Shortened for better UX when redirecting
     } else {
       setStatus('error')
       setError('invalid')

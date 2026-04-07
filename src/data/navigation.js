@@ -13,6 +13,6 @@ export const brandName = 'Matthew Hanson'
  * Contact information for footer
  */
 export const contactInfo = {
-  email: 'matt@matthewhanson.design',
-  linkedin: 'https://linkedin.com/in/matthanson'
+  email: 'matthimou@gmail.com',
+  linkedin: 'https://www.linkedin.com/in/matthimou/'
 }

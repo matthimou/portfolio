@@ -12,9 +12,16 @@ import './App.css'
 
 function App() {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false)
+  const [pendingRedirect, setPendingRedirect] = useState(null)
 
-  const openLoginModal = () => setIsLoginModalOpen(true)
-  const closeLoginModal = () => setIsLoginModalOpen(false)
+  const openLoginModal = (redirectPath = null) => {
+    setPendingRedirect(redirectPath)
+    setIsLoginModalOpen(true)
+  }
+  const closeLoginModal = () => {
+    setIsLoginModalOpen(false)
+    setPendingRedirect(null)
+  }
 
   return (
     <ThemeProvider>
@@ -43,7 +50,11 @@ function App() {
             </main>
 
             {/* Login Modal */}
-            <LoginModal isOpen={isLoginModalOpen} onClose={closeLoginModal} />
+            <LoginModal
+              isOpen={isLoginModalOpen}
+              onClose={closeLoginModal}
+              redirectPath={pendingRedirect}
+            />
           </div>
         </Router>
       </AuthProvider>

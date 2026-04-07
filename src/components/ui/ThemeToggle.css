@@ -7,7 +7,7 @@
   border: none;
   background: none;
   cursor: pointer;
-  color: var(--color-text-secondary);
+  color: #A8A29E;
   border-radius: 8px;
   transition: color 0.2s ease, background-color 0.2s ease;
   display: flex;
@@ -16,8 +16,8 @@
 }
 
 .theme-toggle:hover {
-  color: var(--color-text-primary);
-  background-color: var(--color-bg-secondary);
+  color: #F5F5F4;
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .theme-toggle:focus-visible {

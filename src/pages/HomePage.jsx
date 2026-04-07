@@ -430,9 +430,9 @@ const HomePage = ({ onOpenLogin }) => {
     e.preventDefault()
     playCaseStudySound()
 
-    // If protected and not authenticated, open login modal
+    // If protected and not authenticated, open login modal with redirect path
     if (project.protected && !isAuthenticated) {
-      setTimeout(() => onOpenLogin(), 80)
+      setTimeout(() => onOpenLogin(`/work/${project.id}`), 80)
     } else {
       setTimeout(() => navigate(`/work/${project.id}`), 80)
     }
@@ -495,9 +495,18 @@ const HomePage = ({ onOpenLogin }) => {
       <section className="home-intro" ref={introRef}>
         <div className="container">
           <div className={`home-intro__content ${introVisible ? 'home-intro__content--visible' : ''}`}>
-            <p className="home-intro__text">
-              Multidisciplinary design and product leader with a rich history of building high-performing teams inside fast-moving companies. I help design teams grow, build agency, and reduce ambiguity while improving their ability to make high-quality decisions.
-            </p>
+            <div className="home-intro__text">
+              <p>I'm a product design leader with a rich history of building high-performing design teams inside fast-moving companies. I help design teams grow, build agency, and reduce ambiguity while improving their ability to make high-quality decisions.</p>
+              <p>Across my leadership roles, I've managed the entire lifecycle of design orgs from recruiting to retaining, and have transformed how teams communicate, align, and work. I love working with cross-functional partners to refine what matters, why it matters, and how to act on it.</p>
+              <p>I am based in Chicago.</p>
+            </div>
+            <div className="home-intro__image-wrapper">
+              <img
+                src="/images/matthew-hanson-photo.jpg"
+                alt="Matthew Hanson"
+                className="home-intro__image"
+              />
+            </div>
           </div>
         </div>
       </section>
@@ -506,7 +515,7 @@ const HomePage = ({ onOpenLogin }) => {
       <section className="home-work">
         <div className="container">
           <div className="home-work__header">
-            <h2 className="home-work__heading">Selected Work</h2>
+            <h2 className="home-work__heading">Leadership Case Studies</h2>
           </div>
 
           <div className="home-work__grid" ref={gridRef}>
@@ -525,7 +534,7 @@ const HomePage = ({ onOpenLogin }) => {
                     className="home-work__image"
                     loading="lazy"
                   />
-                  {project.protected && (
+                  {project.protected && !isAuthenticated && (
                     <div className="home-work__protected-badge">
                       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                         <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
@@ -572,16 +581,26 @@ const HomePage = ({ onOpenLogin }) => {
           <div className="home-footer__contact">
             <span className="home-footer__contact-label">Get in touch</span>
             <div className="home-footer__contact-links">
-              <a href={`mailto:${contactInfo.email}`} className="home-footer__contact-link">
-                {contactInfo.email}
+              <a
+                href={`mailto:${contactInfo.email}`}
+                className="home-footer__icon-link"
+                aria-label="Email"
+              >
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="2" y="4" width="20" height="16" rx="2" />
+                  <path d="M22 7l-10 7L2 7" />
+                </svg>
               </a>
               <a
                 href={contactInfo.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="home-footer__contact-link"
+                className="home-footer__icon-link"
+                aria-label="LinkedIn"
               >
-                LinkedIn
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                </svg>
               </a>
             </div>
           </div>

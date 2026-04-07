@@ -6,9 +6,9 @@
   left: 0;
   right: 0;
   height: var(--nav-height);
-  background-color: var(--color-nav-bg);
+  background-color: rgba(15, 15, 18, 0.95);
   backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--color-border-subtle);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   z-index: 1000;
   transition: background-color var(--duration-fast) var(--easing-default);
 }
@@ -28,7 +28,7 @@
   font-family: var(--font-display);
   font-size: var(--text-lg);
   font-weight: var(--font-weight-medium);
-  color: var(--color-text-primary);
+  color: #F5F5F4;
   text-decoration: none;
   opacity: 0;
   transform: scale(0.95);
@@ -62,7 +62,7 @@
 }
 
 .navigation__brand:hover {
-  color: var(--color-accent-primary);
+  color: #EA580C;
 }
 
 /* Navigation Actions Container */

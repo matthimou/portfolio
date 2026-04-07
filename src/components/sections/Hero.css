@@ -50,7 +50,7 @@
   font-family: var(--font-display);
   font-size: var(--text-4xl);
   font-weight: 700;
-  color: var(--color-text-primary);
+  color: #F5F5F4;
   margin: 0;
   line-height: var(--leading-tight);
   letter-spacing: -0.02em;
@@ -60,7 +60,7 @@
   font-family: var(--font-display);
   font-size: var(--text-xl);
   font-weight: var(--font-weight-normal);
-  color: var(--color-text-secondary);
+  color: #A8A29E;
   margin: 0;
   line-height: var(--leading-normal);
 }
