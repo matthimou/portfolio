@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import Hero from '../components/sections/Hero'
+import DesignPrinciples from '../components/sections/DesignPrinciples'
 import VideoBackground from '../components/ui/VideoBackground'
 import { useAuth } from '../context/AuthContext'
 import { useTheme } from '../context/ThemeContext'
@@ -178,9 +179,11 @@ const HomePage = ({ onOpenLogin }) => {
   const [cardsVisible, setCardsVisible] = useState(false)
   const [experienceVisible, setExperienceVisible] = useState(false)
   const [introVisible, setIntroVisible] = useState(false)
+  const [principlesVisible, setPrinciplesVisible] = useState(false)
   const gridRef = useRef(null)
   const experienceRef = useRef(null)
   const introRef = useRef(null)
+  const principlesRef = useRef(null)
   const { isAuthenticated } = useAuth()
   const navigate = useNavigate()
 
@@ -230,14 +233,26 @@ const HomePage = ({ onOpenLogin }) => {
       { threshold: 0.2 }
     )
 
+    const principlesObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setPrinciplesVisible(true)
+          principlesObserver.disconnect()
+        }
+      },
+      { threshold: 0.2 }
+    )
+
     if (gridRef.current) cardObserver.observe(gridRef.current)
     if (experienceRef.current) experienceObserver.observe(experienceRef.current)
     if (introRef.current) introObserver.observe(introRef.current)
+    if (principlesRef.current) principlesObserver.observe(principlesRef.current)
 
     return () => {
       cardObserver.disconnect()
       experienceObserver.disconnect()
       introObserver.disconnect()
+      principlesObserver.disconnect()
     }
   }, [])
 
@@ -246,7 +261,7 @@ const HomePage = ({ onOpenLogin }) => {
       {/* Hero Section */}
       <div className="hero-experience-wrapper">
         <VideoBackground />
-        <Hero name="Matthew Hanson" title="Design Leadership" hideBackground />
+        <Hero name="Matthew Hanson" title="Design Leader · Investor · Husband · Father · Multipoo Lover" hideBackground />
       </div>
 
       {/* About/Intro Section */}
@@ -318,6 +333,14 @@ const HomePage = ({ onOpenLogin }) => {
           </div>
         </div>
       </section>
+
+      {/* Design Principles Section */}
+      <div
+        ref={principlesRef}
+        className={`design-principles-wrapper ${principlesVisible ? 'design-principles-wrapper--visible' : ''}`}
+      >
+        <DesignPrinciples />
+      </div>
 
       {/* Experience Section - demoted below work */}
       <section className="experience experience--demoted" ref={experienceRef}>
