@@ -28,7 +28,7 @@ export const useSmoothScroll = () => {
 
       if (element) {
         // Account for fixed navigation height
-        const navHeight = 60 // var(--nav-height)
+        const navHeight = 80 // var(--nav-height)
         const targetPosition = element.getBoundingClientRect().top + window.scrollY - navHeight
 
         window.scrollTo({
