@@ -70,10 +70,8 @@ const LoginModal = ({ isOpen, onClose, redirectPath }) => {
     setStatus('loading')
     setError('')
 
-    // Small delay for UX
-    await new Promise(resolve => setTimeout(resolve, 300))
-
-    const result = login(code)
+    // Call async login (validates against Google Sheets API)
+    const result = await login(code)
 
     if (result.success) {
       setStatus('success')
@@ -88,7 +86,7 @@ const LoginModal = ({ isOpen, onClose, redirectPath }) => {
       }, 1500) // Shortened for better UX when redirecting
     } else {
       setStatus('error')
-      setError('invalid')
+      setError(result.error || 'invalid')
       setShowUnlockAnimation(false)
       playLoginErrorSound()
     }

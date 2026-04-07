@@ -2,23 +2,35 @@ import { createContext, useContext, useState, useEffect } from 'react'
 
 const AuthContext = createContext(null)
 
-const trackLogin = async (code) => {
-  const webhookUrl = import.meta.env.VITE_LOGIN_WEBHOOK
-  if (!webhookUrl) return
+/**
+ * Validates code against Google Sheets backend via Apps Script
+ * The API handles validation and logs the login attempt
+ */
+const validateCode = async (code) => {
+  const apiUrl = import.meta.env.VITE_AUTH_API_URL
+
+  if (!apiUrl) {
+    console.error('VITE_AUTH_API_URL not configured')
+    return { success: false, error: 'Authentication not configured' }
+  }
 
   try {
-    await fetch(webhookUrl, {
+    const response = await fetch(apiUrl, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'text/plain' }, // Apps Script requires text/plain for CORS
       body: JSON.stringify({
-        code,
-        timestamp: new Date().toISOString(),
+        action: 'validate',
+        code: code.trim().toUpperCase(),
         userAgent: navigator.userAgent,
         referrer: document.referrer
       })
     })
+
+    const data = await response.json()
+    return data
   } catch (e) {
-    // Silent fail - don't block login
+    console.error('Auth API error:', e)
+    return { success: false, error: 'Unable to verify code. Please try again.' }
   }
 }
 
@@ -33,28 +45,26 @@ export const AuthProvider = ({ children }) => {
     }
   }, [])
 
-  const login = (code) => {
-    const validCodes = (import.meta.env.VITE_AUTH_CODES || '')
-      .split(',')
-      .map(c => c.trim().toUpperCase())
-      .filter(c => c.length > 0)
+  const login = async (code) => {
+    const result = await validateCode(code)
 
-    const normalizedCode = code.trim().toUpperCase()
-
-    if (validCodes.includes(normalizedCode)) {
+    if (result.success) {
       sessionStorage.setItem('portfolio_auth', 'true')
-      sessionStorage.setItem('portfolio_auth_code', normalizedCode)
+      sessionStorage.setItem('portfolio_auth_code', code.trim().toUpperCase())
+      if (result.partyName) {
+        sessionStorage.setItem('portfolio_auth_party', result.partyName)
+      }
       setIsAuthenticated(true)
-      trackLogin(normalizedCode)
-      return { success: true }
+      return { success: true, partyName: result.partyName }
     }
 
-    return { success: false, error: 'Invalid access code' }
+    return { success: false, error: result.error || 'Invalid access code' }
   }
 
   const logout = () => {
     sessionStorage.removeItem('portfolio_auth')
     sessionStorage.removeItem('portfolio_auth_code')
+    sessionStorage.removeItem('portfolio_auth_party')
     setIsAuthenticated(false)
   }
 
