@@ -273,7 +273,7 @@ const HomePage = ({ onOpenLogin }) => {
       <section className="home-work">
         <div className="container">
           <div className="home-work__header">
-            <h2 className="home-work__heading">Leadership Case Studies</h2>
+            <h2 className="home-work__heading">Selected Work</h2>
           </div>
 
           <div className="home-work__grid" ref={gridRef}>
