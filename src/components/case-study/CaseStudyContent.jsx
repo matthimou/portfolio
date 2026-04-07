@@ -148,7 +148,9 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
       {introduction && (
         <section className="case-study-content__section">
           <h4 className="case-study-content__heading">{introduction.heading}</h4>
-          <p className="case-study-content__text">{introduction.content}</p>
+          {introduction.content && introduction.content.split('\n\n').map((para, index) => (
+            <p key={index} className="case-study-content__text">{para}</p>
+          ))}
           {introduction.contentSecondary && (
             <p className="case-study-content__text">{introduction.contentSecondary}</p>
           )}
