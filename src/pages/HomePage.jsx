@@ -325,7 +325,7 @@ const HomePage = ({ onOpenLogin }) => {
                   </div>
                   <h3 className="home-work__title">{project.meta.title}</h3>
                   <p className="home-work__description">
-                    {project.introduction?.content?.substring(0, 150)}...
+                    {project.introduction?.content?.split(/\.\s/)[0]}.
                   </p>
                 </div>
               </Link>

@@ -455,7 +455,7 @@ Because we simply added a menu category, customers that were acclimated to order
     },
     introduction: {
       heading: 'Introduction',
-      content: `Me Tab launched to 100% of US customers in 7 weeks. Today it accounts for 4% of marketplace orders and $2.1B in annual GOV on iOS.
+      content: `Me Tab launched to 100% of US customers in 7 weeks and now accounts for 4% of marketplace orders and $2.1B in annual GOV.
 
 DoorDash had no single place for customers to find everything about them: their favorite stores, their loyalty status, their order history, their contributions. These experiences were scattered across the app, each owned by different teams with different goals. When the Discovery team proposed a new surface to shift reorders off the home page, I pushed back: why would this be valuable to customers? That question led us to reframe the problem entirely, and ultimately to ship Me Tab.
 
