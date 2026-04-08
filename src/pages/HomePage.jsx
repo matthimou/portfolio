@@ -176,7 +176,7 @@ const CareerPath = () => {
 }
 
 const ValuePropsCarousel = () => {
-  const [activeSlide, setActiveSlide] = useState(0)
+  const [activeSlide, setActiveSlide] = useState(2)
   const [autoPlayComplete, setAutoPlayComplete] = useState(false)
   const [touchStart, setTouchStart] = useState(null)
   const totalSlides = 3
@@ -184,16 +184,12 @@ const ValuePropsCarousel = () => {
   useEffect(() => {
     if (autoPlayComplete) return
 
-    const timers = [
-      setTimeout(() => setActiveSlide(1), 5000),
-      setTimeout(() => setActiveSlide(2), 10000),
-      setTimeout(() => {
-        setActiveSlide(0)
-        setAutoPlayComplete(true)
-      }, 15000)
-    ]
+    const timer = setTimeout(() => {
+      setActiveSlide(0)
+      setAutoPlayComplete(true)
+    }, 100)
 
-    return () => timers.forEach(clearTimeout)
+    return () => clearTimeout(timer)
   }, [autoPlayComplete])
 
   const handleTouchStart = (e) => {

@@ -379,8 +379,17 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                   )}
                 </figure>
               )}
+              {solution.timeline[0].sectionHeadingAfterFlow && (
+                <h5 className={`case-study-content__subheading ${solution.neutralHeadings ? 'case-study-content__subheading--neutral' : ''}`}>{solution.timeline[0].sectionHeadingAfterFlow}</h5>
+              )}
               {solution.timeline[0].sectionContentAfterFlow && (
                 <p className="case-study-content__text">{solution.timeline[0].sectionContentAfterFlow}</p>
+              )}
+              {solution.timeline[0].sectionContentAfterFlowSecondary && (
+                <p className="case-study-content__text">{solution.timeline[0].sectionContentAfterFlowSecondary}</p>
+              )}
+              {solution.timeline[0].sectionContentAfterFlowTertiary && (
+                <p className="case-study-content__text">{solution.timeline[0].sectionContentAfterFlowTertiary}</p>
               )}
               {solution.timeline[0].concerns && (
                 <div className="case-study-content__concerns">
@@ -936,6 +945,9 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
               )}
               {solution.timeline[1]?.sectionContentQuaternary && (
                 <p className="case-study-content__text">{solution.timeline[1].sectionContentQuaternary}</p>
+              )}
+              {solution.timeline[1]?.sectionContentQuaternarySecondary && (
+                <p className="case-study-content__text">{solution.timeline[1].sectionContentQuaternarySecondary}</p>
               )}
               {solution.timeline[1]?.visionQuestions && (
                 <div className="case-study-content__vision-questions">
@@ -1680,6 +1692,28 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                   ) : (
                     <img src={item.src} alt={item.alt} />
                   )}
+                  {item.label && <figcaption className="case-study-content__platform-two-up-label">{item.label}</figcaption>}
+                </figure>
+              ))}
+            </div>
+          )}
+
+          {/* Before and After */}
+          {impact.futureBeforeAfterHeading && (
+            <h4 className="case-study-content__heading">{impact.futureBeforeAfterHeading}</h4>
+          )}
+          {impact.futureBeforeAfterContent && (
+            <p className="case-study-content__text">{impact.futureBeforeAfterContent}</p>
+          )}
+          {impact.futureBeforeAfterImages && impact.futureBeforeAfterImages.length > 0 && (
+            <div className="case-study-content__platform-two-up">
+              {impact.futureBeforeAfterImages.map((item, index) => (
+                <figure key={index} className="case-study-content__platform-two-up-item">
+                  <img
+                    src={item.src}
+                    alt={item.alt}
+                    style={item.scale ? { transform: `scale(${item.scale})` } : undefined}
+                  />
                   {item.label && <figcaption className="case-study-content__platform-two-up-label">{item.label}</figcaption>}
                 </figure>
               ))}
