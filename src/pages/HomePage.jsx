@@ -175,6 +175,98 @@ const CareerPath = () => {
   )
 }
 
+const ValuePropsCarousel = () => {
+  const [activeSlide, setActiveSlide] = useState(0)
+  const [autoPlayComplete, setAutoPlayComplete] = useState(false)
+
+  useEffect(() => {
+    if (autoPlayComplete) return
+
+    const timers = [
+      setTimeout(() => setActiveSlide(1), 3000),
+      setTimeout(() => {
+        setActiveSlide(0)
+        setAutoPlayComplete(true)
+      }, 6000)
+    ]
+
+    return () => timers.forEach(clearTimeout)
+  }, [autoPlayComplete])
+
+  return (
+    <section className="home-value-props">
+      <div className="container">
+        <div className="home-value-props__carousel">
+          <div
+            className="home-value-props__track"
+            style={{ transform: `translateX(-${activeSlide * 100}%)` }}
+          >
+            {/* Slide 1: Experienced Leader */}
+            <div className="home-value-props__slide">
+              <div className="home-value-props__unit">
+                <div className="home-value-props__image">
+                  <img src="/images/ExperiencedLeader.png" alt="Experienced Leader" />
+                </div>
+                <div className="home-value-props__text">
+                  <div className="home-value-props__item">
+                    <h3>Scale</h3>
+                    <p>Managed teams of 15 to 100+.</p>
+                  </div>
+                  <div className="home-value-props__item">
+                    <h3>Collaboration</h3>
+                    <p>Evolved processes as teams scaled to maintain connection.</p>
+                  </div>
+                  <div className="home-value-props__item">
+                    <h3>Performance</h3>
+                    <p>Built top performing teams at industry leading companies.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Slide 2: People First */}
+            <div className="home-value-props__slide">
+              <div className="home-value-props__unit">
+                <div className="home-value-props__image">
+                  <img src="/images/PeopleFirst.png" alt="People First" />
+                </div>
+                <div className="home-value-props__text">
+                  <div className="home-value-props__item">
+                    <h3>Team Health</h3>
+                    <p>Consistently high eSAT scores with low attrition rates.</p>
+                  </div>
+                  <div className="home-value-props__item">
+                    <h3>Career Development</h3>
+                    <p>Mentored designers that were promoted into management and lead IC positions.</p>
+                  </div>
+                  <div className="home-value-props__item">
+                    <h3>Hiring and Recruiting</h3>
+                    <p>Rated Top Interviewer at Doordash, and Bar Raiser at Groupon.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Dot Navigation */}
+        <div className="home-value-props__dots">
+          <button
+            className={`home-value-props__dot ${activeSlide === 0 ? 'home-value-props__dot--active' : ''}`}
+            onClick={() => setActiveSlide(0)}
+            aria-label="Show slide 1"
+          />
+          <button
+            className={`home-value-props__dot ${activeSlide === 1 ? 'home-value-props__dot--active' : ''}`}
+            onClick={() => setActiveSlide(1)}
+            aria-label="Show slide 2"
+          />
+        </div>
+      </div>
+    </section>
+  )
+}
+
 const HomePage = ({ onOpenLogin }) => {
   const [cardsVisible, setCardsVisible] = useState(false)
   const [experienceVisible, setExperienceVisible] = useState(false)
@@ -261,8 +353,11 @@ const HomePage = ({ onOpenLogin }) => {
       {/* Hero Section */}
       <div className="hero-experience-wrapper">
         <VideoBackground />
-        <Hero name="Matthew Hanson" title="Design Leader · Investor · Husband · Father · Multipoo Lover" hideBackground />
+        <Hero name="Matthew Hanson" title="Design Leader · Investor · Multipoo Lover" hideBackground />
       </div>
+
+      {/* Value Props Carousel Section */}
+      <ValuePropsCarousel />
 
       {/* About/Intro Section */}
       <section className="home-intro" ref={introRef}>
