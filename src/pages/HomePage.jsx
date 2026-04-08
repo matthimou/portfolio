@@ -293,7 +293,7 @@ const ValuePropsCarousel = () => {
                   </div>
                   <div className="home-value-props__item">
                     <h3>Authenticity</h3>
-                    <p>Spending time getting to know teammates personally unlocks unique opportunities to collaborate and achieve shared goals.</p>
+                    <p>Spending time getting to know teammates unlocks unique opportunities to collaborate and achieve shared goals.</p>
                   </div>
                 </div>
               </div>
