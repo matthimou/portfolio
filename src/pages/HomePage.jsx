@@ -178,6 +178,8 @@ const CareerPath = () => {
 const ValuePropsCarousel = () => {
   const [activeSlide, setActiveSlide] = useState(0)
   const [autoPlayComplete, setAutoPlayComplete] = useState(false)
+  const [touchStart, setTouchStart] = useState(null)
+  const totalSlides = 2
 
   useEffect(() => {
     if (autoPlayComplete) return
@@ -193,10 +195,36 @@ const ValuePropsCarousel = () => {
     return () => timers.forEach(clearTimeout)
   }, [autoPlayComplete])
 
+  const handleTouchStart = (e) => {
+    setTouchStart(e.touches[0].clientX)
+  }
+
+  const handleTouchEnd = (e) => {
+    if (touchStart === null) return
+
+    const touchEnd = e.changedTouches[0].clientX
+    const diff = touchStart - touchEnd
+    const minSwipeDistance = 50
+
+    if (Math.abs(diff) > minSwipeDistance) {
+      if (diff > 0 && activeSlide < totalSlides - 1) {
+        setActiveSlide(activeSlide + 1)
+      } else if (diff < 0 && activeSlide > 0) {
+        setActiveSlide(activeSlide - 1)
+      }
+      setAutoPlayComplete(true)
+    }
+    setTouchStart(null)
+  }
+
   return (
     <section className="home-value-props">
       <div className="container">
-        <div className="home-value-props__carousel">
+        <div
+          className="home-value-props__carousel"
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+        >
           <div
             className="home-value-props__track"
             style={{ transform: `translateX(-${activeSlide * 100}%)` }}
