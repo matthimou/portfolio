@@ -179,17 +179,18 @@ const ValuePropsCarousel = () => {
   const [activeSlide, setActiveSlide] = useState(0)
   const [autoPlayComplete, setAutoPlayComplete] = useState(false)
   const [touchStart, setTouchStart] = useState(null)
-  const totalSlides = 2
+  const totalSlides = 3
 
   useEffect(() => {
     if (autoPlayComplete) return
 
     const timers = [
-      setTimeout(() => setActiveSlide(1), 3000),
+      setTimeout(() => setActiveSlide(1), 5000),
+      setTimeout(() => setActiveSlide(2), 10000),
       setTimeout(() => {
         setActiveSlide(0)
         setAutoPlayComplete(true)
-      }, 6000)
+      }, 15000)
     ]
 
     return () => timers.forEach(clearTimeout)
@@ -238,7 +239,7 @@ const ValuePropsCarousel = () => {
                 <div className="home-value-props__text">
                   <div className="home-value-props__item">
                     <h3>Scale</h3>
-                    <p>Managed teams of 15 to 100+.</p>
+                    <p>Managed teams of 15 to 100+ in rapidly scaling organizations.</p>
                   </div>
                   <div className="home-value-props__item">
                     <h3>Collaboration</h3>
@@ -246,7 +247,7 @@ const ValuePropsCarousel = () => {
                   </div>
                   <div className="home-value-props__item">
                     <h3>Performance</h3>
-                    <p>Built top performing teams at industry leading companies.</p>
+                    <p>Built top performing teams at multiple industry leading companies.</p>
                   </div>
                 </div>
               </div>
@@ -261,15 +262,38 @@ const ValuePropsCarousel = () => {
                 <div className="home-value-props__text">
                   <div className="home-value-props__item">
                     <h3>Team Health</h3>
-                    <p>Consistently high eSAT scores with low attrition rates.</p>
+                    <p>High eSAT scores and low attrition rates.</p>
                   </div>
                   <div className="home-value-props__item">
                     <h3>Career Development</h3>
-                    <p>Mentored designers that were promoted into management and lead IC positions.</p>
+                    <p>Consistently mentored teammates into management and lead IC positions.</p>
                   </div>
                   <div className="home-value-props__item">
                     <h3>Hiring and Recruiting</h3>
-                    <p>Rated Top Interviewer at Doordash, and Bar Raiser at Groupon.</p>
+                    <p>Top Interviewer at Doordash, Bar Raiser at Groupon. I know what to do when hiring is a P0.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Slide 3: Leadership Style */}
+            <div className="home-value-props__slide">
+              <div className="home-value-props__unit">
+                <div className="home-value-props__image">
+                  <img src="/images/LeadershipStyle.png" alt="Leadership Style" />
+                </div>
+                <div className="home-value-props__text">
+                  <div className="home-value-props__item">
+                    <h3>Strategic Connection</h3>
+                    <p>I help teams understand how their work ladders up.</p>
+                  </div>
+                  <div className="home-value-props__item">
+                    <h3>Transparency</h3>
+                    <p>I provide visibility into the why behind decisions, and build systems of communication to elevate impact.</p>
+                  </div>
+                  <div className="home-value-props__item">
+                    <h3>Authenticity</h3>
+                    <p>Spending time getting to know teammates personally unlocks unique opportunities to collaborate and achieve shared goals.</p>
                   </div>
                 </div>
               </div>
@@ -288,6 +312,11 @@ const ValuePropsCarousel = () => {
             className={`home-value-props__dot ${activeSlide === 1 ? 'home-value-props__dot--active' : ''}`}
             onClick={() => setActiveSlide(1)}
             aria-label="Show slide 2"
+          />
+          <button
+            className={`home-value-props__dot ${activeSlide === 2 ? 'home-value-props__dot--active' : ''}`}
+            onClick={() => setActiveSlide(2)}
+            aria-label="Show slide 3"
           />
         </div>
       </div>
@@ -394,7 +423,7 @@ const HomePage = ({ onOpenLogin }) => {
             <div className="home-intro__text">
               <h2 className="home-intro__headline">I lead design teams that ship products customers love.</h2>
               <p>Across DoorDash, Groupon, and Orbitz, I've scaled design in fast-moving environments. Staying focussed on what makes great products feel human, and building teams that operate with purpose. I've launched 0→1 products, built platforms and systems that serve organizations, and helped teams consistently do their best work.</p>
-              <p>I am based in Chicago.</p>
+              <p>Currently based in Chicago, IL.</p>
             </div>
             <div className="home-intro__image-wrapper">
               <img
