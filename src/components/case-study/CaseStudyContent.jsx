@@ -205,9 +205,9 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
   // Combine all platform images for lightbox
   const platformAllImages = [
     ...(impact?.platformImages || []),
+    ...(impact?.imageAfterFirstPara ? [impact.imageAfterFirstPara] : []),
     ...(impact?.imageAfterNarrative ? [impact.imageAfterNarrative] : []),
-    ...(impact?.platformTwoUp || []),
-    ...(impact?.platformTwoUpSecond || []),
+    ...(impact?.platformThreeUp || []),
     ...(impact?.platformTwoUpThird || [])
   ]
 
@@ -278,6 +278,26 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                   <h5 className="case-study-content__intro-highlight-heading">{highlight.heading}</h5>
                   <p className="case-study-content__intro-highlight-content">{highlight.content}</p>
                 </div>
+              ))}
+            </div>
+          )}
+          {introduction.beforeAfterHeading && (
+            <h4 className="case-study-content__heading">{introduction.beforeAfterHeading}</h4>
+          )}
+          {introduction.beforeAfterContent && (
+            <p className="case-study-content__text">{introduction.beforeAfterContent}</p>
+          )}
+          {introduction.beforeAfterImages && introduction.beforeAfterImages.length > 0 && (
+            <div className="case-study-content__platform-two-up">
+              {introduction.beforeAfterImages.map((item, index) => (
+                <figure key={index} className="case-study-content__platform-two-up-item">
+                  {item.label && <figcaption className="case-study-content__platform-two-up-label case-study-content__platform-two-up-label--above">{item.label}</figcaption>}
+                  <img
+                    src={item.src}
+                    alt={item.alt}
+                    style={item.scale ? { transform: `scale(${item.scale})` } : undefined}
+                  />
+                </figure>
               ))}
             </div>
           )}
@@ -1098,6 +1118,19 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                             {solution.timeline[1]?.sectionContentAfterPlanning && (
                 <p className="case-study-content__text">{solution.timeline[1].sectionContentAfterPlanning}</p>
               )}
+              {solution.timeline[1]?.planningHighlight && (
+                <div className="case-study-content__key-learning">
+                  <h5 className="case-study-content__key-learning-heading">
+                    {solution.timeline[1].planningHighlight.heading}
+                  </h5>
+                  <p className="case-study-content__key-learning-content">
+                    {solution.timeline[1].planningHighlight.content}
+                  </p>
+                </div>
+              )}
+              {solution.timeline[1]?.sectionHeadingCrossOrg && (
+                <h5 className="case-study-content__subheading case-study-content__subheading--neutral">{solution.timeline[1].sectionHeadingCrossOrg}</h5>
+              )}
               {solution.timeline[1]?.sectionContentCrossOrg && (
                 <p className="case-study-content__text">{solution.timeline[1].sectionContentCrossOrg}</p>
               )}
@@ -1114,6 +1147,19 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                   ))}
                 </div>
               )}
+              {solution.timeline[1]?.sectionContentAfterTiers && (
+                <p className="case-study-content__text">{solution.timeline[1].sectionContentAfterTiers}</p>
+              )}
+              {solution.timeline[1]?.governanceHighlight && (
+                <div className="case-study-content__key-learning">
+                  <h5 className="case-study-content__key-learning-heading">
+                    {solution.timeline[1].governanceHighlight.heading}
+                  </h5>
+                  <p className="case-study-content__key-learning-content">
+                    {solution.timeline[1].governanceHighlight.content}
+                  </p>
+                </div>
+              )}
               {solution.timeline[1]?.sectionContentTeamBuilding && (
                 <p className="case-study-content__text">{solution.timeline[1].sectionContentTeamBuilding}</p>
               )}
@@ -1123,8 +1169,31 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
               {solution.timeline[1]?.sectionContentQuaternary && (
                 <p className="case-study-content__text">{solution.timeline[1].sectionContentQuaternary}</p>
               )}
+              {solution.timeline[1]?.sectionHeadingFirstSprint && (
+                <h5 className="case-study-content__subheading case-study-content__subheading--neutral">{solution.timeline[1].sectionHeadingFirstSprint}</h5>
+              )}
               {solution.timeline[1]?.sectionContentQuaternarySecondary && (
                 <p className="case-study-content__text">{solution.timeline[1].sectionContentQuaternarySecondary}</p>
+              )}
+              {solution.timeline[1]?.sprintBriefHighlight && (
+                <div className="case-study-content__my-contributions">
+                  <h5 className="case-study-content__my-contributions-heading">
+                    {solution.timeline[1].sprintBriefHighlight.heading}
+                  </h5>
+                  <ul className="case-study-content__my-contributions-list">
+                    {solution.timeline[1].sprintBriefHighlight.items.map((item, index) => (
+                      <li key={index} className="case-study-content__my-contributions-item">
+                        <svg className="case-study-content__my-contributions-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <path d="M20 6L9 17l-5-5" />
+                        </svg>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+              {solution.timeline[1]?.sectionContentAfterBrief && (
+                <p className="case-study-content__text">{solution.timeline[1].sectionContentAfterBrief}</p>
               )}
               {solution.timeline[1]?.visionQuestions && (
                 <div className="case-study-content__vision-questions">
@@ -1163,6 +1232,9 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                     </svg>
                   </div>
                 </figure>
+              )}
+              {solution.timeline[1]?.sectionHeadingAfterTimeline && (
+                <h5 className="case-study-content__subheading case-study-content__subheading--neutral">{solution.timeline[1].sectionHeadingAfterTimeline}</h5>
               )}
               {solution.timeline[1]?.sectionContentAfterTimeline && (
                 solution.timeline[1].sectionContentAfterTimeline.split('\n\n').map((paragraph, index) => (
@@ -1302,6 +1374,12 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                   )}
                 </figure>
               )}
+              {solution.timeline[1]?.sprintInsightHighlight && (
+                <div className="case-study-content__key-learning">
+                  <h4 className="case-study-content__key-learning-heading">{solution.timeline[1].sprintInsightHighlight.heading}</h4>
+                  <p className="case-study-content__key-learning-content">{solution.timeline[1].sprintInsightHighlight.content}</p>
+                </div>
+              )}
               {solution.timeline[1]?.sectionHeadingQuaternary && (
                 <h4 className="case-study-content__heading">{solution.timeline[1].sectionHeadingQuaternary}</h4>
               )}
@@ -1319,6 +1397,12 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                       <cite className="case-study-content__quote-author">- {item.author}</cite>
                     </blockquote>
                   ))}
+                </div>
+              )}
+              {solution.timeline[1]?.conceptTestingHighlight && (
+                <div className="case-study-content__key-learning">
+                  <h4 className="case-study-content__key-learning-heading">{solution.timeline[1].conceptTestingHighlight.heading}</h4>
+                  <p className="case-study-content__key-learning-content">{solution.timeline[1].conceptTestingHighlight.content}</p>
                 </div>
               )}
               {solution.timeline[1]?.sectionHeadingScoping && (
@@ -1850,6 +1934,14 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
             </div>
           )}
 
+          {/* Scaling Myself Highlight */}
+          {impact.scalingMyselfHighlight && (
+            <div className="case-study-content__key-learning">
+              <h4 className="case-study-content__key-learning-heading">{impact.scalingMyselfHighlight.heading}</h4>
+              <p className="case-study-content__key-learning-content">{impact.scalingMyselfHighlight.content}</p>
+            </div>
+          )}
+
           {/* Heading After Images */}
           {impact.headingAfterImages && (
             <h5 className="case-study-content__subheading case-study-content__subheading--neutral">{impact.headingAfterImages}</h5>
@@ -1857,17 +1949,50 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
 
           {/* Narrative After Images */}
           {impact.narrativeAfterImages && (
-            <p className="case-study-content__text">{impact.narrativeAfterImages}</p>
+            impact.narrativeAfterImages.split('\n\n').map((paragraph, index) => (
+              <p key={index} className="case-study-content__text">{paragraph}</p>
+            ))
+          )}
+
+          {/* Image After First Para (Combined UI) */}
+          {impact.imageAfterFirstPara && (
+            <div className="case-study-content__platform-two-up">
+              <figure
+                className="case-study-content__platform-two-up-item case-study-content__platform-two-up-item--clickable"
+                onClick={() => openPlatformLightbox((impact.platformImages?.length || 0))}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => e.key === 'Enter' && openPlatformLightbox((impact.platformImages?.length || 0))}
+              >
+                <img src={impact.imageAfterFirstPara.src} alt={impact.imageAfterFirstPara.alt} />
+                <div className="case-study-content__platform-two-up-zoom">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <circle cx="11" cy="11" r="8" />
+                    <path d="M21 21l-4.35-4.35M11 8v6M8 11h6" />
+                  </svg>
+                </div>
+                {impact.imageAfterFirstPara.label && (
+                  <figcaption className="case-study-content__platform-two-up-label">
+                    {impact.imageAfterFirstPara.label}
+                  </figcaption>
+                )}
+              </figure>
+            </div>
+          )}
+
+          {/* Narrative After Combined UI */}
+          {impact.narrativeAfterCombinedUI && (
+            <p className="case-study-content__text">{impact.narrativeAfterCombinedUI}</p>
           )}
 
           {/* Image After Narrative */}
           {impact.imageAfterNarrative && (
             <figure
               className="case-study-content__section-image case-study-content__section-image--clickable"
-              onClick={() => openPlatformLightbox((impact.platformImages?.length || 0))}
+              onClick={() => openPlatformLightbox((impact.platformImages?.length || 0) + (impact.imageAfterFirstPara ? 1 : 0))}
               role="button"
               tabIndex={0}
-              onKeyDown={(e) => e.key === 'Enter' && openPlatformLightbox((impact.platformImages?.length || 0))}
+              onKeyDown={(e) => e.key === 'Enter' && openPlatformLightbox((impact.platformImages?.length || 0) + (impact.imageAfterFirstPara ? 1 : 0))}
             >
               <img
                 src={impact.imageAfterNarrative.src}
@@ -1888,49 +2013,29 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
             </figure>
           )}
 
-          {/* Narrative Before Two-Up */}
-          {impact.narrativeBeforeTwoUp && (
-            <p className="case-study-content__text">{impact.narrativeBeforeTwoUp}</p>
-          )}
-
-          {/* Platform Two-Up Images */}
-          {impact.platformTwoUp && impact.platformTwoUp.length > 0 && (
-            <div className="case-study-content__platform-two-up">
-              {impact.platformTwoUp.map((image, index) => {
-                const baseIndex = (impact.platformImages?.length || 0) + (impact.imageAfterNarrative ? 1 : 0)
-                return (
-                  <figure
-                    key={index}
-                    className="case-study-content__platform-two-up-item case-study-content__platform-two-up-item--clickable"
-                    onClick={() => openPlatformLightbox(baseIndex + index)}
-                    role="button"
-                    tabIndex={0}
-                    onKeyDown={(e) => e.key === 'Enter' && openPlatformLightbox(baseIndex + index)}
-                  >
-                    <img src={image.src} alt={image.alt} />
-                    {image.label && <figcaption className="case-study-content__platform-two-up-label">{image.label}</figcaption>}
-                    <div className="case-study-content__platform-two-up-zoom">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <circle cx="11" cy="11" r="8" />
-                        <path d="M21 21l-4.35-4.35M11 8v6M8 11h6" />
-                      </svg>
-                    </div>
-                  </figure>
-                )
-              })}
+          {/* Principal Designer Highlight */}
+          {impact.principalDesignerHighlight && (
+            <div className="case-study-content__key-learning">
+              <h4 className="case-study-content__key-learning-heading">{impact.principalDesignerHighlight.heading}</h4>
+              <p className="case-study-content__key-learning-content">{impact.principalDesignerHighlight.content}</p>
             </div>
           )}
 
-          {/* Narrative After Two-Up */}
-          {impact.narrativeAfterTwoUp && (
-            <p className="case-study-content__text">{impact.narrativeAfterTwoUp}</p>
+          {/* Expanding Use Cases Heading */}
+          {impact.headingExpandingUseCases && (
+            <h5 className="case-study-content__subheading case-study-content__subheading--neutral">{impact.headingExpandingUseCases}</h5>
           )}
 
-          {/* Platform Two-Up Second */}
-          {impact.platformTwoUpSecond && impact.platformTwoUpSecond.length > 0 && (
+          {/* Expanding Use Cases Narrative */}
+          {impact.narrativeExpandingUseCases && (
+            <p className="case-study-content__text">{impact.narrativeExpandingUseCases}</p>
+          )}
+
+          {/* Platform Three-Up Images */}
+          {impact.platformThreeUp && impact.platformThreeUp.length > 0 && (
             <div className="case-study-content__platform-two-up">
-              {impact.platformTwoUpSecond.map((image, index) => {
-                const baseIndex = (impact.platformImages?.length || 0) + (impact.imageAfterNarrative ? 1 : 0) + (impact.platformTwoUp?.length || 0)
+              {impact.platformThreeUp.map((image, index) => {
+                const baseIndex = (impact.platformImages?.length || 0) + (impact.imageAfterFirstPara ? 1 : 0) + (impact.imageAfterNarrative ? 1 : 0)
                 return (
                   <figure
                     key={index}
@@ -1961,7 +2066,7 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
 
           {/* Platform Two-Up Third (or 4-up when 4 items) */}
           {impact.platformTwoUpThird && impact.platformTwoUpThird.length > 0 && (() => {
-            const baseIndex = (impact.platformImages?.length || 0) + (impact.imageAfterNarrative ? 1 : 0) + (impact.platformTwoUp?.length || 0) + (impact.platformTwoUpSecond?.length || 0)
+            const baseIndex = (impact.platformImages?.length || 0) + (impact.imageAfterFirstPara ? 1 : 0) + (impact.imageAfterNarrative ? 1 : 0) + (impact.platformThreeUp?.length || 0)
             return impact.platformTwoUpThird.length === 4 ? (
               <div className="case-study-content__platform-grid">
                 {impact.platformTwoUpThird.map((image, index) => (
@@ -2008,6 +2113,14 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
               </div>
             )
           })()}
+
+          {/* Scaling Product Highlight */}
+          {impact.scalingProductHighlight && (
+            <div className="case-study-content__key-learning">
+              <h4 className="case-study-content__key-learning-heading">{impact.scalingProductHighlight.heading}</h4>
+              <p className="case-study-content__key-learning-content">{impact.scalingProductHighlight.content}</p>
+            </div>
+          )}
 
           {/* Lessons from Failure */}
           {impact.lessonsHeading && (
@@ -2150,16 +2263,38 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
               <h5 className="case-study-content__my-contributions-heading">
                 {impact.impactMyContributions.heading}
               </h5>
-              <ul className="case-study-content__my-contributions-list">
-                {impact.impactMyContributions.items.map((item, index) => (
-                  <li key={index} className="case-study-content__my-contributions-item">
-                    <svg className="case-study-content__my-contributions-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M20 6L9 17l-5-5" />
-                    </svg>
-                    {item}
-                  </li>
-                ))}
-              </ul>
+              {impact.impactMyContributions.categories ? (
+                <div className="case-study-content__my-contributions-categories">
+                  {impact.impactMyContributions.categories.map((category, catIndex) => (
+                    <div key={catIndex} className="case-study-content__my-contributions-category">
+                      {category.title && (
+                        <h6 className="case-study-content__my-contributions-category-title">{category.title}</h6>
+                      )}
+                      <ul className="case-study-content__my-contributions-list">
+                        {category.items.map((item, index) => (
+                          <li key={index} className="case-study-content__my-contributions-item">
+                            <svg className="case-study-content__my-contributions-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                              <path d="M20 6L9 17l-5-5" />
+                            </svg>
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <ul className="case-study-content__my-contributions-list">
+                  {impact.impactMyContributions.items.map((item, index) => (
+                    <li key={index} className="case-study-content__my-contributions-item">
+                      <svg className="case-study-content__my-contributions-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="M20 6L9 17l-5-5" />
+                      </svg>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              )}
             </div>
           )}
 
@@ -2218,6 +2353,14 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                   {item.label && <figcaption className="case-study-content__platform-two-up-label">{item.label}</figcaption>}
                 </figure>
               ))}
+            </div>
+          )}
+
+          {/* Leading with Design Highlight */}
+          {impact.leadingWithDesignHighlight && (
+            <div className="case-study-content__key-learning">
+              <h4 className="case-study-content__key-learning-heading">{impact.leadingWithDesignHighlight.heading}</h4>
+              <p className="case-study-content__key-learning-content">{impact.leadingWithDesignHighlight.content}</p>
             </div>
           )}
 
