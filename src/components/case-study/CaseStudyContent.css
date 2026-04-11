@@ -811,7 +811,8 @@
 
   .case-study-content__milestone-card:nth-child(2) .case-study-content__milestone-image,
   .case-study-content__milestone-card:nth-child(3) .case-study-content__milestone-image {
-    width: 100%;
+    width: 50%;
+    justify-self: center;
   }
 }
 
