@@ -1451,10 +1451,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 22px;
+  overflow: hidden;
 }
 
 .case-study-content__phone-video-row-item .case-study-content__phone-video-player {
-  border-radius: 22px;
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
