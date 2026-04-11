@@ -832,6 +832,18 @@
   gap: var(--space-lg);
 }
 
+.case-study-content__my-contributions-categories-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-lg);
+}
+
+@media (max-width: 768px) {
+  .case-study-content__my-contributions-categories-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 .case-study-content__my-contributions-category {
   display: flex;
   flex-direction: column;

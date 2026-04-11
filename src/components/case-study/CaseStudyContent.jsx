@@ -2265,11 +2265,9 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
               </h5>
               {impact.impactMyContributions.categories ? (
                 <div className="case-study-content__my-contributions-categories">
-                  {impact.impactMyContributions.categories.map((category, catIndex) => (
+                  {/* Untitled categories first */}
+                  {impact.impactMyContributions.categories.filter(cat => !cat.title).map((category, catIndex) => (
                     <div key={catIndex} className="case-study-content__my-contributions-category">
-                      {category.title && (
-                        <h6 className="case-study-content__my-contributions-category-title">{category.title}</h6>
-                      )}
                       <ul className="case-study-content__my-contributions-list">
                         {category.items.map((item, index) => (
                           <li key={index} className="case-study-content__my-contributions-item">
@@ -2282,6 +2280,26 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                       </ul>
                     </div>
                   ))}
+                  {/* Titled categories in 3-up grid */}
+                  {impact.impactMyContributions.categories.some(cat => cat.title) && (
+                    <div className="case-study-content__my-contributions-categories-grid">
+                      {impact.impactMyContributions.categories.filter(cat => cat.title).map((category, catIndex) => (
+                        <div key={catIndex} className="case-study-content__my-contributions-category">
+                          <h6 className="case-study-content__my-contributions-category-title">{category.title}</h6>
+                          <ul className="case-study-content__my-contributions-list">
+                            {category.items.map((item, index) => (
+                              <li key={index} className="case-study-content__my-contributions-item">
+                                <svg className="case-study-content__my-contributions-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                  <path d="M20 6L9 17l-5-5" />
+                                </svg>
+                                {item}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
               ) : (
                 <ul className="case-study-content__my-contributions-list">
