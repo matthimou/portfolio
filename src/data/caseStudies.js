@@ -236,7 +236,7 @@ export const caseStudies = [
           sectionContentAfterVideo: 'The half-sheet struck the right balance: it made discovery prominent without getting in the way of order tracking. Customers who wanted to shop could expand it naturally, while those who didn\'t could ignore it. Setting expectations for how bundling worked and what the fees were was added without cluttering the main view. A simple checkout happened within the half-sheet, so customers could complete their add-on purchase without ever losing visibility into their order. We had a concept coming out of the sprint that directly addressed customer feedback on selection and affordability while setting clear expectations around how the feature worked.',
           sprintInsightHighlight: {
             heading: 'Cross-function Sprints',
-            content: 'Including all relevant teams in sprints ensured the design was solving real customer problems and wasn\'t unmoored from organizational priorities. Having prototypes to communicate ideas allowed my teams to influence and impact the product strategy and roadmap.'
+            content: 'Including all relevant teams in sprints ensured the design was solving real customer problems and wasn\'t unmoored from organizational priorities.'
           },
           phoneVideoSecondary: null,
           sectionContentAfterVideoSecondary: null,
@@ -263,7 +263,7 @@ export const caseStudies = [
           ],
           conceptTestingHighlight: {
             heading: 'Customer Research',
-            content: 'Validating concepts with live customers ensured our ideas solved the customer problems we set out to solve, and empowered the team to push the direction forward even when stakeholders had doubts.'
+            content: 'Validating concepts with customers ensured our ideas solved the customer problems identified in our research while bringing stakeholders along.'
           },
           sectionHeadingScoping: 'Sequencing',
           sectionContentScoping: 'With strong customer validation and alignment across leadership, product, and engineering around the concepts, I would work with cross-functional leadership to break complex efforts like this down into multiple milestones. Walking through this example we planned for three milestones, with the goal to deliver customer value incrementally while building toward the full experience.',
@@ -381,7 +381,8 @@ By this stage the team had grown to 3 PMs and 15 engineers, so helping my design
       imageAfterNarrative: {
         src: '/images/delivery-surface-guidelines.png',
         alt: 'Delivery surface guidelines',
-        label: 'Delivery Surface Guidelines'
+        label: 'Delivery Surface Guidelines',
+        half: true
       },
       principalDesignerHighlight: {
         heading: 'Hiring A Principal Designer',
@@ -403,10 +404,10 @@ By this stage the team had grown to 3 PMs and 15 engineers, so helping my design
       ],
       scalingProductHighlight: {
         heading: 'Scaling the Product',
-        content: 'Having a plan for governance, and a forum for discussing how to scale the product enabled us to move fast on efforts that had success criteria tied to clear customer problems without compromising on craft.'
+        content: 'Having a surface governance forum and clear guidelines enabled us to scale the product without compromising on craft.'
       },
       lessonsHeading: 'Learning from Failure',
-      lessonsNarrative: 'Not all of our tests worked. In fact, we spent significant effort trying to add bundling to the store page through a series of experiments which showed promise, but was made more difficult by technical constraints. Getting creative with staffing I worked with my store page design team for this effort to reduce the load on my Doubledash designers. Our COO took a particular interest in these efforts, so we met twice weekly to workshop approaches directly with them and two senior product directors on the consumer team. The tab system we tried meant customers needed to navigate the store content using a bottom nav instead of just scrolling as they were used to. The pairing menu wasn\'t discoverable enough, and the bottom sheet was to disruptive to high-intent shoppers. We got mixed results: attach rate went up as customers discovered the capability, but cart spend went down. Customers were ordering from multiple stores but spending less.',
+      lessonsNarrative: 'Not all of our tests worked. In fact, we spent significant effort trying to add bundling to the store page through a series of experiments. Getting creative with staffing I worked with my store page design team for these efforts to reduce the load on my Doubledash designers. Our COO took a particular interest at this stage, so we met twice weekly to workshop approaches directly with him and two senior product directors on the consumer team. These leaders were convinced that to increase Doubledash visibility we needed to get more aggressive higher in the funnel. All these attempts got mixed results: attach rate went up as customers discovered the capability, but cart spend went down due to the disruptive nature. Customers were ordering from multiple stores but spending less.',
       lessonsMediaRow: [
         {
           type: 'image',
@@ -444,7 +445,7 @@ Another experiment was a pairing menu on the menu item details page. I felt this
         content: 'Don\'t disrupt existing customer behaviors in the service of visibility and awareness'
       },
       impactHeading: 'Impact',
-      impactNarrative: 'By building incrementally, we delivered meaningful results at each stage. Across all these platform initiatives, Doubledash achieved results that validated our strategy and compounded over time. Getting creative about staffing, hiring and adding a Principle designer to increase capacity and strategic weight, working with senior product leaders to resolve priority conflicts, and workshopping directly with the senior leadership team increased the visibility and impact of my team\'s contributions.',
+      impactNarrative: 'By building incrementally, we delivered meaningful results at each stage. Doubledash achieved results that validated our strategy and compounded over time. By 2025 Doubledash was driving significant results.',
       impactImage02: {
         src: '/images/Impact02.png',
         alt: 'Impact results'
@@ -492,8 +493,8 @@ Another experiment was a pairing menu on the menu item details page. I felt this
           }
         ]
       },
-      futureExplorationsHeading: 'Future Forward',
-      futureExplorationsNarrative: 'I always push my teams to stay ahead of product capabilities as a tactic for pushing products beyond their current limitations. The concepts below from sprints I ran on my team before leaving Doordash explored what the future could look like for Doubledash if we brought it to the home page. Giving customers a clear idea of what bundling is and use cases it can serve without having to place an order.',
+      futureExplorationsHeading: 'Leading With Design',
+      futureExplorationsNarrative: 'I always push my teams to stay ahead of product capabilities. The concepts below from sprints I ran on my team before leaving Doordash explored what the future could look like for Doubledash if we brought it to the home page. Giving customers clear visibility into Doubledash and use cases it can serve before placing an order.',
       futureExplorationsImages: [
         { src: '/images/Future01.png', alt: 'Future exploration concept 1' },
         { src: '/images/Future02.png', alt: 'Future exploration concept 2' },

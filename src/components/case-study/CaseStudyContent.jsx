@@ -1951,7 +1951,7 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
           {/* Image After Narrative */}
           {impact.imageAfterNarrative && (
             <figure
-              className="case-study-content__section-image case-study-content__section-image--clickable"
+              className={`case-study-content__section-image case-study-content__section-image--clickable${impact.imageAfterNarrative.half ? ' case-study-content__section-image--half' : ''}`}
               onClick={() => openPlatformLightbox((impact.platformImages?.length || 0) + (impact.imageAfterFirstPara ? 1 : 0))}
               role="button"
               tabIndex={0}
