@@ -1142,11 +1142,16 @@
   margin-right: auto;
 }
 
-.case-study-content__platform-two-up--triple .case-study-content__platform-two-up-item {
+.case-study-content__platform-two-up--triple .case-study-content__platform-two-up-item,
+.case-study-content__platform-two-up--triple .case-study-content__platform-two-up-item:first-child:nth-last-child(3),
+.case-study-content__platform-two-up--triple .case-study-content__platform-two-up-item:first-child:nth-last-child(3) ~ .case-study-content__platform-two-up-item {
   width: 100%;
+  max-width: none;
 }
 
-.case-study-content__platform-two-up--triple .case-study-content__platform-two-up-item img {
+.case-study-content__platform-two-up--triple .case-study-content__platform-two-up-item img,
+.case-study-content__platform-two-up--triple .case-study-content__platform-two-up-item:first-child:nth-last-child(3) img,
+.case-study-content__platform-two-up--triple .case-study-content__platform-two-up-item:first-child:nth-last-child(3) ~ .case-study-content__platform-two-up-item img {
   width: 100%;
   height: auto;
   max-height: none;
