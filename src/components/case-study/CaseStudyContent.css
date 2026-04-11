@@ -1522,12 +1522,23 @@
   .case-study-content__phone-videos-row {
     max-width: 100%;
     grid-template-columns: repeat(3, 1fr);
+    overflow: hidden;
+  }
+
+  .case-study-content__phone-video-row-item {
+    aspect-ratio: auto;
+  }
+
+  .case-study-content__phone-video-row-item .case-study-content__phone-video-container {
+    width: 100%;
+    height: auto;
   }
 }
 
 @media (max-width: 480px) {
   .case-study-content__phone-videos-row {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
+    max-width: 50%;
   }
 }
 
