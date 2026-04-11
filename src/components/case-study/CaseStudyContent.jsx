@@ -117,6 +117,8 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
   const [lightboxOpen, setLightboxOpen] = useState(false)
   const [lightboxIndex, setLightboxIndex] = useState(0)
   const [singleImageLightbox, setSingleImageLightbox] = useState(null)
+  const [mvpLightboxOpen, setMvpLightboxOpen] = useState(false)
+  const [mvpLightboxIndex, setMvpLightboxIndex] = useState(0)
 
   // Filter features that have images for the lightbox
   const featuresWithImages = features?.filter(f => f.image) || []
@@ -142,6 +144,121 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
     )
   }, [featuresWithImages.length])
 
+  // Combine MVP images for lightbox (entry points + shopping flow)
+  const mvpImages = [
+    ...(solution?.timeline?.[0]?.sectionImages?.images || []),
+    ...(solution?.timeline?.[0]?.sectionImageFlow?.images || [])
+  ]
+
+  const openMvpLightbox = useCallback((index) => {
+    setMvpLightboxIndex(index)
+    setMvpLightboxOpen(true)
+  }, [])
+
+  const closeMvpLightbox = useCallback(() => {
+    setMvpLightboxOpen(false)
+  }, [])
+
+  const goToMvpPrev = useCallback(() => {
+    setMvpLightboxIndex((prev) =>
+      prev === 0 ? mvpImages.length - 1 : prev - 1
+    )
+  }, [mvpImages.length])
+
+  const goToMvpNext = useCallback(() => {
+    setMvpLightboxIndex((prev) =>
+      prev === mvpImages.length - 1 ? 0 : prev + 1
+    )
+  }, [mvpImages.length])
+
+  // Video row lightbox state
+  const [videoLightboxOpen, setVideoLightboxOpen] = useState(false)
+  const [videoLightboxIndex, setVideoLightboxIndex] = useState(0)
+
+  const phoneVideosRow = solution?.timeline?.[1]?.phoneVideosRow || []
+
+  const openVideoLightbox = useCallback((index) => {
+    setVideoLightboxIndex(index)
+    setVideoLightboxOpen(true)
+  }, [])
+
+  const closeVideoLightbox = useCallback(() => {
+    setVideoLightboxOpen(false)
+  }, [])
+
+  const goToVideoPrev = useCallback(() => {
+    setVideoLightboxIndex((prev) =>
+      prev === 0 ? phoneVideosRow.length - 1 : prev - 1
+    )
+  }, [phoneVideosRow.length])
+
+  const goToVideoNext = useCallback(() => {
+    setVideoLightboxIndex((prev) =>
+      prev === phoneVideosRow.length - 1 ? 0 : prev + 1
+    )
+  }, [phoneVideosRow.length])
+
+  // Platform section lightbox state
+  const [platformLightboxOpen, setPlatformLightboxOpen] = useState(false)
+  const [platformLightboxIndex, setPlatformLightboxIndex] = useState(0)
+
+  // Combine all platform images for lightbox
+  const platformAllImages = [
+    ...(impact?.platformImages || []),
+    ...(impact?.imageAfterNarrative ? [impact.imageAfterNarrative] : []),
+    ...(impact?.platformTwoUp || []),
+    ...(impact?.platformTwoUpSecond || []),
+    ...(impact?.platformTwoUpThird || [])
+  ]
+
+  const openPlatformLightbox = useCallback((index) => {
+    setPlatformLightboxIndex(index)
+    setPlatformLightboxOpen(true)
+  }, [])
+
+  const closePlatformLightbox = useCallback(() => {
+    setPlatformLightboxOpen(false)
+  }, [])
+
+  const goToPlatformPrev = useCallback(() => {
+    setPlatformLightboxIndex((prev) =>
+      prev === 0 ? platformAllImages.length - 1 : prev - 1
+    )
+  }, [platformAllImages.length])
+
+  const goToPlatformNext = useCallback(() => {
+    setPlatformLightboxIndex((prev) =>
+      prev === platformAllImages.length - 1 ? 0 : prev + 1
+    )
+  }, [platformAllImages.length])
+
+  // Lessons media row lightbox state
+  const [lessonsLightboxOpen, setLessonsLightboxOpen] = useState(false)
+  const [lessonsLightboxIndex, setLessonsLightboxIndex] = useState(0)
+
+  const lessonsMediaRow = impact?.lessonsMediaRow || []
+
+  const openLessonsLightbox = useCallback((index) => {
+    setLessonsLightboxIndex(index)
+    setLessonsLightboxOpen(true)
+  }, [])
+
+  const closeLessonsLightbox = useCallback(() => {
+    setLessonsLightboxOpen(false)
+  }, [])
+
+  const goToLessonsPrev = useCallback(() => {
+    setLessonsLightboxIndex((prev) =>
+      prev === 0 ? lessonsMediaRow.length - 1 : prev - 1
+    )
+  }, [lessonsMediaRow.length])
+
+  const goToLessonsNext = useCallback(() => {
+    setLessonsLightboxIndex((prev) =>
+      prev === lessonsMediaRow.length - 1 ? 0 : prev + 1
+    )
+  }, [lessonsMediaRow.length])
+
   return (
     <div className="case-study-content">
       {/* Introduction Section */}
@@ -153,6 +270,16 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
           ))}
           {introduction.contentSecondary && (
             <p className="case-study-content__text">{introduction.contentSecondary}</p>
+          )}
+          {introduction.introHighlights && introduction.introHighlights.length > 0 && (
+            <div className="case-study-content__intro-highlights">
+              {introduction.introHighlights.map((highlight, index) => (
+                <div key={index} className="case-study-content__intro-highlight">
+                  <h5 className="case-study-content__intro-highlight-heading">{highlight.heading}</h5>
+                  <p className="case-study-content__intro-highlight-content">{highlight.content}</p>
+                </div>
+              ))}
+            </div>
           )}
           {introduction.contentTertiary && (
             <p className="case-study-content__text">{introduction.contentTertiary}</p>
@@ -342,20 +469,37 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                 ))
               )}
               {solution.timeline[0].sectionImages && (
-                <div className="case-study-content__image-pair">
-                  {solution.timeline[0].sectionImages.map((image, index) => (
-                    <figure key={index} className="case-study-content__image-pair-item">
-                      <img
-                        src={image.src}
-                        alt={image.alt}
-                        className="case-study-content__image-pair-img"
-                      />
-                      {image.label && (
-                        <figcaption className="case-study-content__image-pair-label">{image.label}</figcaption>
-                      )}
-                    </figure>
-                  ))}
-                </div>
+                <figure className="case-study-content__image-pair">
+                  <div className="case-study-content__image-pair-row">
+                    {solution.timeline[0].sectionImages.images.map((image, index) => (
+                      <div
+                        key={index}
+                        className="case-study-content__image-pair-item case-study-content__image-clickable"
+                        onClick={() => openMvpLightbox(index)}
+                        role="button"
+                        tabIndex={0}
+                        onKeyDown={(e) => e.key === 'Enter' && openMvpLightbox(index)}
+                      >
+                        <img
+                          src={image.src}
+                          alt={image.alt}
+                          className="case-study-content__image-pair-img"
+                        />
+                        <div className="case-study-content__image-zoom">
+                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <circle cx="11" cy="11" r="8" />
+                            <path d="M21 21l-4.35-4.35M11 8v6M8 11h6" />
+                          </svg>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  {solution.timeline[0].sectionImages.label && (
+                    <figcaption className="case-study-content__image-pair-label">
+                      {solution.timeline[0].sectionImages.label}
+                    </figcaption>
+                  )}
+                </figure>
               )}
               {solution.timeline[0].sectionContentAfterImages && (
                 <p className="case-study-content__text">{solution.timeline[0].sectionContentAfterImages}</p>
@@ -363,14 +507,31 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
               {solution.timeline[0].sectionImageFlow && (
                 <figure className="case-study-content__image-flow">
                   <div className="case-study-content__image-flow-row">
-                    {solution.timeline[0].sectionImageFlow.images.map((image, index) => (
-                      <img
-                        key={index}
-                        src={image.src}
-                        alt={image.alt}
-                        className="case-study-content__image-flow-img"
-                      />
-                    ))}
+                    {solution.timeline[0].sectionImageFlow.images.map((image, index) => {
+                      const entryPointCount = solution.timeline[0].sectionImages?.images?.length || 0
+                      return (
+                        <div
+                          key={index}
+                          className="case-study-content__image-flow-item case-study-content__image-clickable"
+                          onClick={() => openMvpLightbox(entryPointCount + index)}
+                          role="button"
+                          tabIndex={0}
+                          onKeyDown={(e) => e.key === 'Enter' && openMvpLightbox(entryPointCount + index)}
+                        >
+                          <img
+                            src={image.src}
+                            alt={image.alt}
+                            className="case-study-content__image-flow-img"
+                          />
+                          <div className="case-study-content__image-zoom">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                              <circle cx="11" cy="11" r="8" />
+                              <path d="M21 21l-4.35-4.35M11 8v6M8 11h6" />
+                            </svg>
+                          </div>
+                        </div>
+                      )
+                    })}
                   </div>
                   {solution.timeline[0].sectionImageFlow.label && (
                     <figcaption className="case-study-content__image-flow-label">
@@ -528,6 +689,9 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
               {solution.timeline[1]?.successMetrics && (
                 <div className="case-study-content__success-metrics">
                   <h5 className="case-study-content__success-metrics-heading">{solution.timeline[1].successMetrics.heading}</h5>
+                  {solution.timeline[1].successMetrics.intro && (
+                    <p className="case-study-content__text">{solution.timeline[1].successMetrics.intro}</p>
+                  )}
                   <div className="case-study-content__success-metrics-grid">
                     {solution.timeline[1].successMetrics.items.map((item, index) => (
                       <div key={index} className="case-study-content__success-metric-card">
@@ -937,6 +1101,19 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
               {solution.timeline[1]?.sectionContentCrossOrg && (
                 <p className="case-study-content__text">{solution.timeline[1].sectionContentCrossOrg}</p>
               )}
+              {solution.timeline[1]?.priorityTiers && (
+                <div className="case-study-content__priority-tiers">
+                  {solution.timeline[1].priorityTiers.map((tier) => (
+                    <div key={tier.tier} className={`case-study-content__priority-tier case-study-content__priority-tier--${tier.tier}`}>
+                      <div className="case-study-content__priority-tier-number">{tier.tier}</div>
+                      <div className="case-study-content__priority-tier-content">
+                        <h6 className="case-study-content__priority-tier-title">{tier.title}</h6>
+                        <p className="case-study-content__priority-tier-examples">{tier.examples}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
               {solution.timeline[1]?.sectionContentTeamBuilding && (
                 <p className="case-study-content__text">{solution.timeline[1].sectionContentTeamBuilding}</p>
               )}
@@ -993,16 +1170,64 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                 ))
               )}
               {solution.timeline[1]?.sectionImageMapInsight && (
-                <figure className="case-study-content__section-image">
+                <figure
+                  className="case-study-content__section-image case-study-content__section-image--clickable"
+                  onClick={() => setSingleImageLightbox(solution.timeline[1].sectionImageMapInsight)}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => e.key === 'Enter' && setSingleImageLightbox(solution.timeline[1].sectionImageMapInsight)}
+                >
                   <img
                     src={solution.timeline[1].sectionImageMapInsight.src}
                     alt={solution.timeline[1].sectionImageMapInsight.alt}
                     className="case-study-content__section-image-img"
                   />
+                  <div className="case-study-content__section-image-zoom">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <circle cx="11" cy="11" r="8" />
+                      <path d="M21 21l-4.35-4.35M11 8v6M8 11h6" />
+                    </svg>
+                  </div>
                 </figure>
               )}
               {solution.timeline[1]?.sectionContentBeforeVideo && (
                 <p className="case-study-content__text">{solution.timeline[1].sectionContentBeforeVideo}</p>
+              )}
+              {solution.timeline[1]?.phoneVideosRow && (
+                <div className="case-study-content__phone-videos-row">
+                  {solution.timeline[1].phoneVideosRow.map((videoItem, index) => (
+                    <figure
+                      key={index}
+                      className="case-study-content__phone-video-row-item case-study-content__phone-video-row-item--clickable"
+                      onClick={() => openVideoLightbox(index)}
+                      role="button"
+                      tabIndex={0}
+                      onKeyDown={(e) => e.key === 'Enter' && openVideoLightbox(index)}
+                    >
+                      <div className="case-study-content__phone-video-container">
+                        <video
+                          src={videoItem.video}
+                          autoPlay
+                          muted
+                          loop
+                          playsInline
+                          className="case-study-content__phone-video-player"
+                        />
+                        <div className="case-study-content__video-zoom">
+                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <circle cx="11" cy="11" r="8" />
+                            <path d="M21 21l-4.35-4.35M11 8v6M8 11h6" />
+                          </svg>
+                        </div>
+                      </div>
+                      {videoItem.caption && (
+                        <figcaption className="case-study-content__phone-video-caption">
+                          {videoItem.caption}
+                        </figcaption>
+                      )}
+                    </figure>
+                  ))}
+                </div>
               )}
               {solution.timeline[1]?.phoneVideo && (
                 <figure className="case-study-content__phone-video">
@@ -1240,6 +1465,23 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                   )}
                 </div>
               )}
+              {solution.timeline[1]?.myContributions && (
+                <div className="case-study-content__my-contributions">
+                  <h6 className="case-study-content__my-contributions-heading">
+                    {solution.timeline[1].myContributions.heading}
+                  </h6>
+                  <ul className="case-study-content__my-contributions-list">
+                    {solution.timeline[1].myContributions.items.map((item, index) => (
+                      <li key={index} className="case-study-content__my-contributions-item">
+                        <svg className="case-study-content__my-contributions-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                          <path d="M20 6L9 17l-5-5" />
+                        </svg>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
             </>
           )}
 
@@ -1411,7 +1653,169 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
         </div>
       )}
 
+      {/* MVP Images Lightbox */}
+      {mvpLightboxOpen && mvpImages.length > 0 && (
+        <div className="lightbox" onClick={closeMvpLightbox}>
+          <button className="lightbox__close" onClick={closeMvpLightbox} aria-label="Close lightbox">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M18 6L6 18M6 6l12 12" />
+            </svg>
+          </button>
+
+          <div className="lightbox__content" onClick={(e) => e.stopPropagation()}>
+            <img
+              src={mvpImages[mvpLightboxIndex]?.src}
+              alt={mvpImages[mvpLightboxIndex]?.alt}
+              className="lightbox__image"
+            />
+          </div>
+
+          {mvpImages.length > 1 && (
+            <>
+              <button
+                className="lightbox__nav lightbox__nav--prev"
+                onClick={(e) => { e.stopPropagation(); goToMvpPrev() }}
+                aria-label="Previous image"
+              >
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M15 18l-6-6 6-6" />
+                </svg>
+              </button>
+              <button
+                className="lightbox__nav lightbox__nav--next"
+                onClick={(e) => { e.stopPropagation(); goToMvpNext() }}
+                aria-label="Next image"
+              >
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M9 18l6-6-6-6" />
+                </svg>
+              </button>
+              <div className="lightbox__counter">
+                {mvpLightboxIndex + 1} / {mvpImages.length}
+              </div>
+            </>
+          )}
+        </div>
+      )}
+
+      {/* Video Row Lightbox */}
+      {videoLightboxOpen && phoneVideosRow.length > 0 && (
+        <div className="lightbox" onClick={closeVideoLightbox}>
+          <button className="lightbox__close" onClick={closeVideoLightbox} aria-label="Close lightbox">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M18 6L6 18M6 6l12 12" />
+            </svg>
+          </button>
+
+          <div className="lightbox__content lightbox__content--video" onClick={(e) => e.stopPropagation()}>
+            <video
+              key={videoLightboxIndex}
+              src={phoneVideosRow[videoLightboxIndex]?.video}
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="lightbox__video"
+            />
+            {phoneVideosRow[videoLightboxIndex]?.caption && (
+              <div className="lightbox__caption">
+                <h4 className="lightbox__title">{phoneVideosRow[videoLightboxIndex].caption}</h4>
+              </div>
+            )}
+          </div>
+
+          {phoneVideosRow.length > 1 && (
+            <>
+              <button
+                className="lightbox__nav lightbox__nav--prev"
+                onClick={(e) => { e.stopPropagation(); goToVideoPrev() }}
+                aria-label="Previous video"
+              >
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M15 18l-6-6 6-6" />
+                </svg>
+              </button>
+              <button
+                className="lightbox__nav lightbox__nav--next"
+                onClick={(e) => { e.stopPropagation(); goToVideoNext() }}
+                aria-label="Next video"
+              >
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M9 18l6-6-6-6" />
+                </svg>
+              </button>
+              <div className="lightbox__counter">
+                {videoLightboxIndex + 1} / {phoneVideosRow.length}
+              </div>
+            </>
+          )}
+        </div>
+      )}
+
+      {/* Platform Images Lightbox */}
+      {platformLightboxOpen && platformAllImages.length > 0 && (
+        <div className="lightbox" onClick={closePlatformLightbox}>
+          <button className="lightbox__close" onClick={closePlatformLightbox} aria-label="Close lightbox">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M18 6L6 18M6 6l12 12" />
+            </svg>
+          </button>
+
+          <div className="lightbox__content" onClick={(e) => e.stopPropagation()}>
+            <img
+              src={platformAllImages[platformLightboxIndex]?.src}
+              alt={platformAllImages[platformLightboxIndex]?.alt}
+              className="lightbox__image"
+            />
+            {platformAllImages[platformLightboxIndex]?.label && (
+              <div className="lightbox__caption">
+                <h4 className="lightbox__title">{platformAllImages[platformLightboxIndex].label}</h4>
+              </div>
+            )}
+          </div>
+
+          {platformAllImages.length > 1 && (
+            <>
+              <button
+                className="lightbox__nav lightbox__nav--prev"
+                onClick={(e) => { e.stopPropagation(); goToPlatformPrev() }}
+                aria-label="Previous image"
+              >
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M15 18l-6-6 6-6" />
+                </svg>
+              </button>
+              <button
+                className="lightbox__nav lightbox__nav--next"
+                onClick={(e) => { e.stopPropagation(); goToPlatformNext() }}
+                aria-label="Next image"
+              >
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M9 18l6-6-6-6" />
+                </svg>
+              </button>
+              <div className="lightbox__counter">
+                {platformLightboxIndex + 1} / {platformAllImages.length}
+              </div>
+            </>
+          )}
+        </div>
+      )}
+
       {/* Impact Section */}
+      {impact?.fullBleedImage && (
+        <figure className="case-study-content__full-bleed">
+          <img
+            src={impact.fullBleedImage.src}
+            alt={impact.fullBleedImage.alt}
+          />
+          {impact.fullBleedImage.caption && (
+            <figcaption className="case-study-content__full-bleed-caption">
+              {impact.fullBleedImage.caption}
+            </figcaption>
+          )}
+        </figure>
+      )}
       {impact && (
         <section className="case-study-content__section">
           <h4 className={impact.headingAccent ? "case-study-content__subheading" : "case-study-content__heading"}>{impact.heading}</h4>
@@ -1425,17 +1829,63 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
           {impact.platformImages && impact.platformImages.length > 0 && (
             <div className="case-study-content__platform-grid">
               {impact.platformImages.map((image, index) => (
-                <div key={index} className="case-study-content__platform-grid-item">
+                <div
+                  key={index}
+                  className="case-study-content__platform-grid-item case-study-content__platform-grid-item--clickable"
+                  onClick={() => openPlatformLightbox(index)}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => e.key === 'Enter' && openPlatformLightbox(index)}
+                >
                   <img src={image.src} alt={image.alt} />
                   {image.label && <span className="case-study-content__platform-grid-label">{image.label}</span>}
+                  <div className="case-study-content__platform-grid-zoom">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <circle cx="11" cy="11" r="8" />
+                      <path d="M21 21l-4.35-4.35M11 8v6M8 11h6" />
+                    </svg>
+                  </div>
                 </div>
               ))}
             </div>
           )}
 
+          {/* Heading After Images */}
+          {impact.headingAfterImages && (
+            <h5 className="case-study-content__subheading case-study-content__subheading--neutral">{impact.headingAfterImages}</h5>
+          )}
+
           {/* Narrative After Images */}
           {impact.narrativeAfterImages && (
             <p className="case-study-content__text">{impact.narrativeAfterImages}</p>
+          )}
+
+          {/* Image After Narrative */}
+          {impact.imageAfterNarrative && (
+            <figure
+              className="case-study-content__section-image case-study-content__section-image--clickable"
+              onClick={() => openPlatformLightbox((impact.platformImages?.length || 0))}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => e.key === 'Enter' && openPlatformLightbox((impact.platformImages?.length || 0))}
+            >
+              <img
+                src={impact.imageAfterNarrative.src}
+                alt={impact.imageAfterNarrative.alt}
+                className="case-study-content__section-image-img"
+              />
+              <div className="case-study-content__section-image-zoom">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <circle cx="11" cy="11" r="8" />
+                  <path d="M21 21l-4.35-4.35M11 8v6M8 11h6" />
+                </svg>
+              </div>
+              {impact.imageAfterNarrative.label && (
+                <figcaption className="case-study-content__section-image-label">
+                  {impact.imageAfterNarrative.label}
+                </figcaption>
+              )}
+            </figure>
           )}
 
           {/* Narrative Before Two-Up */}
@@ -1446,12 +1896,28 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
           {/* Platform Two-Up Images */}
           {impact.platformTwoUp && impact.platformTwoUp.length > 0 && (
             <div className="case-study-content__platform-two-up">
-              {impact.platformTwoUp.map((image, index) => (
-                <figure key={index} className="case-study-content__platform-two-up-item">
-                  <img src={image.src} alt={image.alt} />
-                  {image.label && <figcaption className="case-study-content__platform-two-up-label">{image.label}</figcaption>}
-                </figure>
-              ))}
+              {impact.platformTwoUp.map((image, index) => {
+                const baseIndex = (impact.platformImages?.length || 0) + (impact.imageAfterNarrative ? 1 : 0)
+                return (
+                  <figure
+                    key={index}
+                    className="case-study-content__platform-two-up-item case-study-content__platform-two-up-item--clickable"
+                    onClick={() => openPlatformLightbox(baseIndex + index)}
+                    role="button"
+                    tabIndex={0}
+                    onKeyDown={(e) => e.key === 'Enter' && openPlatformLightbox(baseIndex + index)}
+                  >
+                    <img src={image.src} alt={image.alt} />
+                    {image.label && <figcaption className="case-study-content__platform-two-up-label">{image.label}</figcaption>}
+                    <div className="case-study-content__platform-two-up-zoom">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <circle cx="11" cy="11" r="8" />
+                        <path d="M21 21l-4.35-4.35M11 8v6M8 11h6" />
+                      </svg>
+                    </div>
+                  </figure>
+                )
+              })}
             </div>
           )}
 
@@ -1463,12 +1929,28 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
           {/* Platform Two-Up Second */}
           {impact.platformTwoUpSecond && impact.platformTwoUpSecond.length > 0 && (
             <div className="case-study-content__platform-two-up">
-              {impact.platformTwoUpSecond.map((image, index) => (
-                <figure key={index} className="case-study-content__platform-two-up-item">
-                  <img src={image.src} alt={image.alt} />
-                  {image.label && <figcaption className="case-study-content__platform-two-up-label">{image.label}</figcaption>}
-                </figure>
-              ))}
+              {impact.platformTwoUpSecond.map((image, index) => {
+                const baseIndex = (impact.platformImages?.length || 0) + (impact.imageAfterNarrative ? 1 : 0) + (impact.platformTwoUp?.length || 0)
+                return (
+                  <figure
+                    key={index}
+                    className="case-study-content__platform-two-up-item case-study-content__platform-two-up-item--clickable"
+                    onClick={() => openPlatformLightbox(baseIndex + index)}
+                    role="button"
+                    tabIndex={0}
+                    onKeyDown={(e) => e.key === 'Enter' && openPlatformLightbox(baseIndex + index)}
+                  >
+                    <img src={image.src} alt={image.alt} />
+                    {image.label && <figcaption className="case-study-content__platform-two-up-label">{image.label}</figcaption>}
+                    <div className="case-study-content__platform-two-up-zoom">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <circle cx="11" cy="11" r="8" />
+                        <path d="M21 21l-4.35-4.35M11 8v6M8 11h6" />
+                      </svg>
+                    </div>
+                  </figure>
+                )
+              })}
             </div>
           )}
 
@@ -1478,27 +1960,54 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
           ))}
 
           {/* Platform Two-Up Third (or 4-up when 4 items) */}
-          {impact.platformTwoUpThird && impact.platformTwoUpThird.length > 0 && (
-            impact.platformTwoUpThird.length === 4 ? (
+          {impact.platformTwoUpThird && impact.platformTwoUpThird.length > 0 && (() => {
+            const baseIndex = (impact.platformImages?.length || 0) + (impact.imageAfterNarrative ? 1 : 0) + (impact.platformTwoUp?.length || 0) + (impact.platformTwoUpSecond?.length || 0)
+            return impact.platformTwoUpThird.length === 4 ? (
               <div className="case-study-content__platform-grid">
                 {impact.platformTwoUpThird.map((image, index) => (
-                  <div key={index} className="case-study-content__platform-grid-item">
+                  <div
+                    key={index}
+                    className="case-study-content__platform-grid-item case-study-content__platform-grid-item--clickable"
+                    onClick={() => openPlatformLightbox(baseIndex + index)}
+                    role="button"
+                    tabIndex={0}
+                    onKeyDown={(e) => e.key === 'Enter' && openPlatformLightbox(baseIndex + index)}
+                  >
                     <img src={image.src} alt={image.alt} />
                     {image.label && <span className="case-study-content__platform-grid-label">{image.label}</span>}
+                    <div className="case-study-content__platform-grid-zoom">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <circle cx="11" cy="11" r="8" />
+                        <path d="M21 21l-4.35-4.35M11 8v6M8 11h6" />
+                      </svg>
+                    </div>
                   </div>
                 ))}
               </div>
             ) : (
               <div className="case-study-content__platform-two-up">
                 {impact.platformTwoUpThird.map((image, index) => (
-                  <figure key={index} className="case-study-content__platform-two-up-item">
+                  <figure
+                    key={index}
+                    className="case-study-content__platform-two-up-item case-study-content__platform-two-up-item--clickable"
+                    onClick={() => openPlatformLightbox(baseIndex + index)}
+                    role="button"
+                    tabIndex={0}
+                    onKeyDown={(e) => e.key === 'Enter' && openPlatformLightbox(baseIndex + index)}
+                  >
                     <img src={image.src} alt={image.alt} />
                     {image.label && <figcaption className="case-study-content__platform-two-up-label">{image.label}</figcaption>}
+                    <div className="case-study-content__platform-two-up-zoom">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <circle cx="11" cy="11" r="8" />
+                        <path d="M21 21l-4.35-4.35M11 8v6M8 11h6" />
+                      </svg>
+                    </div>
                   </figure>
                 ))}
               </div>
             )
-          )}
+          })()}
 
           {/* Lessons from Failure */}
           {impact.lessonsHeading && (
@@ -1508,75 +2017,58 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
             <p key={index} className="case-study-content__text">{para}</p>
           ))}
 
-          {/* Lessons Image */}
-          {impact.lessonsImage && (
-            <figure className="case-study-content__lessons-image">
-              <img
-                src={impact.lessonsImage.src}
-                alt={impact.lessonsImage.alt}
-              />
-              {impact.lessonsImage.caption && (
-                <figcaption className="case-study-content__caption">
-                  {impact.lessonsImage.caption}
-                </figcaption>
-              )}
-            </figure>
-          )}
-
-          {/* Lessons Narrative After Image */}
-          {impact.lessonsNarrativeAfterImage && impact.lessonsNarrativeAfterImage.split('\n\n').map((para, index) => (
-            <p key={index} className="case-study-content__text">{para}</p>
-          ))}
-
-          {/* Lessons Video */}
-          {impact.lessonsVideo && (
-            <figure className="case-study-content__lessons-image">
-              <video
-                src={impact.lessonsVideo.src}
-                autoPlay
-                loop
-                muted
-                playsInline
-              />
-              {impact.lessonsVideo.caption && (
-                <figcaption className="case-study-content__caption">
-                  {impact.lessonsVideo.caption}
-                </figcaption>
-              )}
-            </figure>
-          )}
-
-          {/* Lessons Narrative After Video */}
-          {impact.lessonsNarrativeAfterVideo && (
-            <p className="case-study-content__text">{impact.lessonsNarrativeAfterVideo}</p>
-          )}
-
-          {/* Lessons Video 02 - Two Column Layout */}
-          {(impact.lessonsVideo02 || impact.lessonsNarrativeAfterVideo02) && (
-            <div className="case-study-content__lessons-conclusion">
-              {impact.lessonsVideo02 && (
-                <figure className="case-study-content__lessons-conclusion-image">
-                  <video
-                    src={impact.lessonsVideo02.src}
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                  />
-                  {impact.lessonsVideo02.caption && (
-                    <figcaption className="case-study-content__caption">
-                      {impact.lessonsVideo02.caption}
+          {/* Lessons Media Row (image + videos in horizontal layout with lightbox) */}
+          {impact.lessonsMediaRow && impact.lessonsMediaRow.length > 0 && (
+            <div className="case-study-content__lessons-media-row">
+              {impact.lessonsMediaRow.map((item, index) => (
+                <figure
+                  key={index}
+                  className="case-study-content__lessons-media-item case-study-content__lessons-media-item--clickable"
+                  onClick={() => openLessonsLightbox(index)}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => e.key === 'Enter' && openLessonsLightbox(index)}
+                >
+                  <div className="case-study-content__lessons-media-container">
+                    {item.type === 'video' ? (
+                      <video
+                        src={item.src}
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                        className="case-study-content__lessons-media-video"
+                      />
+                    ) : (
+                      <img
+                        src={item.src}
+                        alt={item.alt}
+                        className="case-study-content__lessons-media-image"
+                      />
+                    )}
+                    <div className="case-study-content__lessons-media-zoom">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <circle cx="11" cy="11" r="8" />
+                        <path d="M21 21l-4.35-4.35M11 8v6M8 11h6" />
+                      </svg>
+                    </div>
+                  </div>
+                  {item.caption && (
+                    <figcaption className="case-study-content__lessons-media-caption">
+                      {item.caption}
                     </figcaption>
                   )}
                 </figure>
-              )}
-              {impact.lessonsNarrativeAfterVideo02 && (
-                <div className="case-study-content__lessons-conclusion-text">
-                  {impact.lessonsNarrativeAfterVideo02.split('\n\n').map((para, index) => (
-                    <p key={index}>{para}</p>
-                  ))}
-                </div>
-              )}
+              ))}
+            </div>
+          )}
+
+          {/* Lessons Narrative After Media Row */}
+          {impact.lessonsNarrativeAfterVideo02 && (
+            <div className="case-study-content__lessons-conclusion-text">
+              {impact.lessonsNarrativeAfterVideo02.split('\n\n').map((para, index) => (
+                <p key={index} className="case-study-content__text">{para}</p>
+              ))}
             </div>
           )}
 
@@ -1603,6 +2095,18 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                   )}
                 </figure>
               )}
+            </div>
+          )}
+
+          {/* Lessons Key Learning */}
+          {impact.lessonsKeyLearning && (
+            <div className="case-study-content__key-learning">
+              <h5 className="case-study-content__key-learning-heading">
+                {impact.lessonsKeyLearning.heading}
+              </h5>
+              <p className="case-study-content__key-learning-content">
+                {impact.lessonsKeyLearning.content}
+              </p>
             </div>
           )}
 
@@ -1637,6 +2141,25 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                   ))}
                 </div>
               )}
+            </div>
+          )}
+
+          {/* Impact My Contributions */}
+          {impact.impactMyContributions && (
+            <div className="case-study-content__my-contributions">
+              <h5 className="case-study-content__my-contributions-heading">
+                {impact.impactMyContributions.heading}
+              </h5>
+              <ul className="case-study-content__my-contributions-list">
+                {impact.impactMyContributions.items.map((item, index) => (
+                  <li key={index} className="case-study-content__my-contributions-item">
+                    <svg className="case-study-content__my-contributions-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M20 6L9 17l-5-5" />
+                    </svg>
+                    {item}
+                  </li>
+                ))}
+              </ul>
             </div>
           )}
 
@@ -1743,6 +2266,68 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
             ))
           )}
         </section>
+      )}
+
+      {/* Lessons Media Lightbox */}
+      {lessonsLightboxOpen && lessonsMediaRow.length > 0 && (
+        <div className="lightbox" onClick={closeLessonsLightbox}>
+          <button className="lightbox__close" onClick={closeLessonsLightbox} aria-label="Close lightbox">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M18 6L6 18M6 6l12 12" />
+            </svg>
+          </button>
+
+          <div className={`lightbox__content ${lessonsMediaRow[lessonsLightboxIndex]?.type === 'video' ? 'lightbox__content--video' : ''}`} onClick={(e) => e.stopPropagation()}>
+            {lessonsMediaRow[lessonsLightboxIndex]?.type === 'video' ? (
+              <video
+                key={lessonsLightboxIndex}
+                src={lessonsMediaRow[lessonsLightboxIndex]?.src}
+                autoPlay
+                muted
+                loop
+                playsInline
+                className="lightbox__video"
+              />
+            ) : (
+              <img
+                src={lessonsMediaRow[lessonsLightboxIndex]?.src}
+                alt={lessonsMediaRow[lessonsLightboxIndex]?.alt}
+                className="lightbox__image"
+              />
+            )}
+            {lessonsMediaRow[lessonsLightboxIndex]?.caption && (
+              <div className="lightbox__caption">
+                <h4 className="lightbox__title">{lessonsMediaRow[lessonsLightboxIndex].caption}</h4>
+              </div>
+            )}
+          </div>
+
+          {lessonsMediaRow.length > 1 && (
+            <>
+              <button
+                className="lightbox__nav lightbox__nav--prev"
+                onClick={(e) => { e.stopPropagation(); goToLessonsPrev() }}
+                aria-label="Previous item"
+              >
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M15 18l-6-6 6-6" />
+                </svg>
+              </button>
+              <button
+                className="lightbox__nav lightbox__nav--next"
+                onClick={(e) => { e.stopPropagation(); goToLessonsNext() }}
+                aria-label="Next item"
+              >
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M9 18l6-6-6-6" />
+                </svg>
+              </button>
+              <div className="lightbox__counter">
+                {lessonsLightboxIndex + 1} / {lessonsMediaRow.length}
+              </div>
+            </>
+          )}
+        </div>
       )}
     </div>
   )
