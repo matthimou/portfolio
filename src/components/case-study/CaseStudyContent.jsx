@@ -2069,7 +2069,7 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
 
           {/* Image After First Para (Combined UI) */}
           {impact.imageAfterFirstPara && (
-            <div className="case-study-content__platform-two-up case-study-content__platform-two-up--single">
+            <div className="case-study-content__platform-two-up">
               <figure
                 className="case-study-content__platform-two-up-item case-study-content__platform-two-up-item--clickable"
                 onClick={() => openPlatformLightbox((impact.platformImages?.length || 0))}
@@ -2146,7 +2146,7 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
 
           {/* Platform Three-Up Images */}
           {impact.platformThreeUp && impact.platformThreeUp.length > 0 && (
-            <div className="case-study-content__platform-two-up case-study-content__platform-two-up--triple">
+            <div className="case-study-content__platform-two-up">
               {impact.platformThreeUp.map((image, index) => {
                 const baseIndex = (impact.platformImages?.length || 0) + (impact.imageAfterFirstPara ? 1 : 0) + (impact.imageAfterNarrative ? 1 : 0)
                 return (
