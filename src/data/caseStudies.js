@@ -134,7 +134,7 @@ export const caseStudies = [
           sectionContent: null,
           successMetrics: {
             heading: 'Measuring Success',
-            intro: 'Where our initial phase focused on learning fast, we now shifted to defining the success metrics that would measure our impact as the product matured. This is a critical step because design teams need to understand what the design is meant to drive, so I like to do this as early as feasible.',
+            intro: 'Where our initial phase focused on learning fast, we now shifted to defining the success metrics that would measure our impact as the product matured.',
             items: [
               {
                 type: 'Primary Metric',

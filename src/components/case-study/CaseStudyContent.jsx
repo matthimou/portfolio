@@ -259,6 +259,37 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
     )
   }, [lessonsMediaRow.length])
 
+  // Before/After images lightbox state
+  const [beforeAfterLightboxOpen, setBeforeAfterLightboxOpen] = useState(false)
+  const [beforeAfterLightboxIndex, setBeforeAfterLightboxIndex] = useState(0)
+
+  const beforeAfterImages = (introduction?.beforeAfterImages || []).map(img => ({
+    image: img.src,
+    title: img.label || img.alt,
+    description: ''
+  }))
+
+  const openBeforeAfterLightbox = useCallback((index) => {
+    setBeforeAfterLightboxIndex(index)
+    setBeforeAfterLightboxOpen(true)
+  }, [])
+
+  const closeBeforeAfterLightbox = useCallback(() => {
+    setBeforeAfterLightboxOpen(false)
+  }, [])
+
+  const goToBeforeAfterPrev = useCallback(() => {
+    setBeforeAfterLightboxIndex((prev) =>
+      prev === 0 ? beforeAfterImages.length - 1 : prev - 1
+    )
+  }, [beforeAfterImages.length])
+
+  const goToBeforeAfterNext = useCallback(() => {
+    setBeforeAfterLightboxIndex((prev) =>
+      prev === beforeAfterImages.length - 1 ? 0 : prev + 1
+    )
+  }, [beforeAfterImages.length])
+
   return (
     <div className="case-study-content">
       {/* Introduction Section */}
@@ -290,13 +321,26 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
           {introduction.beforeAfterImages && introduction.beforeAfterImages.length > 0 && (
             <div className="case-study-content__platform-two-up case-study-content__platform-two-up--small">
               {introduction.beforeAfterImages.map((item, index) => (
-                <figure key={index} className="case-study-content__platform-two-up-item">
+                <figure
+                  key={index}
+                  className="case-study-content__platform-two-up-item case-study-content__platform-two-up-item--clickable"
+                  onClick={() => openBeforeAfterLightbox(index)}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => e.key === 'Enter' && openBeforeAfterLightbox(index)}
+                >
                   {item.label && <figcaption className="case-study-content__platform-two-up-label case-study-content__platform-two-up-label--above">{item.label}</figcaption>}
                   <img
                     src={item.src}
                     alt={item.alt}
                     style={item.scale ? { transform: `scale(${item.scale})` } : undefined}
                   />
+                  <div className="case-study-content__section-image-zoom">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <circle cx="11" cy="11" r="8" />
+                      <path d="M21 21l-4.35-4.35M11 8v6M8 11h6" />
+                    </svg>
+                  </div>
                 </figure>
               ))}
             </div>
@@ -1679,6 +1723,17 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
           onClose={closeLightbox}
           onPrev={goToPrev}
           onNext={goToNext}
+        />
+      )}
+
+      {/* Before/After Lightbox */}
+      {beforeAfterLightboxOpen && beforeAfterImages.length > 0 && (
+        <ImageLightbox
+          images={beforeAfterImages}
+          currentIndex={beforeAfterLightboxIndex}
+          onClose={closeBeforeAfterLightbox}
+          onPrev={goToBeforeAfterPrev}
+          onNext={goToBeforeAfterNext}
         />
       )}
 
