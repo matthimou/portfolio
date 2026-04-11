@@ -22,12 +22,8 @@
   font-family: var(--font-display);
   font-size: var(--text-xl);
   font-weight: var(--font-weight-semibold);
-  color: var(--color-accent-primary);
-  margin: var(--space-md) 0 var(--space-md) 0;
-}
-
-.case-study-content__subheading--neutral {
   color: var(--color-text-primary);
+  margin: var(--space-md) 0 var(--space-md) 0;
 }
 
 .case-study-content__text {
@@ -733,6 +729,96 @@
   max-width: none;
 }
 
+/* Milestones Grid */
+.case-study-content__milestones-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto auto 1fr;
+  gap: var(--space-sm) var(--space-lg);
+  margin: var(--space-lg) 0 var(--space-xl) 0;
+  align-items: start;
+}
+
+.case-study-content__milestone-card {
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: span 3;
+  gap: var(--space-sm);
+}
+
+.case-study-content__milestone-title {
+  font-family: var(--font-display);
+  font-size: var(--text-base);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.case-study-content__milestone-desc {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-relaxed);
+  margin: 0;
+}
+
+.case-study-content__milestone-image {
+  position: relative;
+  cursor: pointer;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-top: var(--space-sm);
+}
+
+/* Smaller images for milestones 2 and 3 */
+.case-study-content__milestone-card:nth-child(2) .case-study-content__milestone-image,
+.case-study-content__milestone-card:nth-child(3) .case-study-content__milestone-image {
+  width: 50%;
+  justify-self: center;
+}
+
+.case-study-content__milestone-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.case-study-content__milestone-image:hover img {
+  transform: scale(1.02);
+}
+
+.case-study-content__milestone-image:focus-visible {
+  outline: 2px solid var(--color-accent-primary);
+  outline-offset: 2px;
+}
+
+.case-study-content__milestone-image .case-study-content__section-image-zoom {
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+.case-study-content__milestone-image:hover .case-study-content__section-image-zoom {
+  opacity: 1;
+  transform: scale(1);
+}
+
+@media (max-width: 768px) {
+  .case-study-content__milestones-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+
+  .case-study-content__milestone-card {
+    grid-row: auto;
+    grid-template-rows: auto;
+  }
+
+  .case-study-content__milestone-card:nth-child(2) .case-study-content__milestone-image,
+  .case-study-content__milestone-card:nth-child(3) .case-study-content__milestone-image {
+    width: 100%;
+  }
+}
+
 /* Impact Row */
 .case-study-content__impact-row {
   display: flex;
@@ -1017,6 +1103,12 @@
   display: block;
 }
 
+/* Smaller variant for two-up */
+.case-study-content__platform-two-up--small .case-study-content__platform-two-up-item img,
+.case-study-content__platform-two-up--small .case-study-content__platform-two-up-video {
+  max-height: 380px;
+}
+
 .case-study-content__platform-two-up-label {
   font-size: var(--text-sm);
   color: var(--color-text-secondary);
@@ -1244,6 +1336,10 @@
   max-width: 50%;
   margin-left: auto;
   margin-right: auto;
+}
+
+.case-study-content__section-image--tight-top {
+  margin-top: var(--space-xs);
 }
 
 /* Problem/Opportunity Block */
@@ -2147,20 +2243,35 @@
   margin: var(--space-sm) 0 0 0;
 }
 
-/* Introduction Timeline */
+/* Introduction Timeline - Vertical with left line and nodes */
 .case-study-content__timeline {
   display: flex;
-  gap: var(--space-md);
+  flex-direction: column;
+  gap: 0;
   margin-top: var(--space-md);
   margin-bottom: var(--space-xl);
-  padding: var(--space-md) 0;
+  padding: var(--space-sm) 0;
   position: relative;
-  align-items: flex-start;
+  padding-left: var(--space-xl);
 }
 
+/* Vertical line */
+.case-study-content__timeline::before {
+  content: '';
+  position: absolute;
+  left: 6px;
+  top: var(--space-sm);
+  bottom: var(--space-sm);
+  width: 2px;
+  background: linear-gradient(
+    to bottom,
+    var(--color-accent-primary) 0%,
+    color-mix(in srgb, var(--color-accent-primary) 40%, var(--color-border-light)) 100%
+  );
+  border-radius: 1px;
+}
 
 .case-study-content__timeline-phase {
-  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -2168,25 +2279,43 @@
   position: relative;
 }
 
+.case-study-content__timeline-phase:last-child {
+  padding-bottom: 0;
+}
+
+/* Node circle */
+.case-study-content__timeline-phase::before {
+  content: '';
+  position: absolute;
+  left: calc(-1 * var(--space-xl) + 2px);
+  top: 6px;
+  width: 10px;
+  height: 10px;
+  background-color: var(--color-accent-primary);
+  border-radius: 50%;
+  border: 2px solid var(--color-bg-primary);
+  box-shadow: 0 0 0 2px var(--color-accent-primary);
+  z-index: 1;
+}
 
 .case-study-content__timeline-date {
   display: inline-block;
   font-size: var(--text-xs);
-  font-weight: var(--font-weight-medium);
-  color: var(--color-text-secondary);
-  background-color: var(--color-bg-secondary);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-accent-primary);
+  background-color: color-mix(in srgb, var(--color-accent-primary) 10%, var(--color-bg-primary));
   padding: var(--space-xs) var(--space-sm);
   border-radius: 999px;
-  margin-bottom: var(--space-sm);
-  border: 1px solid var(--color-border-light);
+  margin-bottom: var(--space-xs);
+  border: 1px solid color-mix(in srgb, var(--color-accent-primary) 25%, transparent);
 }
 
 .case-study-content__timeline-title {
   font-family: var(--font-display);
-  font-size: var(--text-lg);
+  font-size: var(--text-base);
   font-weight: var(--font-weight-semibold);
-  color: var(--color-accent-primary);
-  margin: 0 0 var(--space-xs) 0;
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-2xs) 0;
   line-height: var(--leading-tight);
 }
 
@@ -2195,7 +2324,7 @@
   color: var(--color-text-secondary);
   line-height: var(--leading-relaxed);
   margin: 0;
-  max-width: 200px;
+  max-width: 320px;
 }
 
 .case-study-content__intro-closing {

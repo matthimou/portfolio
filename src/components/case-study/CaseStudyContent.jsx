@@ -288,7 +288,7 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
             <p className="case-study-content__text">{introduction.beforeAfterContent}</p>
           )}
           {introduction.beforeAfterImages && introduction.beforeAfterImages.length > 0 && (
-            <div className="case-study-content__platform-two-up">
+            <div className="case-study-content__platform-two-up case-study-content__platform-two-up--small">
               {introduction.beforeAfterImages.map((item, index) => (
                 <figure key={index} className="case-study-content__platform-two-up-item">
                   {item.label && <figcaption className="case-study-content__platform-two-up-label case-study-content__platform-two-up-label--above">{item.label}</figcaption>}
@@ -1413,79 +1413,45 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                   <p key={index} className="case-study-content__text">{paragraph}</p>
                 ))
               )}
+              {/* Milestones Grid */}
               {solution.timeline[1]?.sectionHeadingMilestone1 && (
-                <h4 className="case-study-content__heading">{solution.timeline[1].sectionHeadingMilestone1}</h4>
-              )}
-              {solution.timeline[1]?.sectionContentMilestone1 && (
-                <p className="case-study-content__text">{solution.timeline[1].sectionContentMilestone1}</p>
-              )}
-              {solution.timeline[1]?.sectionImageMilestone1 && (
-                <figure
-                  className="case-study-content__section-image case-study-content__section-image--clickable"
-                  onClick={() => setSingleImageLightbox(solution.timeline[1].sectionImageMilestone1)}
-                  role="button"
-                  tabIndex={0}
-                  onKeyDown={(e) => e.key === 'Enter' && setSingleImageLightbox(solution.timeline[1].sectionImageMilestone1)}
-                >
-                  <img
-                    src={solution.timeline[1].sectionImageMilestone1.src}
-                    alt={solution.timeline[1].sectionImageMilestone1.alt}
-                    className="case-study-content__section-image-img"
-                  />
-                  <div className="case-study-content__section-image-zoom">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <circle cx="11" cy="11" r="8" />
-                      <path d="M21 21l-4.35-4.35M11 8v6M8 11h6" />
-                    </svg>
-                  </div>
-                </figure>
-              )}
-              {solution.timeline[1]?.sectionHeadingMilestone2 && (
-                <h4 className="case-study-content__heading">{solution.timeline[1].sectionHeadingMilestone2}</h4>
-              )}
-              {(solution.timeline[1]?.sectionImageMilestone2 || solution.timeline[1]?.sectionContentMilestone2) && (
-                <div className="case-study-content__two-column">
-                  {solution.timeline[1]?.sectionImageMilestone2 && (
-                    <figure className="case-study-content__two-column-image">
-                      <img
-                        src={solution.timeline[1].sectionImageMilestone2.src}
-                        alt={solution.timeline[1].sectionImageMilestone2.alt}
-                      />
-                    </figure>
-                  )}
-                  {solution.timeline[1]?.sectionContentMilestone2 && (
-                    <div className="case-study-content__two-column-content">
-                      {solution.timeline[1].sectionContentMilestone2.split('\n\n').map((paragraph, index) => (
-                        <p key={index} className="case-study-content__text">{paragraph}</p>
-                      ))}
-                    </div>
-                  )}
+                <div className="case-study-content__milestones-grid">
+                  {[1, 2, 3].map((num) => {
+                    const heading = solution.timeline[1][`sectionHeadingMilestone${num}`];
+                    const content = solution.timeline[1][`sectionContentMilestone${num}`];
+                    const image = solution.timeline[1][`sectionImageMilestone${num}`];
+                    if (!heading) return null;
+                    return (
+                      <div key={num} className="case-study-content__milestone-card">
+                        <h5 className="case-study-content__milestone-title">{heading}</h5>
+                        {content && <p className="case-study-content__milestone-desc">{content}</p>}
+                        {image && (
+                          <figure
+                            className="case-study-content__milestone-image"
+                            onClick={() => setSingleImageLightbox(image)}
+                            role="button"
+                            tabIndex={0}
+                            onKeyDown={(e) => e.key === 'Enter' && setSingleImageLightbox(image)}
+                          >
+                            <img src={image.src} alt={image.alt} />
+                            <div className="case-study-content__section-image-zoom">
+                              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                <circle cx="11" cy="11" r="8" />
+                                <path d="M21 21l-4.35-4.35M11 8v6M8 11h6" />
+                              </svg>
+                            </div>
+                          </figure>
+                        )}
+                      </div>
+                    );
+                  })}
                 </div>
               )}
-              {solution.timeline[1]?.sectionHeadingMilestone3 && (
-                <h4 className="case-study-content__heading">{solution.timeline[1].sectionHeadingMilestone3}</h4>
-              )}
-              {(solution.timeline[1]?.sectionImageMilestone3 || solution.timeline[1]?.sectionContentMilestone3) && (
-                <div className="case-study-content__two-column case-study-content__two-column--reverse">
-                  {solution.timeline[1]?.sectionContentMilestone3 && (
-                    <div className="case-study-content__two-column-content">
-                      {solution.timeline[1].sectionContentMilestone3.split('\n\n').map((paragraph, index) => (
-                        <p key={index} className="case-study-content__text">{paragraph}</p>
-                      ))}
-                    </div>
-                  )}
-                  {solution.timeline[1]?.sectionImageMilestone3 && (
-                    <figure className="case-study-content__two-column-image">
-                      <img
-                        src={solution.timeline[1].sectionImageMilestone3.src}
-                        alt={solution.timeline[1].sectionImageMilestone3.alt}
-                      />
-                    </figure>
-                  )}
-                </div>
+              {solution.timeline[1]?.sectionContentCrossPlatform && (
+                <p className="case-study-content__text">{solution.timeline[1].sectionContentCrossPlatform}</p>
               )}
               {solution.timeline[1]?.sectionImageCrossPlatform && (
-                <figure className="case-study-content__section-image">
+                <figure className="case-study-content__section-image case-study-content__section-image--tight-top">
                   <img
                     src={solution.timeline[1].sectionImageCrossPlatform.src}
                     alt={solution.timeline[1].sectionImageCrossPlatform.alt}
@@ -1497,9 +1463,6 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                     </figcaption>
                   )}
                 </figure>
-              )}
-              {solution.timeline[1]?.sectionContentCrossPlatform && (
-                <p className="case-study-content__text">{solution.timeline[1].sectionContentCrossPlatform}</p>
               )}
               {solution.timeline[1]?.desktopVideo && (
                 <figure className="case-study-content__desktop-video">
@@ -2351,7 +2314,7 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
             <p className="case-study-content__text">{impact.futureTwoUpNarrative}</p>
           )}
           {impact.futureTwoUp && impact.futureTwoUp.length > 0 && (
-            <div className="case-study-content__platform-two-up">
+            <div className="case-study-content__platform-two-up case-study-content__platform-two-up--small">
               {impact.futureTwoUp.map((item, index) => (
                 <figure key={index} className="case-study-content__platform-two-up-item">
                   {item.type === 'video' ? (

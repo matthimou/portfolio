@@ -14,8 +14,8 @@ export const caseStudies = [
       timeline: '2022-2025',
       role: 'Director of Design, Core Consumer',
       team: {
-        size: 'Led team of 2 designers, supporting 3 PMs and 15 engineers at peak',
-        composition: 'Senior to Staff IC (promoted) + Principal hire'
+        size: 'Led team of 2 designers, 1 researcher, 1 content designer supporting 3 PMs and 15 engineers at peak',
+        composition: null
       }
     },
     hero: {
@@ -27,7 +27,7 @@ export const caseStudies = [
     },
     introduction: {
       heading: 'Introduction',
-      content: 'Doubledash grew from a scrappy MVP into a $1.7B revenue channel over four years. This case study traces that journey, from initial hypothesis through validated product-market fit to a mature platform, to show how I build and lead design teams through ambiguous, high-stakes product challenges.',
+      content: 'Doubledash grew from a scrappy MVP into a $1.7B revenue channel over four years. This case study traces that journey, from initial hypothesis through validated product-market fit to a mature platform, to show how I build and lead design teams through ambiguous, high-stakes product challenges over a longer time horizon.',
       contentSecondary: null,
       introHighlights: [
         {
@@ -40,7 +40,7 @@ export const caseStudies = [
         }
       ],
       beforeAfterHeading: null,
-      beforeAfterContent: 'While I led the delivery experience design charter we transformed it from a simple tool for delivery tracking to a surface as important as the home page, without losing sight of its primary functional job as a tool for customers to track their deliveries.',
+      beforeAfterContent: 'While I led the delivery experience charter we transformed it from a simple tool for delivery tracking to a surface as important as the home page, without losing sight of its primary functional job as a tool for customers to track their deliveries.',
       beforeAfterImages: [
         { src: '/images/DeliveryExperienceBefore.png', alt: 'Delivery experience before', label: 'Before', scale: 1.05 },
         { src: '/images/dBdMerchantsInMapPlatform.png', alt: 'Delivery experience after', label: 'After' }
@@ -268,7 +268,7 @@ export const caseStudies = [
           sectionHeadingScoping: 'Sequencing',
           sectionContentScoping: 'With strong customer validation and alignment across leadership, product, and engineering around the concepts, I would work with cross-functional leadership to break complex efforts like this down into multiple milestones. Walking through this example we planned for three milestones, with the goal to deliver customer value incrementally while building toward the full experience.',
           sectionHeadingMilestone1: 'Milestone 1',
-          sectionContentMilestone1: 'We redesigned the order tracking module. We wanted to preserve what was already working while improving the information architecture. This is when we expanded the governance process to protect order tracking, establishing a weekly meeting where teams could propose new use cases, a proactive move that would prove critical as demand for the surface grew.',
+          sectionContentMilestone1: 'Redesigned order tracking module, improving information architecture while preserving what worked. Established governance process to manage growing demand for the surface.',
           sectionImageMilestone1: {
             src: '/images/OrderTrackerRedesign.png',
             alt: 'Order tracking interface redesign'
@@ -278,17 +278,14 @@ export const caseStudies = [
             src: '/images/Milestone2.png',
             alt: 'Milestone 2 bottom-sheet interface'
           },
-          sectionContentMilestone2: 'In Milestone 2, we introduced the bottom-sheet interface with a "popular items" carousel for each merchant. Starting with limited selection gave engineering time to build a fast, scalable system for displaying full inventory later.\n\nThis phase taught us what customers wanted to add to their orders. Beverages (often not available at the primary restaurant), desserts, treats, and snacks were the top categories.',
+          sectionContentMilestone2: 'Introduced bottom-sheet with "popular items" carousel per merchant. Limited selection gave engineering time to build scalable inventory system while learning customer preferences.',
           sectionHeadingMilestone3: 'Milestone 3',
           sectionImageMilestone3: {
             src: '/images/Milestone3.png',
             alt: 'Milestone 3 integrated shopping journey'
           },
-          sectionContentMilestone3: `Milestone 3 brought the full vision to life: a complete shopping experience built into order tracking.
-
-Our engineering team built a fast, scalable system that worked around the constraints of the legacy code.
-
-Each milestone delivered real value to customers and the business while teaching us what we needed for the next phase.`,
+          sectionContentMilestone3: 'Full vision realized: complete shopping experience in order tracking. Engineering built fast, scalable system working around legacy code constraints.',
+          sectionContentCrossPlatform: 'A year and half later we had rolled out the full vision across all platforms, maintaining a consistent experience.',
           sectionImageCrossPlatform: {
             src: '/images/DoubleDashCrossPlatform.png',
             alt: 'Doubledash cross-platform experience',
