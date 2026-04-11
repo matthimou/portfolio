@@ -49,8 +49,18 @@
   color: #78716C; /* Dark mode text-tertiary */
 }
 
+.case-study-hero__team {
+  flex-direction: column;
+  align-items: center;
+}
+
 .case-study-hero__team-info {
   font-size: var(--text-sm);
+}
+
+.case-study-hero__team-composition {
+  font-size: var(--text-sm);
+  color: #78716C;
 }
 
 /* Hero Image */
