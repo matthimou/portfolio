@@ -290,6 +290,33 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
     )
   }, [beforeAfterImages.length])
 
+  // Future Two-Up (Leading with Design) lightbox state
+  const [futureTwoUpLightboxOpen, setFutureTwoUpLightboxOpen] = useState(false)
+  const [futureTwoUpLightboxIndex, setFutureTwoUpLightboxIndex] = useState(0)
+
+  const futureTwoUpItems = impact?.futureTwoUp || []
+
+  const openFutureTwoUpLightbox = useCallback((index) => {
+    setFutureTwoUpLightboxIndex(index)
+    setFutureTwoUpLightboxOpen(true)
+  }, [])
+
+  const closeFutureTwoUpLightbox = useCallback(() => {
+    setFutureTwoUpLightboxOpen(false)
+  }, [])
+
+  const goToFutureTwoUpPrev = useCallback(() => {
+    setFutureTwoUpLightboxIndex((prev) =>
+      prev === 0 ? futureTwoUpItems.length - 1 : prev - 1
+    )
+  }, [futureTwoUpItems.length])
+
+  const goToFutureTwoUpNext = useCallback(() => {
+    setFutureTwoUpLightboxIndex((prev) =>
+      prev === futureTwoUpItems.length - 1 ? 0 : prev + 1
+    )
+  }, [futureTwoUpItems.length])
+
   return (
     <div className="case-study-content">
       {/* Introduction Section */}
@@ -1749,6 +1776,62 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
         />
       )}
 
+      {/* Future Two-Up (Leading with Design) Lightbox */}
+      {futureTwoUpLightboxOpen && futureTwoUpItems.length > 0 && (
+        <div className="lightbox" onClick={closeFutureTwoUpLightbox}>
+          <button className="lightbox__close" onClick={closeFutureTwoUpLightbox} aria-label="Close lightbox">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M18 6L6 18M6 6l12 12" />
+            </svg>
+          </button>
+
+          <div className="lightbox__content" onClick={(e) => e.stopPropagation()}>
+            {futureTwoUpItems[futureTwoUpLightboxIndex]?.type === 'video' ? (
+              <video
+                src={futureTwoUpItems[futureTwoUpLightboxIndex]?.src}
+                autoPlay
+                muted
+                loop
+                playsInline
+                className="lightbox__image"
+              />
+            ) : (
+              <img
+                src={futureTwoUpItems[futureTwoUpLightboxIndex]?.src}
+                alt={futureTwoUpItems[futureTwoUpLightboxIndex]?.alt}
+                className="lightbox__image"
+              />
+            )}
+          </div>
+
+          {futureTwoUpItems.length > 1 && (
+            <>
+              <button
+                className="lightbox__nav lightbox__nav--prev"
+                onClick={(e) => { e.stopPropagation(); goToFutureTwoUpPrev(); }}
+                aria-label="Previous"
+              >
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M15 18l-6-6 6-6" />
+                </svg>
+              </button>
+              <button
+                className="lightbox__nav lightbox__nav--next"
+                onClick={(e) => { e.stopPropagation(); goToFutureTwoUpNext(); }}
+                aria-label="Next"
+              >
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M9 18l6-6-6-6" />
+                </svg>
+              </button>
+              <div className="lightbox__counter">
+                {futureTwoUpLightboxIndex + 1} / {futureTwoUpItems.length}
+              </div>
+            </>
+          )}
+        </div>
+      )}
+
       {/* Single Image Lightbox */}
       {singleImageLightbox && (
         <div className="lightbox" onClick={() => setSingleImageLightbox(null)}>
@@ -2383,7 +2466,14 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
           {impact.futureTwoUp && impact.futureTwoUp.length > 0 && (
             <div className="case-study-content__platform-two-up case-study-content__platform-two-up--small">
               {impact.futureTwoUp.map((item, index) => (
-                <figure key={index} className="case-study-content__platform-two-up-item">
+                <figure
+                  key={index}
+                  className="case-study-content__platform-two-up-item case-study-content__platform-two-up-item--clickable"
+                  onClick={() => openFutureTwoUpLightbox(index)}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => e.key === 'Enter' && openFutureTwoUpLightbox(index)}
+                >
                   {item.type === 'video' ? (
                     <div className="case-study-content__platform-two-up-video-container">
                       <video
@@ -2398,6 +2488,12 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                   ) : (
                     <img src={item.src} alt={item.alt} />
                   )}
+                  <div className="case-study-content__section-image-zoom">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <circle cx="11" cy="11" r="8" />
+                      <path d="M21 21l-4.35-4.35M11 8v6M8 11h6" />
+                    </svg>
+                  </div>
                   {item.label && <figcaption className="case-study-content__platform-two-up-label">{item.label}</figcaption>}
                 </figure>
               ))}
