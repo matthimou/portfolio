@@ -1899,6 +1899,7 @@
   color: var(--color-text-secondary);
   line-height: var(--leading-relaxed);
   margin-top: var(--space-lg);
+  margin-bottom: var(--space-xl);
   padding: var(--space-md);
   background-color: var(--color-bg-secondary);
   border-radius: 4px;

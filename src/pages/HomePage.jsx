@@ -406,7 +406,7 @@ const HomePage = ({ onOpenLogin }) => {
       {/* Hero Section */}
       <div className="hero-experience-wrapper">
         <VideoBackground />
-        <Hero name="Matthew Hanson" title="Design Leader · Investor · Multipoo Lover" hideBackground />
+        <Hero name="Matthew Hanson" title="Design Leader · Investor · Maltipoo Lover" hideBackground />
       </div>
 
       {/* Value Props Carousel Section */}

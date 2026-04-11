@@ -456,7 +456,7 @@ Another experiment was a pairing menu on the menu item details page. I felt this
       }
     },
     hero: {
-      src: '/images/metab-hero.png',
+      src: '/images/metab-hero-yellow.png',
       video: null,
       alt: 'Me Tab experience',
       caption: null,
