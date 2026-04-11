@@ -1495,12 +1495,24 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                 <p className="case-study-content__text">{solution.timeline[1].sectionContentCrossPlatform}</p>
               )}
               {solution.timeline[1]?.sectionImageCrossPlatform && (
-                <figure className="case-study-content__section-image case-study-content__section-image--tight-top">
+                <figure
+                  className="case-study-content__section-image case-study-content__section-image--tight-top case-study-content__section-image--clickable"
+                  onClick={() => setSingleImageLightbox(solution.timeline[1].sectionImageCrossPlatform)}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => e.key === 'Enter' && setSingleImageLightbox(solution.timeline[1].sectionImageCrossPlatform)}
+                >
                   <img
                     src={solution.timeline[1].sectionImageCrossPlatform.src}
                     alt={solution.timeline[1].sectionImageCrossPlatform.alt}
                     className="case-study-content__section-image-img"
                   />
+                  <div className="case-study-content__section-image-zoom">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <circle cx="11" cy="11" r="8" />
+                      <path d="M21 21l-4.35-4.35M11 8v6M8 11h6" />
+                    </svg>
+                  </div>
                   {solution.timeline[1].sectionImageCrossPlatform.caption && (
                     <figcaption className="case-study-content__section-image-caption">
                       {solution.timeline[1].sectionImageCrossPlatform.caption}
