@@ -45,7 +45,7 @@ export const caseStudies = [
         },
         {
           heading: 'My Role',
-          content: 'Led end-to-end delivery experience design across multiple teams, shaping product strategy, team structure, and execution over a 3-year horizon'
+          content: 'Led end-to-end delivery experience design across multiple teams, shaping product strategy, team structure, and execution over a 3-year horizon.'
         }
       ],
       beforeAfterHeading: null,
