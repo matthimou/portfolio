@@ -53,7 +53,6 @@ const CaseStudyPage = ({ onOpenLogin }) => {
             hero={study.hero}
             meta={study.meta}
             hideHeader={hasFullBleedHero}
-            keyHighlights={study.introduction?.keyHighlights}
           />
 
           <div className="case-study-page__body">

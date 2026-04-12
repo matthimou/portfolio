@@ -14,7 +14,7 @@ export const caseStudies = [
       timeline: '2022-2025',
       role: 'Director of Design, Core Consumer',
       team: {
-        size: 'Led team of 2 designers, 1 researcher, 1 content designer supporting 3 PMs and 15 engineers at peak',
+        size: 'Led end-to-end delivery experience design across multiple teams, shaping product strategy, team structure, and execution over a 3-year horizon.',
         composition: null
       }
     },
@@ -30,11 +30,12 @@ export const caseStudies = [
       content: 'Doubledash grew from a scrappy MVP into a $1.7B revenue channel over four years. This case study traces that journey, from initial hypothesis through validated product-market fit to a mature platform, to show how I led key product and organizational decisions that transformed order tracking into a core surface platform.',
       keyHighlights: {
         heading: 'Key highlights',
+        microline: '3 years from utility to platform',
         items: [
           'Grew from MVP → $1.7B revenue channel',
           'Transformed order tracking into a core platform surface',
           'Drove cross-vertical adoption + increased AOV',
-          'Led multi-year design strategy across 2 teams'
+          'Defined and executed multi-year design strategy across the core delivery experience'
         ]
       },
       contentSecondary: null,
@@ -42,46 +43,42 @@ export const caseStudies = [
         {
           heading: 'Why It Mattered',
           content: 'Became a primary engagement surface that increased cross-vertical discovery and materially lifted average order value.'
-        },
-        {
-          heading: 'My Role',
-          content: 'Led end-to-end delivery experience design across multiple teams, shaping product strategy, team structure, and execution over a 3-year horizon.'
         }
       ],
       beforeAfterHeading: null,
-      beforeAfterContent: 'While I led the delivery experience charter we transformed it from a simple tool for delivery tracking to a surface as important as the home page, without losing sight of its primary functional job as a tool for customers to track their deliveries.',
+      beforeAfterContent: 'The shift is most visible in how the experience evolved:',
       beforeAfterImages: [
         { src: '/images/DeliveryExperienceBefore.png', alt: 'Delivery experience before', label: 'Before', scale: 1.05 },
         { src: '/images/dBdMerchantsInMapPlatform.png', alt: 'Delivery experience after', label: 'After' }
       ],
       contentQuaternary: null,
-      videoHeading: 'So what exactly is Doubledash?',
+      videoHeading: 'Doubledash: One delivery, multiple stores',
       closing: null,
       video: {
         src: '/images/doubledash-combos.mov',
         caption: null
       },
-      closingAfterVideo: `Doubledash made it easy for customers to discover and bundle items from multiple stores into a single delivery.`,
+      closingAfterVideo: `Customers can order from multiple stores in one delivery. This capability was critical to DoorDash's expansion beyond restaurants into new verticals.`,
       videoAfterClosing: null,
       closingFinalHeading: 'Where It Started',
-      closingFinal: 'In 2021, DoorDash was expanding beyond restaurant delivery into new verticals: convenience, grocery, alcohol. Our data science team identified a compelling signal: approximately 20% of customers were placing a secondary order from 7-Eleven within 30 minutes of their primary meal delivery.',
+      closingFinal: '~20% of customers were placing a second order within 30 minutes of their primary delivery. As DoorDash expanded beyond restaurants into new verticals, this revealed a clear pattern: customers were already trying to bundle orders, we just weren\'t supporting it. This revealed clear demand for bundling. If we reduced the friction, we could capture behavior that was already happening and grow overall marketplace volume.',
       closingFinalBelowVideo: true,
-      closingFinalSecondary: 'This suggested latent demand for bundling. If we reduced the friction, we could capture orders that were already happening and grow overall marketplace volume.',
+      closingFinalSecondary: null,
       imageFinal: null,
-      opportunity: 'DoorDash was betting on becoming a platform, not just a restaurant delivery app. Doubledash was central to that strategy: it would drive adoption of new verticals while increasing order value.',
+      opportunity: 'DoorDash was evolving into a multi-vertical platform. Doubledash was a key lever in that strategy—enabling cross-vertical adoption while increasing order value through bundled delivery. I led the design effort to translate this signal into a product strategy focused on bundling and cross-vertical discovery.',
       opportunityCallout: true
     },
     problem: null,
     solution: {
       heading: 'The Approach',
-      strategy: null,
+      strategy: 'I structured the work across three phases to validate demand, build the necessary platform capabilities, and scale the behavior.',
       timeline: [
         {
           date: '3 Months',
-          title: 'Discover user needs',
-          description: 'Validate customer needs through MVPs',
-          sectionHeading: 'Discovering User Needs',
-          sectionContent: 'A designer on the New Verticals team proposed the initial test to gauge interest. One design placed bundling in the cart before checkout, the other appeared on the order tracking screen after purchase. We launched with 7-Eleven because they were our data signal source and had a national footprint that let them test across markets quickly. A simple 2-step checkout for the add-on order, and a countdown timer to create urgency around the bundling window.',
+          title: 'Validate bundling demand',
+          description: 'Test MVPs across key surfaces to identify where bundling behavior naturally occurs',
+          sectionHeading: 'Validating Bundling Demand',
+          sectionContent: 'We initiated early tests to validate bundling demand across key surfaces. These tests helped us understand not just demand, but where bundling fit naturally into the customer journey. We launched with 7-Eleven because they were our data signal source and had a national footprint that let them test across markets quickly. We tested two entry points for bundling: pre-checkout (cart) and post-purchase (order tracking).',
           sectionContentSecondary: null,
           sectionImages: {
             images: [
@@ -99,8 +96,9 @@ export const caseStudies = [
             ],
             label: 'MVP Shopping Experience'
           },
+          sectionContentAfterImageFlow: 'Building the MVP revealed friction with the option in the cart that would require significant engineering work and a longer timeline to fix. We focused initial investment on the order tracking experience as the primary entry point.',
           sectionHeadingAfterFlow: 'Foundations',
-          sectionContentAfterFlow: 'Responsibility for product design for Doubledash transitioned to my team after the MVP. This was an important opportunity for me to take what was previously a dasher logistics and customer support surface and transform it for commerce. I also started partnering closely with our research team from this point forward, ensuring each phase had the customer signal we needed to make confident decisions. The first thing we did was to reach out to customers who had been exposed to the MVP. Customers were excited about the feature, but they also had real concerns.',
+          sectionContentAfterFlow: 'I led the transformation of the delivery experience from a logistics and support surface into a commerce platform. I partnered closely with research to ensure each phase was grounded in real customer signal, not assumptions. The first thing we did was to reach out to customers who had been exposed to the MVP. Customers were excited about the feature, but they also had real concerns.',
           sectionContentAfterFlowSecondary: null,
           sectionContentAfterFlowTertiary: null,
           concerns: {
@@ -109,17 +107,17 @@ export const caseStudies = [
               {
                 category: 'Selection',
                 percentage: '52%',
-                quotes: ['I don\'t need anything from 7-Eleven']
+                description: 'Low perceived relevance of merchant'
               },
               {
                 category: 'Affordability',
                 percentage: '25%',
-                quotes: ['What are the fees?', 'How does tipping work?']
+                description: 'Unclear and potentially high incremental cost'
               },
               {
                 category: 'Expectations',
                 percentage: '10%',
-                quotes: ['How does this new feature work?']
+                description: 'Lack of clarity on how multi-store delivery works'
               }
             ]
           },
@@ -134,46 +132,48 @@ export const caseStudies = [
               author: 'Gregory P'
             }
           ],
-          sectionClosing: 'Our cart-based test also revealed friction that would require significant engineering work and a longer timeline to fix. Both MVP options had merit, but these insights led us to move forward with the post-purchase approach. It became foundational to the product vision we developed next.'
+          sectionClosing: 'These insights shaped the foundation of the product—driving how we approached selection, pricing, and clarity across the experience.'
         },
         {
           date: '1.5 Years',
-          title: 'Foundations',
-          description: 'Lay robust foundation for shopping',
+          title: 'Build the multi-merchant foundation',
+          description: 'Develop the systems, UX patterns, and infrastructure required for cross-store ordering',
           sectionContent: null,
           successMetrics: {
             heading: 'Measuring Success',
-            intro: 'Where our initial phase focused on learning fast, we now shifted to defining the success metrics that would measure our impact as the product matured.',
+            intro: 'Where our initial phase focused on learning fast, we now shifted to defining the success metrics that would measure our impact as the product matured. We aligned on three core metrics to guide the next phase:',
             items: [
               {
                 type: 'Primary Metric',
-                title: 'GMV',
-                description: '(Gross Marketplace Volume)'
+                title: 'GMV (Total Sales Value)',
+                description: 'Ensured we were growing the overall marketplace'
               },
               {
                 type: 'Secondary Metric',
-                title: 'Conversion'
+                title: 'Conversion',
+                description: 'Measured how effectively the experience drove adoption'
               },
               {
                 type: 'Secondary Metric',
-                title: 'New Verticals Trials'
+                title: 'New Vertical Trials',
+                description: 'Captured whether bundling increased New Verticals trials'
               }
             ]
           },
-          sectionContentAfterMetrics: 'GMV (total sales value) was our north star metric to keep the team focused on growing the channel. Conversion showed how well the shopping experience performed, while New Vertical Trials mattered strategically as we were trying to grow that business. We had learned that customers who tried a new vertical had significantly higher Doordash lifetime value.',
+          sectionContentAfterMetrics: 'These metrics became the decision framework for prioritization, guiding where we invested, what we scaled, and what we deprioritized.',
           sectionHeadingSecondary: 'Sprints before planning',
           sectionImageSecondary: {
             src: '/images/PlanningCycleTransparent.png',
             alt: 'Planning cycle diagram'
           },
-          sectionContentTertiary: 'As the product was maturing, I moved into a semi-annual planning rhythm. Half-year cycles let us balance long-term goals with tactical execution. I planned and executed cross-functional vision sprints in advance of each Q1 and Q3 planning window. These sprints plugged into the detailed H1 and H2 plans I worked on in collaboration with the engineering and product leads to staff and sequence the work. Getting alignment early ensured our product direction was clear before it fed into broader roadmaps. Translating sprint outputs into funded initiatives required close partnership with product and engineering leadership. I worked directly with our XFN leads to shape the scope and sequencing of each half\'s plan before they were presented to executives. This alignment work happened before each planning cycle, ensuring our design vision had organizational commitment before we moved into detailed execution.',
+          sectionContentTertiary: 'I established a semi-annual planning model to scale the product beyond early experimentation and align long-term strategy with execution.\n\nI led cross-functional vision sprints ahead of each planning cycle, partnering with product and engineering to define scope, sequencing, and investment.\n\nSprint outputs fed directly into H1 and H2 plans, which I co-developed with XFN leadership for executive alignment.\n\nThis ensured our design vision had organizational commitment before execution began.',
           sectionContentAfterPlanning: null,
           planningHighlight: {
             heading: 'Sprints Before Planning',
-            content: 'This structure enabled my teams to impact and drive product strategy. Having fully prototyped ideas going into formal planning enabled me to work with cross functional leaders to get design-led initiatives on the roadmap.'
+            content: 'This structure enabled design to directly shape product strategy—bringing fully prototyped ideas into planning and securing cross-functional alignment before roadmap commitments.'
           },
           sectionHeadingCrossOrg: 'Governance Before Scaling',
-          sectionContentCrossOrg: 'My new partners priorities were to maintain a seamless delivery and support experience, goals we also had to align with. I worked directly with the Senior Director and PM from the delivery tracking team to establish a tiered priority system that protected the primary job-to-be-done (tracking your order) while creating space for commerce.',
+          sectionContentCrossOrg: 'As we moved toward scaling, we needed to ensure new commerce experiences didn\'t degrade the core delivery experience. I partnered with the Senior Director and PM for delivery tracking to establish a tiered priority system that protected the primary job-to-be-done, tracking your order, while creating space for commerce.',
           priorityTiers: [
             {
               tier: 1,
@@ -194,14 +194,14 @@ export const caseStudies = [
           sectionContentAfterTiers: 'Placements that ranked in tiers 2 and 3 were ranked against company priority at runtime to ensure a maximum number of messages was never disruptive to order tracking. This framework became the foundation for the governance model we later expanded.',
           governanceHighlight: {
             heading: 'Governance Before Scaling',
-            content: 'Without good governance surfaces degrade as more teams add to them. Protecting the surface from bloat is as important as designing it well.'
+            content: 'Without strong governance, high-traffic surfaces degrade as teams add to them. Protecting the experience from bloat is as critical as designing it well.'
           },
           sectionContentTeamBuilding: null,
           sectionHeadingTertiary: 'Designing Product Vision',
-          sectionContentQuaternary: 'Sprints were a frequent tool I used to help my teams collaborate on product vision. These were cross-functional gatherings to ensure what we produced was aligned with product leadership. I typically wrote the first sprint brief and refined it with my product partners, but over time I would work to transition this to my designers. Coaching them through the process was a mechanism to scale myself, and an opportunity for career development for the designers. Making my team self-sufficient to lead the products they worked on was always the focus.',
+          sectionContentQuaternary: 'I used cross-functional vision sprints to align teams on product direction before each planning cycle. These sprints became a repeatable mechanism for aligning design, product, and engineering around a shared vision before committing to execution.\n\nI typically wrote the first sprint brief and refined it with my product partners, but over time I would work to transition this to my designers. Coaching designers through the process was a mechanism to scale myself, and an opportunity for career development for them. Making my team self-sufficient to lead the products they worked on was always the focus.',
           visionQuestions: null,
           sectionHeadingFirstSprint: 'The First Doubledash Sprint',
-          sectionContentQuaternarySecondary: 'To demonstrate how I leveraged cross-functional sprints to impact product strategy I\'ll walk through an example. The first sprint we did after the product transitioned to my org the brief focussed on:',
+          sectionContentQuaternarySecondary: 'To illustrate how this worked in practice, I\'ll walk through the first Doubledash vision sprint after the product transitioned to my org.',
           sprintBriefHighlight: {
             heading: 'Sprint Brief',
             items: [
@@ -218,12 +218,12 @@ export const caseStudies = [
             alt: 'Doubledash delivery timeline diagram'
           },
           sectionHeadingAfterTimeline: 'The Sprint Insight',
-          sectionContentAfterTimeline: `After placing an order, customers had about ten minutes to add items from another store, but during this time the map wasn't very useful. The dasher hadn't been assigned yet, and even after assignment it took several minutes for them to reach the restaurant. Until then, the map just showed the store and delivery locations with no route.`,
+          sectionContentAfterTimeline: `We discovered a critical gap in the experience: after placing an order, customers had a 10-minute window to add items—but the tracking experience provided little value during that time. Until a dasher was assigned, the map showed minimal information, leaving a high-intent moment underutilized. This revealed an opportunity to transform the order tracker from a passive status view into an active shopping surface.`,
           sectionImageMapInsight: {
             src: '/images/DoorDashMapoInsight.png',
             alt: 'Map insight showing limited utility during early delivery stage'
           },
-          sectionContentBeforeVideo: 'This insight became the foundation for a new shopping experience concept. One where customers could browse multiple merchants without leaving the order tracking screen, directly addressing their concerns about selection. By the end of the sprint, we had high-fidelity prototypes to share with the broader team and build support for the direction moving into planning.',
+          sectionContentBeforeVideo: 'This insight became the foundation for a new shopping experience—one where customers could browse and add items from multiple merchants without leaving the order tracking screen.\n\nBy the end of the sprint, we had high-fidelity prototypes that aligned stakeholders and set the direction for planning.',
           phoneVideosRow: [
             {
               video: '/images/Doubledash01.mov?v=2',
@@ -242,17 +242,17 @@ export const caseStudies = [
             }
           ],
           phoneVideo: null,
-          sectionContentAfterVideo: 'The half-sheet struck the right balance: it made discovery prominent without getting in the way of order tracking. Customers who wanted to shop could expand it naturally, while those who didn\'t could ignore it. Setting expectations for how bundling worked and what the fees were was added without cluttering the main view. A simple checkout happened within the half-sheet, so customers could complete their add-on purchase without ever losing visibility into their order. We had a concept coming out of the sprint that directly addressed customer feedback on selection and affordability while setting clear expectations around how the feature worked.',
+          sectionContentAfterVideo: 'We introduced a half-sheet that transformed the order tracker into a lightweight shopping surface. It made discovery prominent without disrupting the core experience of tracking an order.\n\nCustomers who wanted to browse could expand it naturally, while others could ignore it entirely—preserving focus for both behaviors.\n\nThe half-sheet also allowed us to clearly communicate how bundling worked and what fees to expect, addressing key concerns around affordability and clarity. A streamlined checkout within the sheet enabled customers to complete add-on purchases without ever losing visibility into their order.\n\nThis pattern became the foundation for how we scaled cross-merchant shopping within the delivery experience and beyond.',
           sprintInsightHighlight: {
             heading: 'Cross-function Sprints',
-            content: 'Including all relevant teams in sprints ensured the design was solving real customer problems and wasn\'t unmoored from organizational priorities.'
+            content: 'Bringing cross-functional partners into the sprint ensured we were solving real customer problems while staying aligned with organizational priorities.'
           },
           phoneVideoSecondary: null,
           sectionContentAfterVideoSecondary: null,
           phoneVideoTertiary: null,
           sectionContentAfterVideoTertiary: null,
           sectionHeadingQuaternary: 'Concept Testing',
-          sectionContentQuinary: 'After the vision sprint, we typically worked with our research team to test the concepts with customers and make adjustments if necessary. In this case the response was overwhelmingly positive and validated that we were solving the problems identified in our initial MVPs.',
+          sectionContentQuinary: 'After the sprint, we partnered with our research team to test the concept with customers.\n\nThe response validated that we were addressing the core concerns identified in our MVPs, customers valued the increased selection, responded positively to the perceived savings, and found the experience easier to understand.\n\nThis validation gave us confidence to move forward and helped build alignment across stakeholders heading into planning.\n\nCustomer feedback reinforced that we were directly addressing the key barriers to adoption:',
           customerQuotesSecondary: [
             {
               category: 'Selection',
@@ -272,62 +272,65 @@ export const caseStudies = [
           ],
           conceptTestingHighlight: {
             heading: 'Customer Research',
-            content: 'Validating concepts with customers ensured our ideas solved the customer problems identified in our research while bringing stakeholders along.'
+            content: 'Validating concepts with customers ensured we were solving real problems while building alignment across stakeholders.'
           },
           sectionHeadingScoping: 'Sequencing',
-          sectionContentScoping: 'With strong customer validation and alignment across leadership, product, and engineering around the concepts, I would work with cross-functional leadership to break complex efforts like this down into multiple milestones. Walking through this example we planned for three milestones, with the goal to deliver customer value incrementally while building toward the full experience.',
-          sectionHeadingMilestone1: 'Milestone 1',
-          sectionContentMilestone1: 'Redesigned order tracking module, improving information architecture while preserving what worked. Established governance process to manage growing demand for the surface.',
+          sectionContentScoping: 'With strong customer validation and cross-functional alignment, I partnered with product and engineering leadership to break the vision into incremental milestones.\n\nThis allowed us to deliver customer value early while building toward a scalable, end-state experience.',
+          sectionHeadingMilestone1: 'Milestone 1 — Strengthen the foundation',
+          sectionContentMilestone1: 'Redesigned the order tracking experience to improve information architecture while preserving what customers trusted. Established governance to manage increasing demand on the surface.',
           sectionImageMilestone1: {
             src: '/images/OrderTrackerRedesign.png',
             alt: 'Order tracking interface redesign'
           },
-          sectionHeadingMilestone2: 'Milestone 2',
+          sectionHeadingMilestone2: 'Milestone 2 — Introduce lightweight discovery',
           sectionImageMilestone2: {
             src: '/images/Milestone2.png',
             alt: 'Milestone 2 bottom-sheet interface'
           },
-          sectionContentMilestone2: 'Introduced bottom-sheet with "popular items" carousel per merchant. Limited selection gave engineering time to build scalable inventory system while learning customer preferences.',
-          sectionHeadingMilestone3: 'Milestone 3',
+          sectionContentMilestone2: 'Launched a bottom sheet with a limited "popular items" selection per merchant. This allowed us to validate customer interest while giving engineering time to build a scalable inventory system.',
+          sectionHeadingMilestone3: 'Milestone 3 — Scale to full experience',
           sectionImageMilestone3: {
             src: '/images/Milestone3.png',
             alt: 'Milestone 3 integrated shopping journey'
           },
-          sectionContentMilestone3: 'Full vision realized: complete shopping experience in order tracking. Engineering built fast, scalable system working around legacy code constraints.',
-          sectionContentCrossPlatform: 'A year and half later we had rolled out the full vision across all platforms, maintaining a consistent experience.',
+          sectionContentMilestone3: 'Expanded into a complete multi-merchant shopping experience within order tracking, supported by a scalable system built to work within legacy constraints.',
+          sectionContentAfterMilestones: 'This phased approach allowed us to learn quickly, reduce risk, and scale the experience without disrupting the core delivery journey. Within 18 months, we scaled the full experience across platforms, delivering a consistent and cohesive shopping journey.',
+          sectionContentCrossPlatform: null,
           sectionImageCrossPlatform: {
             src: '/images/DoubleDashCrossPlatform.png',
             alt: 'Doubledash cross-platform experience',
             caption: 'Cross Platform Doubledash'
           },
           sectionHeadingImpact: 'Impact',
-          sectionContentImpact: 'We delivered solid impact from the methodical buildout of the foundations relative to our MVP results.',
+          sectionContentImpact: 'This phased approach drove meaningful impact across key business and customer metrics:',
           impactImage: {
             src: '/images/ImpactPhase2.png',
             alt: 'Impact Phase 2'
           },
           impactMetrics: [
-            { value: '+35%', label: 'lift in conversion' },
-            { value: '+400%', label: 'customers browsing items and stores' },
-            { value: '+20%', label: 'New Vertical Trials' }
+            { value: '+35%', label: 'increase in conversion' },
+            { value: '+400%', label: 'increase in customers browsing items and stores' },
+            { value: '+20%', label: 'lift in new vertical trials' }
           ],
+          sectionContentAfterImpactMetrics: 'These results validated that integrating shopping into the delivery experience increased engagement, drove incremental revenue, and expanded customer behavior beyond core ordering.',
           myContributions: {
             heading: 'Leadership Approach',
+            intro: 'This work required a leadership approach that balanced product strategy, execution, and team development:',
             items: [
-              'Defining Success Criteria',
-              'Introducing a Planning Rhythm',
-              'Governance before scaling',
-              'Mentoring Designers For Agency',
-              'Sprints Before Planning',
-              'Designing Product Strategy/Vision',
-              'Customer Insights'
+              'Defined clear success criteria to guide decision-making',
+              'Established a planning rhythm to align long-term vision with execution',
+              'Introduced governance to protect core experiences while enabling growth',
+              'Mentored designers to increase ownership and decision-making agency',
+              'Led cross-functional sprints to shape product direction ahead of planning',
+              'Partnered closely with product and engineering to define strategy',
+              'Grounded decisions in customer insights and continuous validation'
             ]
           }
         },
         {
           date: '1.5 Years',
-          title: 'Platform',
-          description: 'Scale the experience to habituate customers to cross merchant shopping'
+          title: 'Scale cross-vertical behavior',
+          description: 'Evolve the experience into a habitual, high-frequency engagement surface'
         }
       ],
       execution: [
@@ -366,12 +369,18 @@ export const caseStudies = [
       heading: 'Platform',
       headingAccent: true,
       metrics: [],
-      narrative: `The goal shifted from proving the concept to scaling it: making cross-merchant shopping a habit rather than a novelty. We started by expanding contextual merchandising for special occasions and personalized recommendations based on order history. By this point, the senior designer I had been mentoring was promoted to Staff, leading the merchandising expansion. Bringing him into the brief writing process and setting up the sprint cadence allowed me to scale myself and gave him the opportunity to set the strategic focus for each half year.
+      narrative: `As the product matured, the challenge shifted from proving the concept to scaling it into a platform—making cross-merchant shopping a habit rather than a novelty.
 
-By this stage the team had grown to 3 PMs and 15 engineers, so helping my designer navigate timelines and priorities became a much bigger part of the challenge. I worked closely with the Senior Director of Consumer product to prioritize across the 3 PMs to ensure my designer had clear visibility into sequencing the work.`,
+We expanded into contextual merchandising for occasions and personalized recommendations based on order history.
+
+At the same time, I scaled the team by mentoring a senior designer into a Staff role, transitioning ownership of the merchandising strategy and sprint planning.
+
+This marked the transition from a feature team to a platform team, supporting multiple use cases across the customer journey.
+
+As the team scaled to 3 PMs and 15 engineers, my role shifted toward cross-team prioritization and orchestration. I partnered with product leadership to align roadmaps and ensure design had clear visibility into sequencing and tradeoffs.`,
       scalingMyselfHighlight: {
         heading: 'Scaling Myself',
-        content: 'By mentoring and promoting the designer who was leading the charter I was able to empower them to accomplish tasks I needed to own when we started.'
+        content: 'By mentoring and promoting the designer leading the charter, I was able to transfer ownership of key product areas—freeing myself to focus on strategy, team scaling, and cross-functional alignment.'
       },
       platformImages: [
         { src: '/images/DbDOccasionPlatform.png', alt: 'Occasion-based merchandising', label: 'Occasions' },
@@ -380,13 +389,13 @@ By this stage the team had grown to 3 PMs and 15 engineers, so helping my design
         { src: '/images/DbDAlcoholPlatform.png', alt: 'Alcohol delivery', label: 'Alcohol' }
       ],
       headingAfterImages: 'Unifying Order Tracker and Doubledash',
-      narrativeAfterImages: 'Unifying the order tracking module and the Doubledash bottom-sheet into a single interface, an idea I proposed to the team, was our most ambitious technical design challenge because it would merge the work of multiple teams into one solution. Having separate modules was requiring more front-end challenges to keep the delivery route / map exposed, and this update would make it much simpler to manage.\n\nTo tackle it, I hired a Principal Designer with deep systems expertise to lead the effort and expand our team\'s capacity. Together with the PM for delivery tracking, we used the opportunity to refactor the code, improve performance, and codify guidelines to keep the architecture clean.',
+      narrativeAfterImages: 'I led the effort to unify the order tracking experience and Doubledash into a single interface—our most complex systems challenge, requiring coordination across multiple teams.\n\nPreviously, separate modules introduced complexity in maintaining the delivery map and increased front-end overhead. Unifying the experience simplified the architecture and improved long-term scalability.\n\nTo execute at this level, I hired a Principal Designer with deep systems expertise to lead the effort and expand the team\'s capacity.\n\nThis work not only improved the product experience but established a more scalable technical and design foundation for future growth.',
       imageAfterFirstPara: {
         src: '/images/DbDSingleSheetPlatform.png',
         alt: 'Unified single sheet interface',
         label: 'Combined UI'
       },
-      narrativeAfterCombinedUI: 'The governance forum I had established during the Foundations stage became increasingly vital as more teams wanted to build on this surface. We evolved the original guidelines into a comprehensive framework, and the forum met regularly to review proposals and maintain design coherence across a growing number of use cases. With a senior lead who could advise teams we could get in front of problems early, and help teams craft features that met the surface guidelines or explain why their ideas wouldn\'t work.',
+      narrativeAfterCombinedUI: 'As more teams began building on the surface, the governance forum became critical to maintaining quality and coherence.\n\nWe evolved initial guidelines into a comprehensive framework and established a regular review forum to evaluate proposals, prevent fragmentation, and ensure consistency across use cases.\n\nThis allowed us to scale the surface without degrading the core experience.',
       imageAfterNarrative: {
         src: '/images/delivery-surface-guidelines.png',
         alt: 'Delivery surface guidelines',
@@ -398,13 +407,13 @@ By this stage the team had grown to 3 PMs and 15 engineers, so helping my design
         content: 'This hire enabled the team to take on even more ambitious work and added capacity to focus on guidelines and governance.'
       },
       headingExpandingUseCases: 'Expanding Doubledash Use Cases',
-      narrativeExpandingUseCases: 'To demonstrate the power of governance and guidelines I\'ll quickly walk through some of the additional features we launched to help visualize how we scaled the surface to address customer problems and compound the use cases it supported without compromising on craft or quality. We added incremental ETAs for each merchant, making it clear how the extra stop would affect arrival - a key customer concern we saw in research. To make the default view more relevant, we designed a personalized "For You" feed that pulled from multiple merchants, offering a highly merchandised and relevant default view. For customers who knew exactly what they wanted, we added cross-merchant search. Each new feature completed a new use case to expand the capabilities of the shopping experience compounding our business impact.',
+      narrativeExpandingUseCases: 'With a strong governance model in place, we expanded Doubledash into new use cases—incrementally increasing the value of the platform while maintaining a high bar for quality.\n\nWe introduced:\n\n• Better transparency through incremental ETAs per merchant\n\n• Personalized discovery via a "For You" feed\n\n• Intent-driven tools like cross-merchant search\n\nEach addition expanded the platform\'s capabilities while compounding business impact.',
       platformThreeUp: [
         { src: '/images/DbDETAsPlatform.png', alt: 'ETAs platform', label: 'Incremental ETAs' },
         { src: '/images/DbDforyouPlatform.png', alt: 'For You feed', label: 'For You Feed' },
         { src: '/images/DbDSearchPlatform.png', alt: 'Search', label: 'Search' }
       ],
-      narrativeFinal: 'We also added merchants directly on the map, letting customers see nearby stores and tap to start shopping. Finally, we came back to our original MVP idea: showing bundling options in the cart. For high-intent moments like Mother\'s Day, this helped customers discover add-ons that weren\'t on the original menu.',
+      narrativeFinal: 'We also introduced:\n\n• Contextual bundling options in the cart for high-intent moments like Mother\'s Day\n\n• Better location context by placing merchants directly on the map\n\n• Showing bundling options in the cart for high-intent moments like Mother\'s Day\n\n• Full cross-merchant shopping in the cart',
       platformTwoUpThird: [
         { src: '/images/doubledash-mother-day.png', alt: 'Mothers Day promotion', label: 'Mothers Day' },
         { src: '/images/doubledash-deserts.png', alt: 'Deserts promotion', label: 'Deserts' },
@@ -413,28 +422,28 @@ By this stage the team had grown to 3 PMs and 15 engineers, so helping my design
       ],
       scalingProductHighlight: {
         heading: 'Scaling the Product',
-        content: 'Having a surface governance forum and clear guidelines enabled us to scale the product without compromising on craft.'
+        content: 'A strong governance model and clear guidelines enabled us to scale the product without compromising quality or coherence.'
       },
       lessonsHeading: 'Learning from Failure',
-      lessonsNarrative: 'Not all of our tests worked. In fact, we spent significant effort trying to add bundling to the store page through a series of experiments. Getting creative with staffing I worked with my store page design team for these efforts to reduce the load on my Doubledash designers. Our COO took a particular interest at this stage, so we met twice weekly to workshop approaches directly with him and two senior product directors on the consumer team. These leaders were convinced that to increase Doubledash visibility we needed to get more aggressive higher in the funnel. All these attempts got mixed results: attach rate went up as customers discovered the capability, but cart spend went down due to the disruptive nature. Customers were ordering from multiple stores but spending less.',
+      lessonsNarrative: 'Not all of our experiments worked—and one of our biggest lessons came from trying to force bundling higher in the funnel.\n\nTo increase Doubledash visibility, we ran a series of experiments embedding cross-merchant options directly into the store experience. While this increased attach rate, it introduced friction into the core ordering flow—resulting in lower cart spend.\n\nGiven the importance of the initiative, I worked directly with our COO and senior product leadership to rapidly iterate on approaches and evaluate tradeoffs in a series of workshops.\n\nThe results made it clear that increasing visibility at the expense of core ordering behavior was the wrong tradeoff.',
       lessonsMediaRow: [
         {
           type: 'image',
           src: '/images/S4Efailure.png',
-          alt: 'Something for Everyone store page experiment',
-          caption: 'Something for Everyone'
+          alt: 'Inline bundling high funnel experiment',
+          caption: 'Inline Bundling (High Funnel)'
         },
         {
           type: 'video',
           src: '/images/PairingmenuFailure.mov',
-          alt: 'Pairing menu experiment',
-          caption: 'Pairing Menu'
+          alt: 'Item-level pairing experiment',
+          caption: 'Item-Level Pairing'
         },
         {
           type: 'video',
           src: '/images/BottomSheetOnStoreFailure.mov',
-          alt: 'Bottom sheet on store page experiment',
-          caption: 'Bottom Sheet'
+          alt: 'Contextual bottom sheet in-flow experiment',
+          caption: 'Contextual Bottom Sheet (In-Flow)'
         }
       ],
       lessonsImage: null,
@@ -451,10 +460,11 @@ Another experiment was a pairing menu on the menu item details page. I felt this
       lessonsImageConclusion: null,
       lessonsKeyLearning: {
         heading: 'Key Learning',
-        content: 'Don\'t disrupt existing customer behaviors in the service of visibility and awareness'
+        content: 'The most effective growth comes from amplifying existing behaviors—not interrupting them.'
       },
+      lessonsNarrativeAfterHighlight: 'This insight directly informed our shift toward contextual, in-moment merchandising—integrating Doubledash where customers already had intent.',
       impactHeading: 'Impact',
-      impactNarrative: 'By building incrementally, we delivered meaningful results at each stage. Doubledash achieved results that validated our strategy and compounded over time. By 2025 Doubledash was driving significant results.',
+      impactNarrative: 'By shifting to an in-flow, behavior-aligned strategy, we were able to scale Doubledash effectively—driving meaningful results at each stage and compounding impact over time.',
       impactImage02: {
         src: '/images/Impact02.png',
         alt: 'Impact results'
@@ -470,10 +480,10 @@ Another experiment was a pairing menu on the menu item details page. I felt this
           {
             title: null,
             items: [
-              'Contributing feature ideas',
-              'Design direction and review',
-              'Workshoping designs with company leadership',
-              'Learning from failure'
+              'Driving product strategy and feature direction',
+              'Setting design direction and raising quality bars',
+              'Translating failed experiments into product strategy shifts',
+              'Delegating ownership to scale team impact'
             ]
           },
           {
@@ -503,7 +513,7 @@ Another experiment was a pairing menu on the menu item details page. I felt this
         ]
       },
       futureExplorationsHeading: 'Leading With Design',
-      futureExplorationsNarrative: 'I always push my teams to stay ahead of product capabilities. The concepts below from sprints I ran on my team before leaving Doordash explored what the future could look like for Doubledash if we brought it to the home page. Giving customers clear visibility into Doubledash and use cases it can serve before placing an order.',
+      futureExplorationsNarrative: 'I push teams to stay ahead of product capabilities, using design to define what\'s possible before engineering constraints set the boundary. The concepts below from sprints I ran on my team before leaving Doordash explored what the future could look like for Doubledash if we brought it to the home page. Giving customers clear visibility into Doubledash and use cases it can serve before placing an order.',
       futureExplorationsImages: [
         { src: '/images/Future01.png', alt: 'Future exploration concept 1' },
         { src: '/images/Future02.png', alt: 'Future exploration concept 2' },
@@ -518,7 +528,7 @@ Another experiment was a pairing menu on the menu item details page. I felt this
       ],
       leadingWithDesignHighlight: {
         heading: 'Leading with Design',
-        content: 'A design team that stays ahead of the product can lead rather than follow.'
+        content: 'Teams that stay ahead of the product don\'t just design experiences—they shape the roadmap.'
       },
       futureBeforeAfterHeading: null,
       futureBeforeAfterContent: null,

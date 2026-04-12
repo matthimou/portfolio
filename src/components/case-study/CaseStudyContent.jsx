@@ -326,6 +326,19 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
           {introduction.content && introduction.content.split('\n\n').map((para, index) => (
             <p key={index} className="case-study-content__text">{para}</p>
           ))}
+          {introduction.keyHighlights && (
+            <div className="case-study-content__key-highlights">
+              {introduction.keyHighlights.microline && (
+                <p className="case-study-content__key-highlights-microline">{introduction.keyHighlights.microline}</p>
+              )}
+              <h5 className="case-study-content__key-highlights-heading">{introduction.keyHighlights.heading}</h5>
+              <ul className="case-study-content__key-highlights-list">
+                {introduction.keyHighlights.items.map((item, index) => (
+                  <li key={index}>{item}</li>
+                ))}
+              </ul>
+            </div>
+          )}
           {introduction.contentSecondary && (
             <p className="case-study-content__text">{introduction.contentSecondary}</p>
           )}
@@ -631,6 +644,9 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                   )}
                 </figure>
               )}
+              {solution.timeline[0].sectionContentAfterImageFlow && (
+                <p className="case-study-content__text">{solution.timeline[0].sectionContentAfterImageFlow}</p>
+              )}
               {solution.timeline[0].sectionHeadingAfterFlow && (
                 <h5 className={`case-study-content__subheading ${solution.neutralHeadings ? 'case-study-content__subheading--neutral' : ''}`}>{solution.timeline[0].sectionHeadingAfterFlow}</h5>
               )}
@@ -652,11 +668,15 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                         <span className="case-study-content__concerns-badge">
                           {item.category} ({item.percentage})
                         </span>
-                        <ul className="case-study-content__concerns-quotes">
-                          {item.quotes.map((quote, qIndex) => (
-                            <li key={qIndex}>{quote}</li>
-                          ))}
-                        </ul>
+                        {item.description ? (
+                          <p className="case-study-content__concerns-description">{item.description}</p>
+                        ) : item.quotes && (
+                          <ul className="case-study-content__concerns-quotes">
+                            {item.quotes.map((quote, qIndex) => (
+                              <li key={qIndex}>{quote}</li>
+                            ))}
+                          </ul>
+                        )}
                       </div>
                     ))}
                   </div>
@@ -1238,7 +1258,9 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                 <h4 className="case-study-content__heading">{solution.timeline[1].sectionHeadingTertiary}</h4>
               )}
               {solution.timeline[1]?.sectionContentQuaternary && (
-                <p className="case-study-content__text">{solution.timeline[1].sectionContentQuaternary}</p>
+                solution.timeline[1].sectionContentQuaternary.split('\n\n').map((para, index) => (
+                  <p key={index} className="case-study-content__text">{para}</p>
+                ))
               )}
               {solution.timeline[1]?.sectionHeadingFirstSprint && (
                 <h5 className="case-study-content__subheading case-study-content__subheading--neutral">{solution.timeline[1].sectionHeadingFirstSprint}</h5>
@@ -1334,7 +1356,9 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                 </figure>
               )}
               {solution.timeline[1]?.sectionContentBeforeVideo && (
-                <p className="case-study-content__text">{solution.timeline[1].sectionContentBeforeVideo}</p>
+                solution.timeline[1].sectionContentBeforeVideo.split('\n\n').map((para, index) => (
+                  <p key={index} className="case-study-content__text">{para}</p>
+                ))
               )}
               {solution.timeline[1]?.phoneVideosRow && (
                 <div className="case-study-content__phone-videos-row">
@@ -1399,7 +1423,9 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                 </figure>
               )}
               {solution.timeline[1]?.sectionContentAfterVideo && (
-                <p className="case-study-content__text">{solution.timeline[1].sectionContentAfterVideo}</p>
+                solution.timeline[1].sectionContentAfterVideo.split('\n\n').map((para, index) => (
+                  <p key={index} className="case-study-content__text">{para}</p>
+                ))
               )}
               {solution.timeline[1]?.sectionContentAfterVideoSecondary && (
                 <p className="case-study-content__text">{solution.timeline[1].sectionContentAfterVideoSecondary}</p>
@@ -1455,7 +1481,9 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                 <h4 className="case-study-content__heading">{solution.timeline[1].sectionHeadingQuaternary}</h4>
               )}
               {solution.timeline[1]?.sectionContentQuinary && (
-                <p className="case-study-content__text">{solution.timeline[1].sectionContentQuinary}</p>
+                solution.timeline[1].sectionContentQuinary.split('\n\n').map((para, index) => (
+                  <p key={index} className="case-study-content__text">{para}</p>
+                ))
               )}
               {solution.timeline[1]?.customerQuotesSecondary && (
                 <div className="case-study-content__customer-quotes-labeled">
@@ -1517,6 +1545,9 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                     );
                   })}
                 </div>
+              )}
+              {solution.timeline[1]?.sectionContentAfterMilestones && (
+                <p className="case-study-content__text">{solution.timeline[1].sectionContentAfterMilestones}</p>
               )}
               {solution.timeline[1]?.sectionContentCrossPlatform && (
                 <p className="case-study-content__text">{solution.timeline[1].sectionContentCrossPlatform}</p>
@@ -1595,11 +1626,17 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                   )}
                 </div>
               )}
+              {solution.timeline[1]?.sectionContentAfterImpactMetrics && (
+                <p className="case-study-content__text">{solution.timeline[1].sectionContentAfterImpactMetrics}</p>
+              )}
               {solution.timeline[1]?.myContributions && (
                 <div className="case-study-content__my-contributions">
                   <h6 className="case-study-content__my-contributions-heading">
                     {solution.timeline[1].myContributions.heading}
                   </h6>
+                  {solution.timeline[1].myContributions.intro && (
+                    <p className="case-study-content__my-contributions-intro">{solution.timeline[1].myContributions.intro}</p>
+                  )}
                   <ul className="case-study-content__my-contributions-list">
                     {solution.timeline[1].myContributions.items.map((item, index) => (
                       <li key={index} className="case-study-content__my-contributions-item">
@@ -2095,7 +2132,9 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
 
           {/* Narrative After Combined UI */}
           {impact.narrativeAfterCombinedUI && (
-            <p className="case-study-content__text">{impact.narrativeAfterCombinedUI}</p>
+            impact.narrativeAfterCombinedUI.split('\n\n').map((para, index) => (
+              <p key={index} className="case-study-content__text">{para}</p>
+            ))
           )}
 
           {/* Image After Narrative */}
@@ -2141,7 +2180,9 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
 
           {/* Expanding Use Cases Narrative */}
           {impact.narrativeExpandingUseCases && (
-            <p className="case-study-content__text">{impact.narrativeExpandingUseCases}</p>
+            impact.narrativeExpandingUseCases.split('\n\n').map((para, index) => (
+              <p key={index} className={`case-study-content__text${para.startsWith('•') ? ' case-study-content__text--bullet' : ''}`}>{para}</p>
+            ))
           )}
 
           {/* Platform Three-Up Images */}
@@ -2174,7 +2215,7 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
 
           {/* Final Narrative */}
           {impact.narrativeFinal && impact.narrativeFinal.split('\n\n').map((para, index) => (
-            <p key={index} className="case-study-content__text">{para}</p>
+            <p key={index} className={`case-study-content__text${para.startsWith('•') ? ' case-study-content__text--bullet' : ''}`}>{para}</p>
           ))}
 
           {/* Platform Two-Up Third (or 4-up when 4 items) */}
@@ -2334,6 +2375,11 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                 {impact.lessonsKeyLearning.content}
               </p>
             </div>
+          )}
+
+          {/* Lessons Narrative After Highlight */}
+          {impact.lessonsNarrativeAfterHighlight && (
+            <p className="case-study-content__text">{impact.lessonsNarrativeAfterHighlight}</p>
           )}
 
           {/* Impact Heading */}
