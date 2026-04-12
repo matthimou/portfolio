@@ -490,14 +490,13 @@ Another experiment was a pairing menu on the menu item details page. I felt this
             title: 'Team Health',
             items: [
               'Promoting my Senior designer to Staff',
-              'Hiring Doordash\'s first Principal designer',
-              'Staffing from other teams at the right time'
+              'Hiring Doordash\'s first Principal designer'
             ]
           },
           {
             title: 'Managing Priorities',
             items: [
-              'Moving tasks from myself to my team at the right time',
+              'Delegating tasks to my team at the right time',
               'Work with skip-level leaders to manage priority conflicts across teams',
               'Sequencing large efforts'
             ]
@@ -505,7 +504,7 @@ Another experiment was a pairing menu on the menu item details page. I felt this
           {
             title: 'Quality & Craft',
             items: [
-              'Establishing a forum for external teams to get in front of problems early',
+              'Establish governance forum to get in front of problems early',
               'Establishing guidelines for every component on the surface',
               'Enforcing the tiering system we defined'
             ]
