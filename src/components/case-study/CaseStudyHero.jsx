@@ -1,6 +1,6 @@
 import './CaseStudyHero.css'
 
-const CaseStudyHero = ({ id, title, hero, meta, hideHeader = false }) => {
+const CaseStudyHero = ({ id, title, hero, meta, hideHeader = false, keyHighlights }) => {
   return (
     <div className={`case-study-hero ${hideHeader ? 'case-study-hero--no-header' : ''}`}>
       {/* Project Meta */}
@@ -27,6 +27,15 @@ const CaseStudyHero = ({ id, title, hero, meta, hideHeader = false }) => {
               {meta.team.composition && (
                 <span className="case-study-hero__team-composition">{meta.team.composition}</span>
               )}
+            </div>
+          )}
+          {keyHighlights && (
+            <div className="case-study-hero__key-highlights">
+              <ul className="case-study-hero__key-highlights-list">
+                {keyHighlights.items.map((item, index) => (
+                  <li key={index}>{item}</li>
+                ))}
+              </ul>
             </div>
           )}
         </div>

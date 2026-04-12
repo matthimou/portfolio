@@ -326,16 +326,6 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
           {introduction.content && introduction.content.split('\n\n').map((para, index) => (
             <p key={index} className="case-study-content__text">{para}</p>
           ))}
-          {introduction.keyHighlights && (
-            <div className="case-study-content__key-highlights">
-              <h5 className="case-study-content__key-highlights-heading">{introduction.keyHighlights.heading}</h5>
-              <ul className="case-study-content__key-highlights-list">
-                {introduction.keyHighlights.items.map((item, index) => (
-                  <li key={index}>{item}</li>
-                ))}
-              </ul>
-            </div>
-          )}
           {introduction.contentSecondary && (
             <p className="case-study-content__text">{introduction.contentSecondary}</p>
           )}
