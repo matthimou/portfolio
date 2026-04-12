@@ -32,7 +32,7 @@ export const caseStudies = [
       introHighlights: [
         {
           heading: 'Why It Mattered',
-          content: 'Transformed order tracking into one of DoorDash\'s most valuable surfaces while becoming central to DoorDash\'s platform strategy; driving new vertical adoption and increasing order value.'
+          content: 'Became a primary engagement surface that increased cross-vertical discovery and materially lifted average order value.'
         },
         {
           heading: 'My Role',
