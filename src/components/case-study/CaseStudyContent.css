@@ -2335,7 +2335,7 @@
 /* Intro Highlights (2-column layout) */
 .case-study-content__intro-highlights {
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 1fr 1fr;
   gap: var(--space-xl);
   margin: var(--space-xl) 0;
   padding: var(--space-lg);
