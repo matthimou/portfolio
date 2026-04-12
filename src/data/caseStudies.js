@@ -65,7 +65,7 @@ export const caseStudies = [
       closingFinalBelowVideo: true,
       closingFinalSecondary: null,
       imageFinal: null,
-      opportunity: 'DoorDash was evolving into a multi-vertical platform. Doubledash was a key lever in that strategy—enabling cross-vertical adoption while increasing order value through bundled delivery. I led the design effort to translate this signal into a product strategy focused on bundling and cross-vertical discovery.',
+      opportunity: 'DoorDash was evolving into a multi-vertical platform. Doubledash was a key lever in that strategy, enabling cross-vertical adoption while increasing order value through bundled delivery. I led the design effort to translate this signal into a product strategy focused on bundling and cross-vertical discovery.',
       opportunityCallout: true
     },
     problem: null,
