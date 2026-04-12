@@ -2334,10 +2334,7 @@
 
 /* Key Highlights */
 .case-study-content__key-highlights {
-  grid-column: 1 / -1;
-  margin-top: var(--space-lg);
-  padding-top: var(--space-lg);
-  border-top: 1px solid color-mix(in srgb, var(--color-accent-primary) 20%, transparent);
+  margin: var(--space-lg) 0;
 }
 
 .case-study-content__key-highlights-heading {
