@@ -2332,6 +2332,44 @@
   margin-top: 0;
 }
 
+/* Key Highlights */
+.case-study-content__key-highlights {
+  margin: var(--space-lg) 0;
+}
+
+.case-study-content__key-highlights-heading {
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0 0 var(--space-sm) 0;
+}
+
+.case-study-content__key-highlights-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs) var(--space-lg);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.case-study-content__key-highlights-list li {
+  font-size: var(--text-sm);
+  color: var(--color-text-primary);
+  position: relative;
+  padding-left: var(--space-md);
+}
+
+.case-study-content__key-highlights-list li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--color-accent-primary);
+}
+
 /* Intro Highlights (2-column layout) */
 .case-study-content__intro-highlights {
   display: grid;
