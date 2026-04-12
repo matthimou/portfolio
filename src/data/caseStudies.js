@@ -36,7 +36,7 @@ export const caseStudies = [
         },
         {
           heading: 'My Role',
-          content: 'Owned E2E delivery experience design.'
+          content: 'Led end-to-end delivery experience design across multiple teams, shaping product strategy, team structure, and execution over a 3-year horizon'
         }
       ],
       beforeAfterHeading: null,
