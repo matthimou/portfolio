@@ -27,7 +27,7 @@ export const caseStudies = [
     },
     introduction: {
       heading: 'Introduction',
-      content: 'Doubledash grew from a scrappy MVP into a $1.7B revenue channel over four years. This case study traces that journey, from initial hypothesis through validated product-market fit to a mature platform, to show how I build and lead design teams through ambiguous, high-stakes product challenges over a longer time horizon.',
+      content: 'Doubledash grew from a scrappy MVP into a $1.7B revenue channel over four years. This case study traces that journey, from initial hypothesis through validated product-market fit to a mature platform, to show how I led key product and organizational decisions that transformed order tracking into a core surface platform.',
       contentSecondary: null,
       introHighlights: [
         {
