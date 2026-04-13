@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, useCallback } from 'react'
+import React, { useEffect, useRef, useState, useCallback } from 'react'
 import CaseStudyMetrics from './CaseStudyMetrics'
 import CaseStudyTestimonial from './CaseStudyTestimonial'
 import './CaseStudyContent.css'
@@ -429,7 +429,7 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
           {introduction.closingFinalHeading && introduction.closingFinalBelowVideo && (
             <h4 className="case-study-content__heading">{introduction.closingFinalHeading}</h4>
           )}
-          {introduction.closingFinal && introduction.closingFinalBelowVideo && introduction.closingFinalImage && (
+          {introduction.closingFinal && introduction.closingFinalBelowVideo && introduction.closingFinalImage && !introduction.closingFinalImageInline && (
             <div className="case-study-content__two-column case-study-content__two-column--text-heavy">
               <div className="case-study-content__two-column-content">
                 {introduction.closingFinal.split('\n\n').map((para, index) => (
@@ -443,6 +443,24 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                 />
               </figure>
             </div>
+          )}
+          {introduction.closingFinal && introduction.closingFinalBelowVideo && introduction.closingFinalImage && introduction.closingFinalImageInline && (
+            <>
+              {introduction.closingFinal.split('\n\n').map((para, index) => (
+                <React.Fragment key={index}>
+                  <p className="case-study-content__text">{para}</p>
+                  {index === 0 && (
+                    <figure className="case-study-content__section-image case-study-content__section-image--half">
+                      <img
+                        src={introduction.closingFinalImage.src}
+                        alt={introduction.closingFinalImage.alt}
+                        className="case-study-content__section-image-img"
+                      />
+                    </figure>
+                  )}
+                </React.Fragment>
+              ))}
+            </>
           )}
           {introduction.closingFinal && introduction.closingFinalBelowVideo && !introduction.closingFinalImage && (
             <p className="case-study-content__text">{introduction.closingFinal}</p>
@@ -569,7 +587,7 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
               )}
               {solution.timeline[0].sectionContentSecondary && (
                 solution.timeline[0].sectionContentSecondary.split('\n\n').map((para, index) => (
-                  <p key={index} className="case-study-content__text">{para}</p>
+                  <p key={index} className={`case-study-content__text${para.startsWith('•') ? ' case-study-content__text--bullet' : ''}`}>{para}</p>
                 ))
               )}
               {solution.timeline[0].sectionImages && (
@@ -742,6 +760,56 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
               )}
               {solution.timeline[1]?.sectionContent && (
                 solution.timeline[1].sectionContent.split('\n\n').map((para, index) => (
+                  <p key={index} className={`case-study-content__text${para.startsWith('•') ? ' case-study-content__text--bullet' : ''}`}>{para}</p>
+                ))
+              )}
+              {solution.timeline[1]?.sectionConstraints && (
+                <div className="case-study-content__constraints">
+                  {solution.timeline[1].sectionConstraints.map((item, index) => (
+                    <div key={index} className="case-study-content__constraint-item">
+                      <h6 className="case-study-content__constraint-title">{item.title}</h6>
+                      <p className="case-study-content__constraint-description">{item.description}</p>
+                    </div>
+                  ))}
+                </div>
+              )}
+              {solution.timeline[1]?.sectionImagesFourUp && (
+                <div className="case-study-content__image-four-up">
+                  {solution.timeline[1].sectionImagesFourUp.map((image, index) => (
+                    <figure key={index} className="case-study-content__image-four-up-item">
+                      <img src={image.src} alt={image.alt} />
+                      {image.label && (
+                        <figcaption className="case-study-content__image-four-up-label">{image.label}</figcaption>
+                      )}
+                    </figure>
+                  ))}
+                </div>
+              )}
+              {solution.timeline[1]?.sectionConstraintImages && (
+                <div className="case-study-content__constraint-images">
+                  {solution.timeline[1].sectionConstraintImages.map((item, index) => (
+                    item.grouped ? (
+                      <div key={index} className="case-study-content__constraint-image-group">
+                        <div className="case-study-content__constraint-image-group-images">
+                          {item.images.map((img, imgIndex) => (
+                            <figure key={imgIndex} className="case-study-content__constraint-image-item case-study-content__constraint-image-item--in-group">
+                              <img src={img.src} alt={img.alt} />
+                            </figure>
+                          ))}
+                        </div>
+                        <figcaption className="case-study-content__constraint-image-label">{item.label}</figcaption>
+                      </div>
+                    ) : (
+                      <figure key={index} className="case-study-content__constraint-image-item">
+                        <img src={item.src} alt={item.alt} />
+                        <figcaption className="case-study-content__constraint-image-label">{item.label}</figcaption>
+                      </figure>
+                    )
+                  ))}
+                </div>
+              )}
+              {solution.timeline[1]?.sectionContentAfterFourUp && (
+                solution.timeline[1].sectionContentAfterFourUp.split('\n\n').map((para, index) => (
                   <p key={index} className="case-study-content__text">{para}</p>
                 ))
               )}
@@ -781,7 +849,10 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
               )}
               {solution.timeline[1]?.sectionOpportunity && (
                 <div className="case-study-content__opportunity case-study-content__opportunity--callout">
-                  <strong>The Opportunity:</strong> {solution.timeline[1].sectionOpportunity}
+                  <strong>The Opportunity:</strong>
+                  {solution.timeline[1].sectionOpportunity.split('\n\n').map((para, index) => (
+                    <p key={index} style={{ margin: index === 0 ? '0.5em 0 0 0' : '0.75em 0 0 0' }}>{para}</p>
+                  ))}
                 </div>
               )}
               {solution.timeline[1]?.fullBleedImage && (
@@ -870,7 +941,9 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                 </figure>
               )}
               {solution.timeline[1]?.sectionContentAfterBrainstorm && (
-                <p className="case-study-content__text">{solution.timeline[1].sectionContentAfterBrainstorm}</p>
+                solution.timeline[1].sectionContentAfterBrainstorm.split('\n\n').map((para, index) => (
+                  <p key={index} className="case-study-content__text">{para}</p>
+                ))
               )}
               {solution.timeline[1]?.designPrinciples && (
                 <div className="case-study-content__principles">
@@ -1077,7 +1150,12 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                 <h4 className="case-study-content__heading">{solution.timeline[1].customerFeedbackHeading}</h4>
               )}
               {solution.timeline[1]?.customerFeedbackContent && (
-                <p className="case-study-content__text">{solution.timeline[1].customerFeedbackContent}</p>
+                solution.timeline[1].customerFeedbackContent.split('\n\n').map((para, index) => (
+                  <p key={index} className="case-study-content__text">{para}</p>
+                ))
+              )}
+              {solution.timeline[1]?.customerFeedbackQuotesIntro && (
+                <p className="case-study-content__microcopy">{solution.timeline[1].customerFeedbackQuotesIntro}</p>
               )}
               {solution.timeline[1]?.customerFeedbackQuotes && (
                 <div className="case-study-content__customer-quotes">
@@ -1092,7 +1170,9 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                 </div>
               )}
               {solution.timeline[1]?.customerFeedbackClosing && (
-                <p className="case-study-content__text">{solution.timeline[1].customerFeedbackClosing}</p>
+                solution.timeline[1].customerFeedbackClosing.split('\n\n').map((para, index) => (
+                  <p key={index} className="case-study-content__text">{para}</p>
+                ))
               )}
               {/* What We Released Section */}
               {solution.timeline[1]?.whatWeReleasedHeading && (
@@ -1116,7 +1196,9 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                 </figure>
               )}
               {solution.timeline[1]?.whatWeReleasedContent && (
-                <p className="case-study-content__text">{solution.timeline[1].whatWeReleasedContent}</p>
+                solution.timeline[1].whatWeReleasedContent.split('\n\n').map((para, index) => (
+                  <p key={index} className="case-study-content__text">{para}</p>
+                ))
               )}
               {solution.timeline[1]?.whatWeReleasedArchitectureImage && (
                 <figure className="case-study-content__section-image">
@@ -1144,7 +1226,9 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                 </figure>
               )}
               {solution.timeline[1]?.whatWeReleasedPrinciple1Content && (
-                <p className="case-study-content__text">{solution.timeline[1].whatWeReleasedPrinciple1Content}</p>
+                solution.timeline[1].whatWeReleasedPrinciple1Content.split('\n\n').map((para, index) => (
+                  <p key={index} className="case-study-content__text">{para}</p>
+                ))
               )}
               {solution.timeline[1]?.whatWeReleasedPrinciple2Heading && (
                 <h5 className={`case-study-content__subheading ${solution.neutralHeadings ? 'case-study-content__subheading--neutral' : ''}`}>{solution.timeline[1].whatWeReleasedPrinciple2Heading}</h5>
@@ -1167,7 +1251,9 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                 </figure>
               )}
               {solution.timeline[1]?.whatWeReleasedPrinciple2Content && (
-                <p className="case-study-content__text">{solution.timeline[1].whatWeReleasedPrinciple2Content}</p>
+                solution.timeline[1].whatWeReleasedPrinciple2Content.split('\n\n').map((para, index) => (
+                  <p key={index} className="case-study-content__text">{para}</p>
+                ))
               )}
               {solution.timeline[1]?.whatWeReleasedPrinciple3Heading && (
                 <h5 className={`case-study-content__subheading ${solution.neutralHeadings ? 'case-study-content__subheading--neutral' : ''}`}>{solution.timeline[1].whatWeReleasedPrinciple3Heading}</h5>
@@ -1190,7 +1276,9 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                 </figure>
               )}
               {solution.timeline[1]?.whatWeReleasedPrinciple3Content && (
-                <p className="case-study-content__text">{solution.timeline[1].whatWeReleasedPrinciple3Content}</p>
+                solution.timeline[1].whatWeReleasedPrinciple3Content.split('\n\n').map((para, index) => (
+                  <p key={index} className="case-study-content__text">{para}</p>
+                ))
               )}
               {/* Operational Framework Section */}
               {solution.timeline[1]?.operationalFrameworkHeading && (
@@ -1198,6 +1286,21 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
               )}
               {solution.timeline[1]?.operationalFrameworkContent && (
                 solution.timeline[1].operationalFrameworkContent.split('\n\n').map((para, index) => (
+                  <p key={index} className="case-study-content__text">{para}</p>
+                ))
+              )}
+              {solution.timeline[1]?.operationalFrameworkItems && (
+                <div className="case-study-content__constraints">
+                  {solution.timeline[1].operationalFrameworkItems.map((item, index) => (
+                    <div key={index} className="case-study-content__constraint-card">
+                      <h5 className="case-study-content__constraint-card-title">{item.title}</h5>
+                      <p className="case-study-content__constraint-card-description">{item.description}</p>
+                    </div>
+                  ))}
+                </div>
+              )}
+              {solution.timeline[1]?.operationalFrameworkContentAfter && (
+                solution.timeline[1].operationalFrameworkContentAfter.split('\n\n').map((para, index) => (
                   <p key={index} className="case-study-content__text">{para}</p>
                 ))
               )}
@@ -2576,14 +2679,30 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
             </div>
           )}
 
-          {/* Metrics */}
-          {impact.metrics && <CaseStudyMetrics metrics={impact.metrics} />}
-
-          {/* Business Impact */}
-          {impact.businessImpact && (
-            <p className="case-study-content__business-impact">
-              <strong>Business Impact:</strong> {impact.businessImpact}
-            </p>
+          {/* Metrics & Business Impact */}
+          {(impact.metrics || impact.businessImpact) && (
+            <div className="case-study-content__impact-card">
+              {impact.metrics && (
+                <div className="case-study-content__impact-metrics">
+                  {impact.metrics.map((metric, index) => (
+                    <div key={index} className="case-study-content__impact-metric">
+                      <div className="case-study-content__impact-metric-value">{metric.value}</div>
+                      <div className="case-study-content__impact-metric-label">{metric.label}</div>
+                    </div>
+                  ))}
+                </div>
+              )}
+              {impact.businessImpact && (
+                <div className="case-study-content__impact-narrative">
+                  {impact.businessImpactHeading && (
+                    <h4 className="case-study-content__impact-narrative-heading">{impact.businessImpactHeading}</h4>
+                  )}
+                  {impact.businessImpact.split('\n\n').map((para, index) => (
+                    <p key={index} className="case-study-content__impact-narrative-text">{para}</p>
+                  ))}
+                </div>
+              )}
+            </div>
           )}
 
           {/* Testimonial */}
@@ -2597,6 +2716,18 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
             impact.reflectionContent.split('\n\n').map((para, index) => (
               <p key={index} className="case-study-content__text">{para}</p>
             ))
+          )}
+          {impact.reflectionItems && (
+            <div className="case-study-content__reflection-items">
+              {impact.reflectionItems.map((item, index) => (
+                <div key={index} className="case-study-content__reflection-item">
+                  <h5 className="case-study-content__reflection-item-title">{item.title}</h5>
+                  {item.content.split('\n\n').map((para, pIndex) => (
+                    <p key={pIndex} className="case-study-content__text">{para}</p>
+                  ))}
+                </div>
+              ))}
+            </div>
           )}
         </section>
       )}

@@ -562,7 +562,11 @@ Another experiment was a pairing menu on the menu item details page. I felt this
       heading: 'Introduction',
       content: `Me Tab launched to 100% of US customers in 7 weeks and now accounts for 4% of marketplace orders and $2.1B in annual GOV.
 
-DoorDash had no single place for customers to find everything about them: their favorite stores, their loyalty status, their order history, their contributions. These experiences were scattered across the app, each owned by different teams with different goals. When the Discovery team proposed a new surface to shift reorders off the home page, I pushed back: why would this be valuable to customers? That question led us to reframe the problem entirely, and ultimately to ship Me Tab.
+What started as a request to build a reorder surface became a broader question: why doesn't DoorDash have a place for customers to understand themselves?
+
+Reordering, loyalty, order history, and contributions all existed—but were fragmented across the product, owned by different teams with competing goals.
+
+Instead of solving for a single use case, I reframed the problem: we needed a unified customer layer.
 
 This effort aligned with two key company priorities: accelerating DashPass subscriber growth and shifting the home page toward new merchant discovery.`,
       contentSecondary: null,
@@ -573,19 +577,21 @@ This effort aligned with two key company priorities: accelerating DashPass subsc
       closingAfterVideo: null,
       videoAfterClosing: null,
       closingFinalHeading: 'The Business Context',
-      closingFinal: `The home page was the primary way customers discovered new selection on DoorDash. 50% of purchases originated there, and half of those came from reorders.
+      closingFinal: `The home page drove 50% of orders, with half coming from reorders. At the same time, the business was shifting toward new merchant discovery because data showed a tipping point in customer stickiness after they purchased from 10 unique stores.
 
-But the business was evolving. Data showed a tipping point in customer stickiness after they purchased from 10 unique stores. The home page team's metrics were shifting from volume to new merchant trials, which meant reorder impressions were now competing with discovery.`,
+This created tension:
+Reorders were valuable, but competing with discovery.
+Teams optimized for local goals, not system-wide outcomes.
+
+The proposed solution was to move reorders off the home page. But this raised a bigger question: Where should customers go to manage their relationship with DoorDash?`,
       closingFinalBelowVideo: true,
       closingFinalImage: {
         src: '/images/metab-business-context.png',
         alt: 'Business context diagram showing metrics shift from volume to trials'
       },
-      closingFinalSecondary: 'The Product Director for Discovery proposed we build a dedicated reorder surface to de-risk reducing reorder impressions on the home page. The hypothesis was sound from a business perspective, but I wanted to understand the customer value before committing design resources.',
-      imageFinal: {
-        src: '/images/metab-questioning-brief.png',
-        alt: 'Questioning the brief'
-      },
+      closingFinalImageInline: true,
+      closingFinalSecondary: null,
+      imageFinal: null,
       opportunity: null,
       opportunityCallout: false
     },
@@ -600,13 +606,17 @@ But the business was evolving. Data showed a tipping point in customer stickines
           title: null,
           description: null,
           sectionHeading: 'Auditing the Existing Experience',
-          sectionContent: 'I did a quick audit of reorder touchpoints across the app. Reordering was present in logical places, but fragmented by context. I partnered with the Product Director to analyze usage data: 45% of reorders happened on the Store Page, 35% on the Home Page, and 20% on the Orders Tab.',
+          sectionContent: 'To ground the opportunity, I led a quick audit of reorder touchpoints across the app. Reordering was present in logical places, but fragmented by context. I partnered with the Product Director to analyze usage data: 45% of reorders happened on the Store Page, 35% on the Home Page, and 20% on the Orders Tab.',
           sectionImagesThreeUp: [
             { src: '/images/metab-home-modules.png', alt: 'Home page reorder modules', label: 'Home Page' },
             { src: '/images/metab-store-page-reorder.png', alt: 'Store page reorder', label: 'Store Page' },
             { src: '/images/metab-orders-tab-reorder.png', alt: 'Orders tab reorder', label: 'Orders Tab' }
           ],
-          sectionContentSecondary: `If we wanted a new surface to succeed, it needed top-level access. That meant either adding to global navigation (making everywhere more complicated) or replacing something existing (requiring tests to account for lost prominence). Based on the data and strategy, we decided to try replacing the Orders Tab. Customers were already using it for reorder, but this opened new challenges: we'd need to account for active delivery status, settings and account, and order history.`,
+          sectionContentSecondary: `Creating a new surface required more than adding a tab—it required redefining navigation and ownership.
+
+We had two options:\n\n• Add to global navigation (increasing complexity)\n\n• Replace an existing surface (risking disruption)\n\nBased on usage patterns, we decided to replace the Orders tab:\n\n• It already anchored reorder behavior\n\n• It had strong user familiarity\n\n• It provided a foundation to expand beyond transactions
+
+This decision allowed us to evolve an existing behavior into a broader system.`,
           sectionImages: null,
           sectionClosing: null
         },
@@ -614,20 +624,31 @@ But the business was evolving. Data showed a tipping point in customer stickines
           date: null,
           title: null,
           description: null,
-          sectionHeading: 'Reframing the Problem',
-          sectionContent: `As is often the case in larger organizations, other teams were navigating major shifts at the same time. DashPass, our loyalty program, was buried in account settings. It was the company's top strategic priority with aggressive subscriber growth goals that needed support, but customers couldn't find it. Discovery for non-members was brittle as we relied on ad placements on the home page which could be deprioritized due to other campaigns.`,
-          sectionImagesTwoUp: [
-            { src: '/images/metab-dashpass-buried01.png', alt: 'DashPass buried in settings', label: 'DashPass Signup' },
-            { src: '/images/metab-dashpass-buried02.png', alt: 'DashPass visibility issue', label: 'DashPass Account' }
+          sectionHeading: 'The Real Constraint',
+          sectionContent: `As we explored the opportunity, it became clear this wasn't a single-team problem. Multiple teams were shifting strategy at the same time—each needing priority placement to drive visibility and results.`,
+          sectionConstraints: [
+            { title: 'DashPass', description: 'Our top strategic priority was buried in account settings and relied on brittle home page placements for discovery.' },
+            { title: 'Social', description: 'Contributors had no central place to see their work—reviews were scattered and sorted by recency, disappearing quickly.' },
+            { title: 'Account & Settings', description: 'Split across separate destinations, creating confusion around ownership of identity.' }
           ],
-          sectionContentAfterImages: `My social team was also exploring a profile surface for content contributors. Another top priority, we were testing multiple social content formats, but contributors had no central place to see their work. Users could see their reviews on the store page, but they were sorted by recency so quickly disappeared.`,
-          sectionImagesThreeUp: [
-            { src: '/images/metab-social-noprofile01.png', alt: 'Review creation flow', label: 'Review Creation' },
-            { src: '/images/metab-social-noprofile02.png', alt: 'Review images', label: 'Review Images' },
-            { src: '/images/metab-social-noprofile03.png', alt: 'Store page review', label: 'Store Page Review' }
+          sectionConstraintImages: [
+            { src: '/images/metab-dashpass-buried02.png', alt: 'DashPass buried in settings', label: 'Hidden in settings' },
+            { src: '/images/metab-social-noprofile03.png', alt: 'Social on store page', label: 'Ephemeral' },
+            {
+              grouped: true,
+              label: 'Split ownership',
+              images: [
+                { src: '/images/metab-settings.png', alt: 'Settings screen' },
+                { src: '/images/metab-account.png', alt: 'Account screen' }
+              ]
+            }
           ],
-          sectionContentAfterThreeUp: `These conversations revealed a bigger opportunity. The problem wasn't just shifting reorder share. There was no single place for customers to go for everything about them. With this reframe, we could unify these disparate concerns under one effort. That's when we gave it the code name that stuck: Me Tab.`,
-          sectionOpportunity: 'In today\'s experience there is no single place for customers to go for everything about them. Identity on platform was a growing concern, and we could build a highly personalized experience that solved multiple scaling challenges holistically.',
+          sectionContentAfterFourUp: `These systems weren't just fragmented—they were competing for the same surface area and user attention. This created a fundamental constraint: we couldn't introduce a new surface without taking something away.\n\nAny solution would need to resolve these competing priorities, not simply reorganize them. This forced a shift in thinking: instead of asking where should this live, we asked what should this system be.`,
+          sectionImagesTwoUp: null,
+          sectionContentAfterImages: null,
+          sectionImagesThreeUp: null,
+          sectionContentAfterThreeUp: null,
+          sectionOpportunity: 'There was no single place for customers to go for everything about them.\n\nInstead of building another destination, we saw an opportunity to define a personalized identity layer—one that could unify fragmented experiences and scale across multiple product needs.',
           fullBleedImage: {
             src: '/images/fullbleed-org-alignment.png',
             alt: 'Cross-org alignment'
@@ -635,21 +656,29 @@ But the business was evolving. Data showed a tipping point in customer stickines
           sectionHeadingSecondary: 'Building Cross-Org Alignment',
           sectionContentTertiary: `Pulling this off quickly required support from multiple teams with conflicting goals. For the DashPass and Social teams, the key consideration was visibility, so they would need prominent placement on the new surface. For the Discovery, Orders, and New Vertical teams, it was improving the reorder experience. The Delivery team cared about how active delivery tracking would be handled. Each team had different success metrics, but all would benefit from a unified surface.
 
-I was the DRI (Directly Responsible Individual), reporting to the Senior Director of Consumer Product Design. I had the autonomy to plan and execute this sprint. Leadership would join stakeholder reviews to provide input. I prepared a sprint brief to gain support across the org for a 3-day sprint. My product partner and I identified design and product leads and pulled them in to help shape the brief and plan the sprint.`,
+I acted as the DRI for the sprint, with full ownership to define the problem, align stakeholders, and drive outcomes.
+
+Rather than starting with solutions, I created a sprint brief to anchor the work in customer value and align teams around a shared objective. This gave us a neutral starting point across teams with competing priorities.`,
           sectionHeadingTeam: 'The Team',
           sectionTeamImage: {
             src: '/images/metab-team-all.png',
             alt: 'Me Tab sprint team',
             caption: 'Design • Research • Content • Product'
           },
-          sectionContentAfterTeam: `The team for the sprint included 6 designers representing each product team, 2 researchers, the consumer content strategy lead, and 2 product managers from the discovery team.
+          sectionContentAfterTeam: `The team for the sprint included 6 designers representing each product team, 2 researchers, the consumer content strategy lead, and 2 product managers from the discovery team. Each designer represented a different product surface, which meant alignment wasn't just about ideas, it required reconciling deeply held assumptions about ownership and priority.
 
-Before the formal sprint, I grabbed the cross-functional group for a few hours of brainstorming and to go over the brief. It can take time for teams with different contexts to develop shared understanding. These informal sessions helped us align before the sprint clock started.`,
+Before the formal sprint, I pulled the group together for working sessions to align on context, constraints, and success criteria.
+
+In large orgs, misalignment doesn't come from bad ideas, it comes from teams operating with different mental models. These sessions helped us build a shared understanding before the sprint clock started.`,
           sectionImageAfterTeam: {
             src: '/images/metab-sprint-brainstorm.png',
             alt: 'Sprint brainstorm session'
           },
-          sectionContentAfterBrainstorm: 'We emerged from this exercise with a set of principles to guide our work going forward. The principles became the foundational organizing framework for our sprint explorations and gave us an architecture to weigh trade-offs with. We organized them by priority for the new surface, which also helped us resolve early the relative importance of each use case.',
+          sectionContentAfterBrainstorm: `As part of sprint prep, we defined a small set of principles to guide the work.
+
+They established a shared framework for evaluating concepts, prioritizing use cases, and making tradeoffs across teams.
+
+Aligning on these upfront allowed us to enter the sprint with a clear point of view—so we could spend our time exploring solutions, not debating priorities.`,
           designPrinciples: [
             {
               image: '/images/metab-ddesign-principle01.png',
@@ -668,22 +697,24 @@ Before the formal sprint, I grabbed the cross-functional group for a few hours o
             }
           ],
           measuringSuccessHeading: 'Measuring Success',
-          measuringSuccessContent: `I defined success metrics with the Product Director before the sprint, specifically to give us negotiating leverage with partner teams. Because DashPass and Social needed prominence, we were concerned the team would be pushed to over-index on identity at the expense of reorder—which would risk our primary goals.`,
+          measuringSuccessContent: `Before the sprint, I defined success metrics with the Product Director to create alignment across teams with competing priorities.
+
+DashPass and Social both needed visibility, but without clear guardrails, the team risked over-indexing on identity at the expense of reorder, the core business driver.`,
           measuringSuccessMetrics: [
             {
               type: 'Primary Metric',
               title: 'GOV',
-              description: 'Total order value generated from the surface would keep the team focused on business results, and was the metric the home page team needed us to de-risk.'
+              description: 'Anchored the work in business impact and ensured we optimized for reorder behavior—not just engagement.'
             },
             {
               type: 'Secondary Metric',
               title: 'Incremental DashPass Signups',
-              description: 'Setting this explicitly helped us negotiate effectively with DashPass and Social when priorities conflicted.'
+              description: 'Created space for subscription growth while keeping it secondary to core reorder performance.'
             },
             {
               type: 'Secondary Metric',
-              title: 'Orders Placed',
-              description: 'Kept top-of-mind how we were performing relative to the Orders Tab we were replacing.'
+              title: 'Orders',
+              description: "Ensured we maintained continuity with the existing Orders Tab and didn't regress core behavior."
             }
           ],
           sprintFullBleedImage: {
@@ -692,15 +723,23 @@ Before the formal sprint, I grabbed the cross-functional group for a few hours o
           },
           sprintHeading: 'A 3-Day Sprint',
           sprintDay01Subheading: null,
-          sprintDay01Content: `Three days seems fast for a new surface, but speed was the point. We needed alignment before teams could retreat to their corners.
+          sprintDay01Content: `Three days seems fast for a new surface—but speed was the point.
 
-I set up the sprint to build shared context quickly: data science presented reorder analytics, research shared relevant studies, and partner teams presented their strategies. We broke into teams organized by principle to define customer problems before exploring opportunities, resisting the temptation to jump straight to design.`,
+We needed alignment before teams could retreat to their corners.
+
+I structured the sprint to build shared context quickly: data science presented reorder analytics, research shared key findings, and partner teams outlined their strategies.
+
+We then broke into groups organized by principle to define customer problems before exploring solutions.`,
           sprintDay01Image: {
             src: '/images/metab-sprint-day01.png',
             alt: 'Sprint Day 01',
             small: true
           },
-          sprintDay01ContentAfterImage: `By day two, teams were exploring opportunities against the problems we'd defined. We ran rapid cycles. Two hours on concepts, regroup, brief feedback, return to exploration. One example of how we framed the work:`,
+          sprintDay01ContentAfterImage: `By day two, teams were exploring solutions against clearly defined problems.
+
+We ran rapid cycles: two hours on concepts, regroup, feedback, and back into exploration.
+
+One example of how we framed the work:`,
           sprintDay01TwoColumnText: null,
           sprintDay01TwoColumnImage: null,
           sprintDay01Summary: null,
@@ -717,21 +756,30 @@ I set up the sprint to build shared context quickly: data science presented reor
           sprintDay02ProblemOpportunity03: null,
           sprintDay02ContentAfterImageSecondary: `When stakeholders reviewed the explorations that afternoon, the breadth of ideas gave us early signals on directions to pursue and built alignment with leadership on the core concept. But it also surfaced a conflict I needed to address.`,
           leadershipHeading: 'Navigating Organizational Tension',
-          leadershipContent: `In that first stakeholder review, it was clear the Senior Product Director for DashPass wasn't happy that reorder was getting so much weight. He was disruptive throughout, pushing for things I felt were outside V1 scope.
+          leadershipContent: `In the first stakeholder review, it became clear the Senior Product Director for DashPass was concerned that reorder was getting too much weight. He pushed for ideas outside our V1 scope.
 
-I recognized this could derail our strategy. If I let this play out, we'd either miss the window or ship something that failed its primary metric. The DashPass designers were being pushed to give identity even more weight, but the version of DashPass he was advocating for wouldn't exist in the product for months. We were launching in seven weeks.
+I recognized this could derail the strategy. If we followed that path, we risked either missing the launch window or shipping something that failed its primary metric.
 
-At the end of the review, I asked him to meet privately. The Discovery PM hadn't noticed the conflict, but the DashPass PM confirmed my read. I reminded him we were replacing a significant source of reorder revenue, and if our tests failed we wouldn't get a chance for a V2. I agreed with his longer-term vision, but pointed out that both our metrics and principles reflected V1 priorities. To get him on board, I realized he needed assurance that he would get support for his longer term vision. I committed to run another sprint after initial release to go deeper on his ideas for the next iteration. This lowered the temperature. He agreed to focus on reorders for V1, and later became an advocate for the work.`,
+After the review, I asked to meet privately. I acknowledged his long-term vision, but grounded the conversation in our V1 goals: we were replacing a significant source of reorder revenue, and failure would limit future investment.
+
+To align, I committed to running a follow-up sprint post-launch to explore his ideas more deeply. This created space for his priorities without compromising the immediate goal.
+
+He aligned on focusing on reorder for V1—and later became an advocate for the work.`,
           sprintDay03Subheading: null,
-          sprintDay03Content: `On day three, one team focused on page architecture while others refined explorations based on stakeholder feedback. Because we'd organized problems by product category, the solutions were modular—we could see how the surface would come together.`,
+          sprintDay03Content: `By day three, teams converged. One group focused on page architecture while others refined concepts based on stakeholder feedback.
+
+Because we had organized the work around shared principles, solutions were modular, making it clear how the system would come together.`,
           sprintDay03Image: {
             src: '/images/metab-architecture.png',
             alt: 'Page architecture',
             small: true
           },
-          sprintDay03ContentAfterImage: `We emerged with key decisions on how the surface would work, a set of modules to flesh out, and aligned stakeholders ready to support the build.`,
+          sprintDay03ContentAfterImage: `We left with a clear architecture, a prioritized set of modules, and alignment across stakeholders to move into build.`,
           customerFeedbackHeading: 'Customer Validation',
-          customerFeedbackContent: `After the sprint, I collapsed the team back to a core group: myself, the design lead, and two PMs. We synthesized the explorations into a cohesive design and worked with research to test the concepts with customers.`,
+          customerFeedbackContent: `After the sprint, we collapsed to a core group—myself, the design lead, and two PMs—to synthesize the work into a cohesive direction.
+
+We partnered with research to validate the concepts with customers.`,
+          customerFeedbackQuotesIntro: 'Three themes consistently emerged:',
           customerFeedbackQuotes: [
             {
               quote: 'This makes sense. I never knew DashPass had all these benefits—I guess I never really knew where to look.',
@@ -746,35 +794,65 @@ At the end of the review, I asked him to meet privately. The Discovery PM hadn't
               author: 'Wanda D.'
             }
           ],
-          customerFeedbackClosing: `Given the positive feedback, I worked with the design lead to finalize the designs. The reality was if we had uncovered major issues it would have stopped the momentum, which was another validation to keep the designs focussed for V1. We had specs ready for engineering within a week of completing user tests.
+          customerFeedbackClosing: `This validation gave us the confidence to commit.
 
-All consumer app launches went through the Consumer Product Review, where I served as design approver alongside the Senior Director of Consumer Product. This gave me the visibility to ensure Me Tab met the bar on the first review.`,
+Given the strength of the feedback, we moved quickly to finalize the designs.
+
+The signal was clear: customers understood the value of DashPass, could more easily scan and reorder past purchases, and responded positively to a more personalized surface.
+
+We kept the scope focused on V1 priorities and had specs ready for engineering within a week of completing user tests.
+
+The work went through Consumer Product Review, where I served as design approver alongside the Senior Director. This ensured the Me Tab met the bar and shipped on the first review.`,
           whatWeReleasedHeading: 'What We Released',
           whatWeReleasedImage: {
             src: '/images/metab-release-01.png',
             alt: 'Me Tab release'
           },
-          whatWeReleasedContent: `The final design reflected hard trade-offs. Reorder dominated the surface because the metrics demanded it—we were replacing a significant revenue source. DashPass got prominent visibility but not the full membership hub the team wanted; that would come in V2. Social got a foundation to build on, not a destination.`,
+          whatWeReleasedContent: `The final design was a set of deliberate trade-offs.
+
+Reorder dominated the surface—we were replacing a significant revenue stream. DashPass earned prominent visibility, but not a full membership hub; that would come in V2. Social was introduced as a foundation, not a destination.
+
+We organized the surface around three core customer needs:`,
           whatWeReleasedPrinciple1Heading: 'Find what I care about',
           whatWeReleasedPrinciple1Image: {
             src: '/images/metab-find.png',
             alt: 'Find what I care about'
           },
-          whatWeReleasedPrinciple1Content: `Go-to stores, ranked by time of day, recency, and order frequency, provided easy access to a customer's most frequented stores along with any deals or offers. A Top Orders module displayed previous orders visually so customers could eat with their eyes. Adding a prior order to cart let customers simply tap to keep the items they wanted and proceed.`,
+          whatWeReleasedPrinciple1Content: `Go-to stores, ranked by time of day, recency, and frequency, gave customers instant access to their most relevant merchants—along with active deals and offers.
+
+A Top Orders module made past purchases scannable and visual, helping customers quickly recognize what they wanted. Reordering became a single action: review, adjust, and proceed.`,
           whatWeReleasedPrinciple2Heading: 'Build my identity',
           whatWeReleasedPrinciple2Image: {
             src: '/images/metab-idenity.png',
             alt: 'Build my identity'
           },
-          whatWeReleasedPrinciple2Content: `DashPass membership was front and center, the brand color serving as a strong anchor for the overall surface. We recognized customers by name, communicated their tenure as members, and designed a dynamic messaging component focused on time and money customers saved by using DashPass. The unit used space efficiently while covering primary loyalty needs—and left plenty of room for reorder below. We provide easy access to customers social profile through the in page navigation module, which was expandable for the future.`,
+          whatWeReleasedPrinciple2Content: `DashPass became the anchor of the identity layer.
+
+We recognized customers by name, reinforced membership status, and surfaced dynamic messaging around time and money saved. The component balanced loyalty reinforcement with space for core actions below.
+
+In-page navigation provided access to profile and social contributions—establishing a foundation we could expand over time.`,
           whatWeReleasedPrinciple3Heading: 'Access to key flows',
           whatWeReleasedPrinciple3Image: {
             src: '/images/metab-maintain-access.png',
             alt: 'Maintain access to key flows'
           },
-          whatWeReleasedPrinciple3Content: 'Easy navigation to DashPass account settings for members or signup for non-members. Direct access to order history, and a combined settings/account surface.',
+          whatWeReleasedPrinciple3Content: `The surface unified previously fragmented flows.
+
+Customers could move seamlessly between DashPass management, order history, and account settings—all from a single, predictable entry point.
+
+The result was a unified surface that scaled across teams without fragmenting the customer experience.`,
           operationalFrameworkHeading: 'Operational Framework',
-          operationalFrameworkContent: `Because we were launching a new surface, it was important to develop guidelines and governance for the larger organization. I worked with the designer and PM to build out a framework, not just for designers, but for operators and product managers. This included surface principles, dos and don'ts, how the feed was structured, and how third-party teams could plug in to get the most out of the surface. We set up a weekly forum where teams could come learn about the new surface, propose features, and get feedback and direction on how to make them fit.`,
+          operationalFrameworkContent: `Launching a new surface required more than design—it required a clear operating model for the organization.
+
+I partnered with design and product to define a shared framework used by designers, PMs, and operators to guide how the surface evolves. The framework established:`,
+          operationalFrameworkItems: [
+            { title: 'Principles', description: 'What belongs on the surface' },
+            { title: 'Structure', description: 'How content is organized' },
+            { title: 'Guardrails', description: 'How partner teams integrate without fragmenting the experience' }
+          ],
+          operationalFrameworkContentAfter: `A key goal was enabling teams to contribute without creating chaos. We defined a clear plug-in model—so teams could add value while staying within a consistent system.
+
+To operationalize this, we established a weekly forum where teams could propose ideas, get feedback, and align on how their work fit into the system.`,
           operationalFrameworkImage: {
             src: '/images/metab-framework.png',
             alt: 'Me Tab Framework'
@@ -796,19 +874,39 @@ All consumer app launches went through the Consumer Product Review, where I serv
     impact: {
       heading: 'Impact',
       headingAccent: false,
-      narrative: `In a 5-month holdout, we observed a 0.25% increase in 28-day order frequency that compounded over time—reaching 0.29% by day 84. Me Tab now accounts for ~4% of total marketplace orders and $2.1B in annual GOV on iOS.`,
-      metrics: [
-        { value: '$148M', label: 'Incremental GOV (5-month holdout)' },
-        { value: '4M', label: 'Orders' },
-        { value: '180K', label: 'Incremental DashPass Signups' },
-        { value: '12%', label: 'MAU placed at least 1 order from surface' }
-      ],
-      businessImpact: 'Critically, the increase in order frequency came entirely from reorders—new merchant trial rates stayed neutral. Me Tab drove repeat purchases without hurting discovery and exploration. For DashPass, we observed a 2.4% decrease in annual subscription cancellations, and customer savings from fees and exclusive promotions increased by 20 cents per DashPass member.',
-      testimonial: null,
-      reflectionHeading: 'What I\'d Do Differently',
-      reflectionContent: `I recognized during planning that replacing a surface would require extra cross-org alignment. But I addressed it indirectly—through principles and success criteria—rather than confronting it head-on with leadership before the sprint. It wasn't until tension surfaced mid-sprint that I took direct action. My product partner was less tuned in to the political dynamics, so I should have trusted my gut sooner and escalated earlier.
+      narrative: `The Me Tab drove a measurable increase in repeat ordering, compounding over time.
 
-Second, I assigned a senior product designer from the Discovery team to lead design—it was a growth opportunity, and they owned the initiative. But they were working alongside more senior designers from DashPass and Social, and the shift from collating others' work to truly driving the design took more coaching than I anticipated. We got there, but the extra cycles at the start were a cost I could have reduced with more structured support upfront.`
+In a 5-month holdout, we observed a +0.25% lift in 28-day order frequency, growing to +0.29% by day 84.
+
+Today, Me Tab accounts for ~4% of total marketplace orders—representing ~$2.1B in annual GOV on iOS.`,
+      metrics: [
+        { value: '$148M', label: 'Incremental GOV (holdout validated)' },
+        { value: '4M', label: 'Incremental Orders Driven' },
+        { value: '180K', label: 'Incremental DashPass Subscribers' },
+        { value: '12%', label: 'MAU engaging in reorder from Me Tab' }
+      ],
+      businessImpactHeading: 'Business Impact',
+      businessImpact: `The lift in order frequency came entirely from reorders—new merchant trial remained neutral. This validated our core bet: we could increase repeat behavior without cannibalizing discovery.
+
+For DashPass, the surface also improved retention, reducing annual cancellations by 2.4% and increasing member savings through fees and promotions.
+
+This positioned Me Tab as a durable driver of repeat behavior—capturing high-intent demand while preserving the top-of-funnel for discovery surfaces.`,
+      testimonial: null,
+      reflectionHeading: "What I'd Do Differently",
+      reflectionItems: [
+        {
+          title: 'Align leadership earlier on cross-org tradeoffs',
+          content: `I anticipated the need for cross-org alignment, but addressed it indirectly through principles and success metrics rather than confronting it head-on. When tension surfaced mid-sprint, I had to course-correct.
+
+In hindsight, I would have escalated earlier and aligned leaders explicitly on tradeoffs before the sprint began.`
+        },
+        {
+          title: 'Provide more structure when stretching leaders',
+          content: `I asked a senior designer to lead the initiative as a growth opportunity. While they ultimately succeeded, stepping into a cross-org leadership role required more upfront structure and coaching than I planned for.
+
+I would add clearer expectations and support earlier to reduce ramp time and increase early momentum.`
+        }
+      ]
     }
   },
   {
