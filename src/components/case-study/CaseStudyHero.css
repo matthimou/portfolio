@@ -8,11 +8,11 @@
   margin-top: 0;
 }
 
-/* Force dark mode styling on meta section (always dark regardless of theme) */
+/* Always-dark styling on meta section (uses surface--dark class for variable scoping) */
 .case-study-hero__meta {
   margin-bottom: 0;
   text-align: center;
-  background-color: #0F0F12;
+  background-color: var(--color-bg-primary);
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
   padding: var(--space-2xl) var(--content-padding-mobile);
@@ -22,7 +22,7 @@
   font-family: var(--font-display);
   font-size: var(--text-3xl);
   font-weight: var(--font-weight-semibold);
-  color: #F5F5F4; /* Dark mode text-primary */
+  color: var(--color-text-primary);
   margin: 0 0 var(--space-md) 0;
   line-height: var(--leading-tight);
 }
@@ -31,7 +31,7 @@
 .case-study-hero__role-line,
 .case-study-hero__team {
   font-size: var(--text-base);
-  color: #A8A29E; /* Dark mode text-secondary */
+  color: var(--color-text-secondary);
   margin-bottom: var(--space-sm);
   display: flex;
   align-items: center;
@@ -46,7 +46,7 @@
 }
 
 .case-study-hero__separator {
-  color: #78716C; /* Dark mode text-tertiary */
+  color: var(--color-text-tertiary);
 }
 
 .case-study-hero__team {
@@ -60,7 +60,7 @@
 
 .case-study-hero__team-composition {
   font-size: var(--text-sm);
-  color: #78716C;
+  color: var(--color-text-tertiary);
 }
 
 .case-study-hero__key-highlights {

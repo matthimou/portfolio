@@ -27,10 +27,11 @@ export const caseStudies = [
     },
     introduction: {
       heading: 'Introduction',
-      content: 'Doubledash grew from a scrappy MVP into a $1.7B revenue channel over four years. This case study traces that journey, from initial hypothesis through validated product-market fit to a mature platform, to show how I led key product and organizational decisions that transformed order tracking into a core surface platform.',
+      microline: '3 years from utility to platform',
+      content: 'Doubledash grew from a scrappy MVP into a $1.7B revenue channel over 3 years. This case study traces that journey, from initial hypothesis through validated product-market fit to a mature platform, to show how I led key product and organizational decisions that transformed order tracking into a core surface platform.',
       keyHighlights: {
         heading: 'Key highlights',
-        microline: '3 years from utility to platform',
+        microline: null,
         items: [
           'Grew from MVP → $1.7B revenue channel',
           'Transformed order tracking into a core platform surface',
@@ -547,7 +548,7 @@ Another experiment was a pairing menu on the menu item details page. I felt this
       timeline: '2024',
       role: 'Director of Design, Core Consumer',
       team: {
-        size: 'Led team of 7 designers, 2 researchers, 1 content strategist and 2 PMs to rapidly develop a new surface in 7 weeks',
+        size: 'Led cross-org team to launch a new consumer surface in 7 weeks—now driving 4% of orders and $2.1B in annual GOV',
         composition: null
       }
     },
@@ -562,11 +563,11 @@ Another experiment was a pairing menu on the menu item details page. I felt this
       heading: 'Introduction',
       content: `Me Tab launched to 100% of US customers in 7 weeks and now accounts for 4% of marketplace orders and $2.1B in annual GOV.
 
-What started as a request to build a reorder surface became a broader question: why doesn't DoorDash have a place for customers to understand themselves?
+What started as a request to improve reordering revealed a deeper issue: customers had no single place to understand their relationship with DoorDash.
 
-Reordering, loyalty, order history, and contributions all existed—but were fragmented across the product, owned by different teams with competing goals.
+Reordering, loyalty, and order history existed—but were fragmented across teams optimizing for local goals.
 
-Instead of solving for a single use case, I reframed the problem: we needed a unified customer layer.
+We reframed the problem: not a reorder feature, but a unified customer layer.
 
 This effort aligned with two key company priorities: accelerating DashPass subscriber growth and shifting the home page toward new merchant discovery.`,
       contentSecondary: null,
@@ -581,7 +582,7 @@ This effort aligned with two key company priorities: accelerating DashPass subsc
 
 This created tension:
 Reorders were valuable, but competing with discovery.
-Teams optimized for local goals, not system-wide outcomes.
+Teams optimized for local metrics, creating friction between reorder growth and discovery
 
 The proposed solution was to move reorders off the home page. But this raised a bigger question: Where should customers go to manage their relationship with DoorDash?`,
       closingFinalBelowVideo: true,
@@ -906,7 +907,8 @@ In hindsight, I would have escalated earlier and aligned leaders explicitly on t
 
 I would add clearer expectations and support earlier to reduce ramp time and increase early momentum.`
         }
-      ]
+      ],
+      closing: 'This work established a durable foundation for how DoorDash organizes, personalizes, and scales the customer experience, turning a fragmented set of features into a cohesive system.'
     }
   },
   {

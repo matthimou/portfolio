@@ -38,7 +38,7 @@ const Navigation = () => {
   }, [location.pathname, isHomePage, scrollY])
 
   return (
-    <nav className="navigation" role="navigation" aria-label="Main navigation">
+    <nav className="navigation surface--dark" role="navigation" aria-label="Main navigation">
       <div className="navigation__container">
         {/* Brand/Logo */}
         <Link

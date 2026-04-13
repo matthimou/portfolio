@@ -5,7 +5,7 @@ const CaseStudyHero = ({ id, title, hero, meta, hideHeader = false }) => {
     <div className={`case-study-hero ${hideHeader ? 'case-study-hero--no-header' : ''}`}>
       {/* Project Meta */}
       {!hideHeader && (
-        <div className="case-study-hero__meta">
+        <div className="case-study-hero__meta surface--dark">
           <h3 id={id} className="case-study-hero__title">
             {title}
           </h3>

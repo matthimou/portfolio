@@ -6,8 +6,8 @@
   left: 0;
   right: 0;
   height: var(--nav-height);
-  background-color: #0F0F12;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: var(--color-bg-primary);
+  border-bottom: 1px solid var(--color-border-light);
   z-index: 1000;
   transition: background-color var(--duration-fast) var(--easing-default);
 }
@@ -27,7 +27,7 @@
   font-family: var(--font-display);
   font-size: var(--text-lg);
   font-weight: var(--font-weight-medium);
-  color: #F5F5F4;
+  color: var(--color-text-primary);
   text-decoration: none;
   opacity: 0;
   transform: scale(0.95);
@@ -61,7 +61,7 @@
 }
 
 .navigation__brand:hover {
-  color: #EA580C;
+  color: var(--color-accent-primary);
 }
 
 /* Navigation Actions Container */

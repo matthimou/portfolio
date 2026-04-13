@@ -323,6 +323,9 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
       {introduction && (
         <section className="case-study-content__section">
           <h4 className="case-study-content__heading">{introduction.heading}</h4>
+          {introduction.microline && (
+            <p className="case-study-content__microcopy">{introduction.microline}</p>
+          )}
           {introduction.content && introduction.content.split('\n\n').map((para, index) => (
             <p key={index} className="case-study-content__text">{para}</p>
           ))}
@@ -2680,9 +2683,9 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
           )}
 
           {/* Metrics & Business Impact */}
-          {(impact.metrics || impact.businessImpact) && (
+          {((impact.metrics && impact.metrics.length > 0) || impact.businessImpact) && (
             <div className="case-study-content__impact-card">
-              {impact.metrics && (
+              {impact.metrics && impact.metrics.length > 0 && (
                 <div className="case-study-content__impact-metrics">
                   {impact.metrics.map((metric, index) => (
                     <div key={index} className="case-study-content__impact-metric">
@@ -2728,6 +2731,9 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                 </div>
               ))}
             </div>
+          )}
+          {impact.closing && (
+            <p className="case-study-content__closing-highlight">{impact.closing}</p>
           )}
         </section>
       )}

@@ -1113,7 +1113,7 @@
 /* Combined Impact Card */
 .case-study-content__impact-card {
   margin: var(--space-2xl) 0;
-  padding: var(--space-xl);
+  padding: var(--space-lg);
   background: var(--color-bg-secondary);
   border-radius: 8px;
 }
@@ -1121,9 +1121,9 @@
 .case-study-content__impact-metrics {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: var(--space-xl);
-  margin-bottom: var(--space-xl);
-  padding-bottom: var(--space-xl);
+  gap: var(--space-md);
+  margin-bottom: var(--space-lg);
+  padding-bottom: var(--space-lg);
   border-bottom: 1px solid var(--color-border);
 }
 
@@ -1195,6 +1195,18 @@
   font-weight: var(--font-weight-semibold);
   color: var(--color-text-primary);
   margin: 0 0 var(--space-sm) 0;
+}
+
+/* Closing Highlight */
+.case-study-content__closing-highlight {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+  line-height: var(--leading-relaxed);
+  margin: var(--space-xl) 0 0 0;
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--color-border-light);
 }
 
 /* Platform Images 4-up Grid */

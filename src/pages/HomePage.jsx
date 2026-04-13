@@ -404,7 +404,7 @@ const HomePage = ({ onOpenLogin }) => {
   return (
     <div className="home-page">
       {/* Hero Section */}
-      <div className="hero-experience-wrapper">
+      <div className="hero-experience-wrapper surface--dark">
         <VideoBackground />
         <Hero name="Matthew Hanson" title="Design Leader · Investor · Maltipoo Lover" hideBackground />
       </div>

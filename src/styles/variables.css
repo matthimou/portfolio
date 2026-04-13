@@ -144,3 +144,19 @@
   --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
   --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
+
+/* Always-dark surface utility class */
+/* Use on components that should stay dark regardless of theme (nav, hero meta, etc.) */
+.surface--dark {
+  --color-bg-primary: #0F0F12;
+  --color-bg-secondary: #1A1A1F;
+  --color-text-primary: #F5F5F4;
+  --color-text-secondary: #A8A29E;
+  --color-text-tertiary: #78716C;
+  --color-accent-primary: #EA580C;
+  --color-accent-light: #431407;
+  --color-border-light: #2A2A30;
+  --color-border-subtle: #1F1F24;
+  --color-surface: #1A1A1F;
+  --color-nav-bg: rgba(15, 15, 18, 0.95);
+}
