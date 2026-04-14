@@ -319,10 +319,11 @@ export const caseStudies = [
             intro: null,
             items: [
               'Defined success criteria and established planning rhythm',
-              'Introduced governance to protect core experiences',
-              'Mentored designers to increase ownership',
               'Led cross-functional sprints ahead of planning',
-              'Grounded decisions in customer insights'
+              'Introduced governance to protect core experiences',
+              'Mentored designers to increase ownership and autonomy',
+              'Grounded decisions in customer insights',
+              'Worked with XFN leadership to sequence work to delivery value at each stage'
             ]
           }
         },
@@ -492,8 +493,7 @@ A separate experiment tested item-level pairing menus. I felt it lacked prominen
             title: 'Managing Priorities',
             items: [
               'Delegating tasks to my team at the right time',
-              'Work with skip-level leaders to manage priority conflicts across teams',
-              'Sequencing large efforts'
+              'Work with skip-level leaders to manage priority conflicts across teams'
             ]
           },
           {
