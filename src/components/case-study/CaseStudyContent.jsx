@@ -1325,38 +1325,6 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                   </p>
                 </div>
               )}
-              {solution.timeline[1]?.sectionHeadingCrossOrg && (
-                <h5 className="case-study-content__subheading case-study-content__subheading--neutral">{solution.timeline[1].sectionHeadingCrossOrg}</h5>
-              )}
-              {solution.timeline[1]?.sectionContentCrossOrg && (
-                <p className="case-study-content__text">{solution.timeline[1].sectionContentCrossOrg}</p>
-              )}
-              {solution.timeline[1]?.priorityTiers && (
-                <div className="case-study-content__priority-tiers">
-                  {solution.timeline[1].priorityTiers.map((tier) => (
-                    <div key={tier.tier} className={`case-study-content__priority-tier case-study-content__priority-tier--${tier.tier}`}>
-                      <div className="case-study-content__priority-tier-number">{tier.tier}</div>
-                      <div className="case-study-content__priority-tier-content">
-                        <h6 className="case-study-content__priority-tier-title">{tier.title}</h6>
-                        <p className="case-study-content__priority-tier-examples">{tier.examples}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )}
-              {solution.timeline[1]?.sectionContentAfterTiers && (
-                <p className="case-study-content__text">{solution.timeline[1].sectionContentAfterTiers}</p>
-              )}
-              {solution.timeline[1]?.governanceHighlight && (
-                <div className="case-study-content__key-learning">
-                  <h5 className="case-study-content__key-learning-heading">
-                    {solution.timeline[1].governanceHighlight.heading}
-                  </h5>
-                  <p className="case-study-content__key-learning-content">
-                    {solution.timeline[1].governanceHighlight.content}
-                  </p>
-                </div>
-              )}
               {solution.timeline[1]?.sectionContentTeamBuilding && (
                 <p className="case-study-content__text">{solution.timeline[1].sectionContentTeamBuilding}</p>
               )}
@@ -1608,6 +1576,38 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                 <div className="case-study-content__key-learning">
                   <h4 className="case-study-content__key-learning-heading">{solution.timeline[1].conceptTestingHighlight.heading}</h4>
                   <p className="case-study-content__key-learning-content">{solution.timeline[1].conceptTestingHighlight.content}</p>
+                </div>
+              )}
+              {solution.timeline[1]?.sectionHeadingCrossOrg && (
+                <h5 className="case-study-content__subheading case-study-content__subheading--neutral">{solution.timeline[1].sectionHeadingCrossOrg}</h5>
+              )}
+              {solution.timeline[1]?.sectionContentCrossOrg && (
+                <p className="case-study-content__text">{solution.timeline[1].sectionContentCrossOrg}</p>
+              )}
+              {solution.timeline[1]?.priorityTiers && (
+                <div className="case-study-content__priority-tiers">
+                  {solution.timeline[1].priorityTiers.map((tier) => (
+                    <div key={tier.tier} className={`case-study-content__priority-tier case-study-content__priority-tier--${tier.tier}`}>
+                      <div className="case-study-content__priority-tier-number">{tier.tier}</div>
+                      <div className="case-study-content__priority-tier-content">
+                        <h6 className="case-study-content__priority-tier-title">{tier.title}</h6>
+                        <p className="case-study-content__priority-tier-examples">{tier.examples}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+              {solution.timeline[1]?.sectionContentAfterTiers && (
+                <p className="case-study-content__text">{solution.timeline[1].sectionContentAfterTiers}</p>
+              )}
+              {solution.timeline[1]?.governanceHighlight && (
+                <div className="case-study-content__key-learning">
+                  <h5 className="case-study-content__key-learning-heading">
+                    {solution.timeline[1].governanceHighlight.heading}
+                  </h5>
+                  <p className="case-study-content__key-learning-content">
+                    {solution.timeline[1].governanceHighlight.content}
+                  </p>
                 </div>
               )}
               {solution.timeline[1]?.sectionHeadingScoping && (
