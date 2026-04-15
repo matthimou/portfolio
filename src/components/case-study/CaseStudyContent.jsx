@@ -656,7 +656,10 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
           )}
           {introduction.opportunity && (
             <div className={`case-study-content__opportunity ${introduction.opportunityCallout ? 'case-study-content__opportunity--callout' : ''}`}>
-              <strong>{introduction.opportunityCallout ? 'The Opportunity' : 'Hypothesis'}:</strong> {introduction.opportunity}
+              <strong>{introduction.opportunityCallout ? 'The Opportunity' : 'Hypothesis'}</strong>
+              {introduction.opportunity.split('\n\n').map((para, index) => (
+                <p key={index} className="case-study-content__opportunity-para">{renderWithBold(para)}</p>
+              ))}
             </div>
           )}
         </section>
@@ -801,7 +804,7 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                 </div>
               )}
               {solution.timeline[0].sectionImages && (
-                <figure className="case-study-content__image-pair">
+                <figure className={`case-study-content__image-pair ${solution.timeline[0].sectionImages.small ? 'case-study-content__image-pair--small' : ''}`}>
                   <div className="case-study-content__image-pair-row">
                     {solution.timeline[0].sectionImages.images.map((image, index) => (
                       <div
@@ -2634,7 +2637,7 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
 
           {/* Image After First Para (Combined UI) */}
           {impact.imageAfterFirstPara && (
-            <div className="case-study-content__platform-two-up">
+            <div className={`case-study-content__platform-two-up ${impact.imageAfterFirstPara.small ? 'case-study-content__platform-two-up--small' : ''}`}>
               <figure
                 className="case-study-content__platform-two-up-item case-study-content__platform-two-up-item--clickable"
                 onClick={() => openPlatformLightbox((impact.platformImages?.length || 0))}
@@ -2715,7 +2718,7 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
 
           {/* Platform Three-Up Images */}
           {impact.platformThreeUp && impact.platformThreeUp.length > 0 && (
-            <div className="case-study-content__platform-two-up">
+            <div className={`case-study-content__platform-two-up ${impact.platformThreeUpSmall ? 'case-study-content__platform-two-up--small' : ''}`}>
               {impact.platformThreeUp.map((image, index) => {
                 const baseIndex = (impact.platformImages?.length || 0) + (impact.imageAfterFirstPara ? 1 : 0) + (impact.imageAfterNarrative ? 1 : 0)
                 return (

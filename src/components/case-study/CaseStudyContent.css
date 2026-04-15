@@ -74,6 +74,12 @@
   margin: var(--space-xl) 0;
 }
 
+.case-study-content__image-pair--small {
+  max-width: 75%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .case-study-content__image-pair-row {
   display: flex;
   gap: var(--space-lg);
@@ -1395,7 +1401,7 @@
   font-size: var(--text-sm);
   color: var(--color-text-secondary);
   text-align: center;
-  margin-top: var(--space-md);
+  margin-top: var(--space-sm);
   margin-bottom: var(--space-xl);
 }
 
@@ -1404,13 +1410,19 @@
   display: flex;
   gap: var(--space-lg);
   justify-content: center;
-  align-items: flex-start;
+  align-items: flex-end;
   margin: var(--space-lg) 0;
   max-width: 100%;
 }
 
+.case-study-content__platform-two-up--small {
+  max-width: 75%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .case-study-content__platform-two-up-item {
-  flex: 0 1 auto;
+  flex: 1 1 0;
   margin: 0;
   display: flex;
   flex-direction: column;
@@ -1435,6 +1447,7 @@
 .case-study-content__platform-two-up-item:first-child:nth-last-child(3) img,
 .case-study-content__platform-two-up-item:first-child:nth-last-child(3) ~ .case-study-content__platform-two-up-item img {
   max-height: 420px;
+  width: auto;
 }
 
 .case-study-content__platform-two-up-video-container {
@@ -1453,6 +1466,7 @@
 .case-study-content__platform-two-up--small .case-study-content__platform-two-up-item img,
 .case-study-content__platform-two-up--small .case-study-content__platform-two-up-video {
   max-height: 380px;
+  width: auto;
 }
 
 .case-study-content__platform-two-up-label {
@@ -2421,13 +2435,21 @@
   border-radius: 0 8px 8px 0;
 }
 
-.case-study-content__opportunity--callout strong {
+.case-study-content__opportunity--callout > strong {
   display: block;
   font-size: var(--text-sm);
   text-transform: uppercase;
   letter-spacing: 0.05em;
   color: var(--color-accent-primary);
   margin-bottom: var(--space-sm);
+}
+
+.case-study-content__opportunity-para {
+  margin: 0 0 var(--space-sm) 0;
+}
+
+.case-study-content__opportunity-para:last-child {
+  margin-bottom: 0;
 }
 
 /* Execution Phases */
