@@ -80,7 +80,7 @@ const ImageLightbox = ({ images, currentIndex, onClose, onPrev, onNext }) => {
   )
 }
 
-const AutoPlayVideo = ({ src, caption, noShadow, noBorderRadius }) => {
+const AutoPlayVideo = ({ src, poster, caption, noShadow, noBorderRadius }) => {
   const videoRef = useRef(null)
 
   useEffect(() => {
@@ -107,6 +107,7 @@ const AutoPlayVideo = ({ src, caption, noShadow, noBorderRadius }) => {
       <video
         ref={videoRef}
         src={src}
+        poster={poster}
         muted
         loop
         playsInline
@@ -518,6 +519,7 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
             <div className="case-study-content__intro-video">
               <AutoPlayVideo
                 src={introduction.video.src}
+                poster={introduction.video.poster}
                 caption={introduction.video.caption}
               />
             </div>
@@ -531,6 +533,7 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                 <div className="case-study-content__two-column-video">
                   <AutoPlayVideo
                     src={introduction.videoAfterClosing.src}
+                    poster={introduction.videoAfterClosing.poster}
                     caption={introduction.videoAfterClosing.caption}
                     noShadow={introduction.videoAfterClosing.noShadow}
                   />
@@ -1729,6 +1732,7 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                       <div className="case-study-content__phone-video-container">
                         <video
                           src={videoItem.video}
+                          poster={videoItem.poster}
                           autoPlay
                           muted
                           loop
@@ -1756,6 +1760,7 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                   <div className="case-study-content__phone-video-container">
                     <video
                       src={solution.timeline[1].phoneVideo.video}
+                      poster={solution.timeline[1].phoneVideo.poster}
                       autoPlay
                       muted
                       loop
@@ -1790,6 +1795,7 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                   <div className="case-study-content__phone-video-container">
                     <video
                       src={solution.timeline[1].phoneVideoSecondary.video}
+                      poster={solution.timeline[1].phoneVideoSecondary.poster}
                       autoPlay
                       muted
                       loop
@@ -1812,6 +1818,7 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                   <div className="case-study-content__phone-video-container">
                     <video
                       src={solution.timeline[1].phoneVideoTertiary.video}
+                      poster={solution.timeline[1].phoneVideoTertiary.poster}
                       autoPlay
                       muted
                       loop
@@ -1969,6 +1976,7 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                 <figure className="case-study-content__desktop-video">
                   <video
                     src={solution.timeline[1].desktopVideo.src}
+                    poster={solution.timeline[1].desktopVideo.poster}
                     autoPlay
                     muted
                     loop
@@ -2044,6 +2052,7 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
             <div className="case-study-content__video">
               <AutoPlayVideo
                 src={solution.video.src}
+                poster={solution.video.poster}
                 caption={solution.video.caption}
               />
             </div>
@@ -2085,6 +2094,7 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                     <figure className="case-study-content__media-footer-figure">
                       <video
                         src={solution.mediaFooterMedia.src}
+                        poster={solution.mediaFooterMedia.poster}
                         autoPlay
                         muted
                         loop
@@ -2213,6 +2223,7 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
             {futureTwoUpItems[futureTwoUpLightboxIndex]?.type === 'video' ? (
               <video
                 src={futureTwoUpItems[futureTwoUpLightboxIndex]?.src}
+                poster={futureTwoUpItems[futureTwoUpLightboxIndex]?.poster}
                 autoPlay
                 muted
                 loop
@@ -2380,6 +2391,7 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
             <video
               key={videoLightboxIndex}
               src={phoneVideosRow[videoLightboxIndex]?.video}
+              poster={phoneVideosRow[videoLightboxIndex]?.poster}
               autoPlay
               muted
               loop
@@ -2831,6 +2843,7 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                     {item.type === 'video' ? (
                       <video
                         src={item.src}
+                        poster={item.poster}
                         autoPlay
                         muted
                         loop
@@ -3055,6 +3068,7 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                     <div className="case-study-content__platform-two-up-video-container">
                       <video
                         src={item.src}
+                        poster={item.poster}
                         autoPlay
                         muted
                         loop
@@ -3177,6 +3191,7 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
               <video
                 key={lessonsLightboxIndex}
                 src={lessonsMediaRow[lessonsLightboxIndex]?.src}
+                poster={lessonsMediaRow[lessonsLightboxIndex]?.poster}
                 autoPlay
                 muted
                 loop

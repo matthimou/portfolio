@@ -50,6 +50,7 @@ const CaseStudyHero = ({ id, title, hero, meta, hideHeader = false }) => {
         {hero.video ? (
           <video
             src={hero.video}
+            poster={hero.videoPoster}
             autoPlay
             muted
             loop

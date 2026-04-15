@@ -54,6 +54,7 @@ export const caseStudies = [
       closing: null,
       video: {
         src: '/images/doubledash-combos.mov',
+        poster: '/images/doubledash-combos-poster.jpg',
         caption: null
       },
       closingAfterVideo: `Enabled customers to order from multiple stores in one bundled delivery. This capability was critical to DoorDash's expansion beyond restaurants into new verticals.`,
@@ -228,16 +229,19 @@ Doubledash was a key lever in that strategy, enabling cross-vertical adoption wh
           phoneVideosRow: [
             {
               video: '/images/Doubledash01.mov?v=2',
+              poster: '/images/Doubledash01-poster.jpg',
               alt: 'Doubledash experience on mobile',
               caption: 'Post-order Transition'
             },
             {
               video: '/images/Doubledash02.mov',
+              poster: '/images/Doubledash02-poster.jpg',
               alt: 'Doubledash half-sheet shopping experience',
               caption: 'Setting Expectations'
             },
             {
               video: '/images/Doubledash03.mov',
+              poster: '/images/Doubledash03-poster.jpg',
               alt: 'Doubledash integrated checkout experience',
               caption: 'Integrated Checkout'
             }
@@ -434,12 +438,14 @@ As the team grew to 3 PMs and 15 engineers, my role shifted toward cross-team pr
         {
           type: 'video',
           src: '/images/PairingmenuFailure.mov',
+          poster: '/images/PairingmenuFailure-poster.jpg',
           alt: 'Item-level pairing experiment',
           caption: 'Item-Level Pairing'
         },
         {
           type: 'video',
           src: '/images/BottomSheetOnStoreFailure.mov',
+          poster: '/images/BottomSheetOnStoreFailure-poster.jpg',
           alt: 'Contextual bottom sheet in-flow experiment',
           caption: 'Contextual Bottom Sheet (In-Flow)'
         }
@@ -520,7 +526,7 @@ A separate experiment tested item-level pairing menus. I felt it lacked prominen
       futureTwoUpNarrative: 'This last concept envisions Doordash as a natively multi-store shopping destination.',
       futureTwoUp: [
         { src: '/images/FutureCart.png', alt: 'Future cart concept', type: 'image', label: 'Multi-store Cart' },
-        { src: '/images/FutureDelivery.mov', alt: 'Future delivery concept', type: 'video', label: 'Multi-store Delivery' }
+        { src: '/images/FutureDelivery.mov', poster: '/images/FutureDelivery-poster.jpg', alt: 'Future delivery concept', type: 'video', label: 'Multi-store Delivery' }
       ],
       leadingWithDesignHighlight: {
         heading: 'Leading with Design',
@@ -977,6 +983,7 @@ This positioned Me Tab as a durable driver of repeat behavior—capturing high-i
     hero: {
       src: '/images/groupon-cx90-hero.png',
       video: '/images/groupon-cx90-hero-video.mp4',
+      videoPoster: '/images/groupon-cx90-hero-video-poster.jpg',
       alt: 'Groupon CX90 redesigned homepage on mobile and desktop',
       caption: 'Building systems instead of features',
       overlay: {
@@ -1037,10 +1044,12 @@ This positioned Me Tab as a durable driver of repeat behavior—capturing high-i
       mediaFooterDescriptionSecondary: 'The design below represents where we landed after scoping. We went with a bolder header setup that transitioned to the updated and cleaner look of the design vision as the customer scrolled, and finalized our modular designs for a variety of home page carousels.',
       mediaFooterMedia: {
         src: '/images/groupon-cx90-launch-state.mp4',
+        poster: '/images/groupon-cx90-launch-state-poster.jpg',
         caption: 'Launch state designs'
       },
       video: {
         src: '/images/groupon-cx90-overview.mp4',
+        poster: '/images/groupon-cx90-overview-poster.jpg',
         caption: 'The modular widget system enabled merchandising teams to configure and target content without engineering work.'
       }
     },
