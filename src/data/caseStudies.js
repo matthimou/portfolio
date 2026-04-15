@@ -11,6 +11,7 @@ export const caseStudies = [
     meta: {
       title: 'Doubledash',
       client: 'DoorDash',
+      cardSummary: 'Grew from scrappy MVP to $1.7B revenue channel, transforming order tracking into a commerce platform.',
       timeline: '2022-2025',
       role: 'Director of Design, Core Consumer',
       team: null,
@@ -547,6 +548,7 @@ A separate experiment tested item-level pairing menus. I felt it lacked prominen
     meta: {
       title: 'Me Tab',
       client: 'DoorDash',
+      cardSummary: 'Built a unified customer surface driving $2.1B annual GOV and 4% of marketplace orders.',
       timeline: '2024',
       role: 'Director of Design, Core Consumer',
       team: null,

@@ -36,7 +36,7 @@ const ProjectCard = ({ project, featured = false }) => {
       <div className="project-card__content">
         <h3 className="project-card__title">{project.meta.title}</h3>
         <p className="project-card__client">{project.meta.client}</p>
-        <p className="project-card__summary">{project.problem.context}</p>
+        <p className="project-card__summary">{project.meta.cardSummary || project.problem?.context}</p>
       </div>
     </Link>
   )

@@ -473,7 +473,7 @@ const HomePage = ({ onOpenLogin }) => {
                   </div>
                   <h3 className="home-work__title">{project.meta.title}</h3>
                   <p className="home-work__description">
-                    {project.introduction?.content?.split(/\.\s/)[0]}.
+                    {project.meta.cardSummary || `${project.introduction?.content?.split(/\.\s/)[0]}.`}
                   </p>
                 </div>
               </Link>
