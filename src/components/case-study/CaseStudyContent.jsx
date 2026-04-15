@@ -3,6 +3,15 @@ import CaseStudyMetrics from './CaseStudyMetrics'
 import CaseStudyTestimonial from './CaseStudyTestimonial'
 import './CaseStudyContent.css'
 
+// Helper to parse **bold** text
+const renderWithBold = (text) => {
+  if (!text || !text.includes('**')) return text
+  const parts = text.split(/\*\*(.*?)\*\*/g)
+  return parts.map((part, i) =>
+    i % 2 === 1 ? <strong key={i}>{part}</strong> : part
+  )
+}
+
 const ImageLightbox = ({ images, currentIndex, onClose, onPrev, onNext }) => {
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -119,6 +128,91 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
   const [singleImageLightbox, setSingleImageLightbox] = useState(null)
   const [mvpLightboxOpen, setMvpLightboxOpen] = useState(false)
   const [mvpLightboxIndex, setMvpLightboxIndex] = useState(0)
+
+  // Closing images lightbox state
+  const [closingImagesLightboxOpen, setClosingImagesLightboxOpen] = useState(false)
+  const [closingImagesLightboxIndex, setClosingImagesLightboxIndex] = useState(0)
+  const closingImages = introduction?.closingFinalImage?.images || []
+
+  const openClosingImagesLightbox = useCallback((index) => {
+    setClosingImagesLightboxIndex(index)
+    setClosingImagesLightboxOpen(true)
+  }, [])
+
+  const closeClosingImagesLightbox = useCallback(() => {
+    setClosingImagesLightboxOpen(false)
+  }, [])
+
+  const goToPrevClosingImage = useCallback(() => {
+    setClosingImagesLightboxIndex((prev) =>
+      prev === 0 ? closingImages.length - 1 : prev - 1
+    )
+  }, [closingImages.length])
+
+  const goToNextClosingImage = useCallback(() => {
+    setClosingImagesLightboxIndex((prev) =>
+      prev === closingImages.length - 1 ? 0 : prev + 1
+    )
+  }, [closingImages.length])
+
+  // Audit images lightbox state
+  const [auditLightboxOpen, setAuditLightboxOpen] = useState(false)
+  const [auditLightboxIndex, setAuditLightboxIndex] = useState(0)
+  const auditImages = solution?.timeline?.[0]?.sectionImagesThreeUp || []
+
+  const openAuditLightbox = useCallback((index) => {
+    setAuditLightboxIndex(index)
+    setAuditLightboxOpen(true)
+  }, [])
+
+  const closeAuditLightbox = useCallback(() => {
+    setAuditLightboxOpen(false)
+  }, [])
+
+  const goToPrevAuditImage = useCallback(() => {
+    setAuditLightboxIndex((prev) =>
+      prev === 0 ? auditImages.length - 1 : prev - 1
+    )
+  }, [auditImages.length])
+
+  const goToNextAuditImage = useCallback(() => {
+    setAuditLightboxIndex((prev) =>
+      prev === auditImages.length - 1 ? 0 : prev + 1
+    )
+  }, [auditImages.length])
+
+  // Constraint images lightbox state
+  const [constraintLightboxOpen, setConstraintLightboxOpen] = useState(false)
+  const [constraintLightboxIndex, setConstraintLightboxIndex] = useState(0)
+
+  // Flatten constraint images (some are grouped, some are individual)
+  const constraintImages = (solution?.timeline?.[1]?.sectionConstraintImages || []).flatMap((item) => {
+    if (item.grouped) {
+      return item.images.map(img => ({ ...img, label: item.label }))
+    }
+    return [item]
+  })
+
+  const openConstraintLightbox = useCallback((index) => {
+    setConstraintLightboxIndex(index)
+    setConstraintLightboxOpen(true)
+  }, [])
+
+  const closeConstraintLightbox = useCallback(() => {
+    setConstraintLightboxOpen(false)
+  }, [])
+
+  const goToPrevConstraintImage = useCallback(() => {
+    setConstraintLightboxIndex((prev) =>
+      prev === 0 ? constraintImages.length - 1 : prev - 1
+    )
+  }, [constraintImages.length])
+
+  const goToNextConstraintImage = useCallback(() => {
+    setConstraintLightboxIndex((prev) =>
+      prev === constraintImages.length - 1 ? 0 : prev + 1
+    )
+  }, [constraintImages.length])
 
   // Filter features that have images for the lightbox
   const featuresWithImages = features?.filter(f => f.image) || []
@@ -322,14 +416,35 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
       {/* Introduction Section */}
       {introduction && (
         <section className="case-study-content__section">
-          <h4 className="case-study-content__heading">{introduction.heading}</h4>
-          {introduction.microline && (
+          {!introduction.highlightsFirst && (
+            <h4 className="case-study-content__heading">{introduction.heading}</h4>
+          )}
+          {!introduction.highlightsFirst && introduction.microline && (
+            <p className="case-study-content__microcopy">{introduction.microline}</p>
+          )}
+          {introduction.highlightsFirst && introduction.keyHighlights && (
+            <div className="case-study-content__key-highlights">
+              {introduction.keyHighlights.microline && (
+                <p className="case-study-content__key-highlights-microline">{introduction.keyHighlights.microline}</p>
+              )}
+              <h5 className="case-study-content__key-highlights-heading">{introduction.keyHighlights.heading}</h5>
+              <ul className="case-study-content__key-highlights-list">
+                {introduction.keyHighlights.items.map((item, index) => (
+                  <li key={index}>{item}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+          {introduction.highlightsFirst && (
+            <h4 className="case-study-content__heading">{introduction.heading}</h4>
+          )}
+          {introduction.highlightsFirst && introduction.microline && (
             <p className="case-study-content__microcopy">{introduction.microline}</p>
           )}
           {introduction.content && introduction.content.split('\n\n').map((para, index) => (
             <p key={index} className="case-study-content__text">{para}</p>
           ))}
-          {introduction.keyHighlights && (
+          {!introduction.highlightsFirst && introduction.keyHighlights && (
             <div className="case-study-content__key-highlights">
               {introduction.keyHighlights.microline && (
                 <p className="case-study-content__key-highlights-microline">{introduction.keyHighlights.microline}</p>
@@ -343,7 +458,9 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
             </div>
           )}
           {introduction.contentSecondary && (
-            <p className="case-study-content__text">{introduction.contentSecondary}</p>
+            introduction.contentSecondary.split('\n\n').map((para, index) => (
+              <p key={index} className={`case-study-content__text${para.startsWith('•') ? ' case-study-content__text--bullet' : ''}`}>{para}</p>
+            ))
           )}
           {introduction.introHighlights && introduction.introHighlights.length > 0 && (
             <div className="case-study-content__intro-highlights">
@@ -449,20 +566,77 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
           )}
           {introduction.closingFinal && introduction.closingFinalBelowVideo && introduction.closingFinalImage && introduction.closingFinalImageInline && (
             <>
-              {introduction.closingFinal.split('\n\n').map((para, index) => (
-                <React.Fragment key={index}>
-                  <p className="case-study-content__text">{para}</p>
-                  {index === 0 && (
-                    <figure className="case-study-content__section-image case-study-content__section-image--half">
+              {introduction.closingFinalImage.sideLayout ? (
+                <>
+                  {/* First paragraph (subheading) */}
+                  <p className="case-study-content__text">{introduction.closingFinal.split('\n\n')[0]}</p>
+                  {/* Bullets and image side by side */}
+                  <div className="case-study-content__tension-layout">
+                    <div className="case-study-content__tension-bullets">
+                      {introduction.closingFinal.split('\n\n').slice(1, -1).map((para, index) => (
+                        <p key={index} className={`case-study-content__text${para.startsWith('•') ? ' case-study-content__text--bullet' : ''}`}>{para}</p>
+                      ))}
+                    </div>
+                    <figure className="case-study-content__tension-image">
                       <img
                         src={introduction.closingFinalImage.src}
                         alt={introduction.closingFinalImage.alt}
-                        className="case-study-content__section-image-img"
                       />
+                      {introduction.closingFinalImage.label && (
+                        <figcaption className="case-study-content__tension-image-label">{introduction.closingFinalImage.label}</figcaption>
+                      )}
                     </figure>
-                  )}
-                </React.Fragment>
-              ))}
+                  </div>
+                  {/* Last paragraph */}
+                  <p className="case-study-content__text">{renderWithBold(introduction.closingFinal.split('\n\n').slice(-1)[0])}</p>
+                </>
+              ) : (
+                introduction.closingFinal.split('\n\n').map((para, index) => (
+                  <React.Fragment key={index}>
+                    <p className={`case-study-content__text${para.startsWith('•') ? ' case-study-content__text--bullet' : ''}`}>{renderWithBold(para)}</p>
+                    {index === 4 && introduction.closingFinalImage.images && (
+                      <figure className="case-study-content__closing-images">
+                        <div className="case-study-content__closing-images-grid">
+                          {introduction.closingFinalImage.images.map((img, imgIndex) => (
+                            <div
+                              key={imgIndex}
+                              className="case-study-content__closing-images-item case-study-content__image-clickable"
+                              onClick={() => openClosingImagesLightbox(imgIndex)}
+                              role="button"
+                              tabIndex={0}
+                              onKeyDown={(e) => e.key === 'Enter' && openClosingImagesLightbox(imgIndex)}
+                            >
+                              <img
+                                src={img.src}
+                                alt={img.alt}
+                                className="case-study-content__closing-images-img"
+                              />
+                              <div className="case-study-content__image-zoom">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                  <circle cx="11" cy="11" r="8" />
+                                  <path d="M21 21l-4.35-4.35" />
+                                </svg>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                        {introduction.closingFinalImage.label && (
+                          <figcaption className="case-study-content__closing-images-label">{introduction.closingFinalImage.label}</figcaption>
+                        )}
+                      </figure>
+                    )}
+                    {index === 4 && introduction.closingFinalImage.src && !introduction.closingFinalImage.sideLayout && (
+                      <figure className="case-study-content__section-image case-study-content__section-image--half">
+                        <img
+                          src={introduction.closingFinalImage.src}
+                          alt={introduction.closingFinalImage.alt}
+                          className="case-study-content__section-image-img"
+                        />
+                      </figure>
+                    )}
+                  </React.Fragment>
+                ))
+              )}
             </>
           )}
           {introduction.closingFinal && introduction.closingFinalBelowVideo && !introduction.closingFinalImage && (
@@ -579,8 +753,18 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
               {solution.timeline[0].sectionImagesThreeUp && (
                 <div className="case-study-content__image-three-up">
                   {solution.timeline[0].sectionImagesThreeUp.map((image, index) => (
-                    <figure key={index} className="case-study-content__image-three-up-item">
+                    <figure
+                      key={index}
+                      className="case-study-content__image-three-up-item case-study-content__image-clickable"
+                      onClick={() => openAuditLightbox(index)}
+                    >
                       <img src={image.src} alt={image.alt} />
+                      <div className="case-study-content__image-zoom">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <circle cx="11" cy="11" r="8" />
+                          <path d="M21 21l-4.35-4.35" />
+                        </svg>
+                      </div>
                       {image.label && (
                         <figcaption className="case-study-content__image-three-up-label">{image.label}</figcaption>
                       )}
@@ -592,6 +776,29 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                 solution.timeline[0].sectionContentSecondary.split('\n\n').map((para, index) => (
                   <p key={index} className={`case-study-content__text${para.startsWith('•') ? ' case-study-content__text--bullet' : ''}`}>{para}</p>
                 ))
+              )}
+              {solution.timeline[0]?.decisionHighlight && (
+                <div className="case-study-content__my-contributions">
+                  <h5 className="case-study-content__my-contributions-heading">
+                    {solution.timeline[0].decisionHighlight.heading}
+                  </h5>
+                  {solution.timeline[0].decisionHighlight.intro && (
+                    <p className="case-study-content__my-contributions-intro">{solution.timeline[0].decisionHighlight.intro}</p>
+                  )}
+                  <ul className="case-study-content__my-contributions-list">
+                    {solution.timeline[0].decisionHighlight.items.map((item, index) => (
+                      <li key={index} className="case-study-content__my-contributions-item">
+                        <svg className="case-study-content__my-contributions-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <path d="M20 6L9 17l-5-5" />
+                        </svg>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                  {solution.timeline[0].decisionHighlight.closing && (
+                    <p className="case-study-content__my-contributions-closing">{solution.timeline[0].decisionHighlight.closing}</p>
+                  )}
+                </div>
               )}
               {solution.timeline[0].sectionImages && (
                 <figure className="case-study-content__image-pair">
@@ -771,7 +978,19 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                   {solution.timeline[1].sectionConstraints.map((item, index) => (
                     <div key={index} className="case-study-content__constraint-item">
                       <h6 className="case-study-content__constraint-title">{item.title}</h6>
-                      <p className="case-study-content__constraint-description">{item.description}</p>
+                      {item.subhead && (
+                        <p className="case-study-content__constraint-subhead">{item.subhead}</p>
+                      )}
+                      {item.items && item.items.length > 0 && (
+                        <ul className="case-study-content__constraint-list">
+                          {item.items.map((listItem, listIndex) => (
+                            <li key={listIndex} className="case-study-content__constraint-list-item">{listItem}</li>
+                          ))}
+                        </ul>
+                      )}
+                      {item.description && (
+                        <p className="case-study-content__constraint-description">{item.description}</p>
+                      )}
                     </div>
                   ))}
                 </div>
@@ -788,29 +1007,60 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                   ))}
                 </div>
               )}
-              {solution.timeline[1]?.sectionConstraintImages && (
-                <div className="case-study-content__constraint-images">
-                  {solution.timeline[1].sectionConstraintImages.map((item, index) => (
-                    item.grouped ? (
-                      <div key={index} className="case-study-content__constraint-image-group">
-                        <div className="case-study-content__constraint-image-group-images">
-                          {item.images.map((img, imgIndex) => (
-                            <figure key={imgIndex} className="case-study-content__constraint-image-item case-study-content__constraint-image-item--in-group">
-                              <img src={img.src} alt={img.alt} />
-                            </figure>
-                          ))}
-                        </div>
-                        <figcaption className="case-study-content__constraint-image-label">{item.label}</figcaption>
-                      </div>
-                    ) : (
-                      <figure key={index} className="case-study-content__constraint-image-item">
-                        <img src={item.src} alt={item.alt} />
-                        <figcaption className="case-study-content__constraint-image-label">{item.label}</figcaption>
-                      </figure>
-                    )
-                  ))}
-                </div>
-              )}
+              {solution.timeline[1]?.sectionConstraintImages && (() => {
+                let flatIndex = 0
+                return (
+                  <div className="case-study-content__constraint-images">
+                    {solution.timeline[1].sectionConstraintImages.map((item, index) => {
+                      if (item.grouped) {
+                        const groupStartIndex = flatIndex
+                        flatIndex += item.images.length
+                        return (
+                          <div key={index} className="case-study-content__constraint-image-group">
+                            <div className="case-study-content__constraint-image-group-images">
+                              {item.images.map((img, imgIndex) => (
+                                <figure
+                                  key={imgIndex}
+                                  className="case-study-content__constraint-image-item case-study-content__constraint-image-item--in-group case-study-content__image-clickable"
+                                  onClick={() => openConstraintLightbox(groupStartIndex + imgIndex)}
+                                >
+                                  <img src={img.src} alt={img.alt} />
+                                  <div className="case-study-content__image-zoom">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                      <circle cx="11" cy="11" r="8" />
+                                      <path d="M21 21l-4.35-4.35" />
+                                    </svg>
+                                  </div>
+                                </figure>
+                              ))}
+                            </div>
+                            <figcaption className="case-study-content__constraint-image-label">{item.label}</figcaption>
+                          </div>
+                        )
+                      } else {
+                        const currentIndex = flatIndex
+                        flatIndex += 1
+                        return (
+                          <figure
+                            key={index}
+                            className="case-study-content__constraint-image-item case-study-content__image-clickable"
+                            onClick={() => openConstraintLightbox(currentIndex)}
+                          >
+                            <img src={item.src} alt={item.alt} />
+                            <div className="case-study-content__image-zoom">
+                              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                <circle cx="11" cy="11" r="8" />
+                                <path d="M21 21l-4.35-4.35" />
+                              </svg>
+                            </div>
+                            <figcaption className="case-study-content__constraint-image-label">{item.label}</figcaption>
+                          </figure>
+                        )
+                      }
+                    })}
+                  </div>
+                )
+              })()}
               {solution.timeline[1]?.sectionContentAfterFourUp && (
                 solution.timeline[1].sectionContentAfterFourUp.split('\n\n').map((para, index) => (
                   <p key={index} className="case-study-content__text">{para}</p>
@@ -854,7 +1104,7 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                 <div className="case-study-content__opportunity case-study-content__opportunity--callout">
                   <strong>The Opportunity:</strong>
                   {solution.timeline[1].sectionOpportunity.split('\n\n').map((para, index) => (
-                    <p key={index} style={{ margin: index === 0 ? '0.5em 0 0 0' : '0.75em 0 0 0' }}>{para}</p>
+                    <p key={index} style={{ margin: index === 0 ? '0.5em 0 0 0' : '0.75em 0 0 0', fontWeight: index === 0 ? 'var(--font-weight-semibold)' : 'normal' }}>{para}</p>
                   ))}
                 </div>
               )}
@@ -912,6 +1162,22 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                   <p key={index} className="case-study-content__text">{para}</p>
                 ))
               )}
+              {solution.timeline[1]?.alignmentHighlights && (
+                <div className="case-study-content__alignment-highlights">
+                  {solution.timeline[1].alignmentHighlights.map((item, index) => (
+                    <div key={index} className="case-study-content__alignment-item">
+                      <h6 className="case-study-content__alignment-title">{item.title}</h6>
+                      {item.items && item.items.length > 0 && (
+                        <ul className="case-study-content__alignment-list">
+                          {item.items.map((listItem, listIndex) => (
+                            <li key={listIndex} className="case-study-content__alignment-list-item">{listItem}</li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              )}
               {solution.timeline[1]?.sectionHeadingTeam && (
                 <h5 className={`case-study-content__subheading ${solution.neutralHeadings ? 'case-study-content__subheading--neutral' : ''}`}>{solution.timeline[1].sectionHeadingTeam}</h5>
               )}
@@ -935,12 +1201,15 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                 ))
               )}
               {solution.timeline[1]?.sectionImageAfterTeam && (
-                <figure className="case-study-content__section-image">
+                <figure className={`case-study-content__section-image${solution.timeline[1].sectionImageAfterTeam.small ? ' case-study-content__section-image--small' : ''}`}>
                   <img
                     src={solution.timeline[1].sectionImageAfterTeam.src}
                     alt={solution.timeline[1].sectionImageAfterTeam.alt}
                     className="case-study-content__section-image-img"
                   />
+                  {solution.timeline[1].sectionImageAfterTeam.label && (
+                    <figcaption className="case-study-content__section-image-label">{solution.timeline[1].sectionImageAfterTeam.label}</figcaption>
+                  )}
                 </figure>
               )}
               {solution.timeline[1]?.sectionContentAfterBrainstorm && (
@@ -952,6 +1221,9 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                 <div className="case-study-content__principles">
                   {solution.timeline[1].designPrinciples.map((principle, index) => (
                     <div key={index} className="case-study-content__principle">
+                      {principle.microHeader && (
+                        <span className="case-study-content__principle-micro-header">{principle.microHeader}</span>
+                      )}
                       <div className="case-study-content__principle-image-wrapper">
                         <img
                           src={principle.image}
@@ -1014,6 +1286,9 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
               {solution.timeline[1]?.sprintDay01Image && (
                 <figure className={`case-study-content__section-image ${solution.timeline[1].sprintDay01Image.small ? 'case-study-content__section-image--small' : ''}`}>
                   <img src={solution.timeline[1].sprintDay01Image.src} alt={solution.timeline[1].sprintDay01Image.alt} className="case-study-content__section-image-img" />
+                  {solution.timeline[1].sprintDay01Image.label && (
+                    <figcaption className="case-study-content__section-image-label">{solution.timeline[1].sprintDay01Image.label}</figcaption>
+                  )}
                 </figure>
               )}
               {solution.timeline[1]?.sprintDay01ContentAfterImage && (
@@ -1164,6 +1439,9 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                 <div className="case-study-content__customer-quotes">
                   {solution.timeline[1].customerFeedbackQuotes.map((item, index) => (
                     <blockquote key={index} className="case-study-content__quote-card">
+                      {item.theme && (
+                        <span className="case-study-content__quote-theme">{item.theme}</span>
+                      )}
                       <span className="case-study-content__quote-mark case-study-content__quote-mark--open">"</span>
                       <p className="case-study-content__quote-text">{item.quote}</p>
                       <span className="case-study-content__quote-mark case-study-content__quote-mark--close">"</span>
@@ -1183,7 +1461,7 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
               )}
               {solution.timeline[1]?.whatWeReleasedImage && (
                 <figure
-                  className="case-study-content__section-image case-study-content__section-image--clickable"
+                  className={`case-study-content__section-image case-study-content__section-image--clickable${solution.timeline[1].whatWeReleasedImage.small ? ' case-study-content__section-image--small' : ''}`}
                   onClick={() => setSingleImageLightbox(solution.timeline[1].whatWeReleasedImage)}
                   role="button"
                   tabIndex={0}
@@ -1213,7 +1491,7 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
               )}
               {solution.timeline[1]?.whatWeReleasedPrinciple1Image && (
                 <figure
-                  className="case-study-content__section-image case-study-content__section-image--clickable"
+                  className={`case-study-content__section-image case-study-content__section-image--clickable${solution.timeline[1].whatWeReleasedPrinciple1Image.small ? ' case-study-content__section-image--small' : ''}`}
                   onClick={() => setSingleImageLightbox(solution.timeline[1].whatWeReleasedPrinciple1Image)}
                   role="button"
                   tabIndex={0}
@@ -1238,7 +1516,7 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
               )}
               {solution.timeline[1]?.whatWeReleasedPrinciple2Image && (
                 <figure
-                  className="case-study-content__section-image case-study-content__section-image--clickable"
+                  className={`case-study-content__section-image case-study-content__section-image--clickable${solution.timeline[1].whatWeReleasedPrinciple2Image.small ? ' case-study-content__section-image--small' : ''}`}
                   onClick={() => setSingleImageLightbox(solution.timeline[1].whatWeReleasedPrinciple2Image)}
                   role="button"
                   tabIndex={0}
@@ -1263,7 +1541,7 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
               )}
               {solution.timeline[1]?.whatWeReleasedPrinciple3Image && (
                 <figure
-                  className="case-study-content__section-image case-study-content__section-image--clickable"
+                  className={`case-study-content__section-image case-study-content__section-image--clickable${solution.timeline[1].whatWeReleasedPrinciple3Image.small ? ' case-study-content__section-image--small' : ''}`}
                   onClick={() => setSingleImageLightbox(solution.timeline[1].whatWeReleasedPrinciple3Image)}
                   role="button"
                   tabIndex={0}
@@ -1308,7 +1586,7 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                 ))
               )}
               {solution.timeline[1]?.operationalFrameworkImage && (
-                <figure className="case-study-content__section-image">
+                <figure className={`case-study-content__section-image${solution.timeline[1].operationalFrameworkImage.small ? ' case-study-content__section-image--small' : ''}`}>
                   <img src={solution.timeline[1].operationalFrameworkImage.src} alt={solution.timeline[1].operationalFrameworkImage.alt} className="case-study-content__section-image-img" />
                 </figure>
               )}
@@ -1993,6 +2271,54 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
         </div>
       )}
 
+      {/* Closing Images Lightbox */}
+      {closingImagesLightboxOpen && closingImages.length > 0 && (
+        <div className="lightbox" onClick={closeClosingImagesLightbox}>
+          <button className="lightbox__close" onClick={closeClosingImagesLightbox} aria-label="Close lightbox">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M18 6L6 18M6 6l12 12" />
+            </svg>
+          </button>
+          <div className="lightbox__content" onClick={(e) => e.stopPropagation()}>
+            <img
+              src={closingImages[closingImagesLightboxIndex]?.src}
+              alt={closingImages[closingImagesLightboxIndex]?.alt}
+              className="lightbox__image"
+            />
+            {introduction?.closingFinalImage?.label && (
+              <div className="lightbox__caption">
+                <h4 className="lightbox__title">{introduction.closingFinalImage.label}</h4>
+              </div>
+            )}
+            {closingImages.length > 1 && (
+              <>
+                <button
+                  className="lightbox__nav lightbox__nav--prev"
+                  onClick={goToPrevClosingImage}
+                  aria-label="Previous image"
+                >
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M15 18l-6-6 6-6" />
+                  </svg>
+                </button>
+                <button
+                  className="lightbox__nav lightbox__nav--next"
+                  onClick={goToNextClosingImage}
+                  aria-label="Next image"
+                >
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M9 18l6-6-6-6" />
+                  </svg>
+                </button>
+                <div className="lightbox__counter">
+                  {closingImagesLightboxIndex + 1} / {closingImages.length}
+                </div>
+              </>
+            )}
+          </div>
+        </div>
+      )}
+
       {/* MVP Images Lightbox */}
       {mvpLightboxOpen && mvpImages.length > 0 && (
         <div className="lightbox" onClick={closeMvpLightbox}>
@@ -2136,6 +2462,102 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
               </button>
               <div className="lightbox__counter">
                 {platformLightboxIndex + 1} / {platformAllImages.length}
+              </div>
+            </>
+          )}
+        </div>
+      )}
+
+      {/* Audit Images Lightbox */}
+      {auditLightboxOpen && auditImages.length > 0 && (
+        <div className="lightbox" onClick={closeAuditLightbox}>
+          <button className="lightbox__close" onClick={closeAuditLightbox} aria-label="Close lightbox">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M18 6L6 18M6 6l12 12" />
+            </svg>
+          </button>
+          <div className="lightbox__content" onClick={(e) => e.stopPropagation()}>
+            <img
+              src={auditImages[auditLightboxIndex]?.src}
+              alt={auditImages[auditLightboxIndex]?.alt}
+              className="lightbox__image"
+            />
+            {auditImages[auditLightboxIndex]?.label && (
+              <div className="lightbox__caption">
+                <h4 className="lightbox__title">{auditImages[auditLightboxIndex].label}</h4>
+              </div>
+            )}
+          </div>
+          {auditImages.length > 1 && (
+            <>
+              <button
+                className="lightbox__nav lightbox__nav--prev"
+                onClick={(e) => { e.stopPropagation(); goToPrevAuditImage() }}
+                aria-label="Previous image"
+              >
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M15 18l-6-6 6-6" />
+                </svg>
+              </button>
+              <button
+                className="lightbox__nav lightbox__nav--next"
+                onClick={(e) => { e.stopPropagation(); goToNextAuditImage() }}
+                aria-label="Next image"
+              >
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M9 18l6-6-6-6" />
+                </svg>
+              </button>
+              <div className="lightbox__counter">
+                {auditLightboxIndex + 1} / {auditImages.length}
+              </div>
+            </>
+          )}
+        </div>
+      )}
+
+      {/* Constraint Images Lightbox */}
+      {constraintLightboxOpen && constraintImages.length > 0 && (
+        <div className="lightbox" onClick={closeConstraintLightbox}>
+          <button className="lightbox__close" onClick={closeConstraintLightbox} aria-label="Close lightbox">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M18 6L6 18M6 6l12 12" />
+            </svg>
+          </button>
+          <div className="lightbox__content" onClick={(e) => e.stopPropagation()}>
+            <img
+              src={constraintImages[constraintLightboxIndex]?.src}
+              alt={constraintImages[constraintLightboxIndex]?.alt}
+              className="lightbox__image"
+            />
+            {constraintImages[constraintLightboxIndex]?.label && (
+              <div className="lightbox__caption">
+                <h4 className="lightbox__title">{constraintImages[constraintLightboxIndex].label}</h4>
+              </div>
+            )}
+          </div>
+          {constraintImages.length > 1 && (
+            <>
+              <button
+                className="lightbox__nav lightbox__nav--prev"
+                onClick={(e) => { e.stopPropagation(); goToPrevConstraintImage() }}
+                aria-label="Previous image"
+              >
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M15 18l-6-6 6-6" />
+                </svg>
+              </button>
+              <button
+                className="lightbox__nav lightbox__nav--next"
+                onClick={(e) => { e.stopPropagation(); goToNextConstraintImage() }}
+                aria-label="Next image"
+              >
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M9 18l6-6-6-6" />
+                </svg>
+              </button>
+              <div className="lightbox__counter">
+                {constraintLightboxIndex + 1} / {constraintImages.length}
               </div>
             </>
           )}

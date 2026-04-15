@@ -63,6 +63,57 @@
   color: var(--color-text-tertiary);
 }
 
+/* Impact Section */
+.case-study-hero__impact {
+  margin-top: var(--space-md);
+  text-align: center;
+}
+
+.case-study-hero__impact-heading {
+  display: block;
+  font-family: var(--font-display);
+  font-size: var(--text-xs);
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-accent-primary);
+  margin-bottom: var(--space-sm);
+}
+
+.case-study-hero__impact-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-xs) var(--space-lg);
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-sm) 0;
+}
+
+.case-study-hero__impact-item {
+  font-size: var(--text-base);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  position: relative;
+  padding-left: var(--space-md);
+}
+
+.case-study-hero__impact-item::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--color-accent-primary);
+}
+
+.case-study-hero__impact-closing {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  margin: 0;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .case-study-hero__key-highlights {
   margin-top: var(--space-md);
 }

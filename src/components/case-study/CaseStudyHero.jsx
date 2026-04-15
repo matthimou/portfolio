@@ -29,6 +29,19 @@ const CaseStudyHero = ({ id, title, hero, meta, hideHeader = false }) => {
               )}
             </div>
           )}
+          {meta.impact && (
+            <div className="case-study-hero__impact">
+              <span className="case-study-hero__impact-heading">{meta.impact.heading}</span>
+              <ul className="case-study-hero__impact-list">
+                {meta.impact.items.map((item, index) => (
+                  <li key={index} className="case-study-hero__impact-item">{item}</li>
+                ))}
+              </ul>
+              {meta.impact.closing && (
+                <p className="case-study-hero__impact-closing">{meta.impact.closing}</p>
+              )}
+            </div>
+          )}
         </div>
       )}
 
