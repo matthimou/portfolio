@@ -48,7 +48,7 @@ export const caseStudies = [
       beforeAfterContent: 'The shift is most visible in how the experience evolved:',
       beforeAfterImages: [
         { src: '/images/DeliveryExperienceBefore.png', alt: 'Delivery experience before', label: 'Before', scale: 1.05 },
-        { src: '/images/dBdMerchantsInMapPlatform.png', alt: 'Delivery experience after', label: 'After' }
+        { src: '/images/dBdMerchantsInMapPlatform.jpg', alt: 'Delivery experience after', label: 'After' }
       ],
       contentQuaternary: null,
       videoHeading: 'Doubledash: One delivery, multiple stores',
@@ -303,7 +303,7 @@ Doubledash was a key lever in that strategy, enabling cross-vertical adoption wh
           sectionContentAfterMilestones: 'Within 18 months, we scaled the full experience across platforms, delivering a consistent and cohesive shopping journey.',
           sectionContentCrossPlatform: null,
           sectionImageCrossPlatform: {
-            src: '/images/DoubleDashCrossPlatform.png',
+            src: '/images/DoubleDashCrossPlatform.jpg',
             alt: 'Doubledash cross-platform experience',
             caption: 'Cross Platform Doubledash'
           },
@@ -420,7 +420,7 @@ As the team grew to 3 PMs and 15 engineers, my role shifted toward cross-team pr
       platformTwoUpThird: [
         { src: '/images/doubledash-mother-day.png', alt: 'Mothers Day promotion', label: 'Mothers Day' },
         { src: '/images/doubledash-deserts.png', alt: 'Deserts promotion', label: 'Deserts' },
-        { src: '/images/dBdMerchantsInMapPlatform.png', alt: 'Merchants on map interface', label: 'Merchants on Map' },
+        { src: '/images/dBdMerchantsInMapPlatform.jpg', alt: 'Merchants on map interface', label: 'Merchants on Map' },
         { src: '/images/DbDinCartPlatform.png', alt: 'Doubledash in cart', label: 'Doubledash In Cart' }
       ],
       scalingProductHighlight: {
@@ -432,7 +432,7 @@ As the team grew to 3 PMs and 15 engineers, my role shifted toward cross-team pr
       lessonsMediaRow: [
         {
           type: 'image',
-          src: '/images/S4Efailure.png',
+          src: '/images/S4Efailure.jpg',
           alt: 'Inline bundling high funnel experiment',
           caption: 'Inline Bundling (High Funnel)'
         },
@@ -471,7 +471,7 @@ A separate experiment tested item-level pairing menus. I felt it lacked prominen
       impactHeading: 'Impact',
       impactNarrative: 'By shifting to an in-flow, behavior-aligned strategy, we were able to scale Doubledash effectively, driving meaningful results at each stage and compounding impact over time.',
       impactImage02: {
-        src: '/images/Impact02.png',
+        src: '/images/Impact02.jpg',
         alt: 'Impact results'
       },
       impactMetrics02: [
@@ -603,8 +603,8 @@ The home page team needed to shift impressions from ordering at the same store (
       closingFinalBelowVideo: true,
       closingFinalImage: {
         images: [
-          { src: '/images/metab-business-context-01.png', alt: 'Reorder modules ranked' },
-          { src: '/images/metab-business-context-02.png', alt: 'Unpredictable placement' }
+          { src: '/images/metab-business-context-01.jpg', alt: 'Reorder modules ranked' },
+          { src: '/images/metab-business-context-02.jpg', alt: 'Unpredictable placement' }
         ],
         label: 'Reorder modules on Home lacked predictable placement'
       },
@@ -628,7 +628,7 @@ The home page team needed to shift impressions from ordering at the same store (
           sectionContent: 'To ground the opportunity, I audited reorder behavior across the app to understand how customers were currently reordering. Reordering existed in logical places, but without a system. Usage data - 45% on Store Page, 35% on Home Page, 20% on Orders Tab.',
           sectionImagesThreeUp: [
             { src: '/images/metab-home-modules.png', alt: 'Home page reorder modules', label: 'Home: High visibility, low predictability' },
-            { src: '/images/metab-store-page-reorder.png', alt: 'Store page reorder', label: 'Store: Contextual, not scalable' },
+            { src: '/images/metab-store-page-reorder.jpg', alt: 'Store page reorder', label: 'Store: Contextual, not scalable' },
             { src: '/images/metab-orders-tab-reorder.png', alt: 'Orders tab reorder', label: 'Orders: Complete, but passive' }
           ],
           sectionContentSecondary: null,
@@ -693,7 +693,7 @@ The home page team needed to shift impressions from ordering at the same store (
           },
           sectionContentAfterTeam: `Cross-functional team across design, product, research, and content (10+ contributors). Before the sprint, I wrote a brief to reframe the problem, and led a working session to align on context and constraints. This session built shared understanding before the sprint clock started.`,
           sectionImageAfterTeam: {
-            src: '/images/metab-sprint-brainstorm.png',
+            src: '/images/metab-sprint-brainstorm.jpg',
             alt: 'Sprint brainstorm session',
             label: 'Worksession & sprint brief',
             small: true
@@ -764,7 +764,7 @@ Day one built shared context: data science presented analytics, research shared 
             problem: 'Past orders use a generic item image, and do a poor job of helping me understand what I\'m reordering.',
             problemImage: '/images/metab-prob-02.png',
             opportunity: 'Visual carts showing items with useful metadata about my order.',
-            opportunityImage: '/images/metab-oppo-02.png'
+            opportunityImage: '/images/metab-oppo-02.jpg'
           },
           sprintDay02ProblemOpportunity02: null,
           sprintDay02ProblemOpportunity03: null,
@@ -813,21 +813,21 @@ We partnered with research to validate the concepts with customers.`,
           whatWeReleasedContent: `The final design reflected deliberate trade-offs. Reorder dominated (replacing significant revenue). DashPass earned visibility but not a full hub yet. Social got a foundation, not a destination. Organized around the three core user needs from the sprint.`,
           whatWeReleasedPrinciple1Heading: 'Find what I care about',
           whatWeReleasedPrinciple1Image: {
-            src: '/images/metab-find.png',
+            src: '/images/metab-find.jpg',
             alt: 'Find what I care about',
             small: true
           },
           whatWeReleasedPrinciple1Content: `Go-to stores ranked by time of day, recency, and frequency with active deals. Top Orders made past purchases visual and scannable. Reordering became a single action.`,
           whatWeReleasedPrinciple2Heading: 'Build my identity',
           whatWeReleasedPrinciple2Image: {
-            src: '/images/metab-idenity.png',
+            src: '/images/metab-idenity.jpg',
             alt: 'Build my identity',
             small: true
           },
           whatWeReleasedPrinciple2Content: `DashPass anchored the identity layer with customer recognition, membership status and dynamic savings messaging. In-page navigation provided access to profile and social contributions.`,
           whatWeReleasedPrinciple3Heading: 'Access to key flows',
           whatWeReleasedPrinciple3Image: {
-            src: '/images/metab-maintain-access.png',
+            src: '/images/metab-maintain-access.jpg',
             alt: 'Maintain access to key flows',
             small: true
           },
