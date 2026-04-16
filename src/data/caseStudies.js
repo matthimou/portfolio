@@ -144,7 +144,7 @@ Doubledash was a key lever in that strategy, enabling cross-vertical adoption wh
           sectionContent: null,
           successMetrics: {
             heading: 'Measuring Success',
-            intro: 'Where our initial phase focused on learning fast, we now shifted to defining the success metrics that would measure our impact as the product matured. We aligned on three core metrics to guide the next phase:',
+            intro: 'Where our initial phase focused on learning fast, we now shifted to defining the success metrics that would measure our impact as the product matured. We aligned on three core metrics to guide the next phase.',
             items: [
               {
                 type: 'Primary Metric',
