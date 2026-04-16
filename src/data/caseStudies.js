@@ -725,7 +725,7 @@ The home page team needed to shift impressions from ordering at the same store (
             {
               type: 'Primary Metric',
               title: 'GOV',
-              description: 'Anchored the work in business impact and ensured we optimized for reorder behavior—not just engagement.'
+              description: 'Anchored the work in business impact and ensured we optimized for reorder behavior, not just engagement.'
             },
             {
               type: 'Secondary Metric',
@@ -782,7 +782,7 @@ I asked to meet privately. I acknowledged his long-term vision but grounded the 
           },
           sprintDay03ContentAfterImage: `We left with clear architecture, prioritized modules, and alignment to move into build.`,
           customerFeedbackHeading: 'Customer Validation',
-          customerFeedbackContent: `After the sprint, we collapsed to a core group—myself, the design lead, and two PMs—to synthesize the work into a cohesive direction.
+          customerFeedbackContent: `After the sprint, we collapsed to a core group - myself, the design lead, and two PMs - to synthesize the work into a cohesive direction.
 
 We partnered with research to validate the concepts with customers.`,
           customerFeedbackQuotesIntro: 'Three themes consistently emerged:',
@@ -810,7 +810,7 @@ We partnered with research to validate the concepts with customers.`,
             alt: 'Me Tab release',
             small: true
           },
-          whatWeReleasedContent: `The final design was deliberate trade-offs. Reorder dominated (replacing significant revenue). DashPass earned visibility but not a full hub yet. Social was foundation, not destination. Organized around the three core user needs from the sprint.`,
+          whatWeReleasedContent: `The final design reflected deliberate trade-offs. Reorder dominated (replacing significant revenue). DashPass earned visibility but not a full hub yet. Social got a foundation, not a destination. Organized around the three core user needs from the sprint.`,
           whatWeReleasedPrinciple1Heading: 'Find what I care about',
           whatWeReleasedPrinciple1Image: {
             src: '/images/metab-find.png',
@@ -862,7 +862,7 @@ We partnered with research to validate the concepts with customers.`,
 
 In a 5-month holdout, we observed a +0.25% lift in 28-day order frequency, growing to +0.29% by day 84.
 
-Today, Me Tab accounts for ~4% of total marketplace orders—representing ~$2.1B in annual GOV on iOS.`,
+Me Tab accounts for ~4% of total marketplace orders, representing ~$2.1B in annual GOV on iOS.`,
       metrics: [
         { value: '$148M', label: 'Incremental GOV (holdout validated)' },
         { value: '4M', label: 'Incremental Orders Driven' },
@@ -874,7 +874,7 @@ Today, Me Tab accounts for ~4% of total marketplace orders—representing ~$2.1B
 
 For DashPass, the surface also improved retention, reducing annual cancellations by 2.4% and increasing member savings through fees and promotions.
 
-This positioned Me Tab as a durable driver of repeat behavior—capturing high-intent demand while preserving the top-of-funnel for discovery surfaces.`,
+This positioned Me Tab as a durable driver of repeat behavior - capturing high-intent demand while preserving the top-of-funnel for discovery impressions.`,
       testimonial: null,
       reflectionHeading: "What I'd Do Differently",
       reflectionItems: [
