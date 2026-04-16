@@ -996,6 +996,10 @@
   outline-offset: 4px;
 }
 
+[data-theme="dark"] .home-work__card {
+  background-color: #2a2a2f;
+}
+
 /* Image with Zoom Effect */
 .home-work__image-wrapper {
   position: relative;
