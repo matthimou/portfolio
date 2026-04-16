@@ -22,7 +22,7 @@ export const caseStudies = [
           'Transformed order tracking into a core platform surface',
           'Drove cross-vertical adoption + increased AOV'
         ],
-        closing: 'Led end-to-end delivery experience design across multiple teams, shaping product strategy, team structure, and execution over a 3-year horizon.'
+        closing: 'Led E2E delivery experience design across multiple teams, shaping product strategy, team structure, and execution over a 3-year horizon.'
       }
     },
     hero: {
@@ -58,7 +58,7 @@ export const caseStudies = [
         poster: '/images/doubledash-combos-poster.jpg',
         caption: null
       },
-      closingAfterVideo: `Enabled customers to order from multiple stores in one bundled delivery. This capability was critical to DoorDash's expansion beyond restaurants into new verticals.`,
+      closingAfterVideo: `Doubledash enabled customers to order from multiple stores in one bundled delivery. This capability was critical to DoorDash's expansion beyond restaurants into new verticals.`,
       videoAfterClosing: null,
       closingFinalHeading: 'A Scrappy MVP',
       closingFinal: 'The New Verticals team noticed ~20% of customers were placing a second order within 10 minutes of their primary delivery. As DoorDash expanded beyond restaurants into new verticals, this revealed a clear pattern: customers were already trying to bundle orders, we just weren\'t supporting it. This revealed clear demand for bundling. If we reduced the friction, we could capture behavior that was already happening and grow overall marketplace volume.',
@@ -204,7 +204,7 @@ Doubledash was a key lever in that strategy, enabling cross-vertical adoption wh
           sectionContentQuaternary: 'I used cross-functional vision sprints to align teams before each planning cycle. I typically wrote the first sprint brief and refined it with product partners, then transitioned ownership to my designers over time - a mechanism to scale myself while creating career development opportunities for staff.',
           visionQuestions: null,
           sectionHeadingFirstSprint: 'The First Doubledash Sprint',
-          sectionContentQuaternarySecondary: 'To illustrate how this worked in practice, I\'ll walk through the first Doubledash vision sprint after the product transitioned to my org.',
+          sectionContentQuaternarySecondary: 'To illustrate how this worked in practice, I\'ll walk through the key insight from the first Doubledash vision sprint after the product transitioned to my org.',
           sprintBriefHighlight: {
             heading: 'Sprint Brief',
             items: [
@@ -221,7 +221,7 @@ Doubledash was a key lever in that strategy, enabling cross-vertical adoption wh
             alt: 'Doubledash delivery timeline diagram'
           },
           sectionHeadingAfterTimeline: 'The Foundational Insight',
-          sectionContentAfterTimeline: `We discovered a critical gap: after placing an order, customers had a 10-minute window to add items, but the map provided little value until a dasher was assigned. This high-intent moment was underutilized. We could transform the tracker from passive status view into an active shopping surface.`,
+          sectionContentAfterTimeline: `We discovered a critical gap: after placing an order, customers had a 10-minute window to add items, but the map provided little value until a dasher was assigned. This high-intent moment was underutilized. We could transform the tracker from passive status view into an active shopping surface without impacting delivery tracking.`,
           sectionImageMapInsight: {
             src: '/images/DoorDashMapoInsight.png',
             alt: 'Map insight showing limited utility during early delivery stage'
@@ -378,7 +378,7 @@ Doubledash was a key lever in that strategy, enabling cross-vertical adoption wh
 
 We expanded into contextual merchandising for occasions and personalized recommendations. I scaled the team by mentoring a senior designer into Staff, and transitioning ownership of key activities like sprint planning.
 
-As the team grew to 3 PMs and 15 engineers, my role shifted toward cross-team prioritization. This marked the transition from feature team to platform team.`,
+As the team grew to 3 PMs and 15 engineers, my role shifted toward cross-team prioritization. To prioritize across 3 sub-teams and PMs I worked directly with the Senior Director of consumer product. This marked the transition from feature team to platform team.`,
       scalingMyselfHighlight: {
         heading: 'Scaling Myself',
         content: 'Through mentoring and promotion I was able to delegate more to my designer, freeing myself to focus on strategy, team scaling, and alignment.'
@@ -531,7 +531,7 @@ A separate experiment tested item-level pairing menus. I felt it lacked prominen
       ],
       leadingWithDesignHighlight: {
         heading: 'Leading with Design',
-        content: 'Teams that stay ahead of the product don\'t just design experiences—they shape the roadmap.'
+        content: 'Teams that stay ahead of the product don\'t just design experiences, they shape the roadmap.'
       },
       futureBeforeAfterHeading: null,
       futureBeforeAfterContent: null,

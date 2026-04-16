@@ -2635,6 +2635,113 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
             </div>
           )}
 
+          {/* Lessons from Failure */}
+          {impact.lessonsHeading && (
+            <h4 className="case-study-content__heading">{impact.lessonsHeading}</h4>
+          )}
+          {impact.lessonsNarrative && impact.lessonsNarrative.split('\n\n').map((para, index) => (
+            <p key={index} className="case-study-content__text">{para}</p>
+          ))}
+
+          {/* Lessons Media Row (image + videos in horizontal layout with lightbox) */}
+          {impact.lessonsMediaRow && impact.lessonsMediaRow.length > 0 && (
+            <div className="case-study-content__lessons-media-row">
+              {impact.lessonsMediaRow.map((item, index) => (
+                <figure
+                  key={index}
+                  className="case-study-content__lessons-media-item case-study-content__lessons-media-item--clickable"
+                  onClick={() => openLessonsLightbox(index)}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => e.key === 'Enter' && openLessonsLightbox(index)}
+                >
+                  <div className="case-study-content__lessons-media-container">
+                    {item.type === 'video' ? (
+                      <video
+                        src={item.src}
+                        poster={item.poster}
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                        className="case-study-content__lessons-media-video"
+                      />
+                    ) : (
+                      <img
+                        src={item.src}
+                        alt={item.alt}
+                        className="case-study-content__lessons-media-image"
+                      />
+                    )}
+                    <div className="case-study-content__lessons-media-zoom">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <circle cx="11" cy="11" r="8" />
+                        <path d="M21 21l-4.35-4.35M11 8v6M8 11h6" />
+                      </svg>
+                    </div>
+                  </div>
+                  {item.caption && (
+                    <figcaption className="case-study-content__lessons-media-caption">
+                      {item.caption}
+                    </figcaption>
+                  )}
+                </figure>
+              ))}
+            </div>
+          )}
+
+          {/* Lessons Narrative After Media Row */}
+          {impact.lessonsNarrativeAfterVideo02 && (
+            <div className="case-study-content__lessons-conclusion-text">
+              {impact.lessonsNarrativeAfterVideo02.split('\n\n').map((para, index) => (
+                <p key={index} className="case-study-content__text">{para}</p>
+              ))}
+            </div>
+          )}
+
+          {/* Lessons Conclusion - Two Column Layout (text left, image right) */}
+          {(impact.lessonsNarrativeConclusion || impact.lessonsImageConclusion) && (
+            <div className="case-study-content__lessons-conclusion">
+              {impact.lessonsNarrativeConclusion && (
+                <div className="case-study-content__lessons-conclusion-text">
+                  {impact.lessonsNarrativeConclusion.split('\n\n').map((para, index) => (
+                    <p key={index}>{para}</p>
+                  ))}
+                </div>
+              )}
+              {impact.lessonsImageConclusion && (
+                <figure className="case-study-content__lessons-conclusion-image">
+                  <img
+                    src={impact.lessonsImageConclusion.src}
+                    alt={impact.lessonsImageConclusion.alt}
+                  />
+                  {impact.lessonsImageConclusion.caption && (
+                    <figcaption className="case-study-content__caption">
+                      {impact.lessonsImageConclusion.caption}
+                    </figcaption>
+                  )}
+                </figure>
+              )}
+            </div>
+          )}
+
+          {/* Lessons Key Learning */}
+          {impact.lessonsKeyLearning && (
+            <div className="case-study-content__key-learning">
+              <h5 className="case-study-content__key-learning-heading">
+                {impact.lessonsKeyLearning.heading}
+              </h5>
+              <p className="case-study-content__key-learning-content">
+                {impact.lessonsKeyLearning.content}
+              </p>
+            </div>
+          )}
+
+          {/* Lessons Narrative After Highlight */}
+          {impact.lessonsNarrativeAfterHighlight && (
+            <p className="case-study-content__text">{impact.lessonsNarrativeAfterHighlight}</p>
+          )}
+
           {/* Heading After Images */}
           {impact.headingAfterImages && (
             <h5 className="case-study-content__subheading case-study-content__subheading--neutral">{impact.headingAfterImages}</h5>
@@ -2817,113 +2924,6 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
               <h4 className="case-study-content__key-learning-heading">{impact.scalingProductHighlight.heading}</h4>
               <p className="case-study-content__key-learning-content">{impact.scalingProductHighlight.content}</p>
             </div>
-          )}
-
-          {/* Lessons from Failure */}
-          {impact.lessonsHeading && (
-            <h4 className="case-study-content__heading">{impact.lessonsHeading}</h4>
-          )}
-          {impact.lessonsNarrative && impact.lessonsNarrative.split('\n\n').map((para, index) => (
-            <p key={index} className="case-study-content__text">{para}</p>
-          ))}
-
-          {/* Lessons Media Row (image + videos in horizontal layout with lightbox) */}
-          {impact.lessonsMediaRow && impact.lessonsMediaRow.length > 0 && (
-            <div className="case-study-content__lessons-media-row">
-              {impact.lessonsMediaRow.map((item, index) => (
-                <figure
-                  key={index}
-                  className="case-study-content__lessons-media-item case-study-content__lessons-media-item--clickable"
-                  onClick={() => openLessonsLightbox(index)}
-                  role="button"
-                  tabIndex={0}
-                  onKeyDown={(e) => e.key === 'Enter' && openLessonsLightbox(index)}
-                >
-                  <div className="case-study-content__lessons-media-container">
-                    {item.type === 'video' ? (
-                      <video
-                        src={item.src}
-                        poster={item.poster}
-                        autoPlay
-                        muted
-                        loop
-                        playsInline
-                        className="case-study-content__lessons-media-video"
-                      />
-                    ) : (
-                      <img
-                        src={item.src}
-                        alt={item.alt}
-                        className="case-study-content__lessons-media-image"
-                      />
-                    )}
-                    <div className="case-study-content__lessons-media-zoom">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <circle cx="11" cy="11" r="8" />
-                        <path d="M21 21l-4.35-4.35M11 8v6M8 11h6" />
-                      </svg>
-                    </div>
-                  </div>
-                  {item.caption && (
-                    <figcaption className="case-study-content__lessons-media-caption">
-                      {item.caption}
-                    </figcaption>
-                  )}
-                </figure>
-              ))}
-            </div>
-          )}
-
-          {/* Lessons Narrative After Media Row */}
-          {impact.lessonsNarrativeAfterVideo02 && (
-            <div className="case-study-content__lessons-conclusion-text">
-              {impact.lessonsNarrativeAfterVideo02.split('\n\n').map((para, index) => (
-                <p key={index} className="case-study-content__text">{para}</p>
-              ))}
-            </div>
-          )}
-
-          {/* Lessons Conclusion - Two Column Layout (text left, image right) */}
-          {(impact.lessonsNarrativeConclusion || impact.lessonsImageConclusion) && (
-            <div className="case-study-content__lessons-conclusion">
-              {impact.lessonsNarrativeConclusion && (
-                <div className="case-study-content__lessons-conclusion-text">
-                  {impact.lessonsNarrativeConclusion.split('\n\n').map((para, index) => (
-                    <p key={index}>{para}</p>
-                  ))}
-                </div>
-              )}
-              {impact.lessonsImageConclusion && (
-                <figure className="case-study-content__lessons-conclusion-image">
-                  <img
-                    src={impact.lessonsImageConclusion.src}
-                    alt={impact.lessonsImageConclusion.alt}
-                  />
-                  {impact.lessonsImageConclusion.caption && (
-                    <figcaption className="case-study-content__caption">
-                      {impact.lessonsImageConclusion.caption}
-                    </figcaption>
-                  )}
-                </figure>
-              )}
-            </div>
-          )}
-
-          {/* Lessons Key Learning */}
-          {impact.lessonsKeyLearning && (
-            <div className="case-study-content__key-learning">
-              <h5 className="case-study-content__key-learning-heading">
-                {impact.lessonsKeyLearning.heading}
-              </h5>
-              <p className="case-study-content__key-learning-content">
-                {impact.lessonsKeyLearning.content}
-              </p>
-            </div>
-          )}
-
-          {/* Lessons Narrative After Highlight */}
-          {impact.lessonsNarrativeAfterHighlight && (
-            <p className="case-study-content__text">{impact.lessonsNarrativeAfterHighlight}</p>
           )}
 
           {/* Impact Heading */}
