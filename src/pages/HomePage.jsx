@@ -325,10 +325,12 @@ const HomePage = ({ onOpenLogin }) => {
   const [experienceVisible, setExperienceVisible] = useState(false)
   const [introVisible, setIntroVisible] = useState(false)
   const [principlesVisible, setPrinciplesVisible] = useState(false)
+  const [teamPhotosVisible, setTeamPhotosVisible] = useState(false)
   const gridRef = useRef(null)
   const experienceRef = useRef(null)
   const introRef = useRef(null)
   const principlesRef = useRef(null)
+  const teamPhotosRef = useRef(null)
   const { isAuthenticated } = useAuth()
   const navigate = useNavigate()
 
@@ -388,16 +390,28 @@ const HomePage = ({ onOpenLogin }) => {
       { threshold: 0.2 }
     )
 
+    const teamPhotosObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setTeamPhotosVisible(true)
+          teamPhotosObserver.disconnect()
+        }
+      },
+      { threshold: 0.1 }
+    )
+
     if (gridRef.current) cardObserver.observe(gridRef.current)
     if (experienceRef.current) experienceObserver.observe(experienceRef.current)
     if (introRef.current) introObserver.observe(introRef.current)
     if (principlesRef.current) principlesObserver.observe(principlesRef.current)
+    if (teamPhotosRef.current) teamPhotosObserver.observe(teamPhotosRef.current)
 
     return () => {
       cardObserver.disconnect()
       experienceObserver.disconnect()
       introObserver.disconnect()
       principlesObserver.disconnect()
+      teamPhotosObserver.disconnect()
     }
   }, [])
 
@@ -489,6 +503,27 @@ const HomePage = ({ onOpenLogin }) => {
       >
         <DesignPrinciples />
       </div>
+
+      {/* Team Culture Photos Section */}
+      <section className="team-photos" ref={teamPhotosRef}>
+        <div className="container">
+          <div className={`team-photos__grid ${teamPhotosVisible ? 'team-photos__grid--visible' : ''}`}>
+            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((num, index) => (
+              <div
+                key={num}
+                className="team-photos__item"
+                style={{ transitionDelay: `${index * 80}ms` }}
+              >
+                <img
+                  src={`/images/TeamCulturePhotos/team${num.toString().padStart(2, '0')}.jpg`}
+                  alt={`Team culture photo ${num}`}
+                  loading="lazy"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* Experience Section - demoted below work */}
       <section className="experience experience--demoted" ref={experienceRef}>
