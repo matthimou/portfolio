@@ -61,7 +61,7 @@ export const caseStudies = [
       closingAfterVideo: `Doubledash enabled customers to order from multiple stores in one bundled delivery. This capability was critical to DoorDash's expansion beyond restaurants into new verticals.`,
       videoAfterClosing: null,
       closingFinalHeading: null,
-      closingFinal: 'The New Verticals team noticed ~20% of customers were placing a second order within 10 minutes of their primary delivery. As DoorDash expanded beyond restaurants into new verticals, this revealed a clear pattern: customers were already trying to bundle orders, we just weren\'t supporting it. This revealed clear demand for bundling. If we reduced the friction, we could capture behavior that was already happening and grow overall marketplace volume.',
+      closingFinal: 'The New Verticals team noticed ~20% of customers were placing a second order within 10 minutes of their primary delivery. This revealed clear demand for bundling. If we reduced the friction, we could capture behavior that was already happening and grow overall marketplace volume.',
       closingFinalBelowVideo: true,
       closingFinalSecondary: null,
       imageFinal: null,
