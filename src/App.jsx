@@ -8,6 +8,7 @@ import LoginModal from './components/auth/LoginModal'
 import HomePage from './pages/HomePage'
 import CaseStudyPage from './pages/CaseStudyPage'
 import DevCaseStudyPage from './pages/DevCaseStudyPage'
+import InfoIndicatorTestPage from './pages/InfoIndicatorTestPage'
 import './App.css'
 
 function App() {
@@ -41,6 +42,7 @@ function App() {
 
                 {/* Dev routes for draft case studies (not in navigation) */}
                 <Route path="/dev/work/:projectId" element={<DevCaseStudyPage />} />
+                <Route path="/dev/test/info-indicator" element={<InfoIndicatorTestPage />} />
 
                 {/* Redirects for removed routes */}
                 <Route path="/work" element={<Navigate to="/" replace />} />

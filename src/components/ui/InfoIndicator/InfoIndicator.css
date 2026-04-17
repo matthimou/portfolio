@@ -1,0 +1,402 @@
+/* InfoIndicator Component */
+/* BEM naming convention following project standards */
+
+.info-indicator {
+  display: inline-flex;
+  position: relative;
+  vertical-align: middle;
+}
+
+/* ==========================================
+   Trigger Button - Base Styles
+   ========================================== */
+
+.info-indicator__trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1;
+  transition:
+    transform var(--duration-fast) var(--easing-default),
+    background-color var(--duration-fast) var(--easing-default),
+    border-color var(--duration-fast) var(--easing-default),
+    box-shadow var(--duration-fast) var(--easing-default);
+}
+
+.info-indicator__trigger:focus-visible {
+  outline: 2px solid var(--color-accent-primary);
+  outline-offset: 2px;
+}
+
+/* ==========================================
+   Trigger Sizes
+   ========================================== */
+
+.info-indicator__trigger--sm {
+  width: 16px;
+  height: 16px;
+  font-size: 10px;
+}
+
+.info-indicator__trigger--md {
+  width: 20px;
+  height: 20px;
+  font-size: 12px;
+}
+
+.info-indicator__trigger--lg {
+  width: 24px;
+  height: 24px;
+  font-size: 14px;
+}
+
+/* ==========================================
+   Variant A: Accent Circle
+   High visibility, terracotta filled circle
+   ========================================== */
+
+.info-indicator__trigger--accent {
+  background-color: var(--color-accent-primary);
+  color: white;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(194, 65, 12, 0.2);
+}
+
+.info-indicator__trigger--accent:hover {
+  transform: scale(1.1);
+  box-shadow: 0 3px 8px rgba(194, 65, 12, 0.3);
+}
+
+.info-indicator__trigger--accent:active {
+  transform: scale(0.95);
+}
+
+[data-theme="dark"] .info-indicator__trigger--accent {
+  box-shadow: 0 2px 4px rgba(234, 88, 12, 0.3);
+}
+
+[data-theme="dark"] .info-indicator__trigger--accent:hover {
+  box-shadow: 0 3px 8px rgba(234, 88, 12, 0.4);
+}
+
+/* ==========================================
+   Variant B: Minimal Outline
+   Subtle, outline circle with terracotta "i"
+   ========================================== */
+
+.info-indicator__trigger--minimal {
+  background-color: transparent;
+  color: var(--color-accent-primary);
+  border-radius: 50%;
+  border: 1.5px solid var(--color-border-light);
+}
+
+.info-indicator__trigger--minimal:hover {
+  border-color: var(--color-accent-primary);
+  background-color: var(--color-accent-subtle);
+}
+
+.info-indicator__trigger--minimal:active {
+  transform: scale(0.95);
+}
+
+/* ==========================================
+   Variant C: Subtle Background
+   Maximum subtlety, soft background
+   ========================================== */
+
+.info-indicator__trigger--subtle {
+  background-color: var(--color-bg-secondary);
+  color: var(--color-text-secondary);
+  border-radius: 50%;
+}
+
+.info-indicator__trigger--subtle:hover {
+  background-color: var(--color-accent-subtle);
+  color: var(--color-accent-primary);
+}
+
+.info-indicator__trigger--subtle:active {
+  transform: scale(0.95);
+}
+
+/* ==========================================
+   Variant D: Icon (SVG line icon)
+   Clean line-style icon, no background
+   ========================================== */
+
+.info-indicator__trigger--icon {
+  background-color: transparent;
+  color: var(--color-text-secondary);
+  border-radius: 0;
+}
+
+.info-indicator__trigger--icon:hover {
+  color: var(--color-accent-primary);
+}
+
+.info-indicator__trigger--icon:active {
+  transform: scale(0.95);
+}
+
+.info-indicator__svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* ==========================================
+   Popup Container
+   ========================================== */
+
+.info-indicator__popup {
+  position: absolute;
+  z-index: 1000;
+  width: max-content;
+  animation: infoPopupEnter var(--duration-fast) cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.info-indicator__popup--exit {
+  animation: infoPopupExit 0.15s var(--easing-out) forwards;
+}
+
+/* Position variants */
+.info-indicator__popup--bottom {
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(calc(-50% + var(--horizontal-shift, 0px)));
+}
+
+.info-indicator__popup--top {
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(calc(-50% + var(--horizontal-shift, 0px)));
+}
+
+.info-indicator__popup--left {
+  right: calc(100% + 8px);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.info-indicator__popup--right {
+  left: calc(100% + 8px);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* ==========================================
+   Popup Content
+   ========================================== */
+
+.info-indicator__content {
+  display: block;
+  padding: var(--space-sm);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border-light);
+  border-radius: 8px;
+  box-shadow: var(--shadow-md);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+  color: var(--color-text-primary);
+}
+
+.info-indicator__content p {
+  margin: 0;
+}
+
+.info-indicator__content p + p {
+  margin-top: var(--space-xs);
+}
+
+.info-indicator__content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+  margin-top: var(--space-xs);
+}
+
+.info-indicator__content img:first-child {
+  margin-top: 0;
+}
+
+/* ==========================================
+   Arrow / Pointer
+   ========================================== */
+
+.info-indicator__arrow {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border-light);
+  transform: rotate(45deg);
+}
+
+/* Arrow positioning for each direction */
+.info-indicator__popup--bottom .info-indicator__arrow {
+  top: -6px;
+  left: calc(50% - 5px - var(--horizontal-shift, 0px));
+  border-right: none;
+  border-bottom: none;
+}
+
+.info-indicator__popup--top .info-indicator__arrow {
+  bottom: -6px;
+  left: calc(50% - 5px - var(--horizontal-shift, 0px));
+  border-left: none;
+  border-top: none;
+}
+
+.info-indicator__popup--left .info-indicator__arrow {
+  right: -6px;
+  top: calc(50% - 5px);
+  border-left: none;
+  border-bottom: none;
+}
+
+.info-indicator__popup--right .info-indicator__arrow {
+  left: -6px;
+  top: calc(50% - 5px);
+  border-right: none;
+  border-top: none;
+}
+
+/* ==========================================
+   Animations
+   ========================================== */
+
+@keyframes infoPopupEnter {
+  from {
+    opacity: 0;
+    transform: translateX(calc(-50% + var(--horizontal-shift, 0px))) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(calc(-50% + var(--horizontal-shift, 0px))) scale(1);
+  }
+}
+
+/* Variant-specific enter animations */
+.info-indicator__popup--bottom {
+  animation-name: infoPopupEnterBottom;
+}
+
+.info-indicator__popup--top {
+  animation-name: infoPopupEnterTop;
+}
+
+.info-indicator__popup--left {
+  animation-name: infoPopupEnterLeft;
+}
+
+.info-indicator__popup--right {
+  animation-name: infoPopupEnterRight;
+}
+
+@keyframes infoPopupEnterBottom {
+  from {
+    opacity: 0;
+    transform: translateX(calc(-50% + var(--horizontal-shift, 0px))) translateY(-4px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(calc(-50% + var(--horizontal-shift, 0px))) translateY(0) scale(1);
+  }
+}
+
+@keyframes infoPopupEnterTop {
+  from {
+    opacity: 0;
+    transform: translateX(calc(-50% + var(--horizontal-shift, 0px))) translateY(4px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(calc(-50% + var(--horizontal-shift, 0px))) translateY(0) scale(1);
+  }
+}
+
+@keyframes infoPopupEnterLeft {
+  from {
+    opacity: 0;
+    transform: translateY(-50%) translateX(4px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0) scale(1);
+  }
+}
+
+@keyframes infoPopupEnterRight {
+  from {
+    opacity: 0;
+    transform: translateY(-50%) translateX(-4px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0) scale(1);
+  }
+}
+
+@keyframes infoPopupExit {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* Exit animations preserve position transforms */
+.info-indicator__popup--exit.info-indicator__popup--bottom,
+.info-indicator__popup--exit.info-indicator__popup--top {
+  animation-name: infoPopupExitVertical;
+}
+
+.info-indicator__popup--exit.info-indicator__popup--left,
+.info-indicator__popup--exit.info-indicator__popup--right {
+  animation-name: infoPopupExitHorizontal;
+}
+
+@keyframes infoPopupExitVertical {
+  from {
+    opacity: 1;
+    transform: translateX(calc(-50% + var(--horizontal-shift, 0px))) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(calc(-50% + var(--horizontal-shift, 0px))) scale(0.95);
+  }
+}
+
+@keyframes infoPopupExitHorizontal {
+  from {
+    opacity: 1;
+    transform: translateY(-50%) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-50%) scale(0.95);
+  }
+}
+
+/* ==========================================
+   Reduced Motion Support
+   ========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .info-indicator__trigger {
+    transition: none;
+  }
+
+  .info-indicator__popup,
+  .info-indicator__popup--exit {
+    animation: none;
+    opacity: 1;
+  }
+}
