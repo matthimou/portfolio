@@ -885,7 +885,26 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                 <h5 className={`case-study-content__subheading ${solution.neutralHeadings ? 'case-study-content__subheading--neutral' : ''}`}>{solution.timeline[0].sectionHeadingAfterFlow}</h5>
               )}
               {solution.timeline[0].sectionContentAfterFlow && (
-                <p className="case-study-content__text">{solution.timeline[0].sectionContentAfterFlow}</p>
+                solution.timeline[0].sectionContentAfterFlow.split('\n\n').map((para, index) => (
+                  <p key={index} className="case-study-content__text">{para}</p>
+                ))
+              )}
+              {solution.timeline[0].foundationsHighlight && (
+                <div className="case-study-content__my-contributions">
+                  <h5 className="case-study-content__my-contributions-heading">
+                    {solution.timeline[0].foundationsHighlight.heading}
+                  </h5>
+                  <ul className="case-study-content__my-contributions-list">
+                    {solution.timeline[0].foundationsHighlight.items.map((item, index) => (
+                      <li key={index} className="case-study-content__my-contributions-item">
+                        <svg className="case-study-content__my-contributions-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <path d="M20 6L9 17l-5-5" />
+                        </svg>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               )}
               {solution.timeline[0].sectionContentAfterFlowSecondary && (
                 <p className="case-study-content__text">{solution.timeline[0].sectionContentAfterFlowSecondary}</p>
@@ -896,6 +915,9 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
               {solution.timeline[0].concerns && (
                 <div className="case-study-content__concerns">
                   <h5 className="case-study-content__concerns-heading">{solution.timeline[0].concerns.heading}</h5>
+                  {solution.timeline[0].concerns.intro && (
+                    <p className="case-study-content__text">{solution.timeline[0].concerns.intro}</p>
+                  )}
                   <div className="case-study-content__concerns-grid">
                     {solution.timeline[0].concerns.items.map((item, index) => (
                       <div key={index} className="case-study-content__concerns-card">
@@ -1152,7 +1174,12 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                 <p className="case-study-content__text">{solution.timeline[1].sectionContentAfterMetrics}</p>
               )}
               {solution.timeline[1]?.sectionHeadingSecondary && (
-                <h4 className="case-study-content__heading">{solution.timeline[1].sectionHeadingSecondary}</h4>
+                <h5 className="case-study-content__subheading">{solution.timeline[1].sectionHeadingSecondary}</h5>
+              )}
+              {solution.timeline[1]?.sectionContentTertiary && (
+                solution.timeline[1].sectionContentTertiary.split('\n\n').map((para, index) => (
+                  <p key={index} className="case-study-content__text">{para}</p>
+                ))
               )}
               {solution.timeline[1]?.sectionImageSecondary && (
                 <figure className="case-study-content__section-image">
@@ -1162,11 +1189,6 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                     className="case-study-content__section-image-img"
                   />
                 </figure>
-              )}
-              {solution.timeline[1]?.sectionContentTertiary && (
-                solution.timeline[1].sectionContentTertiary.split('\n\n').map((para, index) => (
-                  <p key={index} className="case-study-content__text">{para}</p>
-                ))
               )}
               {solution.timeline[1]?.alignmentHighlights && (
                 <div className="case-study-content__alignment-highlights">
@@ -1600,11 +1622,9 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                 <p className="case-study-content__text">{solution.timeline[1].sectionContentAfterPlanning}</p>
               )}
               {solution.timeline[1]?.planningHighlight && (
-                <div className="case-study-content__key-learning">
-                  <h5 className="case-study-content__key-learning-heading">
-                    {solution.timeline[1].planningHighlight.heading}
-                  </h5>
-                  <p className="case-study-content__key-learning-content">
+                <div className="case-study-content__opportunity case-study-content__opportunity--callout">
+                  <strong>{solution.timeline[1].planningHighlight.heading}</strong>
+                  <p style={{ margin: '0.5em 0 0 0' }}>
                     {solution.timeline[1].planningHighlight.content}
                   </p>
                 </div>
@@ -1834,9 +1854,11 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                 </figure>
               )}
               {solution.timeline[1]?.sprintInsightHighlight && (
-                <div className="case-study-content__key-learning">
-                  <h4 className="case-study-content__key-learning-heading">{solution.timeline[1].sprintInsightHighlight.heading}</h4>
-                  <p className="case-study-content__key-learning-content">{solution.timeline[1].sprintInsightHighlight.content}</p>
+                <div className="case-study-content__opportunity case-study-content__opportunity--callout">
+                  <strong>{solution.timeline[1].sprintInsightHighlight.heading}</strong>
+                  <p style={{ margin: '0.5em 0 0 0' }}>
+                    {solution.timeline[1].sprintInsightHighlight.content}
+                  </p>
                 </div>
               )}
               {solution.timeline[1]?.sectionHeadingQuaternary && (
@@ -1861,40 +1883,10 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                 </div>
               )}
               {solution.timeline[1]?.conceptTestingHighlight && (
-                <div className="case-study-content__key-learning">
-                  <h4 className="case-study-content__key-learning-heading">{solution.timeline[1].conceptTestingHighlight.heading}</h4>
-                  <p className="case-study-content__key-learning-content">{solution.timeline[1].conceptTestingHighlight.content}</p>
-                </div>
-              )}
-              {solution.timeline[1]?.sectionHeadingCrossOrg && (
-                <h5 className="case-study-content__subheading case-study-content__subheading--neutral">{solution.timeline[1].sectionHeadingCrossOrg}</h5>
-              )}
-              {solution.timeline[1]?.sectionContentCrossOrg && (
-                <p className="case-study-content__text">{solution.timeline[1].sectionContentCrossOrg}</p>
-              )}
-              {solution.timeline[1]?.priorityTiers && (
-                <div className="case-study-content__priority-tiers">
-                  {solution.timeline[1].priorityTiers.map((tier) => (
-                    <div key={tier.tier} className={`case-study-content__priority-tier case-study-content__priority-tier--${tier.tier}`}>
-                      <div className="case-study-content__priority-tier-number">{tier.tier}</div>
-                      <div className="case-study-content__priority-tier-content">
-                        <h6 className="case-study-content__priority-tier-title">{tier.title}</h6>
-                        <p className="case-study-content__priority-tier-examples">{tier.examples}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )}
-              {solution.timeline[1]?.sectionContentAfterTiers && (
-                <p className="case-study-content__text">{solution.timeline[1].sectionContentAfterTiers}</p>
-              )}
-              {solution.timeline[1]?.governanceHighlight && (
-                <div className="case-study-content__key-learning">
-                  <h5 className="case-study-content__key-learning-heading">
-                    {solution.timeline[1].governanceHighlight.heading}
-                  </h5>
-                  <p className="case-study-content__key-learning-content">
-                    {solution.timeline[1].governanceHighlight.content}
+                <div className="case-study-content__opportunity case-study-content__opportunity--callout">
+                  <strong>{solution.timeline[1].conceptTestingHighlight.heading}</strong>
+                  <p style={{ margin: '0.5em 0 0 0' }}>
+                    {solution.timeline[1].conceptTestingHighlight.content}
                   </p>
                 </div>
               )}
@@ -1971,6 +1963,36 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                     </figcaption>
                   )}
                 </figure>
+              )}
+              {solution.timeline[1]?.sectionHeadingCrossOrg && (
+                <h5 className="case-study-content__subheading case-study-content__subheading--neutral">{solution.timeline[1].sectionHeadingCrossOrg}</h5>
+              )}
+              {solution.timeline[1]?.sectionContentCrossOrg && (
+                <p className="case-study-content__text">{solution.timeline[1].sectionContentCrossOrg}</p>
+              )}
+              {solution.timeline[1]?.priorityTiers && (
+                <div className="case-study-content__priority-tiers">
+                  {solution.timeline[1].priorityTiers.map((tier) => (
+                    <div key={tier.tier} className={`case-study-content__priority-tier case-study-content__priority-tier--${tier.tier}`}>
+                      <div className="case-study-content__priority-tier-number">{tier.tier}</div>
+                      <div className="case-study-content__priority-tier-content">
+                        <h6 className="case-study-content__priority-tier-title">{tier.title}</h6>
+                        <p className="case-study-content__priority-tier-examples">{tier.examples}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+              {solution.timeline[1]?.sectionContentAfterTiers && (
+                <p className="case-study-content__text">{solution.timeline[1].sectionContentAfterTiers}</p>
+              )}
+              {solution.timeline[1]?.governanceHighlight && (
+                <div className="case-study-content__opportunity case-study-content__opportunity--callout">
+                  <strong>{solution.timeline[1].governanceHighlight.heading}</strong>
+                  <p style={{ margin: '0.5em 0 0 0' }}>
+                    {solution.timeline[1].governanceHighlight.content}
+                  </p>
+                </div>
               )}
               {solution.timeline[1]?.desktopVideo && (
                 <figure className="case-study-content__desktop-video">
@@ -2597,8 +2619,72 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
         <section className="case-study-content__section">
           <h4 className={impact.headingAccent ? "case-study-content__subheading" : "case-study-content__heading"}>{impact.heading}</h4>
 
-          {/* Narrative */}
-          {impact.narrative && impact.narrative.split('\n\n').map((para, index) => (
+          {/* Narrative - First paragraph */}
+          {impact.narrative && (
+            <p className="case-study-content__text">{impact.narrative.split('\n\n')[0]}</p>
+          )}
+
+          {/* Impact My Contributions */}
+          {impact.impactMyContributions && (
+            <div className="case-study-content__my-contributions">
+              <h5 className="case-study-content__my-contributions-heading">
+                {impact.impactMyContributions.heading}
+              </h5>
+              {impact.impactMyContributions.categories ? (
+                <div className="case-study-content__my-contributions-categories">
+                  {/* Untitled categories first */}
+                  {impact.impactMyContributions.categories.filter(cat => !cat.title).map((category, catIndex) => (
+                    <div key={catIndex} className="case-study-content__my-contributions-category">
+                      <ul className="case-study-content__my-contributions-list">
+                        {category.items.map((item, index) => (
+                          <li key={index} className="case-study-content__my-contributions-item">
+                            <svg className="case-study-content__my-contributions-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                              <path d="M20 6L9 17l-5-5" />
+                            </svg>
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                  {/* Titled categories in 3-up grid */}
+                  {impact.impactMyContributions.categories.some(cat => cat.title) && (
+                    <div className="case-study-content__my-contributions-categories-grid">
+                      {impact.impactMyContributions.categories.filter(cat => cat.title).map((category, catIndex) => (
+                        <div key={catIndex} className="case-study-content__my-contributions-category">
+                          <h6 className="case-study-content__my-contributions-category-title">{category.title}</h6>
+                          <ul className="case-study-content__my-contributions-list">
+                            {category.items.map((item, index) => (
+                              <li key={index} className="case-study-content__my-contributions-item">
+                                <svg className="case-study-content__my-contributions-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                  <path d="M20 6L9 17l-5-5" />
+                                </svg>
+                                {item}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <ul className="case-study-content__my-contributions-list">
+                  {impact.impactMyContributions.items.map((item, index) => (
+                    <li key={index} className="case-study-content__my-contributions-item">
+                      <svg className="case-study-content__my-contributions-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="M20 6L9 17l-5-5" />
+                      </svg>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          )}
+
+          {/* Narrative - Remaining paragraphs */}
+          {impact.narrative && impact.narrative.split('\n\n').slice(1).map((para, index) => (
             <p key={index} className="case-study-content__text">{para}</p>
           ))}
 
@@ -2629,9 +2715,9 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
 
           {/* Scaling Myself Highlight */}
           {impact.scalingMyselfHighlight && (
-            <div className="case-study-content__key-learning">
-              <h4 className="case-study-content__key-learning-heading">{impact.scalingMyselfHighlight.heading}</h4>
-              <p className="case-study-content__key-learning-content">{impact.scalingMyselfHighlight.content}</p>
+            <div className="case-study-content__opportunity case-study-content__opportunity--callout">
+              <strong>{impact.scalingMyselfHighlight.heading}</strong>
+              <p style={{ margin: '0.5em 0 0 0' }}>{impact.scalingMyselfHighlight.content}</p>
             </div>
           )}
 
@@ -2727,13 +2813,9 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
 
           {/* Lessons Key Learning */}
           {impact.lessonsKeyLearning && (
-            <div className="case-study-content__key-learning">
-              <h5 className="case-study-content__key-learning-heading">
-                {impact.lessonsKeyLearning.heading}
-              </h5>
-              <p className="case-study-content__key-learning-content">
-                {impact.lessonsKeyLearning.content}
-              </p>
+            <div className="case-study-content__opportunity case-study-content__opportunity--callout">
+              <strong>{impact.lessonsKeyLearning.heading}</strong>
+              <p style={{ margin: '0.5em 0 0 0' }}>{impact.lessonsKeyLearning.content}</p>
             </div>
           )}
 
@@ -2817,9 +2899,9 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
 
           {/* Principal Designer Highlight */}
           {impact.principalDesignerHighlight && (
-            <div className="case-study-content__key-learning">
-              <h4 className="case-study-content__key-learning-heading">{impact.principalDesignerHighlight.heading}</h4>
-              <p className="case-study-content__key-learning-content">{impact.principalDesignerHighlight.content}</p>
+            <div className="case-study-content__opportunity case-study-content__opportunity--callout">
+              <strong>{impact.principalDesignerHighlight.heading}</strong>
+              <p style={{ margin: '0.5em 0 0 0' }}>{impact.principalDesignerHighlight.content}</p>
             </div>
           )}
 
@@ -2920,9 +3002,9 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
 
           {/* Scaling Product Highlight */}
           {impact.scalingProductHighlight && (
-            <div className="case-study-content__key-learning">
-              <h4 className="case-study-content__key-learning-heading">{impact.scalingProductHighlight.heading}</h4>
-              <p className="case-study-content__key-learning-content">{impact.scalingProductHighlight.content}</p>
+            <div className="case-study-content__opportunity case-study-content__opportunity--callout">
+              <strong>{impact.scalingProductHighlight.heading}</strong>
+              <p style={{ margin: '0.5em 0 0 0' }}>{impact.scalingProductHighlight.content}</p>
             </div>
           )}
 
@@ -2956,65 +3038,6 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                     </div>
                   ))}
                 </div>
-              )}
-            </div>
-          )}
-
-          {/* Impact My Contributions */}
-          {impact.impactMyContributions && (
-            <div className="case-study-content__my-contributions">
-              <h5 className="case-study-content__my-contributions-heading">
-                {impact.impactMyContributions.heading}
-              </h5>
-              {impact.impactMyContributions.categories ? (
-                <div className="case-study-content__my-contributions-categories">
-                  {/* Untitled categories first */}
-                  {impact.impactMyContributions.categories.filter(cat => !cat.title).map((category, catIndex) => (
-                    <div key={catIndex} className="case-study-content__my-contributions-category">
-                      <ul className="case-study-content__my-contributions-list">
-                        {category.items.map((item, index) => (
-                          <li key={index} className="case-study-content__my-contributions-item">
-                            <svg className="case-study-content__my-contributions-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                              <path d="M20 6L9 17l-5-5" />
-                            </svg>
-                            {item}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  ))}
-                  {/* Titled categories in 3-up grid */}
-                  {impact.impactMyContributions.categories.some(cat => cat.title) && (
-                    <div className="case-study-content__my-contributions-categories-grid">
-                      {impact.impactMyContributions.categories.filter(cat => cat.title).map((category, catIndex) => (
-                        <div key={catIndex} className="case-study-content__my-contributions-category">
-                          <h6 className="case-study-content__my-contributions-category-title">{category.title}</h6>
-                          <ul className="case-study-content__my-contributions-list">
-                            {category.items.map((item, index) => (
-                              <li key={index} className="case-study-content__my-contributions-item">
-                                <svg className="case-study-content__my-contributions-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                  <path d="M20 6L9 17l-5-5" />
-                                </svg>
-                                {item}
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              ) : (
-                <ul className="case-study-content__my-contributions-list">
-                  {impact.impactMyContributions.items.map((item, index) => (
-                    <li key={index} className="case-study-content__my-contributions-item">
-                      <svg className="case-study-content__my-contributions-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <path d="M20 6L9 17l-5-5" />
-                      </svg>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
               )}
             </div>
           )}
@@ -3093,9 +3116,9 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
 
           {/* Leading with Design Highlight */}
           {impact.leadingWithDesignHighlight && (
-            <div className="case-study-content__key-learning">
-              <h4 className="case-study-content__key-learning-heading">{impact.leadingWithDesignHighlight.heading}</h4>
-              <p className="case-study-content__key-learning-content">{impact.leadingWithDesignHighlight.content}</p>
+            <div className="case-study-content__opportunity case-study-content__opportunity--callout">
+              <strong>{impact.leadingWithDesignHighlight.heading}</strong>
+              <p style={{ margin: '0.5em 0 0 0' }}>{impact.leadingWithDesignHighlight.content}</p>
             </div>
           )}
 

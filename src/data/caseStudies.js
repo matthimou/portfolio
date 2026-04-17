@@ -33,8 +33,8 @@ export const caseStudies = [
       overlay: null
     },
     introduction: {
-      heading: 'Introduction',
-      microline: '3 years from utility to platform',
+      heading: '3 Years From Utility to Platform',
+      microline: null,
       content: 'Doubledash grew from a scrappy MVP into a $1.7B revenue channel over 3 years. This case study traces that journey, from initial hypothesis through validated product-market fit to a mature platform, to show how I led key product and organizational decisions that transformed order tracking into a core surface platform.',
       keyHighlights: null,
       contentSecondary: null,
@@ -73,7 +73,7 @@ Doubledash was a key lever in that strategy, enabling cross-vertical adoption wh
     problem: null,
     solution: {
       heading: 'The Approach',
-      strategy: 'The work was structured across three phases to validate demand, build the necessary platform capabilities, and scale the behavior.',
+      strategy: null,
       timeline: [
         {
           date: '3 Months',
@@ -101,11 +101,23 @@ Doubledash was a key lever in that strategy, enabling cross-vertical adoption wh
           },
           sectionContentAfterImageFlow: 'Building the MVP revealed friction with the option in the cart that would require significant engineering work and a longer timeline to fix. We focused ongoing investment on the order tracking experience as the primary entry point.',
           sectionHeadingAfterFlow: 'Foundations',
-          sectionContentAfterFlow: 'I led the transformation of the delivery experience from a logistics surface into a commerce platform. I introduced a number of techniques to ensure the success of the product as we shifted from the MVP to building the foundations. Starting with partnering with research to ground each phase in customer signal. Customers exposed to the MVP were excited, but had real concerns.',
+          sectionContentAfterFlow: 'I introduced a number of changes to how the team was operating to ensure the success of the product as we shifted from the MVP to building the foundations.',
+          foundationsHighlight: {
+            heading: 'My Leadership Approach',
+            items: [
+              'Grounded decisions in customer insights',
+              'Aligned success criteria and established planning rhythm',
+              'Introduced cross-functional vision sprints ahead of planning',
+              'Mentored designer to increase ownership and autonomy',
+              'Collaborated with XFN leadership to sequence work',
+              'Established governance to protect order tracking'
+            ]
+          },
           sectionContentAfterFlowSecondary: null,
           sectionContentAfterFlowTertiary: null,
           concerns: {
-            heading: 'Top customer concerns',
+            heading: 'Grounding Decisions in Research',
+            intro: 'I partnered with research to ground each phase in customer signal. Customers exposed to the MVP were excited, but had concerns that fell into three categories.',
             items: [
               {
                 category: 'Selection',
@@ -135,7 +147,7 @@ Doubledash was a key lever in that strategy, enabling cross-vertical adoption wh
               author: 'Gregory P'
             }
           ],
-          sectionClosing: 'These insights shaped the foundation of the product. They drove how we approached selection, pricing, and clarity across the experience.'
+          sectionClosing: 'These insights shaped the foundation of the product. They drove how we approached selection, pricing, and clarity in our first vision sprint.'
         },
         {
           date: '1.5 Years',
@@ -143,7 +155,7 @@ Doubledash was a key lever in that strategy, enabling cross-vertical adoption wh
           description: 'Develop the systems, UX patterns, and infrastructure required for cross-store ordering',
           sectionContent: null,
           successMetrics: {
-            heading: 'Measuring Success',
+            heading: 'Aligning Metrics & Establishing Planning Rhythm',
             intro: 'Where our initial phase focused on learning fast, we now shifted to defining the success metrics that would measure our impact as the product matured. We aligned on three core metrics to guide the next phase.',
             items: [
               {
@@ -164,7 +176,7 @@ Doubledash was a key lever in that strategy, enabling cross-vertical adoption wh
             ]
           },
           sectionContentAfterMetrics: 'These metrics became the decision framework for prioritization, guiding where we invested, what we scaled, and what we deprioritized.',
-          sectionHeadingSecondary: 'Sprints before planning',
+          sectionHeadingSecondary: null,
           sectionImageSecondary: {
             src: '/images/PlanningCycleTransparent.png',
             alt: 'Planning cycle diagram'
@@ -175,7 +187,7 @@ Doubledash was a key lever in that strategy, enabling cross-vertical adoption wh
             heading: 'Sprints Before Planning',
             content: 'This structure enabled design to directly shape product strategy - bringing fully prototyped ideas into planning and securing cross-functional alignment before roadmap commitments.'
           },
-          sectionHeadingCrossOrg: 'Governance Before Scaling',
+          sectionHeadingCrossOrg: 'Establishing Governance',
           sectionContentCrossOrg: 'As we moved toward scaling, I partnered with the Senior Director and PM for delivery tracking to establish a tiered priority system that protected order tracking while creating space for commerce.',
           priorityTiers: [
             {
@@ -194,19 +206,19 @@ Doubledash was a key lever in that strategy, enabling cross-vertical adoption wh
               examples: 'Occasions like Mother\'s Day, referrals, brand campaigns'
             }
           ],
-          sectionContentAfterTiers: 'Placements that ranked in tiers 2 and 3 were ranked against company priority at runtime to ensure a maximum number of messages was never disruptive to order tracking. This framework became the foundation for the governance model we later expanded.',
+          sectionContentAfterTiers: 'Tiers 2 and 3 were ranked with impression limits across teams to ensure messaging wasn\'t disruptive to order tracking. This framework became the foundation for the governance model we later expanded.',
           governanceHighlight: {
-            heading: 'Governance Before Scaling',
-            content: 'Without strong governance, high-traffic surfaces degrade as teams add to them. Protecting the experience from bloat is as critical as designing it well.'
+            heading: 'Establishing Governance',
+            content: 'High-traffic surfaces degrade as teams add to them. Protecting the experience from bloat is as critical as designing it well.'
           },
           sectionContentTeamBuilding: null,
-          sectionHeadingTertiary: 'Designing Product Vision',
-          sectionContentQuaternary: 'I used cross-functional vision sprints to align teams before each planning cycle. I typically wrote the first sprint brief and refined it with product partners, then transitioned ownership to my designers over time - a mechanism to scale myself while creating career development opportunities for staff.',
+          sectionHeadingTertiary: 'Introducing Cross-Functional Sprints',
+          sectionContentQuaternary: 'I used cross-functional vision sprints to align teams before each planning cycle. To illustrate how this worked in practice, I\'ll walk through the key insight from the first vision sprint that established our foundational UX.',
           visionQuestions: null,
-          sectionHeadingFirstSprint: 'The First Doubledash Sprint',
-          sectionContentQuaternarySecondary: 'To illustrate how this worked in practice, I\'ll walk through the key insight from the first Doubledash vision sprint after the product transitioned to my org.',
+          sectionHeadingFirstSprint: null,
+          sectionContentQuaternarySecondary: null,
           sprintBriefHighlight: {
-            heading: 'Sprint Brief',
+            heading: 'Sprint Focus',
             items: [
               'How customers would discover bundling',
               'How we would set proper expectations',
@@ -214,14 +226,14 @@ Doubledash was a key lever in that strategy, enabling cross-vertical adoption wh
               'How we would ensure order tracking was protected'
             ]
           },
-          sectionContentAfterBrief: 'We mapped the delivery timeline with our engineering partner to reveal hidden opportunities and design a more integrated journey.',
+          sectionContentAfterBrief: 'I led a session where we mapped the delivery timeline with our engineering partner to reveal hidden opportunities and design a more integrated journey.',
           sectionContentAfterVision: null,
           sectionImageAfterVision: {
             src: '/images/DoubleDashDeliveryTimeline.png',
             alt: 'Doubledash delivery timeline diagram'
           },
-          sectionHeadingAfterTimeline: 'The Foundational Insight',
-          sectionContentAfterTimeline: `We discovered a critical gap: after placing an order, customers had a 10-minute window to add items, but the map provided little value until a dasher was assigned. This high-intent moment was underutilized. We could transform the tracker from passive status view into an active shopping surface without impacting delivery tracking.`,
+          sectionHeadingAfterTimeline: null,
+          sectionContentAfterTimeline: `We discovered a critical gap from this exercise. After placing an order, customers had a 10-minute window to add items, but the map provided little value until a dasher was assigned. We could transform the tracker from passive status view into an active shopping surface without impacting delivery tracking.`,
           sectionImageMapInsight: {
             src: '/images/DoorDashMapoInsight.png',
             alt: 'Map insight showing limited utility during early delivery stage'
@@ -249,16 +261,13 @@ Doubledash was a key lever in that strategy, enabling cross-vertical adoption wh
           ],
           phoneVideo: null,
           sectionContentAfterVideo: 'The half-sheet transformed order tracking into a lightweight shopping surface. Prominent for those who wanted to browse, ignorable for those who didn\'t. It communicated how bundling worked and what fees to expect, with streamlined checkout that kept order tracking visible throughout.\n\nThis pattern became the foundation for how we scaled cross-merchant shopping.',
-          sprintInsightHighlight: {
-            heading: 'Cross-function Sprints',
-            content: 'Bringing cross-functional partners into the sprint ensured we identified opportunities while staying aligned with organizational priorities.'
-          },
+          sprintInsightHighlight: null,
           phoneVideoSecondary: null,
           sectionContentAfterVideoSecondary: null,
           phoneVideoTertiary: null,
           sectionContentAfterVideoTertiary: null,
-          sectionHeadingQuaternary: 'Concept Testing',
-          sectionContentQuinary: 'After the sprint, we partnered with research to test the concepts. The response validated that we were addressing core concerns from our MVPs. Customers valued the increased selection, responded positively to the perceived savings, and found the experience easier to understand.',
+          sectionHeadingQuaternary: null,
+          sectionContentQuinary: 'Our research partner tested the concepts. The response validated that we were addressing core concerns from our MVPs. Customers valued the increased selection, responded positively to the perceived savings, and found the experience easier to understand.',
           customerQuotesSecondary: [
             {
               category: 'Selection',
@@ -277,8 +286,8 @@ Doubledash was a key lever in that strategy, enabling cross-vertical adoption wh
             }
           ],
           conceptTestingHighlight: {
-            heading: 'Customer Research',
-            content: 'Validating concepts with customers ensured we were solving real problems while building alignment across stakeholders.'
+            heading: 'Cross-function Sprints',
+            content: 'Bringing cross-functional partners into the sprint led to a critical insight, and concept testing validated we were solving the key problems.'
           },
           sectionHeadingScoping: 'Sequencing',
           sectionContentScoping: 'With customer validation and cross-functional alignment, I partnered with product and engineering to break the vision into incremental milestones - delivering value early while building toward a scalable end-state.',
@@ -319,18 +328,7 @@ Doubledash was a key lever in that strategy, enabling cross-vertical adoption wh
             { value: '+20%', label: 'lift in new vertical trials' }
           ],
           sectionContentAfterImpactMetrics: 'These results validated that integrating shopping into the delivery experience increased engagement, drove incremental revenue, and expanded customer behavior beyond core ordering.',
-          myContributions: {
-            heading: 'Leadership Approach',
-            intro: null,
-            items: [
-              'Defined success criteria and established planning rhythm',
-              'Led cross-functional sprints ahead of planning',
-              'Introduced governance to protect core experiences',
-              'Mentored designers to increase ownership and autonomy',
-              'Grounded decisions in customer insights',
-              'Worked with XFN leadership to sequence work to delivery value at each stage'
-            ]
-          }
+          myContributions: null
         },
         {
           date: '1.5 Years',
@@ -390,7 +388,7 @@ As the team grew to 3 PMs and 15 engineers, my role shifted toward cross-team pr
         { src: '/images/DbDAlcoholPlatform.png', alt: 'Alcohol delivery', label: 'Alcohol' }
       ],
       headingAfterImages: 'Unifying Order Tracker and Doubledash',
-      narrativeAfterImages: 'I identified the opportunity to unify order tracking and Doubledash into a single interface, our most complex systems challenge. Separate modules had introduced architectural complexity; unifying them simplified the codebase and improved scalability.\n\nTo execute, I hired a Principal Designer with deep systems expertise to lead the effort and expand team capacity. This work not only improved the product experience but established a more scalable technical and design foundation for future growth.',
+      narrativeAfterImages: 'I proposed unifying order tracking and Doubledash into a single interface, our most complex systems challenge. Separate modules had introduced architectural complexity; unifying them simplified the codebase and improved scalability.\n\nTo execute, I hired a Principal Designer with deep systems expertise to lead the effort and expand team capacity. This work not only improved the product experience but established a more scalable technical and design foundation for future growth.',
       imageAfterFirstPara: {
         src: '/images/DbDSingleSheetPlatform.png',
         alt: 'Unified single sheet interface',
@@ -405,7 +403,7 @@ As the team grew to 3 PMs and 15 engineers, my role shifted toward cross-team pr
         half: true
       },
       principalDesignerHighlight: {
-        heading: 'Hiring A Principal Designer',
+        heading: 'Scaling the Team',
         content: 'This hire enabled the team to take on even more ambitious work and added capacity to focus on guidelines and governance.'
       },
       headingExpandingUseCases: 'Expanding Doubledash Use Cases',
@@ -480,7 +478,7 @@ A separate experiment tested item-level pairing menus. I felt it lacked prominen
         { value: '22%', label: 'increase in order volume for new verticals' }
       ],
       impactMyContributions: {
-        heading: 'Leadership Approach',
+        heading: 'My Leadership Approach',
         categories: [
           {
             title: null,
