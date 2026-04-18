@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react'
 import CaseStudyMetrics from './CaseStudyMetrics'
 import CaseStudyTestimonial from './CaseStudyTestimonial'
+import InfoIndicator from '../ui/InfoIndicator'
 import './CaseStudyContent.css'
 
 // Helper to parse **bold** text
@@ -835,6 +836,11 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                   {solution.timeline[0].sectionImages.label && (
                     <figcaption className="case-study-content__image-pair-label">
                       {solution.timeline[0].sectionImages.label}
+                      {solution.timeline[0].sectionImages.labelInfoContent && (
+                        <InfoIndicator label="More about entry points">
+                          <p>{solution.timeline[0].sectionImages.labelInfoContent}</p>
+                        </InfoIndicator>
+                      )}
                     </figcaption>
                   )}
                 </figure>
@@ -933,6 +939,32 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                             ))}
                           </ul>
                         )}
+                        {item.quoteIcon && item.quotePopup && (
+                          <div className="case-study-content__concerns-quote-trigger">
+                            <InfoIndicator
+                              variant="custom"
+                              size="lg"
+                              label="Customer quote"
+                              maxWidth={320}
+                              customTrigger={
+                                <div className="case-study-content__concerns-quote-wrapper">
+                                  <img
+                                    src={item.quoteIcon}
+                                    alt="Customer quote"
+                                    className="case-study-content__concerns-quote-icon"
+                                  />
+                                  <span className="case-study-content__concerns-quote-label">Customer Quote</span>
+                                </div>
+                              }
+                            >
+                              <blockquote className="case-study-content__popup-quote">
+                                <span className="case-study-content__popup-quote-mark">"</span>
+                                <p>{item.quotePopup.quote}</p>
+                                <cite>— {item.quotePopup.author}</cite>
+                              </blockquote>
+                            </InfoIndicator>
+                          </div>
+                        )}
                       </div>
                     ))}
                   </div>
@@ -948,7 +980,7 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                   ))}
                 </div>
               )}
-              {solution.timeline[0].customerQuotes && (
+              {solution.timeline[0].customerQuotes && solution.timeline[0].customerQuotes.length > 0 && (
                 <div className="case-study-content__customer-quotes">
                   {solution.timeline[0].customerQuotes.map((item, index) => (
                     <blockquote key={index} className="case-study-content__quote-card">
@@ -1647,10 +1679,15 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                 <p className="case-study-content__text">{solution.timeline[1].sectionContentQuaternarySecondary}</p>
               )}
               {solution.timeline[1]?.sprintBriefHighlight && (
-                <div className="case-study-content__my-contributions">
+                <div className="case-study-content__my-contributions case-study-content__my-contributions--note">
                   <h5 className="case-study-content__my-contributions-heading">
                     {solution.timeline[1].sprintBriefHighlight.heading}
                   </h5>
+                  {solution.timeline[1].sprintBriefHighlight.intro && (
+                    <p className="case-study-content__my-contributions-intro">
+                      {solution.timeline[1].sprintBriefHighlight.intro}
+                    </p>
+                  )}
                   <ul className="case-study-content__my-contributions-list">
                     {solution.timeline[1].sprintBriefHighlight.items.map((item, index) => (
                       <li key={index} className="case-study-content__my-contributions-item">
@@ -1702,6 +1739,11 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                       <path d="M21 21l-4.35-4.35M11 8v6M8 11h6" />
                     </svg>
                   </div>
+                  {solution.timeline[1].sectionImageAfterVision.label && (
+                    <figcaption className="case-study-content__section-image-caption">
+                      {solution.timeline[1].sectionImageAfterVision.label}
+                    </figcaption>
+                  )}
                 </figure>
               )}
               {solution.timeline[1]?.sectionHeadingAfterTimeline && (
@@ -1737,6 +1779,29 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                 solution.timeline[1].sectionContentBeforeVideo.split('\n\n').map((para, index) => (
                   <p key={index} className="case-study-content__text">{para}</p>
                 ))
+              )}
+              {solution.timeline[1]?.phoneVideosRowHeading && (
+                <h4 className="case-study-content__section-subheading">
+                  {solution.timeline[1]?.phoneVideosRowInfoContent ? (
+                    <InfoIndicator
+                      variant="custom"
+                      size="md"
+                      label="More about prototypes"
+                      maxWidth={320}
+                      customTrigger={
+                        <span className="case-study-content__heading-popup-trigger">
+                          {solution.timeline[1].phoneVideosRowHeading}
+                        </span>
+                      }
+                    >
+                      {solution.timeline[1].phoneVideosRowInfoContent.split('\n\n').map((sentence, idx) => (
+                        <p key={idx}>{sentence}</p>
+                      ))}
+                    </InfoIndicator>
+                  ) : (
+                    solution.timeline[1].phoneVideosRowHeading
+                  )}
+                </h4>
               )}
               {solution.timeline[1]?.phoneVideosRow && (
                 <div className="case-study-content__phone-videos-row">
@@ -1865,11 +1930,48 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                 <h4 className="case-study-content__heading">{solution.timeline[1].sectionHeadingQuaternary}</h4>
               )}
               {solution.timeline[1]?.sectionContentQuinary && (
-                solution.timeline[1].sectionContentQuinary.split('\n\n').map((para, index) => (
-                  <p key={index} className="case-study-content__text">{para}</p>
-                ))
+                typeof solution.timeline[1].sectionContentQuinary === 'string' ? (
+                  solution.timeline[1].sectionContentQuinary.split('\n\n').map((para, index) => (
+                    <p key={index} className="case-study-content__text">{para}</p>
+                  ))
+                ) : (
+                  <p className="case-study-content__text">
+                    {solution.timeline[1].sectionContentQuinary.text.split(/(\{\{[^}]+\}\})/).map((part, index) => {
+                      const match = part.match(/\{\{([^}]+)\}\}/)
+                      if (match) {
+                        const triggerText = match[1]
+                        const popupData = solution.timeline[1].sectionContentQuinary.inlinePopups[triggerText]
+                        if (popupData) {
+                          return (
+                            <InfoIndicator
+                              key={index}
+                              variant="custom"
+                              size="md"
+                              label={`Quote about ${triggerText}`}
+                              maxWidth={320}
+                              customTrigger={
+                                <span className="case-study-content__inline-popup-trigger">{triggerText}</span>
+                              }
+                            >
+                              <blockquote className="case-study-content__popup-quote">
+                                {popupData.category && (
+                                  <span className="case-study-content__popup-quote-category">{popupData.category}</span>
+                                )}
+                                <span className="case-study-content__popup-quote-mark">"</span>
+                                <p>{popupData.quote}</p>
+                                <cite>— {popupData.author}</cite>
+                              </blockquote>
+                            </InfoIndicator>
+                          )
+                        }
+                        return triggerText
+                      }
+                      return part
+                    })}
+                  </p>
+                )
               )}
-              {solution.timeline[1]?.customerQuotesSecondary && (
+              {solution.timeline[1]?.customerQuotesSecondary && solution.timeline[1].customerQuotesSecondary.length > 0 && (
                 <div className="case-study-content__customer-quotes-labeled">
                   {solution.timeline[1].customerQuotesSecondary.map((item, index) => (
                     <blockquote key={index} className="case-study-content__quote-card-labeled">
@@ -1984,7 +2086,37 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                 </div>
               )}
               {solution.timeline[1]?.sectionContentAfterTiers && (
-                <p className="case-study-content__text">{solution.timeline[1].sectionContentAfterTiers}</p>
+                typeof solution.timeline[1].sectionContentAfterTiers === 'string' ? (
+                  <p className="case-study-content__text">{solution.timeline[1].sectionContentAfterTiers}</p>
+                ) : (
+                  <p className="case-study-content__text">
+                    {solution.timeline[1].sectionContentAfterTiers.text.split(/(\{\{[^}]+\}\})/).map((part, index) => {
+                      const match = part.match(/\{\{([^}]+)\}\}/)
+                      if (match) {
+                        const triggerText = match[1]
+                        const popupData = solution.timeline[1].sectionContentAfterTiers.inlinePopups[triggerText]
+                        if (popupData) {
+                          return (
+                            <InfoIndicator
+                              key={index}
+                              variant="custom"
+                              size="md"
+                              label={`More about ${triggerText}`}
+                              maxWidth={360}
+                              customTrigger={
+                                <span className="case-study-content__inline-popup-trigger">{triggerText}</span>
+                              }
+                            >
+                              <p>{popupData.content}</p>
+                            </InfoIndicator>
+                          )
+                        }
+                        return triggerText
+                      }
+                      return part
+                    })}
+                  </p>
+                )
               )}
               {solution.timeline[1]?.governanceHighlight && (
                 <div className="case-study-content__opportunity case-study-content__opportunity--callout">
@@ -2018,7 +2150,37 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
               )}
 
               {solution.timeline[1]?.sectionContentImpact && (
-                <p className="case-study-content__text">{solution.timeline[1].sectionContentImpact}</p>
+                typeof solution.timeline[1].sectionContentImpact === 'string' ? (
+                  <p className="case-study-content__text">{solution.timeline[1].sectionContentImpact}</p>
+                ) : (
+                  <p className="case-study-content__text">
+                    {solution.timeline[1].sectionContentImpact.text.split(/(\{\{[^}]+\}\})/).map((part, index) => {
+                      const match = part.match(/\{\{([^}]+)\}\}/)
+                      if (match) {
+                        const triggerText = match[1]
+                        const popupData = solution.timeline[1].sectionContentImpact.inlinePopups[triggerText]
+                        if (popupData) {
+                          return (
+                            <InfoIndicator
+                              key={index}
+                              variant="custom"
+                              size="md"
+                              label={`More about ${triggerText}`}
+                              maxWidth={360}
+                              customTrigger={
+                                <span className="case-study-content__inline-popup-trigger">{triggerText}</span>
+                              }
+                            >
+                              <p>{popupData.content}</p>
+                            </InfoIndicator>
+                          )
+                        }
+                        return triggerText
+                      }
+                      return part
+                    })}
+                  </p>
+                )
               )}
 
               {(solution.timeline[1]?.impactImage || solution.timeline[1]?.impactMetrics) && (
@@ -2683,44 +2845,6 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
             </div>
           )}
 
-          {/* Narrative - Remaining paragraphs */}
-          {impact.narrative && impact.narrative.split('\n\n').slice(1).map((para, index) => (
-            <p key={index} className="case-study-content__text">{para}</p>
-          ))}
-
-          {/* Platform Images 4-up */}
-          {impact.platformImages && impact.platformImages.length > 0 && (
-            <div className="case-study-content__platform-grid">
-              {impact.platformImages.map((image, index) => (
-                <div
-                  key={index}
-                  className="case-study-content__platform-grid-item case-study-content__platform-grid-item--clickable"
-                  onClick={() => openPlatformLightbox(index)}
-                  role="button"
-                  tabIndex={0}
-                  onKeyDown={(e) => e.key === 'Enter' && openPlatformLightbox(index)}
-                >
-                  <img src={image.src} alt={image.alt} />
-                  {image.label && <span className="case-study-content__platform-grid-label">{image.label}</span>}
-                  <div className="case-study-content__platform-grid-zoom">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <circle cx="11" cy="11" r="8" />
-                      <path d="M21 21l-4.35-4.35M11 8v6M8 11h6" />
-                    </svg>
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
-
-          {/* Scaling Myself Highlight */}
-          {impact.scalingMyselfHighlight && (
-            <div className="case-study-content__opportunity case-study-content__opportunity--callout">
-              <strong>{impact.scalingMyselfHighlight.heading}</strong>
-              <p style={{ margin: '0.5em 0 0 0' }}>{impact.scalingMyselfHighlight.content}</p>
-            </div>
-          )}
-
           {/* Lessons from Failure */}
           {impact.lessonsHeading && (
             <h4 className="case-study-content__heading">{impact.lessonsHeading}</h4>
@@ -2814,7 +2938,14 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
           {/* Lessons Key Learning */}
           {impact.lessonsKeyLearning && (
             <div className="case-study-content__opportunity case-study-content__opportunity--callout">
-              <strong>{impact.lessonsKeyLearning.heading}</strong>
+              <strong>
+                {impact.lessonsKeyLearning.heading}
+                {impact.lessonsKeyLearning.infoContent && (
+                  <InfoIndicator label="More about this learning">
+                    <p>{impact.lessonsKeyLearning.infoContent}</p>
+                  </InfoIndicator>
+                )}
+              </strong>
               <p style={{ margin: '0.5em 0 0 0' }}>{impact.lessonsKeyLearning.content}</p>
             </div>
           )}
@@ -2822,6 +2953,69 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
           {/* Lessons Narrative After Highlight */}
           {impact.lessonsNarrativeAfterHighlight && (
             <p className="case-study-content__text">{impact.lessonsNarrativeAfterHighlight}</p>
+          )}
+
+          {/* Narrative - Remaining paragraphs */}
+          {impact.narrative && impact.narrative.split('\n\n').slice(1).map((para, index) => (
+            <p key={index} className="case-study-content__text">{para}</p>
+          ))}
+
+          {/* Platform Images Heading */}
+          {impact.platformImagesHeading && (
+            <h4 className="case-study-content__section-subheading">
+              {impact.platformImagesInfoContent ? (
+                <InfoIndicator
+                  variant="custom"
+                  size="md"
+                  label="More about scaling to platform"
+                  maxWidth={320}
+                  customTrigger={
+                    <span className="case-study-content__heading-popup-trigger">
+                      {impact.platformImagesHeading}
+                    </span>
+                  }
+                >
+                  {impact.platformImagesInfoContent.split('\n\n').map((para, idx) => (
+                    <p key={idx}>{para}</p>
+                  ))}
+                </InfoIndicator>
+              ) : (
+                impact.platformImagesHeading
+              )}
+            </h4>
+          )}
+
+          {/* Platform Images 4-up */}
+          {impact.platformImages && impact.platformImages.length > 0 && (
+            <div className="case-study-content__platform-grid">
+              {impact.platformImages.map((image, index) => (
+                <div
+                  key={index}
+                  className="case-study-content__platform-grid-item case-study-content__platform-grid-item--clickable"
+                  onClick={() => openPlatformLightbox(index)}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => e.key === 'Enter' && openPlatformLightbox(index)}
+                >
+                  <img src={image.src} alt={image.alt} />
+                  {image.label && <span className="case-study-content__platform-grid-label">{image.label}</span>}
+                  <div className="case-study-content__platform-grid-zoom">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <circle cx="11" cy="11" r="8" />
+                      <path d="M21 21l-4.35-4.35M11 8v6M8 11h6" />
+                    </svg>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {/* Scaling Myself Highlight */}
+          {impact.scalingMyselfHighlight && (
+            <div className="case-study-content__opportunity case-study-content__opportunity--callout">
+              <strong>{impact.scalingMyselfHighlight.heading}</strong>
+              <p style={{ margin: '0.5em 0 0 0' }}>{impact.scalingMyselfHighlight.content}</p>
+            </div>
           )}
 
           {/* Heading After Images */}
@@ -2836,7 +3030,30 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
             ))
           )}
 
-          {/* Image After First Para (Combined UI) */}
+          {/* Image After First Para Heading */}
+          {impact.imageAfterFirstParaHeading && (
+            <h4 className="case-study-content__section-subheading">
+              {impact.imageAfterFirstParaInfoContent ? (
+                <InfoIndicator
+                  variant="custom"
+                  size="md"
+                  label="More about unification"
+                  maxWidth={320}
+                  customTrigger={
+                    <span className="case-study-content__heading-popup-trigger">
+                      {impact.imageAfterFirstParaHeading}
+                    </span>
+                  }
+                >
+                  <p>{impact.imageAfterFirstParaInfoContent}</p>
+                </InfoIndicator>
+              ) : (
+                impact.imageAfterFirstParaHeading
+              )}
+            </h4>
+          )}
+
+          {/* Image After First Para */}
           {impact.imageAfterFirstPara && (
             <div className={`case-study-content__platform-two-up ${impact.imageAfterFirstPara.small ? 'case-study-content__platform-two-up--small' : ''}`}>
               <figure
@@ -2846,12 +3063,14 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                 tabIndex={0}
                 onKeyDown={(e) => e.key === 'Enter' && openPlatformLightbox((impact.platformImages?.length || 0))}
               >
-                <img src={impact.imageAfterFirstPara.src} alt={impact.imageAfterFirstPara.alt} />
-                <div className="case-study-content__platform-two-up-zoom">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <circle cx="11" cy="11" r="8" />
-                    <path d="M21 21l-4.35-4.35M11 8v6M8 11h6" />
-                  </svg>
+                <div className="case-study-content__platform-two-up-image-wrapper">
+                  <img src={impact.imageAfterFirstPara.src} alt={impact.imageAfterFirstPara.alt} />
+                  <div className="case-study-content__platform-two-up-zoom">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <circle cx="11" cy="11" r="8" />
+                      <path d="M21 21l-4.35-4.35M11 8v6M8 11h6" />
+                    </svg>
+                  </div>
                 </div>
                 {impact.imageAfterFirstPara.label && (
                   <figcaption className="case-study-content__platform-two-up-label">

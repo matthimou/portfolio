@@ -5,12 +5,13 @@ import './InfoIndicator.css'
  * InfoIndicator - A reusable "i" indicator that reveals content on hover/tap
  *
  * @param {Object} props
- * @param {'icon' | 'accent' | 'minimal' | 'subtle'} props.variant - Visual style variant (default: 'icon')
+ * @param {'icon' | 'accent' | 'minimal' | 'subtle' | 'custom'} props.variant - Visual style variant (default: 'icon')
  * @param {'auto' | 'top' | 'bottom' | 'left' | 'right'} props.position - Popup position
  * @param {'sm' | 'md' | 'lg'} props.size - Trigger size
  * @param {number} props.hoverDelay - Delay before showing on hover (ms)
  * @param {number} props.maxWidth - Max popup width in px
  * @param {string} props.label - Accessible label for the trigger
+ * @param {React.ReactNode} props.customTrigger - Custom trigger element (when variant='custom')
  * @param {React.ReactNode} props.children - Popup content
  */
 const InfoIndicator = ({
@@ -20,6 +21,7 @@ const InfoIndicator = ({
   hoverDelay = 150,
   maxWidth = 320,
   label = 'More information',
+  customTrigger,
   children
 }) => {
   const [isOpen, setIsOpen] = useState(false)
@@ -196,7 +198,9 @@ const InfoIndicator = ({
         aria-describedby={isOpen ? uniqueId.current : undefined}
         aria-label={label}
       >
-        {variant === 'icon' ? (
+        {variant === 'custom' && customTrigger ? (
+          customTrigger
+        ) : variant === 'icon' ? (
           <svg className="info-indicator__svg" viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <path fillRule="evenodd" clipRule="evenodd" d="M12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20ZM12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" fill="currentColor"/>
             <path d="M11 10H13V17H11V10Z" fill="currentColor"/>

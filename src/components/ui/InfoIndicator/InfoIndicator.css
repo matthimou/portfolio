@@ -5,6 +5,7 @@
   display: inline-flex;
   position: relative;
   vertical-align: middle;
+  margin-left: 0.35em;
 }
 
 /* ==========================================
@@ -150,6 +151,26 @@
 }
 
 /* ==========================================
+   Variant E: Custom Trigger
+   User-provided content as trigger
+   ========================================== */
+
+.info-indicator__trigger--custom {
+  background-color: transparent;
+  width: auto;
+  height: auto;
+  border-radius: 0;
+}
+
+.info-indicator__trigger--custom:hover {
+  transform: none;
+}
+
+.info-indicator__trigger--custom:active {
+  transform: none;
+}
+
+/* ==========================================
    Popup Container
    ========================================== */
 
@@ -202,8 +223,11 @@
   box-shadow: var(--shadow-md);
   font-family: var(--font-body);
   font-size: var(--text-sm);
+  font-weight: var(--font-weight-normal);
   line-height: var(--leading-normal);
   color: var(--color-text-primary);
+  text-align: left;
+  text-transform: none;
 }
 
 .info-indicator__content p {
@@ -223,6 +247,17 @@
 
 .info-indicator__content img:first-child {
   margin-top: 0;
+}
+
+/* Dark mode - lighter background for better contrast */
+[data-theme="dark"] .info-indicator__content {
+  background-color: #2A2A30;
+  border-color: #3A3A42;
+}
+
+[data-theme="dark"] .info-indicator__arrow {
+  background-color: #2A2A30;
+  border-color: #3A3A42;
 }
 
 /* ==========================================
