@@ -87,6 +87,7 @@ We unified order tracking and Doubledash into a single interface—our most comp
         `Unified interface over separate modules: The architectural complexity of separate surfaces was creating technical debt. I made the call to invest in unification despite the higher initial cost, and hired the talent necessary to make it successful.`
       ],
       comparison: {
+        noCard: true,
         before: {
           type: 'image',
           src: '/images/DeliveryExperienceBefore.png',

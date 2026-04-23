@@ -319,7 +319,7 @@ const LeadershipCaseStudyContent = ({ study }) => {
                 <span className="leadership-content__comparison-label">
                   {whatWeShipped.comparison.before.label}
                 </span>
-                <div className={`leadership-content__comparison-media ${whatWeShipped.comparison.noCard ? 'leadership-content__comparison-media--no-card' : ''}`}>
+                <div className="leadership-content__comparison-media">
                   {whatWeShipped.comparison.before.type === 'image' ? (
                     <img
                       src={whatWeShipped.comparison.before.src}
@@ -361,7 +361,7 @@ const LeadershipCaseStudyContent = ({ study }) => {
                 <span className="leadership-content__comparison-label">
                   {whatWeShipped.comparison.after.label}
                 </span>
-                <div className={`leadership-content__comparison-media ${whatWeShipped.comparison.noCard ? 'leadership-content__comparison-media--no-card' : ''}`}>
+                <div className="leadership-content__comparison-media">
                   {whatWeShipped.comparison.after.type === 'image' ? (
                     <img
                       src={whatWeShipped.comparison.after.src}
