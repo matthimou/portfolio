@@ -3,13 +3,200 @@
  * Add your flagship projects here following the Problem → Solution → Impact format
  */
 
+import { leadershipCaseStudies } from './caseStudiesLeadership'
+
 export const caseStudies = [
+  // Leadership variant case studies (concise, scannable in <5 minutes)
   {
     id: 'doordash-doubledash',
+    variant: 'leadership',
     status: 'published',
     protected: true,
     meta: {
       title: 'Doubledash',
+      client: 'DoorDash',
+      cardSummary: 'Grew from scrappy MVP to $1.7B revenue channel, transforming order tracking into a commerce platform.',
+      timeline: '2022-2025',
+      role: 'Director of Design, Core Consumer',
+      team: null,
+      impact: {
+        heading: 'Impact',
+        items: [
+          'Grew from MVP → $1.7B revenue channel',
+          'Transformed order tracking into a core platform surface',
+          'Drove cross-vertical adoption + increased AOV'
+        ],
+        closing: 'Led E2E delivery experience design across multiple teams, shaping product strategy, team structure, and execution over a 3-year horizon.'
+      }
+    },
+    hero: {
+      src: '/images/doubledash-hero.png',
+      video: null,
+      alt: 'Doubledash multi-store shopping experience',
+      caption: null,
+      overlay: null
+    },
+    leadership: leadershipCaseStudies['doordash-doubledash']
+  },
+  {
+    id: 'doordash-metab',
+    variant: 'leadership',
+    status: 'published',
+    protected: true,
+    hiddenFromNav: false,
+    meta: {
+      title: 'Me Tab',
+      client: 'DoorDash',
+      cardSummary: 'Built a unified customer surface driving $2.1B annual GOV and 4% of marketplace orders.',
+      timeline: '2024',
+      role: 'Director of Design, Core Consumer',
+      team: null,
+      impact: {
+        heading: 'Impact',
+        items: [
+          '4% of marketplace orders',
+          '$2.1B annual GOV',
+          '7 weeks to launch'
+        ],
+        closing: 'Built a unified customer surface to increase repeat behavior without compromising discovery.'
+      }
+    },
+    hero: {
+      src: '/images/metab-hero-yellow.png',
+      video: null,
+      alt: 'Me Tab experience',
+      caption: null,
+      overlay: null
+    },
+    leadership: leadershipCaseStudies['doordash-metab']
+  },
+  // Detail pages - sub-pages linked from leadership case studies
+  {
+    id: 'doordash-doubledash--governance',
+    variant: 'detail',
+    parentId: 'doordash-doubledash',
+    status: 'published',
+    protected: true,
+    meta: {
+      title: 'The Governance Framework',
+      subtitle: 'How we protected order tracking while enabling commerce'
+    },
+    content: {
+      sections: [
+        {
+          type: 'text',
+          content: `As Doubledash scaled, the delivery tracking surface became increasingly contested. Multiple teams wanted to surface their features—commerce, occasions, messaging, referrals—and without a framework, the experience would degrade into noise.
+
+I partnered with the Senior Director and PM for delivery tracking to establish a tiered priority system. The goal was simple: protect the core job of order tracking while creating structured space for commerce and other use cases.`
+        },
+        {
+          type: 'text',
+          heading: 'The Tiered Priority System',
+          content: `We organized messaging and features into three tiers based on their relationship to the current order:
+
+**Tier 1: Affects receiving the current order.** Grocery substitutions, delays, cancellations, messages from dashers. These always took priority.
+
+**Tier 2: Enhances receiving the current order.** Adding something extra to the current order, fee refunds. Important but secondary to core tracking.
+
+**Tier 3: Enhances a future order.** Occasions like Mother's Day, referrals, brand campaigns. Valuable but lowest priority on this surface.`
+        },
+        {
+          type: 'callout',
+          content: 'High-traffic surfaces degrade as teams add to them. Protecting the experience from bloat is as critical as designing it well.'
+        },
+        {
+          type: 'text',
+          heading: 'Impression Weighting',
+          content: `Priority alone wasn't enough. There were too many competing priorities for a simple stack-ranked system. Instead, we built an impression-weighted system that ensured everything got appropriate visibility.
+
+Lower-priority messages were personalized and impression-capped. This meant the right units were shown to the right customer at the right time—without overwhelming the experience or degrading the core tracking job.`
+        },
+        {
+          type: 'text',
+          heading: 'The Forum',
+          content: `As more teams built on the surface, we evolved guidelines into a comprehensive framework with a regular review forum. Teams would propose new features or placements, and we'd evaluate them against the tier system.
+
+This governance model became the template for how other high-traffic surfaces at DoorDash were managed. It enabled us to scale commerce without compromising the reliability customers depended on.
+
+The framework below shows how we documented the system—defining module types, ownership, configuration rules, and visual specs that teams could reference when building on the surface.`
+        },
+        {
+          type: 'image',
+          src: '/images/delivery-surface-guidelines.png',
+          alt: 'Delivery surface guidelines framework',
+          caption: 'Delivery Surface Guidelines',
+          small: true
+        }
+      ]
+    }
+  },
+  {
+    id: 'doordash-doubledash--experiment-story',
+    variant: 'detail',
+    parentId: 'doordash-doubledash',
+    status: 'published',
+    protected: true,
+    meta: {
+      title: 'The Store Page Experiments',
+      subtitle: 'What we learned in testing'
+    },
+    content: {
+      sections: [
+        {
+          type: 'text',
+          content: `Over 8 weeks of twice-weekly working sessions, we iterated on approaches to surface Doubledash earlier in the shopping flow. These sessions produced three distinct experiments to test.`
+        },
+        {
+          type: 'text',
+          heading: 'The Experiments',
+          content: `**Inline Bundling:** Embedded cross-merchant options directly in the store experience. Nearby stores would appear based on which store page customers visited, with a dedicated store page tab system.
+
+**Item-Level Pairing:** Contextual pairing menus that suggested complementary items from other merchants.
+
+**Contextual Bottom Sheet:** A bottom sheet surfaced in-flow, showing bundling opportunities at key moments in the shopping journey.`
+        },
+        {
+          type: 'media-row',
+          items: [
+            {
+              type: 'image',
+              src: '/images/S4Efailure.jpg',
+              alt: 'Inline bundling high funnel experiment',
+              caption: 'Inline Bundling',
+              myTake: "I raised concerns early that tab patterns historically underperform because customers rarely switch from defaults. But leadership was invested, so I focused on ensuring we had clear success criteria and a rollback plan before launch."
+            },
+            {
+              type: 'video',
+              src: '/images/PairingmenuFailure.mov',
+              poster: '/images/PairingmenuFailure-poster.jpg',
+              alt: 'Item-level pairing experiment',
+              caption: 'Item-Level Pairing',
+              myTake: "I disagreed with the approach but recognized the value in letting data resolve the debate. I negotiated a limited rollout to manage risk. Testing in two markets meant we could learn fast without broad exposure if it failed."
+            },
+            {
+              type: 'video',
+              src: '/images/BottomSheetOnStoreFailure.mov',
+              poster: '/images/BottomSheetOnStoreFailure-poster.jpg',
+              alt: 'Contextual bottom sheet in-flow experiment',
+              caption: 'Contextual Bottom Sheet',
+              myTake: "This leveraged existing patterns which made it attractive to eng, but I advocated against it. Interrupting the primary flow to boost a secondary behavior rarely works. The data confirmed this, and I used it to build the case for our eventual shift to behavior-aligned surfaces."
+            }
+          ]
+        },
+        {
+          type: 'callout',
+          content: 'The most effective growth comes from amplifying existing behaviors, not interrupting them in the service of visibility.'
+        }
+      ]
+    }
+  },
+  // Detailed case studies (comprehensive, for deep-dive reading)
+  {
+    id: 'doordash-doubledash-detailed',
+    status: 'draft',
+    protected: true,
+    meta: {
+      title: 'Doubledash (Detailed)',
       client: 'DoorDash',
       cardSummary: 'Grew from scrappy MVP to $1.7B revenue channel, transforming order tracking into a commerce platform.',
       timeline: '2022-2025',
@@ -567,12 +754,12 @@ A separate experiment tested item-level pairing menus. I felt it lacked prominen
     }
   },
   {
-    id: 'doordash-metab',
-    status: 'published',
+    id: 'doordash-metab-detailed',
+    status: 'draft',
     protected: true,
     hiddenFromNav: false,
     meta: {
-      title: 'Me Tab',
+      title: 'Me Tab (Detailed)',
       client: 'DoorDash',
       cardSummary: 'Built a unified customer surface driving $2.1B annual GOV and 4% of marketplace orders.',
       timeline: '2024',

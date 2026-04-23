@@ -23,8 +23,8 @@ import doordashDesc from '../data/experience/doordash.md?raw'
 import { playAccordionOpen, playAccordionClose, playCaseStudySound } from '../utils/audio'
 import './HomePage.css'
 
-// Only show published case studies on the home page
-const publishedStudies = caseStudies.filter(s => s.status === 'published')
+// Only show published case studies on the home page (exclude detail sub-pages)
+const publishedStudies = caseStudies.filter(s => s.status === 'published' && s.variant !== 'detail')
 
 const CareerPath = () => {
   const [activeCompany, setActiveCompany] = useState(5) // Default to DoorDash (most recent)
