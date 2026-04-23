@@ -9,7 +9,7 @@ export const leadershipCaseStudies = {
     impactHook: `Doubledash grew from [[a scrappy MVP|doordash-doubledash--mvp]] to a $1.7B revenue channel over 3 years. This work transformed order tracking from a passive status view into a core commerce platform, driving 8% of marketplace growth and 22% lift in new vertical adoption.`,
 
     strategicContext: {
-      content: `DoorDash was evolving from a restaurant delivery company into a multi-vertical platform. The New Verticals team noticed a signal: ~20% of customers were placing a second order within 10 minutes of their primary delivery. This revealed latent demand for bundling despite significant friction.
+      content: `DoorDash was evolving from a restaurant delivery company into a multi-vertical platform. The New Verticals team noticed a signal: ~20% of customers were placing a second order within 10 minutes of their primary delivery. This revealed latent demand for bundling despite significant friction, and [[our initial MVPs|doordash-doubledash--mvp]] validated that demand.
 
 The strategic question wasn't whether bundling could work, it was how to scale it without degrading the core delivery tracking experience that customers relied on.
 
