@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react'
+import { Link } from 'react-router-dom'
 import CaseStudyMetrics from './CaseStudyMetrics'
 import GoDeeper from '../ui/GoDeeper'
 import './LeadershipCaseStudyContent.css'
@@ -91,17 +92,81 @@ const ComparisonLightbox = ({ items, currentIndex, onClose, onPrev, onNext, noCa
  * 7. Impact & Reflection - Outcomes and leadership growth
  */
 
-// Helper to parse **bold** and {{inline popup}} text
+// Helper to parse **bold** and [[inline links|pageId]] text
 const renderWithFormatting = (text) => {
   if (!text) return null
 
-  // Handle bold text
-  if (text.includes('**')) {
+  // Handle inline links [[text|pageId]] and bold **text**
+  const hasLinks = text.includes('[[')
+  const hasBold = text.includes('**')
+
+  if (!hasLinks && !hasBold) return text
+
+  // Process inline links first, then bold within each segment
+  if (hasLinks) {
+    const linkPattern = /\[\[([^\]|]+)\|([^\]]+)\]\]/g
+    const parts = []
+    let lastIndex = 0
+    let match
+
+    while ((match = linkPattern.exec(text)) !== null) {
+      // Add text before the link
+      if (match.index > lastIndex) {
+        const beforeText = text.slice(lastIndex, match.index)
+        if (hasBold && beforeText.includes('**')) {
+          const boldParts = beforeText.split(/\*\*(.*?)\*\*/g)
+          boldParts.forEach((part, i) => {
+            if (i % 2 === 1) {
+              parts.push(<strong key={`bold-${lastIndex}-${i}`}>{part}</strong>)
+            } else if (part) {
+              parts.push(part)
+            }
+          })
+        } else {
+          parts.push(beforeText)
+        }
+      }
+      // Add the link
+      parts.push(
+        <Link
+          key={`link-${match.index}`}
+          to={`/work/${match[2]}`}
+          className="leadership-content__inline-link"
+        >
+          {match[1]}
+        </Link>
+      )
+      lastIndex = match.index + match[0].length
+    }
+
+    // Add remaining text after last link
+    if (lastIndex < text.length) {
+      const remainingText = text.slice(lastIndex)
+      if (hasBold && remainingText.includes('**')) {
+        const boldParts = remainingText.split(/\*\*(.*?)\*\*/g)
+        boldParts.forEach((part, i) => {
+          if (i % 2 === 1) {
+            parts.push(<strong key={`bold-end-${i}`}>{part}</strong>)
+          } else if (part) {
+            parts.push(part)
+          }
+        })
+      } else {
+        parts.push(remainingText)
+      }
+    }
+
+    return parts
+  }
+
+  // Handle bold text only (no links)
+  if (hasBold) {
     const parts = text.split(/\*\*(.*?)\*\*/g)
     return parts.map((part, i) =>
       i % 2 === 1 ? <strong key={i}>{part}</strong> : part
     )
   }
+
   return text
 }
 

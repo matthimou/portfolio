@@ -49,6 +49,27 @@
   margin-bottom: 0;
 }
 
+/* Inline Link (dotted underline style) */
+.leadership-content__inline-link {
+  color: var(--color-accent-primary);
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-underline-offset: 3px;
+  cursor: pointer;
+  transition: color var(--duration-fast) var(--easing-default),
+              text-decoration-style var(--duration-fast) var(--easing-default);
+}
+
+.leadership-content__inline-link:hover {
+  text-decoration-style: solid;
+}
+
+.leadership-content__inline-link:focus-visible {
+  outline: 2px solid var(--color-accent-primary);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
 /* Strategic Insight Callout */
 .leadership-content__insight {
   margin: var(--space-lg) 0;

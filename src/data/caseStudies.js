@@ -190,6 +190,98 @@ The framework below shows how we documented the system—defining module types, 
       ]
     }
   },
+  {
+    id: 'doordash-doubledash--mvp',
+    variant: 'detail',
+    parentId: 'doordash-doubledash',
+    status: 'published',
+    protected: true,
+    meta: {
+      title: 'The Scrappy MVP',
+      subtitle: 'How we validated bundling demand before building the platform'
+    },
+    content: {
+      sections: [
+        {
+          type: 'text',
+          content: `We launched the initial bundling tests with 7-Eleven because they were our data signal source and had a national footprint that let us test across markets quickly.
+
+We tested two entry points: pre-checkout (cart) and post-purchase (order tracking). The goal was to identify where bundling behavior naturally occurred.`
+        },
+        {
+          type: 'media-row',
+          items: [
+            {
+              type: 'image',
+              src: '/images/DoubledashMVP01.png',
+              alt: 'Doubledash MVP cart placement',
+              caption: 'Cart Entry Point'
+            },
+            {
+              type: 'image',
+              src: '/images/DoubleDashMVP02.png',
+              alt: 'Doubledash MVP order tracking placement',
+              caption: 'Order Tracking Entry Point'
+            }
+          ]
+        },
+        {
+          type: 'text',
+          heading: 'The Shopping Experience',
+          content: `Once customers opted in, they could browse nearby stores and add items to their delivery. The experience was intentionally minimal—we prioritized learning over polish.`
+        },
+        {
+          type: 'media-row',
+          items: [
+            {
+              type: 'image',
+              src: '/images/DoubleDashMVPStoreFlow01.png',
+              alt: 'MVP Shopping Experience step 1',
+              caption: 'Browse Stores'
+            },
+            {
+              type: 'image',
+              src: '/images/DoubleDashMVPStoreFlow02.png',
+              alt: 'MVP Shopping Experience step 2',
+              caption: 'Select Items'
+            },
+            {
+              type: 'image',
+              src: '/images/DoubleDashMVPStoreFlow03.png',
+              alt: 'MVP Shopping Experience step 3',
+              caption: 'Review Cart'
+            },
+            {
+              type: 'image',
+              src: '/images/DoubleDashMVPStoreFlow04.png',
+              alt: 'MVP Shopping Experience step 4',
+              caption: 'Confirm Order'
+            }
+          ]
+        },
+        {
+          type: 'text',
+          heading: 'What We Learned',
+          content: `Building the MVP revealed that the cart entry point required significant engineering work to fix friction issues. We focused ongoing investment on order tracking as the primary entry point—it had a faster path to validation and let us learn without blocking on infrastructure changes.`
+        },
+        {
+          type: 'text',
+          heading: 'Customer Concerns',
+          content: `I partnered with research to ground each phase in customer signal. Customers exposed to the MVP were excited, but had concerns that fell into three categories:
+
+**Selection (52%):** Low perceived relevance of merchant. Customers wanted to bundle from places they actually cared about, not just what was nearby.
+
+**Affordability (25%):** Unclear and potentially high incremental cost. The pricing model wasn't transparent enough.
+
+**Expectations (10%):** Lack of clarity on how multi-store delivery works. Customers worried about cold food or delays.`
+        },
+        {
+          type: 'callout',
+          content: 'These insights shaped the foundation of the product. They drove how we approached selection, pricing, and clarity in our first vision sprint.'
+        }
+      ]
+    }
+  },
   // Detailed case studies (comprehensive, for deep-dive reading)
   {
     id: 'doordash-doubledash-detailed',
