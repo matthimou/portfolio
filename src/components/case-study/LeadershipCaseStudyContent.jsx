@@ -59,6 +59,7 @@ const ComparisonLightbox = ({ items, currentIndex, onClose, onPrev, onNext, noCa
         ) : (
           <video
             src={currentItem.src}
+            poster={currentItem.poster}
             muted
             loop
             autoPlay
@@ -410,6 +411,7 @@ const LeadershipCaseStudyContent = ({ study }) => {
                   ) : (
                     <video
                       src={whatWeShipped.comparison.before.src}
+                      poster={whatWeShipped.comparison.before.poster}
                       muted
                       loop
                       autoPlay
@@ -452,6 +454,7 @@ const LeadershipCaseStudyContent = ({ study }) => {
                   ) : (
                     <video
                       src={whatWeShipped.comparison.after.src}
+                      poster={whatWeShipped.comparison.after.poster}
                       muted
                       loop
                       autoPlay
