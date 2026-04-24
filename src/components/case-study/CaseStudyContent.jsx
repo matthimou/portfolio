@@ -1834,6 +1834,7 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                         src={solution.timeline[1].phoneVideo.frame}
                         alt=""
                         className="case-study-content__phone-video-frame"
+                        loading="lazy"
                       />
                     )}
                   </div>
@@ -2832,6 +2833,7 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                         src={item.src}
                         alt={item.alt}
                         className="case-study-content__lessons-media-image"
+                        loading="lazy"
                       />
                     )}
                     <div className="case-study-content__lessons-media-zoom">
@@ -3266,7 +3268,7 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                       />
                     </div>
                   ) : (
-                    <img src={item.src} alt={item.alt} />
+                    <img src={item.src} alt={item.alt} loading="lazy" />
                   )}
                   <div className="case-study-content__section-image-zoom">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">

@@ -784,19 +784,6 @@
   box-shadow: none;
 }
 
-/* VideoPlayer container in lightbox needs proper sizing */
-.leadership-lightbox__content .video-player__container {
-  max-width: 100%;
-  max-height: 70vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.leadership-lightbox__content .video-player__video {
-  max-height: 70vh;
-}
-
 .leadership-lightbox__caption {
   margin-top: var(--space-lg);
   text-align: center;

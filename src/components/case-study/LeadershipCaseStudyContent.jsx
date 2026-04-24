@@ -291,7 +291,7 @@ const LeadershipCaseStudyContent = ({ study }) => {
       {/* Full Bleed Image (between Leadership Challenge and How I Led) */}
       {fullBleedImage && (
         <figure className="leadership-content__full-bleed">
-          <img src={fullBleedImage.src} alt={fullBleedImage.alt} />
+          <img src={fullBleedImage.src} alt={fullBleedImage.alt} loading="lazy" />
         </figure>
       )}
 
@@ -406,13 +406,13 @@ const LeadershipCaseStudyContent = ({ study }) => {
                       src={whatWeShipped.comparison.before.src}
                       alt={whatWeShipped.comparison.before.alt || ''}
                       className="leadership-content__comparison-img"
-                                          />
+                      loading="lazy"
+                    />
                   ) : (
                     <VideoPlayer
                       src={whatWeShipped.comparison.before.src}
                       poster={whatWeShipped.comparison.before.poster}
                       className="leadership-content__comparison-vid"
-                      showPlayIcon={false}
                     />
                   )}
                   <div className="leadership-content__comparison-zoom">
@@ -446,13 +446,13 @@ const LeadershipCaseStudyContent = ({ study }) => {
                       src={whatWeShipped.comparison.after.src}
                       alt={whatWeShipped.comparison.after.alt || ''}
                       className="leadership-content__comparison-img"
-                                          />
+                      loading="lazy"
+                    />
                   ) : (
                     <VideoPlayer
                       src={whatWeShipped.comparison.after.src}
                       poster={whatWeShipped.comparison.after.poster}
                       className="leadership-content__comparison-vid"
-                      showPlayIcon={false}
                     />
                   )}
                   <div className="leadership-content__comparison-zoom">
@@ -526,7 +526,8 @@ const LeadershipCaseStudyContent = ({ study }) => {
                 src={whatWeShipped.image.src}
                 alt={whatWeShipped.image.alt}
                 className="leadership-content__shipped-img"
-                              />
+                loading="lazy"
+              />
               {whatWeShipped.image.caption && (
                 <figcaption className="leadership-content__shipped-caption">
                   {whatWeShipped.image.caption}

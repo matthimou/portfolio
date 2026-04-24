@@ -63,6 +63,7 @@ const CaseStudyHero = ({ id, title, hero, meta, hideHeader = false }) => {
             alt={hero.alt}
             className="case-study-hero__image"
             style={hero.aspectRatio ? { aspectRatio: hero.aspectRatio, objectFit: 'contain' } : {}}
+            loading="lazy"
           />
         )}
         {hero.overlay && (
