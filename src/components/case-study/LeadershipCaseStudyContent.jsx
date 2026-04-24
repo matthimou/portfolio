@@ -309,18 +309,19 @@ const LeadershipCaseStudyContent = ({ study }) => {
 
                 return (
                   <li key={i} className="leadership-content__action">
-                    {renderWithFormatting(actionText)}
+                    <span className="leadership-content__action-text">
+                      {renderWithFormatting(actionText)}
+                    </span>
                     {goDeeper && (
-                      <>
-                        {' '}
+                      <div className="leadership-content__action-go-deeper">
                         <GoDeeper
                           to={`/work/${goDeeper.to}`}
-                          variant={goDeeper.variant || 'inline'}
+                          variant={goDeeper.variant || 'chip'}
                           returnTo={goDeeper.returnTo}
                         >
                           {goDeeper.label}
                         </GoDeeper>
-                      </>
+                      </div>
                     )}
                   </li>
                 )

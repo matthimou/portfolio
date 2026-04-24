@@ -164,6 +164,15 @@
   margin-bottom: 0;
 }
 
+.leadership-content__action-text {
+  display: block;
+}
+
+.leadership-content__action-go-deeper {
+  display: block;
+  margin-top: var(--space-sm);
+}
+
 /* Key Leadership Moment */
 .leadership-content__section--moment {
   background-color: var(--color-bg-secondary);
