@@ -84,6 +84,7 @@
   font-weight: var(--font-weight-medium);
   color: var(--color-text-primary);
   margin: 0;
+  white-space: pre-line;
 }
 
 /* Stakeholder Cards */
@@ -92,6 +93,7 @@
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: var(--space-md);
   margin-top: var(--space-lg);
+  margin-bottom: var(--space-lg);
 }
 
 .leadership-content__stakeholder {
@@ -417,6 +419,12 @@
   margin: var(--space-lg) auto 0;
 }
 
+.leadership-content__comparison-go-deeper {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--space-lg);
+}
+
 @media (max-width: 640px) {
   .leadership-content__comparison {
     flex-direction: column;
@@ -522,6 +530,125 @@
   color: var(--color-text-secondary);
   line-height: var(--leading-relaxed);
   margin: 0;
+}
+
+/* Combined Layout - Impact intro */
+.leadership-content__impact-intro {
+  font-size: var(--text-lg);
+  color: var(--color-text-primary);
+  line-height: var(--leading-relaxed);
+  margin: 0 0 var(--space-lg) 0;
+}
+
+/* Combined Layout - Unified highlight section */
+.leadership-content__highlights {
+  padding: var(--space-lg);
+  background-color: var(--color-bg-secondary);
+  border-radius: var(--radius-md);
+}
+
+/* Metrics inside highlights */
+.leadership-content__highlights-metrics {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-lg);
+  margin-bottom: var(--space-lg);
+  padding-bottom: var(--space-lg);
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.leadership-content__highlights-metric {
+  text-align: center;
+}
+
+.leadership-content__highlights-metric-value {
+  font-family: var(--font-display);
+  font-size: var(--text-4xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-accent-primary);
+  margin-bottom: var(--space-xs);
+  line-height: var(--leading-tight);
+}
+
+.leadership-content__highlights-metric-label {
+  font-size: var(--text-base);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+}
+
+/* Two-column layout for tradeoffs and takeaways */
+.leadership-content__highlights-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-xl);
+}
+
+.leadership-content__highlight-group {
+  /* No margin needed - grid handles spacing */
+}
+
+.leadership-content__highlight-label {
+  font-family: var(--font-display);
+  font-size: var(--text-xs);
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-accent-primary);
+  margin: 0 0 var(--space-sm) 0;
+}
+
+.leadership-content__highlight-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.leadership-content__highlight-item {
+  position: relative;
+  padding-left: var(--space-md);
+  margin-bottom: var(--space-xs);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-xs);
+}
+
+.leadership-content__highlight-item:last-child {
+  margin-bottom: 0;
+}
+
+.leadership-content__highlight-item::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  top: 0.15em;
+  color: var(--color-accent-primary);
+  font-weight: var(--font-weight-medium);
+}
+
+.leadership-content__highlight-title {
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+  line-height: var(--leading-normal);
+}
+
+/* Responsive: stack columns on smaller screens */
+@media (max-width: 768px) {
+  .leadership-content__highlights-metrics {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .leadership-content__highlights-columns {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+}
+
+@media (max-width: 640px) {
+  .leadership-content__highlights-metric-value {
+    font-size: var(--text-3xl);
+  }
 }
 
 /* Closing Statement */

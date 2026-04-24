@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import CaseStudyMetrics from './CaseStudyMetrics'
 import GoDeeper from '../ui/GoDeeper'
+import InfoIndicator from '../ui/InfoIndicator'
 import './LeadershipCaseStudyContent.css'
 
 // Inline link that preserves scroll position
@@ -283,6 +284,7 @@ const LeadershipCaseStudyContent = ({ study }) => {
               ))}
             </div>
           )}
+          {leadershipChallenge.contentAfter && renderParagraphs(leadershipChallenge.contentAfter)}
         </section>
       )}
 
@@ -344,7 +346,7 @@ const LeadershipCaseStudyContent = ({ study }) => {
           )}
           {keyMoment.stakes && (
             <div className="leadership-content__moment-block">
-              <h4 className="leadership-content__moment-subhead">The Stakes</h4>
+              <h4 className="leadership-content__moment-subhead">{keyMoment.stakesLabel || 'The Stakes'}</h4>
               {renderParagraphs(keyMoment.stakes)}
             </div>
           )}
@@ -384,19 +386,6 @@ const LeadershipCaseStudyContent = ({ study }) => {
       {whatWeShipped && (
         <section className="leadership-content__section">
           <h2 className="leadership-content__heading">What We Shipped</h2>
-          {renderParagraphs(whatWeShipped.content)}
-          {whatWeShipped.tradeoffs && (
-            <div className="leadership-content__tradeoffs">
-              <h4 className="leadership-content__tradeoffs-heading">Key Tradeoffs</h4>
-              <ul className="leadership-content__tradeoffs-list">
-                {whatWeShipped.tradeoffs.map((tradeoff, i) => (
-                  <li key={i} className="leadership-content__tradeoff">
-                    {renderWithFormatting(tradeoff)}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
           {whatWeShipped.comparison && (
             <div className="leadership-content__comparison">
               {/* Before */}
@@ -485,6 +474,30 @@ const LeadershipCaseStudyContent = ({ study }) => {
               </div>
             </div>
           )}
+          {whatWeShipped.comparison?.goDeeper && (
+            <div className="leadership-content__comparison-go-deeper">
+              <GoDeeper
+                to={`/work/${whatWeShipped.comparison.goDeeper.to}`}
+                variant={whatWeShipped.comparison.goDeeper.variant || 'chip'}
+                returnTo={whatWeShipped.comparison.goDeeper.returnTo}
+              >
+                {whatWeShipped.comparison.goDeeper.label}
+              </GoDeeper>
+            </div>
+          )}
+          {renderParagraphs(whatWeShipped.content)}
+          {whatWeShipped.tradeoffs && (
+            <div className="leadership-content__tradeoffs">
+              <h4 className="leadership-content__tradeoffs-heading">Key Tradeoffs</h4>
+              <ul className="leadership-content__tradeoffs-list">
+                {whatWeShipped.tradeoffs.map((tradeoff, i) => (
+                  <li key={i} className="leadership-content__tradeoff">
+                    {renderWithFormatting(tradeoff)}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
           {whatWeShipped.goDeeper && (
             <GoDeeper
               to={`/work/${whatWeShipped.goDeeper.to}`}
@@ -536,29 +549,97 @@ const LeadershipCaseStudyContent = ({ study }) => {
         <section className="leadership-content__section leadership-content__section--impact">
           <h2 className="leadership-content__heading">Impact</h2>
 
-          {impactReflection.metrics && (
-            <CaseStudyMetrics metrics={impactReflection.metrics} />
-          )}
-
-          {impactReflection.narrative && renderParagraphs(impactReflection.narrative)}
-
-          {impactReflection.organizationalImpact && (
-            <div className="leadership-content__org-impact">
-              <h4 className="leadership-content__org-impact-heading">Organizational Impact</h4>
-              {renderParagraphs(impactReflection.organizationalImpact)}
-            </div>
-          )}
-
-          {impactReflection.reflection && (
-            <div className="leadership-content__reflection">
-              <h3 className="leadership-content__reflection-heading">What I'd Do Differently</h3>
-              {impactReflection.reflection.map((item, i) => (
-                <div key={i} className="leadership-content__reflection-item">
-                  <h4 className="leadership-content__reflection-title">{item.title}</h4>
-                  <p className="leadership-content__reflection-content">{item.content}</p>
+          {/* Combined Layout: Single unified highlight with metrics + 2-column tradeoffs/takeaways */}
+          {impactReflection.combinedLayout ? (
+            <>
+              {impactReflection.impactIntro && (
+                <p className="leadership-content__impact-intro">{impactReflection.impactIntro}</p>
+              )}
+              <div className="leadership-content__highlights">
+              {/* Metrics Row */}
+              {impactReflection.metrics && (
+                <div className="leadership-content__highlights-metrics">
+                  {impactReflection.metrics.map((metric, i) => (
+                    <div key={i} className="leadership-content__highlights-metric">
+                      <div className="leadership-content__highlights-metric-value">{metric.value}</div>
+                      <div className="leadership-content__highlights-metric-label">{metric.label}</div>
+                    </div>
+                  ))}
                 </div>
-              ))}
+              )}
+
+              {/* Two-column layout for Tradeoffs and Takeaways */}
+              <div className="leadership-content__highlights-columns">
+                {impactReflection.tradeoffs && (
+                  <div className="leadership-content__highlight-group">
+                    <h4 className="leadership-content__highlight-label">Key Tradeoffs</h4>
+                    <ul className="leadership-content__highlight-list">
+                      {impactReflection.tradeoffs.map((item, i) => (
+                        <li key={i} className="leadership-content__highlight-item">
+                          <span className="leadership-content__highlight-title">
+                            {item.title}
+                          </span>
+                          {item.content && (
+                            <InfoIndicator variant="icon" size="sm" position="auto" maxWidth={280}>
+                              {item.content}
+                            </InfoIndicator>
+                          )}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {impactReflection.reflection && (
+                  <div className="leadership-content__highlight-group">
+                    <h4 className="leadership-content__highlight-label">{impactReflection.reflectionLabel || 'Leadership Takeaways'}</h4>
+                    <ul className="leadership-content__highlight-list">
+                      {impactReflection.reflection.map((item, i) => (
+                        <li key={i} className="leadership-content__highlight-item">
+                          <span className="leadership-content__highlight-title">
+                            {item.title}
+                          </span>
+                          {item.content && (
+                            <InfoIndicator variant="icon" size="sm" position="auto" maxWidth={280}>
+                              {item.content}
+                            </InfoIndicator>
+                          )}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
             </div>
+            </>
+          ) : (
+            /* Standard Layout */
+            <>
+              {impactReflection.metrics && (
+                <CaseStudyMetrics metrics={impactReflection.metrics} />
+              )}
+
+              {impactReflection.narrative && renderParagraphs(impactReflection.narrative)}
+
+              {impactReflection.organizationalImpact && (
+                <div className="leadership-content__org-impact">
+                  <h4 className="leadership-content__org-impact-heading">Organizational Impact</h4>
+                  {renderParagraphs(impactReflection.organizationalImpact)}
+                </div>
+              )}
+
+              {impactReflection.reflection && (
+                <div className="leadership-content__reflection">
+                  <h3 className="leadership-content__reflection-heading">{impactReflection.reflectionLabel || "What I'd Do Differently"}</h3>
+                  {impactReflection.reflection.map((item, i) => (
+                    <div key={i} className="leadership-content__reflection-item">
+                      <h4 className="leadership-content__reflection-title">{item.title}</h4>
+                      <p className="leadership-content__reflection-content">{item.content}</p>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </>
           )}
 
           {impactReflection.closing && (
