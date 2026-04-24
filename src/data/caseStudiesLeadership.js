@@ -6,15 +6,15 @@
 
 export const leadershipCaseStudies = {
   'doordash-doubledash': {
-    impactHook: `Doubledash grew from [[a scrappy MVP|doordash-doubledash--mvp]] to a $1.7B revenue channel over 3 years. This work transformed order tracking from a passive status view into a core commerce platform, driving 8% of marketplace growth and 22% lift in new vertical adoption.`,
+    impactHook: `Doubledash grew from a scrappy MVP to a $1.7B revenue channel over 3 years. This work transformed order tracking from a passive status view into a core commerce platform, driving 8% of marketplace growth and 22% lift in new vertical adoption.`,
 
     strategicContext: {
-      content: `DoorDash was evolving from a restaurant delivery company into a multi-vertical platform. The New Verticals team noticed a signal: ~20% of customers were placing a second order within 10 minutes of their primary delivery. This revealed latent demand for bundling despite significant friction, and [[our initial MVPs|doordash-doubledash--mvp]] validated that demand.
+      content: `DoorDash was evolving from a restaurant delivery company into a multi-vertical platform. The New Verticals team noticed a signal: ~20% of customers were placing a second order within 10 minutes of their primary delivery. This revealed latent demand for bundling despite significant friction, and led to [[our initial MVPs|doordash-doubledash--mvp]] to validate bundling demand.
 
 The strategic question wasn't whether bundling could work, it was how to scale it without degrading the core delivery tracking experience that customers relied on.
 
 Order tracking was one of DoorDash's highest-traffic surfaces. Any commerce integration risked cannibalizing the functional value that made customers return. I needed to design a system that captured bundling demand while protecting the integrity of order tracking.`,
-      insight: `The opportunity wasn't to add a feature, it was to transform a utility into a platform without disrupting what was already working.`
+      insight: `The opportunity wasn't to add a feature, it was to **transform a utility into a platform without disrupting what was already working.**`
     },
 
     leadershipChallenge: {
@@ -46,12 +46,20 @@ As the design leader, I had to create alignment mechanisms that let these teams 
           text: `**I introduced governance early.** I partnered with the Senior Director of Delivery to create a tiered priority system that protected order tracking while creating space for commerce. This framework prevented the surface from degrading as teams added to it.`,
           goDeeper: {
             to: 'doordash-doubledash--governance',
-            variant: 'inline',
+            variant: 'chip',
             label: 'Go deeper on governance',
             returnTo: 'how-i-led'
           }
         },
-        `**I established a planning rhythm that gave design strategic leverage.** Semi-annual vision sprints ahead of each planning cycle meant fully-prototyped ideas had organizational commitment before roadmap discussions began.`,
+        {
+          text: `**I established a planning rhythm that gave design strategic leverage.** Semi-annual vision sprints ahead of each planning cycle meant fully-prototyped ideas had organizational commitment before roadmap discussions began.`,
+          goDeeper: {
+            to: 'doordash-doubledash--sprints',
+            variant: 'chip',
+            label: 'Go deeper on sprints',
+            returnTo: 'how-i-led'
+          }
+        },
         `**I drove the work that got us back into the cart.** Early experiments showed cart-based bundling required significant engineering work. I pushed the organization to focus on cart refactoring and drove sprints to redefine the vision for cart, enabling Doubledash to move up-funnel and serve more use cases.`,
         `**I scaled the team to match the ambition.** I promoted my senior designer to Staff and hired DoorDash's first Principal Designer to lead our most complex systems challenge.`,
         `**I escalated failed experiments into strategy shifts.** When high-funnel experiments increased attach rate but dropped cart spend, I worked with leadership to translate those learnings into a behavior-aligned strategy.`
@@ -62,8 +70,8 @@ As the design leader, I had to create alignment mechanisms that let these teams 
       title: 'Translating Failure Into Strategy',
       situation: `Our senior director of consumer product took particular interest in expanding Doubledash visibility. For 8 weeks we met twice weekly to workshop approaches with several cross-functional senior product directors. The hypothesis was that embedding cross-merchant options earlier in the flow, on store pages, would increase bundling adoption.`,
       stakes: `This was high-visibility executive attention. The technical constraints led to heavy UI treatments: nearby stores that changed based on which page you visited, a tab system replacing natural scrolling. The risk was shipping something that felt forced and degraded the core ordering experience.`,
-      myRead: `The data was clear: attach rate increased but cart spend dropped. We were creating friction in the primary flow to boost a secondary behavior. But this was the leaders initiative. I needed to translate failure into strategic insight rather than just bad results.`,
-      action: `In our final review, I reframed the findings. The experiment proved that the most effective growth comes from amplifying existing behaviors, not interrupting them for greater visibility. I proposed shifting toward contextual, in-moment merchandising, integrating Doubledash where customers already had intent (post-order, occasions, "did you forget") rather than inserting it where they didn't.
+      myRead: `The data was clear: attach rate increased but cart spend dropped. We were creating friction in the primary flow to boost a secondary behavior. I needed to translate failure into strategic insight rather than just bad results.`,
+      action: `In our final review, I reframed the findings. The experiment proved that the most effective growth comes from amplifying existing behaviors, not interrupting them for greater visibility. I advocated for shifting toward contextual, in-moment merchandising, integrating Doubledash where customers already had intent.
 
 I committed to specific next steps: contextual merchandising for occasions, personalized recommendations, and a "For You" feed. These built on the learning while maintaining momentum.`,
       outcome: `The leaders aligned on the strategy shift. What could have been a failed initiative became the foundation for our platform approach. We rolled back the store page experiments and invested in behavior-aligned surfaces that compounded over time. This marked the transition from feature team to platform team.`,
@@ -78,12 +86,16 @@ I committed to specific next steps: contextual merchandising for occasions, pers
     whatWeShipped: {
       content: `Over three years, Doubledash evolved from a single-merchant MVP to a full multi-store shopping experience within order tracking.
 
-The final system included: a half-sheet shopping experience that transformed the map into browsable commerce, incremental ETAs per merchant, a personalized "For You" feed, cross-merchant search, contextual bundling for occasions, and full cross-merchant shopping in the cart.
-
-We unified order tracking and Doubledash into a single interface—our most complex systems challenge—which simplified the codebase and gave customers control over when to prioritize the map view.`,
+The final system included: a half-sheet shopping experience that transformed the map into browsable commerce, incremental ETAs per merchant, a personalized "For You" feed, cross-merchant search, contextual bundling for occasions, and full cross-merchant shopping in the cart.`,
+      goDeeper: {
+        to: 'doordash-doubledash--evolution',
+        variant: 'chip',
+        label: 'See the product evolution',
+        returnTo: 'what-we-shipped'
+      },
       tradeoffs: [
         `Governance enabled speed: I prioritized building a tiered review system before scaling, which gave teams clear guidance and prevented surface degradation as more teams built on the surface.`,
-        `Post-purchase first, then cart: Cart-based bundling had higher theoretical potential but required engineering work we couldn't justify early in the project. Order tracking gave us a faster path to validation. I worked separately with the cart team to redesign & refactor so we could relaunch in the cart.`,
+        `Post-purchase first, then cart: After the MVPs it was clear the cart option required engineering work we couldn't justify early in the project. Order tracking gave us a faster path to validation. I worked separately with the cart team to redesign & refactor so we could relaunch in the cart.`,
         `Unified interface over separate modules: The architectural complexity of separate surfaces was creating technical debt. I made the call to invest in unification despite the higher initial cost, and hired the talent necessary to make it successful.`
       ],
       comparison: {
@@ -115,12 +127,12 @@ We unified order tracking and Doubledash into a single interface—our most comp
       organizationalImpact: `The team grew from 1 designer to 3 (including DoorDash's first Principal Designer). I promoted my senior designer to Staff and transitioned ownership of sprint planning to them, freeing myself to focus on strategy and cross-org alignment. The governance framework I established became the model for how other high-traffic surfaces were managed.`,
       reflection: [
         {
-          title: 'Earlier governance would have saved cycles',
+          title: 'Establishing a forum earlier would have saved cycles',
           content: `I introduced governance without a forum initially. In hindsight, a set of standards without a mechanism that empowered teams to use them could have prevented some early conflicts and set clearer expectations with partner teams from the start.`
         },
         {
           title: 'Principal hire should have come sooner',
-          content: `I recognized the need for systems-level design expertise, but didn't build a strong enough case with design leadership, and other heads were prioritized first. Bringing in senior capacity earlier would have raised the quality bar faster and given me more leverage for strategic work.`
+          content: `I recognized the need for systems-level design expertise, but didn't build a strong enough case with design leadership, and other requests were prioritized first. Bringing in principle capacity earlier would have raised the quality bar faster and given me more leverage for strategic work.`
         }
       ],
       closing: `This work demonstrated that sustainable growth comes from transforming existing behaviors, not interrupting them, and that design leadership is as much about building organizational structures as it is about crafting experiences.`

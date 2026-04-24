@@ -85,7 +85,7 @@ export const caseStudies = [
       sections: [
         {
           type: 'text',
-          content: `As Doubledash scaled, the delivery tracking surface became increasingly contested. Multiple teams wanted to surface their features—commerce, occasions, messaging, referrals—and without a framework, the experience would degrade into noise.
+          content: `As Doubledash scaled, the delivery tracking surface became increasingly contested. Multiple teams wanted to surface their features - commerce, occasions, messaging, referrals - and without a framework, the experience would degrade into noise.
 
 I partnered with the Senior Director and PM for delivery tracking to establish a tiered priority system. The goal was simple: protect the core job of order tracking while creating structured space for commerce and other use cases.`
         },
@@ -102,14 +102,14 @@ I partnered with the Senior Director and PM for delivery tracking to establish a
         },
         {
           type: 'callout',
-          content: 'High-traffic surfaces degrade as teams add to them. Protecting the experience from bloat is as critical as designing it well.'
+          content: '**High-traffic surfaces degrade as teams add to them.** Protecting the experience from bloat is as critical as designing it well.'
         },
         {
           type: 'text',
           heading: 'Impression Weighting',
           content: `Priority alone wasn't enough. There were too many competing priorities for a simple stack-ranked system. Instead, we built an impression-weighted system that ensured everything got appropriate visibility.
 
-Lower-priority messages were personalized and impression-capped. This meant the right units were shown to the right customer at the right time—without overwhelming the experience or degrading the core tracking job.`
+Lower-priority messages were personalized and impression-capped. This meant the right units were shown to the right customer at the right time, without overwhelming the experience or degrading the core tracking job.`
         },
         {
           type: 'text',
@@ -118,7 +118,7 @@ Lower-priority messages were personalized and impression-capped. This meant the 
 
 This governance model became the template for how other high-traffic surfaces at DoorDash were managed. It enabled us to scale commerce without compromising the reliability customers depended on.
 
-The framework below shows how we documented the system—defining module types, ownership, configuration rules, and visual specs that teams could reference when building on the surface.`
+The image below shows how we documented the system. Module types, ownership, tier definitions, configuration rules, and visual specs that teams could reference when building on the surface.`
         },
         {
           type: 'image',
@@ -178,7 +178,7 @@ The framework below shows how we documented the system—defining module types, 
               src: '/images/BottomSheetOnStoreFailure.mov',
               poster: '/images/BottomSheetOnStoreFailure-poster.jpg',
               alt: 'Contextual bottom sheet in-flow experiment',
-              caption: 'Contextual Bottom Sheet',
+              caption: 'Bottom Sheet',
               myTake: "This leveraged existing patterns which made it attractive to eng, but I advocated against it. Interrupting the primary flow to boost a secondary behavior rarely works. The data confirmed this, and I used it to build the case for our eventual shift to behavior-aligned surfaces."
             }
           ]
@@ -269,15 +269,236 @@ We tested two entry points: pre-checkout (cart) and post-purchase (order trackin
           heading: 'Customer Concerns',
           content: `I partnered with research to ground each phase in customer signal. Customers exposed to the MVP were excited, but had concerns that fell into three categories:
 
-**Selection (52%):** Low perceived relevance of merchant. Customers wanted to bundle from places they actually cared about, not just what was nearby.
+**{{Selection}} (52%):** Low perceived relevance of merchant. Customers wanted to bundle from places they actually cared about, not just what was nearby.
 
-**Affordability (25%):** Unclear and potentially high incremental cost. The pricing model wasn't transparent enough.
+**{{Affordability}} (25%):** Unclear and potentially high incremental cost. The pricing model wasn't transparent enough.
 
-**Expectations (10%):** Lack of clarity on how multi-store delivery works. Customers worried about cold food or delays.`
+**{{Expectations}} (10%):** Lack of clarity on how multi-store delivery works. Customers worried about cold food or delays.`,
+          inlinePopups: {
+            'Selection': {
+              content: '"I wanted something from 7-Eleven the first time I tried the feature, but the next time I didn\'t. I wished I could have gotten dessert from the awesome bakery next door though." — Julia W.'
+            },
+            'Affordability': {
+              content: '"DoorDash is already expensive, I feel guilty adding a second location and more fees." — Sarah H.'
+            },
+            'Expectations': {
+              content: '"I watched them pick up my pizza first, and wondered if the extra time it would take to deliver meant cold pizza?" — Gregory P.'
+            }
+          }
         },
         {
           type: 'callout',
-          content: 'These insights shaped the foundation of the product. They drove how we approached selection, pricing, and clarity in our first vision sprint.'
+          content: '**These insights shaped the foundation of the product.** They drove how we approached selection, pricing, and clarity in our first vision sprint.'
+        }
+      ]
+    }
+  },
+  {
+    id: 'doordash-doubledash--sprints',
+    variant: 'detail',
+    parentId: 'doordash-doubledash',
+    status: 'published',
+    protected: true,
+    meta: {
+      title: 'Vision Sprints Before Planning',
+      subtitle: 'How design earned a seat at the strategy table'
+    },
+    content: {
+      sections: [
+        {
+          type: 'text',
+          content: `Traditional planning cycles often leave design reacting to decisions already made. I flipped this by establishing semi-annual vision sprints that ran ahead of each planning cycle.
+
+The model was simple: before teams committed to roadmaps, we'd run a focused sprint to explore the problem space, prototype solutions, and build cross-functional alignment. By the time planning discussions started, we had validated concepts and stakeholder buy-in. Design wasn't pitching ideas, we were presenting direction.`
+        },
+        {
+          type: 'callout',
+          content: 'Sprint outputs fed directly into H1 and H2 plans, ensuring **design vision had organizational commitment** before execution began.'
+        },
+        {
+          type: 'text',
+          heading: 'The First Vision Sprint',
+          content: `To illustrate how this worked, I'll walk through the first Doubledash vision sprint that established our foundational UX.
+
+The sprint brief I wrote focused the team on four key problems identified in our MVP research: how customers would discover bundling, how we would set proper expectations, how we would support cross-merchant shopping, and how we would ensure order tracking was protected.`
+        },
+        {
+          type: 'text',
+          heading: 'The Key Insight',
+          content: `We started with an interactive session mapping bundling mechanics with our engineering partners. This revealed a critical insight: after placing an order, customers had a ~10-minute window to add items, but the map provided little value until a dasher was assigned.
+
+This meant we could transform the tracker from a passive status view into an active shopping surface without impacting the visibility of delivery tracking. The half-sheet pattern emerged from this insight, prominent for those who wanted to browse, ignorable for those who didn't.`
+        },
+        {
+          type: 'image',
+          src: '/images/DoubleDashDeliveryTimeline.png',
+          alt: 'Doubledash delivery timeline diagram',
+          caption: 'Bundled Delivery Mechanics'
+        },
+        {
+          type: 'text',
+          heading: 'High-Fidelity Prototypes',
+          content: `By sprint end, we had high-fidelity prototypes that aligned stakeholders and set direction for planning. The half-sheet transformed order tracking into a lightweight shopping surface—prominent for those who wanted to browse, ignorable for those who didn't. It communicated how bundling worked and what fees to expect, with streamlined checkout that kept order tracking visible throughout.`
+        },
+        {
+          type: 'media-row',
+          items: [
+            {
+              type: 'video',
+              src: '/images/Doubledash01.mov?v=2',
+              poster: '/images/Doubledash01-poster.jpg',
+              alt: 'Doubledash experience on mobile',
+              caption: 'Post-order Transition'
+            },
+            {
+              type: 'video',
+              src: '/images/Doubledash02.mov',
+              poster: '/images/Doubledash02-poster.jpg',
+              alt: 'Doubledash half-sheet shopping experience',
+              caption: 'Setting Expectations'
+            },
+            {
+              type: 'video',
+              src: '/images/Doubledash03.mov',
+              poster: '/images/Doubledash03-poster.jpg',
+              alt: 'Doubledash integrated checkout experience',
+              caption: 'Integrated Checkout'
+            }
+          ]
+        },
+        {
+          type: 'text',
+          heading: 'Validating with Customers',
+          content: `After the sprint, our research partner tested the concepts. The response validated we were addressing the core concerns from our MVPs. Customers valued the {{increased selection}}, responded positively to the {{perceived savings}}, and found the experience {{easier to understand}}.`,
+          inlinePopups: {
+            'increased selection': {
+              content: '"With multiple stores to choose from, I\'d be much more likely to try this." — Fuad M.'
+            },
+            'perceived savings': {
+              content: '"I love that you\'re waiving the delivery fee. I\'m always looking for new ways to save." — Nia S.'
+            },
+            'easier to understand': {
+              content: '"Breaking down how it works really helps. I wonder if I\'d even try it without this." — Jennifer F.'
+            }
+          }
+        },
+        {
+          type: 'callout',
+          content: 'Bringing cross-functional partners into the sprint led to a critical insight, and concept testing validated we were solving the key problems.'
+        }
+      ]
+    }
+  },
+  {
+    id: 'doordash-doubledash--evolution',
+    variant: 'detail',
+    parentId: 'doordash-doubledash',
+    status: 'published',
+    protected: true,
+    meta: {
+      title: 'Product Evolution',
+      subtitle: 'From single-merchant MVP to multi-store commerce platform'
+    },
+    content: {
+      sections: [
+        {
+          type: 'text',
+          content: `Over three years, Doubledash evolved through distinct phases, each expanding capabilities while compounding business impact. What started as a single-merchant [[bundling MVP|doordash-doubledash--mvp]] grew into a full commerce platform within order tracking.`
+        },
+        {
+          type: 'text',
+          heading: 'Building the Foundation',
+          content: `With customer validation from the MVP and cross-functional alignment around our high-fidelity prototypes from the [[vision sprint|doordash-doubledash--sprints]], I partnered with product and engineering to break the vision into incremental milestones, delivering value early while building toward a scalable end-state.`
+        },
+        {
+          type: 'milestone-row',
+          items: [
+            {
+              image: { src: '/images/OrderTrackerRedesign.png', alt: 'Order tracking interface redesign' },
+              heading: 'Milestone 1 — Foundation',
+              content: 'Redesigned order tracking information architecture. Established governance for the surface.'
+            },
+            {
+              image: { src: '/images/Milestone2.png', alt: 'Milestone 2 bottom-sheet interface' },
+              heading: 'Milestone 2 — Discovery',
+              content: 'Launched bottom sheet with limited "popular items" to validate interest while engineering built inventory systems.'
+            },
+            {
+              image: { src: '/images/Milestone3.png', alt: 'Milestone 3 integrated shopping journey' },
+              heading: 'Milestone 3 — Full Experience',
+              content: 'Expanded to complete multi-merchant shopping within order tracking.'
+            }
+          ]
+        },
+        {
+          type: 'text',
+          content: `Within 18 months, we scaled the full experience across platforms, delivering a consistent and cohesive shopping journey.`
+        },
+        {
+          type: 'image',
+          src: '/images/DoubleDashCrossPlatform.jpg',
+          alt: 'Doubledash cross-platform experience',
+          caption: 'Cross-platform Doubledash',
+          clickable: true
+        },
+        {
+          type: 'text',
+          heading: 'Expanding Use Cases',
+          content: `With [[governance|doordash-doubledash--governance]] in place, we expanded into contextual merchandising. Occasions like Mother's Day, "Did You Forget?" prompts, and category-specific experiences gave customers relevant bundling opportunities without interrupting their primary flow.`
+        },
+        {
+          type: 'media-row',
+          items: [
+            { type: 'image', src: '/images/DbDOccasionPlatform.png', alt: 'Occasion-based merchandising', caption: 'Occasions' },
+            { type: 'image', src: '/images/DbDDidYouForgetPlatform.png', alt: 'Did you forget feature', caption: 'Did You Forget?' },
+            { type: 'image', src: '/images/DbDPackagesPlatform.png', alt: 'Package delivery', caption: 'Package Delivery' },
+            { type: 'image', src: '/images/DbDAlcoholPlatform.png', alt: 'Alcohol delivery', caption: 'Alcohol' }
+          ]
+        },
+        {
+          type: 'text',
+          heading: 'Unification',
+          content: `I proposed unifying order tracking and Doubledash into a single interface, our most complex systems challenge. Separate modules had introduced architectural complexity; unifying them simplified the codebase, improved scalability, and allowed customers control over when to give the map view priority.
+
+This work not only improved the product experience but established a more scalable technical and design foundation for future growth.`
+        },
+        {
+          type: 'image',
+          src: '/images/DbDSingleSheetPlatform.png',
+          alt: 'Unified single sheet interface',
+          caption: 'Unified Half Sheet',
+          phoneMockup: true,
+          clickable: true
+        },
+        {
+          type: 'text',
+          heading: 'Scaling the Platform',
+          content: `After unification we continued to scale the platform: incremental ETAs per merchant so customers knew exactly when each store's items would arrive, a personalized "For You" feed that surfaced relevant merchants, and cross-merchant search to find items across stores.`
+        },
+        {
+          type: 'media-row',
+          items: [
+            { type: 'image', src: '/images/DbDETAsPlatform.png', alt: 'Incremental ETAs', caption: 'Incremental ETAs' },
+            { type: 'image', src: '/images/DbDforyouPlatform.png', alt: 'For You feed', caption: 'For You Feed' },
+            { type: 'image', src: '/images/DbDSearchPlatform.png', alt: 'Cross-merchant search', caption: 'Search' }
+          ]
+        },
+        {
+          type: 'text',
+          content: `Finally, we introduced contextual bundling for occasions, merchants on the map for location context, and full cross-merchant shopping in the cart, completing the transformation from utility to platform.`
+        },
+        {
+          type: 'media-row',
+          items: [
+            { type: 'image', src: '/images/doubledash-mother-day.png', alt: 'Mothers Day promotion', caption: 'Mother\'s Day' },
+            { type: 'image', src: '/images/doubledash-deserts.png', alt: 'Desserts promotion', caption: 'Desserts' },
+            { type: 'image', src: '/images/dBdMerchantsInMapPlatform.jpg', alt: 'Merchants on map', caption: 'Merchants on Map' },
+            { type: 'image', src: '/images/DbDinCartPlatform.png', alt: 'Doubledash in cart', caption: 'In Cart' }
+          ]
+        },
+        {
+          type: 'callout',
+          content: '**Each phase expanded capabilities while compounding business impact.** The governance framework enabled us to scale without degrading the core experience.'
         }
       ]
     }
