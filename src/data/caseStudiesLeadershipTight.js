@@ -83,7 +83,7 @@ Transform order tracking - a utility surface - into a shopping platform without 
         noCard: true,
         before: {
           type: 'image',
-          src: '/images/DeliveryExperienceBefore.png',
+          src: '/images/DeliveryExperienceBefore.webp',
           alt: 'Delivery tracking before Doubledash',
           label: 'Before',
           caption: 'Delivery Tracking'
@@ -215,14 +215,14 @@ With:
         noCard: true,
         before: {
           type: 'image',
-          src: '/images/metab-orders-tab.png',
+          src: '/images/metab-orders-tab.webp',
           alt: 'Orders Tab before Me Tab',
           label: 'Before',
           caption: 'Orders Tab'
         },
         after: {
           type: 'image',
-          src: '/images/metab-after-shot.png',
+          src: '/images/metab-after-shot.webp',
           alt: 'Me Tab final release',
           label: 'After',
           caption: 'Me Tab'
