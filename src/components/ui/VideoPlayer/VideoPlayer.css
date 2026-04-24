@@ -2,12 +2,40 @@
   margin: 0;
 }
 
+.video-player__container {
+  position: relative;
+  display: block;
+}
+
 .video-player__video {
   width: 100%;
   height: auto;
   display: block;
   border-radius: var(--radius-lg, 12px);
   box-shadow: var(--shadow-md);
+}
+
+.video-player__play-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 64px;
+  height: 64px;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.video-player__play-icon svg {
+  width: 32px;
+  height: 32px;
+  color: white;
+  margin-left: 4px; /* Visual centering for play triangle */
 }
 
 .video-player__video--no-shadow {
