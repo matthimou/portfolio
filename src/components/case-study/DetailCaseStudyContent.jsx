@@ -305,7 +305,6 @@ const renderSection = (section, index, { onMilestoneClick, onImageClick, linkCon
             src={section.src}
             alt={section.alt || ''}
             className="detail-content__phone-image"
-            loading="lazy"
           />
           {section.clickable && zoomIcon}
         </div>
@@ -315,7 +314,6 @@ const renderSection = (section, index, { onMilestoneClick, onImageClick, linkCon
             src={section.src}
             alt={section.alt || ''}
             className="detail-content__image"
-            loading="lazy"
           />
           {section.clickable && zoomIcon}
         </>
@@ -406,7 +404,6 @@ const renderSection = (section, index, { onMilestoneClick, onImageClick, linkCon
                         src={item.src}
                         alt={item.alt || ''}
                         className="detail-content__media-image"
-                        loading="lazy"
                       />
                       <div className="detail-content__zoom-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -456,7 +453,6 @@ const renderSection = (section, index, { onMilestoneClick, onImageClick, linkCon
                     src={item.image.src}
                     alt={item.image.alt || ''}
                     className="detail-content__milestone-image"
-                    loading="lazy"
                   />
                   <div className="detail-content__zoom-icon">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -484,7 +480,6 @@ const renderSection = (section, index, { onMilestoneClick, onImageClick, linkCon
                   <img
                     src={item.image}
                     alt={item.title || ''}
-                    loading="lazy"
                   />
                 </div>
               )}

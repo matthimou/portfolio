@@ -5,6 +5,8 @@
 .video-player__container {
   position: relative;
   display: block;
+  width: 100%;
+  height: auto;
 }
 
 .video-player__video {

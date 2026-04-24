@@ -291,7 +291,7 @@ const LeadershipCaseStudyContent = ({ study }) => {
       {/* Full Bleed Image (between Leadership Challenge and How I Led) */}
       {fullBleedImage && (
         <figure className="leadership-content__full-bleed">
-          <img src={fullBleedImage.src} alt={fullBleedImage.alt} loading="lazy" />
+          <img src={fullBleedImage.src} alt={fullBleedImage.alt} />
         </figure>
       )}
 
@@ -406,8 +406,7 @@ const LeadershipCaseStudyContent = ({ study }) => {
                       src={whatWeShipped.comparison.before.src}
                       alt={whatWeShipped.comparison.before.alt || ''}
                       className="leadership-content__comparison-img"
-                      loading="lazy"
-                    />
+                                          />
                   ) : (
                     <VideoPlayer
                       src={whatWeShipped.comparison.before.src}
@@ -446,8 +445,7 @@ const LeadershipCaseStudyContent = ({ study }) => {
                       src={whatWeShipped.comparison.after.src}
                       alt={whatWeShipped.comparison.after.alt || ''}
                       className="leadership-content__comparison-img"
-                      loading="lazy"
-                    />
+                                          />
                   ) : (
                     <VideoPlayer
                       src={whatWeShipped.comparison.after.src}
@@ -526,8 +524,7 @@ const LeadershipCaseStudyContent = ({ study }) => {
                 src={whatWeShipped.image.src}
                 alt={whatWeShipped.image.alt}
                 className="leadership-content__shipped-img"
-                loading="lazy"
-              />
+                              />
               {whatWeShipped.image.caption && (
                 <figcaption className="leadership-content__shipped-caption">
                   {whatWeShipped.image.caption}
