@@ -4,13 +4,14 @@
  */
 
 import { leadershipCaseStudies } from './caseStudiesLeadership'
+import { tightLeadershipCaseStudies } from './caseStudiesLeadershipTight'
 
 export const caseStudies = [
   // Leadership variant case studies (concise, scannable in <5 minutes)
   {
     id: 'doordash-doubledash',
     variant: 'leadership',
-    status: 'published',
+    status: 'draft',
     protected: true,
     meta: {
       title: 'Doubledash',
@@ -502,6 +503,71 @@ This work not only improved the product experience but established a more scalab
         }
       ]
     }
+  },
+  // Tight leadership variants (for comparison testing)
+  {
+    id: 'doordash-doubledash-tight',
+    variant: 'leadership',
+    status: 'published',
+    protected: true,
+    hiddenFromNav: false,
+    meta: {
+      title: 'Doubledash',
+      client: 'DoorDash',
+      cardSummary: 'Grew from scrappy MVP to $1.7B revenue channel, transforming order tracking into a commerce platform.',
+      timeline: '2022-2025',
+      role: 'Director of Design, Core Consumer',
+      team: null,
+      impact: {
+        heading: 'Impact',
+        items: [
+          'Grew from MVP → $1.7B revenue channel',
+          'Transformed order tracking into a core platform surface',
+          'Drove cross-vertical adoption + increased AOV'
+        ],
+        closing: 'Led E2E delivery experience design across multiple teams, shaping product strategy, team structure, and execution over a 3-year horizon.'
+      }
+    },
+    hero: {
+      src: '/images/doubledash-hero.png',
+      video: null,
+      alt: 'Doubledash multi-store shopping experience',
+      caption: null,
+      overlay: null
+    },
+    leadership: tightLeadershipCaseStudies['doordash-doubledash']
+  },
+  {
+    id: 'doordash-metab-tight',
+    variant: 'leadership',
+    status: 'published',
+    protected: true,
+    hiddenFromNav: true,
+    meta: {
+      title: 'Me Tab (Tight)',
+      client: 'DoorDash',
+      cardSummary: 'Built a unified customer surface driving $2.1B annual GOV and 4% of marketplace orders.',
+      timeline: '2024',
+      role: 'Director of Design, Core Consumer',
+      team: null,
+      impact: {
+        heading: 'Impact',
+        items: [
+          '4% of marketplace orders',
+          '$2.1B annual GOV',
+          '7 weeks to launch'
+        ],
+        closing: 'Built a unified customer surface to increase repeat behavior without compromising discovery.'
+      }
+    },
+    hero: {
+      src: '/images/metab-hero-yellow.png',
+      video: null,
+      alt: 'Me Tab experience',
+      caption: null,
+      overlay: null
+    },
+    leadership: tightLeadershipCaseStudies['doordash-metab']
   },
   // Detailed case studies (comprehensive, for deep-dive reading)
   {

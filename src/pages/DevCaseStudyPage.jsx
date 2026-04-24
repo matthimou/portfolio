@@ -2,6 +2,8 @@ import { useParams, Link, Navigate } from 'react-router-dom'
 import { caseStudies } from '../data/caseStudies'
 import CaseStudyHero from '../components/case-study/CaseStudyHero'
 import CaseStudyContent from '../components/case-study/CaseStudyContent'
+import LeadershipCaseStudyContent from '../components/case-study/LeadershipCaseStudyContent'
+import DetailCaseStudyContent from '../components/case-study/DetailCaseStudyContent'
 import './CaseStudyPage.css'
 
 /**
@@ -58,13 +60,19 @@ const DevCaseStudyPage = () => {
           />
 
           <div className="case-study-page__body">
-            <CaseStudyContent
-              introduction={study.introduction}
-              problem={study.problem}
-              solution={study.solution}
-              impact={study.impact}
-              features={study.features}
-            />
+            {study.variant === 'leadership' ? (
+              <LeadershipCaseStudyContent study={study} />
+            ) : study.variant === 'detail' ? (
+              <DetailCaseStudyContent study={study} />
+            ) : (
+              <CaseStudyContent
+                introduction={study.introduction}
+                problem={study.problem}
+                solution={study.solution}
+                impact={study.impact}
+                features={study.features}
+              />
+            )}
           </div>
         </article>
 
