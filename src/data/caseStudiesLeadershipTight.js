@@ -90,7 +90,7 @@ Transform order tracking - a utility surface - into a shopping platform without 
         },
         after: {
           type: 'video',
-          src: '/images/DoubledashWalkthroughFinal02.mov',
+          src: '/images/DoubledashWalkthroughFinal02.mp4',
           label: 'After',
           caption: 'Core Commerce Platform'
         },
