@@ -412,6 +412,7 @@ const LeadershipCaseStudyContent = ({ study }) => {
                       src={whatWeShipped.comparison.before.src}
                       poster={whatWeShipped.comparison.before.poster}
                       className="leadership-content__comparison-vid"
+                      showPlayIcon={false}
                     />
                   )}
                   <div className="leadership-content__comparison-zoom">
@@ -451,6 +452,7 @@ const LeadershipCaseStudyContent = ({ study }) => {
                       src={whatWeShipped.comparison.after.src}
                       poster={whatWeShipped.comparison.after.poster}
                       className="leadership-content__comparison-vid"
+                      showPlayIcon={false}
                     />
                   )}
                   <div className="leadership-content__comparison-zoom">
