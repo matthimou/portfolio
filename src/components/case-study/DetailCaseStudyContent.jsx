@@ -262,6 +262,11 @@ const renderParagraphs = (text, className = 'detail-content__text', inlinePopups
 // Render a content section based on its type
 const renderSection = (section, index, { onMilestoneClick, onImageClick, linkContext } = {}) => {
   switch (section.type) {
+    case 'section-heading':
+      return (
+        <h2 key={index} className="detail-content__section-heading">{section.content}</h2>
+      )
+
     case 'text':
       return (
         <div key={index} className="detail-content__section">
@@ -277,7 +282,8 @@ const renderSection = (section, index, { onMilestoneClick, onImageClick, linkCon
         'detail-content__figure',
         section.small && 'detail-content__figure--small',
         section.phoneMockup && 'detail-content__figure--phone-mockup',
-        section.clickable && 'detail-content__figure--clickable'
+        section.clickable && 'detail-content__figure--clickable',
+        section.align === 'left' && 'detail-content__figure--left'
       ].filter(Boolean).join(' ')
 
       const zoomIcon = (
@@ -460,6 +466,29 @@ const renderSection = (section, index, { onMilestoneClick, onImageClick, linkCon
               )}
               <h3 className="detail-content__milestone-heading">{item.heading}</h3>
               <p className="detail-content__milestone-content">{item.content}</p>
+            </div>
+          ))}
+        </div>
+      )
+
+    case 'principles-row':
+      return (
+        <div key={index} className="detail-content__principles-row">
+          {section.items.map((item, i) => (
+            <div key={i} className="detail-content__principle">
+              {item.image && (
+                <div className="detail-content__principle-icon">
+                  <img
+                    src={item.image}
+                    alt={item.title || ''}
+                  />
+                </div>
+              )}
+              {item.microHeader && (
+                <span className="detail-content__principle-micro">{item.microHeader}</span>
+              )}
+              <h3 className="detail-content__principle-title">{item.title}</h3>
+              <p className="detail-content__principle-desc">{item.description}</p>
             </div>
           ))}
         </div>

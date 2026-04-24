@@ -116,6 +116,21 @@
   line-height: var(--leading-normal);
 }
 
+/* Full Bleed Image */
+.leadership-content__full-bleed {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  margin-top: var(--space-xl);
+  margin-bottom: var(--space-xl);
+}
+
+.leadership-content__full-bleed img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
 /* How I Led - Action List */
 .leadership-content__actions {
   list-style: none;
@@ -393,6 +408,13 @@
   color: var(--color-text-tertiary);
   margin-top: var(--space-sm);
   text-align: center;
+}
+
+/* GoDeeper chip after comparison */
+.leadership-content__comparison + .go-deeper {
+  display: flex;
+  width: fit-content;
+  margin: var(--space-lg) auto 0;
 }
 
 @media (max-width: 640px) {

@@ -1,8 +1,26 @@
 import React, { useState, useEffect, useCallback } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import CaseStudyMetrics from './CaseStudyMetrics'
 import GoDeeper from '../ui/GoDeeper'
 import './LeadershipCaseStudyContent.css'
+
+// Inline link that preserves scroll position
+const InlineLink = ({ to, children, className }) => {
+  const navigate = useNavigate()
+
+  const handleClick = (e) => {
+    e.preventDefault()
+    // Save current scroll position before navigating
+    const scrollY = window.scrollY
+    navigate(to, { state: { scrollY } })
+  }
+
+  return (
+    <Link to={to} onClick={handleClick} className={className}>
+      {children}
+    </Link>
+  )
+}
 
 // Light-themed Lightbox for comparison media
 const ComparisonLightbox = ({ items, currentIndex, onClose, onPrev, onNext, noCard }) => {
@@ -128,13 +146,13 @@ const renderWithFormatting = (text) => {
       }
       // Add the link
       parts.push(
-        <Link
+        <InlineLink
           key={`link-${match.index}`}
           to={`/work/${match[2]}`}
           className="leadership-content__inline-link"
         >
           {match[1]}
-        </Link>
+        </InlineLink>
       )
       lastIndex = match.index + match[0].length
     }
@@ -205,6 +223,7 @@ const LeadershipCaseStudyContent = ({ study }) => {
     impactHook,
     strategicContext,
     leadershipChallenge,
+    fullBleedImage,
     howILed,
     keyMoment,
     whatWeShipped,
@@ -265,6 +284,13 @@ const LeadershipCaseStudyContent = ({ study }) => {
             </div>
           )}
         </section>
+      )}
+
+      {/* Full Bleed Image (between Leadership Challenge and How I Led) */}
+      {fullBleedImage && (
+        <figure className="leadership-content__full-bleed">
+          <img src={fullBleedImage.src} alt={fullBleedImage.alt} />
+        </figure>
       )}
 
       {/* Section 4: How I Led */}
@@ -458,6 +484,15 @@ const LeadershipCaseStudyContent = ({ study }) => {
                 )}
               </div>
             </div>
+          )}
+          {whatWeShipped.goDeeper && (
+            <GoDeeper
+              to={`/work/${whatWeShipped.goDeeper.to}`}
+              variant={whatWeShipped.goDeeper.variant || 'chip'}
+              returnTo={whatWeShipped.goDeeper.returnTo}
+            >
+              {whatWeShipped.goDeeper.label}
+            </GoDeeper>
           )}
           {whatWeShipped.video && !whatWeShipped.comparison && (
             <figure className="leadership-content__shipped-video">

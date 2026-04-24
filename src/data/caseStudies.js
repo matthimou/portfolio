@@ -1416,6 +1416,196 @@ This positioned Me Tab as a durable driver of repeat behavior - capturing high-i
       closing: 'This work established a durable foundation for how DoorDash organizes, personalizes, and scales customer identity & management, turning a fragmented set of features into a cohesive system.'
     }
   },
+  // Me Tab detail sub-pages
+  {
+    id: 'doordash-metab--sprint',
+    variant: 'detail',
+    parentId: 'doordash-metab',
+    status: 'published',
+    protected: true,
+    meta: {
+      title: 'Principles, Metrics & Sprint',
+      subtitle: 'How shared frameworks enabled a 3-day sprint to succeed'
+    },
+    content: {
+      sections: [
+        {
+          type: 'section-heading',
+          content: 'The Team'
+        },
+        {
+          type: 'image',
+          src: '/images/metab-team-all.png',
+          alt: 'Me Tab sprint team',
+          caption: 'Design • Research • Content • Product'
+        },
+        {
+          type: 'text',
+          content: `Cross-functional team across design, product, research, and content (10+ contributors). Before the sprint, I wrote a brief to reframe the problem, and led a working session to align on context and constraints. This session built shared understanding before the sprint clock started.`
+        },
+        {
+          type: 'section-heading',
+          content: 'Design Principles'
+        },
+        {
+          type: 'text',
+          content: `We defined principles based on user needs upfront to establish a shared framework for evaluating concepts and making tradeoffs.`
+        },
+        {
+          type: 'principles-row',
+          items: [
+            {
+              microHeader: 'Surface Intent',
+              image: '/images/metab-ddesign-principle01.png',
+              title: 'Find what I care about',
+              description: 'A surface to find my go-to stores, reorder my favorite meals or items and find deals from my favorite places.'
+            },
+            {
+              microHeader: 'Reinforce Identity',
+              image: '/images/metab-ddesign-principle02.png',
+              title: 'Build my identity',
+              description: 'A place to build and manage my identity and see how DoorDash has made my life better.'
+            },
+            {
+              microHeader: 'Enable Action',
+              image: '/images/metab-ddesign-principle03.png',
+              title: 'Access to key flows',
+              description: 'A predictable surface to find core app features like order tracking, history, settings and my profile.'
+            }
+          ]
+        },
+        {
+          type: 'text',
+          content: `I defined success metrics with the Product Director. Without guardrails, we risked over-indexing on identity at the expense of reorder, the core business driver.`
+        },
+        {
+          type: 'list',
+          items: [
+            `**Primary Metric: GOV** — Anchored the work in business impact and ensured we optimized for reorder behavior, not just engagement.`,
+            `**Secondary: Incremental DashPass Signups** — Created space for subscription growth while keeping it secondary to core reorder performance.`,
+            `**Secondary: Orders** — Ensured we maintained continuity with the existing Orders Tab and didn't regress core behavior.`
+          ]
+        },
+        {
+          type: 'callout',
+          content: '**GOV as primary metric ensured we optimized for reorder behavior, not just engagement.** DashPass subscriptions were important but not dominant.'
+        },
+        {
+          type: 'text',
+          heading: 'A 3-Day Sprint',
+          content: `Three days isn't much time, but speed was the point. We needed alignment before teams could retreat to their corners.
+
+**Day one** built shared context: data science presented analytics, research shared findings, partner teams outlined strategies. Groups organized by principle defined clear customer problems before exploring solutions.
+
+**Day two** explored solutions in rapid cycles. Two hours on concepts, regroup, feedback, repeat. When stakeholders reviewed explorations that afternoon, the breadth of ideas gave us early signals on directions to pursue and built alignment with leadership on the core concept.
+
+**Day three** converged on architecture. Because work was organized around shared principles, solutions were modular and it was clear how the system would come together. We left with clear architecture, prioritized modules, and alignment to move into build.`
+        },
+        {
+          type: 'image',
+          src: '/images/metab-architecture.png',
+          alt: 'Page architecture showing modular system',
+          caption: 'Final architecture from sprint',
+          small: true,
+          clickable: true
+        },
+        {
+          type: 'callout',
+          content: '**Principles and metrics defined upfront meant tradeoffs could be resolved by framework.** Sprint time went to solutions, not priority debates.'
+        }
+      ]
+    }
+  },
+  {
+    id: 'doordash-metab--launched',
+    variant: 'detail',
+    parentId: 'doordash-metab',
+    status: 'published',
+    protected: true,
+    meta: {
+      title: 'What We Shipped',
+      subtitle: 'The final design organized around three core user needs'
+    },
+    content: {
+      sections: [
+        {
+          type: 'text',
+          content: `The final design reflected deliberate trade-offs. Reorder dominated V1 because we were replacing significant revenue. DashPass earned visibility but not a full hub yet. Social got a foundation, not a destination. Everything organized around the three core user needs from the sprint.`
+        },
+        {
+          type: 'section-heading',
+          content: 'Find what I care about'
+        },
+        {
+          type: 'image',
+          src: '/images/metab-find.jpg',
+          alt: 'Find what I care about',
+          small: true,
+          clickable: true,
+          align: 'left'
+        },
+        {
+          type: 'text',
+          content: `Go-to stores ranked by time of day, recency, and frequency with active deals. Top Orders made past purchases visual and scannable. Reordering became a single action.`
+        },
+        {
+          type: 'section-heading',
+          content: 'Build my identity'
+        },
+        {
+          type: 'image',
+          src: '/images/metab-idenity.jpg',
+          alt: 'Build my identity',
+          small: true,
+          clickable: true,
+          align: 'left'
+        },
+        {
+          type: 'text',
+          content: `DashPass anchored the identity layer with customer recognition, membership status and dynamic savings messaging. In-page navigation provided access to profile and social contributions.`
+        },
+        {
+          type: 'section-heading',
+          content: 'Access to key flows'
+        },
+        {
+          type: 'image',
+          src: '/images/metab-maintain-access.jpg',
+          alt: 'Maintain access to key flows',
+          small: true,
+          clickable: true,
+          align: 'left'
+        },
+        {
+          type: 'text',
+          content: `The surface unified DashPass management, order history, and account settings all from a single, predictable entry point.`
+        },
+        {
+          type: 'section-heading',
+          content: 'Customer Validation'
+        },
+        {
+          type: 'text',
+          content: `After the sprint, we partnered with research to validate the concepts with customers. Three themes consistently emerged: {{DashPass visibility}}, {{reorder clarity}}, and {{personalization}}.`,
+          inlinePopups: {
+            'DashPass visibility': {
+              content: '"This makes sense. I never knew DashPass had all these benefits—I guess I never really knew where to look." — Maria P.'
+            },
+            'reorder clarity': {
+              content: '"This enables me to quickly scan my past orders visually. I order from the same places a lot, but my carts match my mood that day. Now I can tell them apart." — George W.'
+            },
+            'personalization': {
+              content: '"I\'m usually at the office weekdays, but evenings and weekends I\'m ordering at home, so the stores updating like this would save me time." — Wanda D.'
+            }
+          }
+        },
+        {
+          type: 'callout',
+          content: `**Customers understood DashPass value, could scan and reorder past purchases, and responded to personalization.** We kept scope focused and had specs ready within a week.`
+        }
+      ]
+    }
+  },
   {
     id: 'doordash-evidence',
     status: 'draft',
