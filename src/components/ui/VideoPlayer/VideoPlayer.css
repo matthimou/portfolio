@@ -1,0 +1,35 @@
+.video-player {
+  margin: 0;
+}
+
+.video-player__video {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--radius-lg, 12px);
+  box-shadow: var(--shadow-md);
+}
+
+.video-player__video--no-shadow {
+  box-shadow: none;
+}
+
+.video-player__video--no-radius {
+  border-radius: 0;
+}
+
+.video-player__video--clickable {
+  cursor: pointer;
+}
+
+.video-player__video--clickable:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.video-player__caption {
+  margin-top: var(--spacing-sm, 8px);
+  font-size: var(--font-size-sm, 14px);
+  color: var(--color-text-secondary);
+  text-align: center;
+}

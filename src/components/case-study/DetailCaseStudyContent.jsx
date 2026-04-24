@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { caseStudies } from '../../data/caseStudies'
 import InfoIndicator from '../ui/InfoIndicator/InfoIndicator'
+import VideoPlayer from '../ui/VideoPlayer'
 import './DetailCaseStudyContent.css'
 
 // Lightbox component for detail pages
@@ -66,7 +67,7 @@ const DetailLightbox = ({ items, currentIndex, onClose, onPrev, onNext }) => {
 }
 
 // Inline link component that preserves scroll position and passes referrer info
-const InlineLink = ({ to, children, className, referrerId, referrerTitle }) => {
+const InlineLink = ({ to, children, className, referrerId, referrerTitle, parentScrollY }) => {
   const navigate = useNavigate()
   const handleClick = (e) => {
     e.preventDefault()
@@ -75,7 +76,8 @@ const InlineLink = ({ to, children, className, referrerId, referrerTitle }) => {
       state: {
         scrollY,
         referrerId,
-        referrerTitle
+        referrerTitle,
+        parentScrollY
       }
     })
   }
@@ -132,6 +134,7 @@ const renderWithFormatting = (text, inlinePopups = null, linkContext = null) => 
           className="detail-content__inline-link"
           referrerId={linkContext?.referrerId}
           referrerTitle={linkContext?.referrerTitle}
+          parentScrollY={linkContext?.parentScrollY}
         >
           {match[1]}
         </InlineLink>
@@ -302,6 +305,7 @@ const renderSection = (section, index, { onMilestoneClick, onImageClick, linkCon
             src={section.src}
             alt={section.alt || ''}
             className="detail-content__phone-image"
+            loading="lazy"
           />
           {section.clickable && zoomIcon}
         </div>
@@ -311,6 +315,7 @@ const renderSection = (section, index, { onMilestoneClick, onImageClick, linkCon
             src={section.src}
             alt={section.alt || ''}
             className="detail-content__image"
+            loading="lazy"
           />
           {section.clickable && zoomIcon}
         </>
@@ -390,13 +395,9 @@ const renderSection = (section, index, { onMilestoneClick, onImageClick, linkCon
                   onKeyDown={isClickable ? (e) => e.key === 'Enter' && onImageClick?.(mediaRowItems, lightboxIndex) : undefined}
                 >
                   {item.type === 'video' ? (
-                    <video
+                    <VideoPlayer
                       src={item.src}
                       poster={item.poster}
-                      muted
-                      loop
-                      autoPlay
-                      playsInline
                       className="detail-content__media-video"
                     />
                   ) : (
@@ -405,6 +406,7 @@ const renderSection = (section, index, { onMilestoneClick, onImageClick, linkCon
                         src={item.src}
                         alt={item.alt || ''}
                         className="detail-content__media-image"
+                        loading="lazy"
                       />
                       <div className="detail-content__zoom-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -454,6 +456,7 @@ const renderSection = (section, index, { onMilestoneClick, onImageClick, linkCon
                     src={item.image.src}
                     alt={item.image.alt || ''}
                     className="detail-content__milestone-image"
+                    loading="lazy"
                   />
                   <div className="detail-content__zoom-icon">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -481,6 +484,7 @@ const renderSection = (section, index, { onMilestoneClick, onImageClick, linkCon
                   <img
                     src={item.image}
                     alt={item.title || ''}
+                    loading="lazy"
                   />
                 </div>
               )}
@@ -508,6 +512,10 @@ const DetailCaseStudyContent = ({ study }) => {
   // Read referrer info for dynamic back navigation
   const referrerId = location.state?.referrerId
   const referrerTitle = location.state?.referrerTitle
+
+  // Preserve parent scroll position through navigation chain
+  // This is the scroll position to restore when going back to the parent case study
+  const parentScrollY = location.state?.parentScrollY ?? scrollY
 
   // Lightbox state
   const [lightboxOpen, setLightboxOpen] = useState(false)
@@ -580,15 +588,24 @@ const DetailCaseStudyContent = ({ study }) => {
   const backLabel = referrerTitle ? `Back to ${referrerTitle}` : `Back to ${parentTitle}`
 
   // Handle back navigation with scroll restoration
+  // Use scrollY when going back to another detail page, parentScrollY when going to parent
   const handleBack = (e) => {
     e.preventDefault()
-    navigate(backTarget, { state: { restoreScrollY: scrollY } })
+    if (referrerId) {
+      // Going back to another detail page - restore its scroll and preserve parentScrollY
+      navigate(backTarget, { state: { restoreScrollY: scrollY, parentScrollY } })
+    } else {
+      // Going back to parent case study
+      navigate(backTarget, { state: { restoreScrollY: parentScrollY } })
+    }
   }
 
   // Context for inline links - pass current page info as referrer
+  // Also pass parentScrollY so it survives navigation between detail pages
   const linkContext = {
     referrerId: study.id,
-    referrerTitle: meta.title
+    referrerTitle: meta.title,
+    parentScrollY
   }
 
   return (

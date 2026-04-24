@@ -11,7 +11,7 @@ export const caseStudies = [
   {
     id: 'doordash-doubledash',
     variant: 'leadership',
-    status: 'draft',
+    status: 'published',
     protected: true,
     meta: {
       title: 'Doubledash',
@@ -37,7 +37,7 @@ export const caseStudies = [
       caption: null,
       overlay: null
     },
-    leadership: leadershipCaseStudies['doordash-doubledash']
+    leadership: tightLeadershipCaseStudies['doordash-doubledash']
   },
   {
     id: 'doordash-metab',
@@ -168,7 +168,7 @@ The image below shows how we documented the system. Module types, ownership, tie
             },
             {
               type: 'video',
-              src: '/images/PairingmenuFailure.mov',
+              src: '/images/PairingmenuFailure.mp4',
               poster: '/images/PairingmenuFailure-poster.jpg',
               alt: 'Item-level pairing experiment',
               caption: 'Item-Level Pairing',
@@ -176,7 +176,7 @@ The image below shows how we documented the system. Module types, ownership, tie
             },
             {
               type: 'video',
-              src: '/images/BottomSheetOnStoreFailure.mov',
+              src: '/images/BottomSheetOnStoreFailure.mp4',
               poster: '/images/BottomSheetOnStoreFailure-poster.jpg',
               alt: 'Contextual bottom sheet in-flow experiment',
               caption: 'Bottom Sheet',
@@ -346,21 +346,21 @@ This meant we could transform the tracker from a passive status view into an act
           items: [
             {
               type: 'video',
-              src: '/images/Doubledash01.mov?v=2',
+              src: '/images/Doubledash01.mp4',
               poster: '/images/Doubledash01-poster.jpg',
               alt: 'Doubledash experience on mobile',
               caption: 'Post-order Transition'
             },
             {
               type: 'video',
-              src: '/images/Doubledash02.mov',
+              src: '/images/Doubledash02.mp4',
               poster: '/images/Doubledash02-poster.jpg',
               alt: 'Doubledash half-sheet shopping experience',
               caption: 'Setting Expectations'
             },
             {
               type: 'video',
-              src: '/images/Doubledash03.mov',
+              src: '/images/Doubledash03.mp4',
               poster: '/images/Doubledash03-poster.jpg',
               alt: 'Doubledash integrated checkout experience',
               caption: 'Integrated Checkout'
@@ -620,7 +620,7 @@ This work not only improved the product experience but established a more scalab
       videoHeading: 'Doubledash: One delivery, multiple stores',
       closing: null,
       video: {
-        src: '/images/doubledash-combos.mov',
+        src: '/images/doubledash-combos.mp4',
         poster: '/images/doubledash-combos-poster.jpg',
         caption: null
       },
@@ -825,19 +825,19 @@ Doubledash was a key lever in that strategy, enabling cross-vertical adoption wh
           phoneVideosRowInfoContent: 'The half-sheet transformed order tracking into a lightweight shopping surface.\n\nProminent for those who wanted to browse, ignorable for those who didn\'t.\n\nIt communicated how bundling worked and what fees to expect, with streamlined checkout that kept order tracking visible throughout.',
           phoneVideosRow: [
             {
-              video: '/images/Doubledash01.mov?v=2',
+              video: '/images/Doubledash01.mp4',
               poster: '/images/Doubledash01-poster.jpg',
               alt: 'Doubledash experience on mobile',
               caption: 'Post-order Transition'
             },
             {
-              video: '/images/Doubledash02.mov',
+              video: '/images/Doubledash02.mp4',
               poster: '/images/Doubledash02-poster.jpg',
               alt: 'Doubledash half-sheet shopping experience',
               caption: 'Setting Expectations'
             },
             {
-              video: '/images/Doubledash03.mov',
+              video: '/images/Doubledash03.mp4',
               poster: '/images/Doubledash03-poster.jpg',
               alt: 'Doubledash integrated checkout experience',
               caption: 'Integrated Checkout'
@@ -1029,14 +1029,14 @@ Doubledash was a key lever in that strategy, enabling cross-vertical adoption wh
         },
         {
           type: 'video',
-          src: '/images/PairingmenuFailure.mov',
+          src: '/images/PairingmenuFailure.mp4',
           poster: '/images/PairingmenuFailure-poster.jpg',
           alt: 'Item-level pairing experiment',
           caption: 'Item-Level Pairing'
         },
         {
           type: 'video',
-          src: '/images/BottomSheetOnStoreFailure.mov',
+          src: '/images/BottomSheetOnStoreFailure.mp4',
           poster: '/images/BottomSheetOnStoreFailure-poster.jpg',
           alt: 'Contextual bottom sheet in-flow experiment',
           caption: 'Contextual Bottom Sheet (In-Flow)'
@@ -1119,7 +1119,7 @@ A separate experiment tested item-level pairing menus. I felt it lacked prominen
       futureTwoUpNarrative: 'This last concept envisions Doordash as a natively multi-store shopping destination.',
       futureTwoUp: [
         { src: '/images/FutureCart.png', alt: 'Future cart concept', type: 'image', label: 'Multi-store Cart' },
-        { src: '/images/FutureDelivery.mov', poster: '/images/FutureDelivery-poster.jpg', alt: 'Future delivery concept', type: 'video', label: 'Multi-store Delivery' }
+        { src: '/images/FutureDelivery.mp4', poster: '/images/FutureDelivery-poster.jpg', alt: 'Future delivery concept', type: 'video', label: 'Multi-store Delivery' }
       ],
       leadingWithDesignHighlight: {
         heading: 'Leading with Design',
@@ -1711,7 +1711,7 @@ This positioned Me Tab as a durable driver of repeat behavior - capturing high-i
         title: 'Broad Query Intelligence',
         description: 'Highlight the top dish each merchant is known for when customers search broad categories like "thai", "italian", or "breakfast".',
         thumbnail: '/images/doordash-evidence-small-card-hero.png',
-        image: '/images/doordash-evidence-dish.png',
+        image: '/images/doordash-evidence-dish.webp',
         details: 'Leaderboard-style ranking helps surface customer favorites and trending items.'
       },
       {
@@ -1719,7 +1719,7 @@ This positioned Me Tab as a durable driver of repeat behavior - capturing high-i
         title: 'Great Value Badges',
         description: 'Badging high-value stores for budget-conscious customers with "Great value" leaderboards.',
         thumbnail: '/images/doordash-evidence-hero02.png',
-        image: '/images/doordash-evidence-budget.png',
+        image: '/images/doordash-evidence-budget.webp',
         details: 'Works in conjunction with updated price-per-person metadata to help value-seekers find the right fit.'
       },
       {
@@ -1727,7 +1727,7 @@ This positioned Me Tab as a durable driver of repeat behavior - capturing high-i
         title: 'Personalized Dietary Preferences',
         description: 'Prioritize showing dietary tags when we detect certain dietary preferences based on past orders and browsing.',
         thumbnail: '/images/doordash-evidence-hero03.png',
-        image: '/images/doordash-evidence-dietary.png',
+        image: '/images/doordash-evidence-dietary.webp',
         details: 'Dishes must meet criteria before being counted as an option. Storepage organization reflects customer preferences.'
       },
       {
@@ -1735,7 +1735,7 @@ This positioned Me Tab as a durable driver of repeat behavior - capturing high-i
         title: 'Fastest Delivery Indicators',
         description: 'Testing different color treatments to call out speedy stores near the customer.',
         thumbnail: '/images/doordash-evidence-hero04.png',
-        image: '/images/doordash-evidence-speed.png',
+        image: '/images/doordash-evidence-speed.webp',
         details: '"Fastest" designation based on dayparting, district, and selection algorithms.'
       }
     ],

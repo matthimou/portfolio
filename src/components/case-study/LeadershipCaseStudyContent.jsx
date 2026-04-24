@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import CaseStudyMetrics from './CaseStudyMetrics'
 import GoDeeper from '../ui/GoDeeper'
 import InfoIndicator from '../ui/InfoIndicator'
+import VideoPlayer from '../ui/VideoPlayer'
 import './LeadershipCaseStudyContent.css'
 
 // Inline link that preserves scroll position
@@ -57,13 +58,11 @@ const ComparisonLightbox = ({ items, currentIndex, onClose, onPrev, onNext, noCa
             className={`leadership-lightbox__image ${noCard ? 'leadership-lightbox__image--no-shadow' : ''}`}
           />
         ) : (
-          <video
+          <VideoPlayer
             src={currentItem.src}
             poster={currentItem.poster}
-            muted
-            loop
-            autoPlay
-            playsInline
+            autoPlay={true}
+            noShadow={noCard}
             className={`leadership-lightbox__video ${noCard ? 'leadership-lightbox__video--no-shadow' : ''}`}
           />
         )}
@@ -292,7 +291,7 @@ const LeadershipCaseStudyContent = ({ study }) => {
       {/* Full Bleed Image (between Leadership Challenge and How I Led) */}
       {fullBleedImage && (
         <figure className="leadership-content__full-bleed">
-          <img src={fullBleedImage.src} alt={fullBleedImage.alt} />
+          <img src={fullBleedImage.src} alt={fullBleedImage.alt} loading="lazy" />
         </figure>
       )}
 
@@ -407,15 +406,12 @@ const LeadershipCaseStudyContent = ({ study }) => {
                       src={whatWeShipped.comparison.before.src}
                       alt={whatWeShipped.comparison.before.alt || ''}
                       className="leadership-content__comparison-img"
+                      loading="lazy"
                     />
                   ) : (
-                    <video
+                    <VideoPlayer
                       src={whatWeShipped.comparison.before.src}
                       poster={whatWeShipped.comparison.before.poster}
-                      muted
-                      loop
-                      autoPlay
-                      playsInline
                       className="leadership-content__comparison-vid"
                     />
                   )}
@@ -450,15 +446,12 @@ const LeadershipCaseStudyContent = ({ study }) => {
                       src={whatWeShipped.comparison.after.src}
                       alt={whatWeShipped.comparison.after.alt || ''}
                       className="leadership-content__comparison-img"
+                      loading="lazy"
                     />
                   ) : (
-                    <video
+                    <VideoPlayer
                       src={whatWeShipped.comparison.after.src}
                       poster={whatWeShipped.comparison.after.poster}
-                      muted
-                      loop
-                      autoPlay
-                      playsInline
                       className="leadership-content__comparison-vid"
                     />
                   )}
@@ -514,13 +507,9 @@ const LeadershipCaseStudyContent = ({ study }) => {
           {whatWeShipped.video && !whatWeShipped.comparison && (
             <figure className="leadership-content__shipped-video">
               <div className="leadership-content__shipped-vid-wrapper">
-                <video
+                <VideoPlayer
                   src={whatWeShipped.video.src}
                   poster={whatWeShipped.video.poster}
-                  muted
-                  loop
-                  autoPlay
-                  playsInline
                   className="leadership-content__shipped-vid"
                 />
               </div>
@@ -537,6 +526,7 @@ const LeadershipCaseStudyContent = ({ study }) => {
                 src={whatWeShipped.image.src}
                 alt={whatWeShipped.image.alt}
                 className="leadership-content__shipped-img"
+                loading="lazy"
               />
               {whatWeShipped.image.caption && (
                 <figcaption className="leadership-content__shipped-caption">

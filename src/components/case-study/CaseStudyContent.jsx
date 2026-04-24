@@ -1,7 +1,8 @@
-import React, { useEffect, useRef, useState, useCallback } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import CaseStudyMetrics from './CaseStudyMetrics'
 import CaseStudyTestimonial from './CaseStudyTestimonial'
 import InfoIndicator from '../ui/InfoIndicator'
+import VideoPlayer from '../ui/VideoPlayer'
 import './CaseStudyContent.css'
 
 // Helper to parse **bold** text
@@ -81,39 +82,23 @@ const ImageLightbox = ({ images, currentIndex, onClose, onPrev, onNext }) => {
   )
 }
 
+// AutoPlayVideo wrapper that uses the shared VideoPlayer component
+// Maintains backward compatibility with existing className patterns
 const AutoPlayVideo = ({ src, poster, caption, noShadow, noBorderRadius }) => {
-  const videoRef = useRef(null)
-
-  useEffect(() => {
-    const video = videoRef.current
-    if (!video) return
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          video.play().catch(() => {})
-        } else {
-          video.pause()
-        }
-      },
-      { threshold: 0.5 }
-    )
-
-    observer.observe(video)
-    return () => observer.disconnect()
-  }, [])
+  const videoClasses = [
+    'case-study-content__video-player',
+    noShadow && 'case-study-content__video-player--no-shadow',
+    noBorderRadius && 'case-study-content__video-player--no-radius'
+  ].filter(Boolean).join(' ')
 
   return (
     <figure className="case-study-content__video-wrapper">
-      <video
-        ref={videoRef}
+      <VideoPlayer
         src={src}
         poster={poster}
-        muted
-        loop
-        playsInline
-        preload="metadata"
-        className={`case-study-content__video-player ${noShadow ? 'case-study-content__video-player--no-shadow' : ''} ${noBorderRadius ? 'case-study-content__video-player--no-radius' : ''}`}
+        className={videoClasses}
+        noShadow={noShadow}
+        noBorderRadius={noBorderRadius}
       />
       {caption && (
         <figcaption className="case-study-content__video-caption">
@@ -1815,13 +1800,9 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                       onKeyDown={(e) => e.key === 'Enter' && openVideoLightbox(index)}
                     >
                       <div className="case-study-content__phone-video-container">
-                        <video
+                        <VideoPlayer
                           src={videoItem.video}
                           poster={videoItem.poster}
-                          autoPlay
-                          muted
-                          loop
-                          playsInline
                           className="case-study-content__phone-video-player"
                         />
                         <div className="case-study-content__video-zoom">
@@ -1843,13 +1824,9 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
               {solution.timeline[1]?.phoneVideo && (
                 <figure className="case-study-content__phone-video">
                   <div className="case-study-content__phone-video-container">
-                    <video
+                    <VideoPlayer
                       src={solution.timeline[1].phoneVideo.video}
                       poster={solution.timeline[1].phoneVideo.poster}
-                      autoPlay
-                      muted
-                      loop
-                      playsInline
                       className="case-study-content__phone-video-player"
                     />
                     {solution.timeline[1].phoneVideo.frame && (
@@ -1857,6 +1834,7 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                         src={solution.timeline[1].phoneVideo.frame}
                         alt=""
                         className="case-study-content__phone-video-frame"
+                        loading="lazy"
                       />
                     )}
                   </div>
@@ -1878,13 +1856,9 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
               {solution.timeline[1]?.phoneVideoSecondary && (
                 <figure className="case-study-content__phone-video">
                   <div className="case-study-content__phone-video-container">
-                    <video
+                    <VideoPlayer
                       src={solution.timeline[1].phoneVideoSecondary.video}
                       poster={solution.timeline[1].phoneVideoSecondary.poster}
-                      autoPlay
-                      muted
-                      loop
-                      playsInline
                       className="case-study-content__phone-video-player"
                     />
                   </div>
@@ -1901,13 +1875,9 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
               {solution.timeline[1]?.phoneVideoTertiary && (
                 <figure className="case-study-content__phone-video">
                   <div className="case-study-content__phone-video-container">
-                    <video
+                    <VideoPlayer
                       src={solution.timeline[1].phoneVideoTertiary.video}
                       poster={solution.timeline[1].phoneVideoTertiary.poster}
-                      autoPlay
-                      muted
-                      loop
-                      playsInline
                       className="case-study-content__phone-video-player"
                     />
                   </div>
@@ -2128,13 +2098,9 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
               )}
               {solution.timeline[1]?.desktopVideo && (
                 <figure className="case-study-content__desktop-video">
-                  <video
+                  <VideoPlayer
                     src={solution.timeline[1].desktopVideo.src}
                     poster={solution.timeline[1].desktopVideo.poster}
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
                     className="case-study-content__desktop-video-player"
                   />
                   {solution.timeline[1].desktopVideo.caption && (
@@ -2276,13 +2242,9 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                   )}
                   {solution.mediaFooterMedia && (
                     <figure className="case-study-content__media-footer-figure">
-                      <video
+                      <VideoPlayer
                         src={solution.mediaFooterMedia.src}
                         poster={solution.mediaFooterMedia.poster}
-                        autoPlay
-                        muted
-                        loop
-                        playsInline
                         className="case-study-content__media-footer-video"
                       />
                       {solution.mediaFooterMedia.caption && (
@@ -2405,13 +2367,10 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
 
           <div className="lightbox__content" onClick={(e) => e.stopPropagation()}>
             {futureTwoUpItems[futureTwoUpLightboxIndex]?.type === 'video' ? (
-              <video
+              <VideoPlayer
                 src={futureTwoUpItems[futureTwoUpLightboxIndex]?.src}
                 poster={futureTwoUpItems[futureTwoUpLightboxIndex]?.poster}
-                autoPlay
-                muted
-                loop
-                playsInline
+                autoPlay={true}
                 className="lightbox__image"
               />
             ) : (
@@ -2572,14 +2531,11 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
           </button>
 
           <div className="lightbox__content lightbox__content--video" onClick={(e) => e.stopPropagation()}>
-            <video
+            <VideoPlayer
               key={videoLightboxIndex}
               src={phoneVideosRow[videoLightboxIndex]?.video}
               poster={phoneVideosRow[videoLightboxIndex]?.poster}
-              autoPlay
-              muted
-              loop
-              playsInline
+              autoPlay={true}
               className="lightbox__video"
             />
             {phoneVideosRow[videoLightboxIndex]?.caption && (
@@ -2867,13 +2823,9 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                 >
                   <div className="case-study-content__lessons-media-container">
                     {item.type === 'video' ? (
-                      <video
+                      <VideoPlayer
                         src={item.src}
                         poster={item.poster}
-                        autoPlay
-                        muted
-                        loop
-                        playsInline
                         className="case-study-content__lessons-media-video"
                       />
                     ) : (
@@ -2881,6 +2833,7 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                         src={item.src}
                         alt={item.alt}
                         className="case-study-content__lessons-media-image"
+                        loading="lazy"
                       />
                     )}
                     <div className="case-study-content__lessons-media-zoom">
@@ -3308,18 +3261,14 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
                 >
                   {item.type === 'video' ? (
                     <div className="case-study-content__platform-two-up-video-container">
-                      <video
+                      <VideoPlayer
                         src={item.src}
                         poster={item.poster}
-                        autoPlay
-                        muted
-                        loop
-                        playsInline
                         className="case-study-content__platform-two-up-video"
                       />
                     </div>
                   ) : (
-                    <img src={item.src} alt={item.alt} />
+                    <img src={item.src} alt={item.alt} loading="lazy" />
                   )}
                   <div className="case-study-content__section-image-zoom">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -3430,14 +3379,11 @@ const CaseStudyContent = ({ introduction, problem, solution, impact, features })
 
           <div className={`lightbox__content ${lessonsMediaRow[lessonsLightboxIndex]?.type === 'video' ? 'lightbox__content--video' : ''}`} onClick={(e) => e.stopPropagation()}>
             {lessonsMediaRow[lessonsLightboxIndex]?.type === 'video' ? (
-              <video
+              <VideoPlayer
                 key={lessonsLightboxIndex}
                 src={lessonsMediaRow[lessonsLightboxIndex]?.src}
                 poster={lessonsMediaRow[lessonsLightboxIndex]?.poster}
-                autoPlay
-                muted
-                loop
-                playsInline
+                autoPlay={true}
                 className="lightbox__video"
               />
             ) : (
