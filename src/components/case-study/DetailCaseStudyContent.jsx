@@ -507,7 +507,6 @@ const DetailCaseStudyContent = ({ study }) => {
   const { meta, parentId, content } = study
   const location = useLocation()
   const navigate = useNavigate()
-  const scrollY = location.state?.scrollY
 
   // Read referrer info for dynamic back navigation
   const referrerId = location.state?.referrerId
@@ -515,7 +514,12 @@ const DetailCaseStudyContent = ({ study }) => {
 
   // Preserve parent scroll position through navigation chain
   // This is the scroll position to restore when going back to the parent case study
-  const parentScrollY = location.state?.parentScrollY ?? scrollY
+  // Handle both new naming (parentScrollY) and legacy naming (scrollY from older GoDeeper)
+  const parentScrollY = location.state?.parentScrollY ?? location.state?.scrollY
+
+  // The scroll position of the page that linked to us (used for back navigation to another sub-page)
+  // InlineLink passes this as scrollY - it's where the PREVIOUS page was scrolled to when they clicked
+  const previousPageScrollY = location.state?.scrollY
 
   // Lightbox state
   const [lightboxOpen, setLightboxOpen] = useState(false)
@@ -588,12 +592,12 @@ const DetailCaseStudyContent = ({ study }) => {
   const backLabel = referrerTitle ? `Back to ${referrerTitle}` : `Back to ${parentTitle}`
 
   // Handle back navigation with scroll restoration
-  // Use scrollY when going back to another detail page, parentScrollY when going to parent
   const handleBack = (e) => {
     e.preventDefault()
     if (referrerId) {
-      // Going back to another detail page - restore its scroll and preserve parentScrollY
-      navigate(backTarget, { state: { restoreScrollY: scrollY, parentScrollY } })
+      // Going back to another detail page
+      // Restore to where that page was scrolled when they clicked the link to us
+      navigate(backTarget, { state: { restoreScrollY: previousPageScrollY, parentScrollY } })
     } else {
       // Going back to parent case study
       navigate(backTarget, { state: { restoreScrollY: parentScrollY } })

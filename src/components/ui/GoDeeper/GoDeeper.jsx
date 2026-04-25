@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import './GoDeeper.css'
 
 /**
@@ -18,12 +18,21 @@ const GoDeeper = ({
   children,
   className = ''
 }) => {
+  const navigate = useNavigate()
   const baseClass = 'go-deeper'
   const variantClass = `${baseClass}--${variant}`
   const classes = [baseClass, variantClass, className].filter(Boolean).join(' ')
 
+  const handleClick = (e) => {
+    e.preventDefault()
+    // Save current scroll position before navigating to sub-page
+    // Named parentScrollY because this IS the parent case study's scroll position
+    const parentScrollY = window.scrollY
+    navigate(to, { state: { returnTo, parentScrollY } })
+  }
+
   return (
-    <Link to={to} state={{ returnTo }} className={classes}>
+    <Link to={to} onClick={handleClick} className={classes}>
       {variant === 'chip' && (
         <svg
           className="go-deeper__icon"
