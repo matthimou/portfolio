@@ -47,6 +47,17 @@
 - Spacing scale: 8, 16, 24, 40, 64, 80, 96px
 - Type scale: 12, 14, 16, 18, 20, 24, 30, 36, 48px
 
+## Git Commit Practices
+
+Before committing, always verify all related changes are staged:
+
+1. **Run `git status`** to see all modified files
+2. **Review the list** — if a feature touches multiple files (e.g., adding a data property AND a filter that uses it), ensure ALL related files are staged
+3. **Run `git diff --staged`** to confirm the staged changes are complete
+4. **If changes span data + logic** (like adding `hiddenFromNav` to data AND filtering by it in a component), double-check both files are included
+
+Common mistake to avoid: Committing data/config changes without the corresponding code that uses them.
+
 ## Navigation & Scroll Restoration
 
 ### Architecture
