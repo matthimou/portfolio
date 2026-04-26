@@ -539,12 +539,22 @@ const DetailCaseStudyContent = ({ study }) => {
   const [lightboxIndex, setLightboxIndex] = useState(0)
 
   // Scroll restoration when returning to this detail page from another detail page
+  // Multiple attempts account for lazy-loaded images causing layout shifts
   useEffect(() => {
     const restoreScrollY = location.state?.restoreScrollY
     if (restoreScrollY !== undefined) {
-      setTimeout(() => {
-        window.scrollTo(0, restoreScrollY)
-      }, 0)
+      const scrollToTarget = () => window.scrollTo(0, restoreScrollY)
+
+      // Immediate scroll
+      scrollToTarget()
+
+      // Follow-up scrolls to account for images loading
+      const delays = [50, 150, 300, 500]
+      const timeouts = delays.map(delay =>
+        setTimeout(scrollToTarget, delay)
+      )
+
+      return () => timeouts.forEach(clearTimeout)
     }
   }, [location.state?.restoreScrollY])
 

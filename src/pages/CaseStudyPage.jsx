@@ -1,4 +1,5 @@
-import { useParams, Link, Navigate } from 'react-router-dom'
+import { useEffect } from 'react'
+import { useParams, Link, Navigate, useLocation } from 'react-router-dom'
 import { caseStudies } from '../data/caseStudies'
 import { useAuth } from '../context/AuthContext'
 import CaseStudyHero from '../components/case-study/CaseStudyHero'
@@ -12,7 +13,28 @@ const publishedStudies = caseStudies.filter(s => s.status === 'published')
 
 const CaseStudyPage = ({ onOpenLogin }) => {
   const { projectId } = useParams()
+  const location = useLocation()
   const { isAuthenticated, isAuthLoading } = useAuth()
+
+  // Restore scroll position when returning from a detail page
+  // Multiple attempts account for lazy-loaded images causing layout shifts
+  useEffect(() => {
+    const restoreScrollY = location.state?.restoreScrollY
+    if (restoreScrollY !== undefined) {
+      const scrollToTarget = () => window.scrollTo(0, restoreScrollY)
+
+      // Immediate scroll
+      scrollToTarget()
+
+      // Follow-up scrolls to account for images loading
+      const delays = [50, 150, 300, 500]
+      const timeouts = delays.map(delay =>
+        setTimeout(scrollToTarget, delay)
+      )
+
+      return () => timeouts.forEach(clearTimeout)
+    }
+  }, [location.state])
 
   // Only allow published case studies
   const study = publishedStudies.find(s => s.id === projectId)
@@ -33,10 +55,10 @@ const CaseStudyPage = ({ onOpenLogin }) => {
   }
 
   // Navigation only shows published studies the user can access
-  // Exclude detail pages from prev/next navigation
+  // Exclude detail pages and hiddenFromNav studies from prev/next navigation
   const visibleStudies = isAuthenticated
-    ? publishedStudies.filter(s => s.variant !== 'detail')
-    : publishedStudies.filter(s => !s.protected && s.variant !== 'detail')
+    ? publishedStudies.filter(s => s.variant !== 'detail' && !s.hiddenFromNav)
+    : publishedStudies.filter(s => !s.protected && s.variant !== 'detail' && !s.hiddenFromNav)
 
   // Find current project index for navigation (within visible studies)
   // Detail pages won't be in visibleStudies, so they won't show prev/next nav
