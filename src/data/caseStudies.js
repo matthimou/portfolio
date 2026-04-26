@@ -13,6 +13,7 @@ export const caseStudies = [
     variant: 'leadership',
     status: 'published',
     protected: true,
+    hiddenFromNav: true,
     meta: {
       title: 'Doubledash',
       client: 'DoorDash',
@@ -44,7 +45,7 @@ export const caseStudies = [
     variant: 'leadership',
     status: 'published',
     protected: true,
-    hiddenFromNav: false,
+    hiddenFromNav: true,
     meta: {
       title: 'Me Tab',
       client: 'DoorDash',
