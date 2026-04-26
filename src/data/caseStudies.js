@@ -542,7 +542,7 @@ This work not only improved the product experience but established a more scalab
     variant: 'leadership',
     status: 'published',
     protected: true,
-    hiddenFromNav: true,
+    hiddenFromNav: false,
     meta: {
       title: 'Me Tab (Tight)',
       client: 'DoorDash',

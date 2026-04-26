@@ -91,6 +91,7 @@ Transform order tracking - a utility surface - into a shopping platform without 
         after: {
           type: 'video',
           src: '/images/DoubledashWalkthroughFinal02.mp4',
+          poster: '/images/DoubledashWalkthroughFinal02-poster.jpg',
           label: 'After',
           caption: 'Core Commerce Platform'
         },
@@ -148,14 +149,18 @@ Transform order tracking - a utility surface - into a shopping platform without 
     impactHook: `Launched in 7 weeks to 100% of US users, driving $148M incremental GOV and 4% of marketplace orders.`,
 
     strategicContext: {
-      content: `The home page drove ~50% of orders—but relied heavily on reorders, conflicting with a push toward discovery.
+      content: `DoorDash's home page drove ~50% of orders, and a significant portion were reorders. But new merchant discovery was becoming the strategic priority. We needed to shift impressions from repeat behavior to new merchant trial.
 
-The ask: move reorders off Home.`,
-      insight: `This wasn't a feature problem—it was a **missing customer layer.** Reorders, loyalty, identity, and settings were fragmented.`
+The proposal was to move reorders to a dedicated surface, but I saw a bigger opportunity. Customers had no single place to understand their relationship with DoorDash. Reordering, loyalty, account settings, and identity were fragmented across surfaces.
+
+I reframed the problem: not a reorder feature, but a unified customer layer that could house multiple product needs while solving the home page tension.`,
+      insight: `By expanding the frame, we could solve this problem while **creating a platform for multiple teams.**`
     },
 
     leadershipChallenge: {
-      content: `I led a cross-org initiative spanning 6 teams with competing priorities. The challenge: resolve competing priorities without hurting core revenue.`,
+      content: `Multiple teams were shifting strategy simultaneously, each needing priority placement to hit their metrics.
+
+Any solution would need to resolve competing priorities, not simply reorganize them. Each team had different success metrics, and all would benefit from, or be threatened by, a unified surface.`,
       stakeholders: [
         {
           title: 'DashPass',
@@ -172,45 +177,55 @@ The ask: move reorders off Home.`,
         {
           title: 'Delivery',
           description: '→ owned Orders surface'
+        },
+        {
+          title: 'New Verticals',
+          description: '→ different reorder patterns'
+        },
+        {
+          title: 'Order Experience',
+          description: '→ owned Cart & Store pages'
         }
       ]
     },
 
+    fullBleedImage: {
+      src: '/images/fullbleed-org-alignment-02.png',
+      alt: 'Multiple teams converging on the identity layer'
+    },
+
     howILed: {
-      intro: null,
+      intro: `I drove the work by defining the problem, creating alignment frameworks, and making the calls that kept scope focused.`,
       actions: [
-        `**Reframed the problem** — From "move reorders" → "build a unified customer layer"`,
-        `**Defined principles upfront** — Enabled faster decisions without constant debate`,
-        `**Aligned on success metrics** — Prioritized reorder GOV over engagement or subscriptions`,
-        `**Coordinated across 6 teams** — Maintained alignment while protecting the core bet`,
-        `**Developed leadership within the team** — Scoped a senior designer into cross-org ownership`,
-        `**Held scope under pressure** — Prevented V1 from expanding beyond what we could ship`
+        `**I reframed the problem before anyone started designing.** From "move reorders" → "build a unified customer layer"`,
+        {
+          text: `**I wrote the sprint brief & established shared metrics & principles.** Enabled faster decisions without constant debate.`,
+          goDeeper: {
+            to: 'doordash-metab--sprint',
+            variant: 'chip',
+            label: 'See how principles & metrics shaped the sprint',
+            returnTo: 'how-i-led'
+          }
+        },
+        `**I coordinated design and execution across 6 product teams.** Each had unique goals and conflicting needs.`,
+        `**I mentored a senior designer to lead.** I provided structure and coaching to ensure success.`,
+        `**I held scope under pressure when stakeholders pushed.** Prevented V1 from expanding beyond what we could ship with high quality.`
       ]
     },
 
     keyMoment: {
-      title: 'DashPass Conflict',
-      situation: `DashPass leadership pushed to expand scope mid-sprint.`,
-      stakes: `A top priority stakeholder could derail or bloat the launch.`,
-      myRead: null,
-      action: `Aligned 1:1:
-• Validated long-term vision
-• Anchored on V1 success criteria (protect reorder revenue)
-• Committed to a V2 sprint`,
-      outcome: `Gained support, later became an advocate, and enabled both V1 success and V2 expansion.`
+      title: 'Resolving the DashPass Conflict',
+      situation: `Mid-sprint, the Senior Product Director for DashPass was concerned that reorder was getting too much weight. He pushed for identity and subscription features that were outside V1 scope.`,
+      stakes: `DashPass was a top company priority, and this leader had significant organizational influence. The sprint was moving fast, and this could derail the strategy.`,
+      myRead: `His concerns were valid long-term. DashPass needed a permanent home, and this surface was the right place for it. But V1 had to prove the concept by maintaining reorder performance.`,
+      action: `I needed to acknowledge his vision while keeping the sprint focused. I asked to meet privately, acknowledged his vision, but grounded the conversation in V1 constraints. We were replacing meaningful revenue, and failure would prevent any future investment.
+
+I got his support by committing to a follow-on sprint once we'd proven the foundation.`,
+      outcome: `He aligned on the V1 approach and later became an advocate for the work. When Me Tab launched successfully, he referenced our conversation as an example of how cross-org collaboration should work.`
     },
 
     whatWeShipped: {
-      content: `A unified "Me" surface organizing:
-• Reordering (primary driver)
-• Identity (DashPass, profile)
-• Key actions (orders, settings)
-
-With:
-• Smart reorder ranking
-• Visual carts
-• Governance + integration model`,
-      tradeoffs: null,
+      content: null,
       comparison: {
         noCard: true,
         before: {
@@ -226,19 +241,43 @@ With:
           alt: 'Me Tab final release',
           label: 'After',
           caption: 'Me Tab'
+        },
+        goDeeper: {
+          to: 'doordash-metab--launched',
+          variant: 'chip',
+          label: 'See more about what we shipped',
+          returnTo: 'what-we-shipped'
         }
       }
     },
 
     impactReflection: {
+      combinedLayout: true,
+      impactIntro: 'Launched in 7 weeks to 100% of US users, Me Tab drove $148M incremental GOV and became the foundation for DoorDash\'s customer identity layer.',
       metrics: [
         { value: '$148M', label: 'Incremental GOV' },
         { value: '4M', label: 'Incremental orders' },
         { value: '180K', label: 'DashPass subscribers' },
         { value: '4%', label: 'Of marketplace orders' }
       ],
-      narrative: null,
-      organizationalImpact: null,
+      narrative: `The lift in order frequency came entirely from reorders - new merchant trial remained neutral. This validated our core bet: we could increase repeat behavior without cannibalizing discovery.
+
+The impact compounded over time. A 5-month holdout showed order frequency lift growing from +0.25% to +0.29% as customers built new habits. At scale, Me Tab drove ~4% of total marketplace orders - representing ~$2.1B in annual GOV on iOS alone.`,
+      tradeoffs: [
+        {
+          title: 'Reorder dominated V1',
+          content: 'Replacing significant revenue. DashPass earned visibility but not a full hub yet.'
+        },
+        {
+          title: 'Replaced Orders Tab',
+          content: 'Adding a new nav element would add complexity. Orders matched existing mental model.'
+        },
+        {
+          title: 'Identity deferred',
+          content: 'Social got a foundation, not a destination.'
+        }
+      ],
+      reflectionLabel: 'Leadership Takeaways',
       reflection: [
         {
           title: 'Reframing creates leverage across orgs'

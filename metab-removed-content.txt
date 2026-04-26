@@ -1,0 +1,60 @@
+# Me Tab Removed/Migrated Content
+# Updated: 2026-04-25
+
+## Full Original impactReflection (from caseStudiesLeadership.js)
+
+The original non-tight Me Tab case study had this richer impactReflection content:
+
+### narrative
+```
+The lift in order frequency came entirely from reorders-new merchant trial remained neutral. This validated our core bet: we could increase repeat behavior without cannibalizing discovery.
+
+In a 5-month holdout, we observed +0.25% lift in 28-day order frequency, growing to +0.29% by day 84. Me Tab accounted for ~4% of total marketplace orders, representing ~$2.1B in annual GOV on iOS.
+```
+
+### organizationalImpact
+```
+The sprint model became a template for cross-org initiatives. The governance framework established how partner teams integrated.
+```
+
+### reflection (with full content)
+```js
+reflection: [
+  {
+    title: 'Align leadership earlier on cross-org tradeoffs',
+    content: `I anticipated the need for cross-org alignment but addressed it indirectly through principles and metrics rather than confronting it head-on. When tension surfaced mid-sprint, I had to course-correct. I would have escalated earlier and aligned leaders explicitly on tradeoffs before the sprint began.`
+  },
+  {
+    title: 'Provide more structure when stretching leaders',
+    content: `I asked a senior designer to lead the initiative as a growth opportunity. While they succeeded, stepping into cross-org leadership required more upfront structure and coaching than I planned for. I would add clearer expectations and support earlier.`
+  }
+]
+```
+
+### closing
+```
+This work established a durable foundation for how DoorDash organizes customer identity, turning a fragmented set of features into a cohesive system. The reframe - from "move reorders" to "unified customer layer" - was the insight that created space for multiple teams to build together.
+```
+
+---
+
+## Original tradeoffs (from caseStudiesLeadership.js whatWeShipped.tradeoffs)
+
+```js
+tradeoffs: [
+  `**Reorder dominated V1** We were replacing significant revenue. DashPass earned visibility but not a full hub yet - that came in V2.`,
+  `**Replaced Orders Tab** Adding a new nav element would add complexity everywhere. Orders matched existing mental model and gave us a foundation.`,
+  `**Identity deferred** Social got a foundation, not a destination. Contributor profiles were easily accessible.`
+]
+```
+
+---
+
+## What the tight version now has
+
+The tight version's impactReflection uses combinedLayout with:
+- impactIntro (brief summary)
+- metrics (unchanged)
+- tradeoffs (condensed from above)
+- reflectionLabel: 'Leadership Takeaways'
+- reflection (titles only, no content paragraphs)

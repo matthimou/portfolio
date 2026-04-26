@@ -566,6 +566,12 @@
   border-bottom: 1px solid var(--color-border-light);
 }
 
+/* Remove border when narrative follows */
+.leadership-content__highlights-metrics:has(+ .leadership-content__highlights-narrative) {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
 .leadership-content__highlights-metric {
   text-align: center;
 }
@@ -583,6 +589,24 @@
   font-size: var(--text-base);
   font-weight: var(--font-weight-medium);
   color: var(--color-text-primary);
+}
+
+/* Narrative block between metrics and columns */
+.leadership-content__highlights-narrative {
+  margin-bottom: var(--space-lg);
+  padding-bottom: var(--space-lg);
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.leadership-content__highlights-narrative p {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-relaxed);
+  margin: 0;
+}
+
+.leadership-content__highlights-narrative p + p {
+  margin-top: var(--space-sm);
 }
 
 /* Two-column layout for tradeoffs and takeaways */

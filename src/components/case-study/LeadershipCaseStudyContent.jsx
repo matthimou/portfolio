@@ -562,6 +562,13 @@ const LeadershipCaseStudyContent = ({ study }) => {
                 </div>
               )}
 
+              {/* Narrative block between metrics and columns */}
+              {impactReflection.narrative && (
+                <div className="leadership-content__highlights-narrative">
+                  {renderParagraphs(impactReflection.narrative)}
+                </div>
+              )}
+
               {/* Two-column layout for Tradeoffs and Takeaways */}
               <div className="leadership-content__highlights-columns">
                 {impactReflection.tradeoffs && (
