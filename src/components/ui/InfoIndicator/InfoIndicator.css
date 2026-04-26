@@ -155,11 +155,23 @@
    User-provided content as trigger
    ========================================== */
 
+/* When using custom trigger, the wrapper should behave like inline text */
+.info-indicator:has(.info-indicator__trigger--custom) {
+  display: inline;
+  vertical-align: baseline;
+  margin-left: 0;
+}
+
 .info-indicator__trigger--custom {
+  display: inline;
   background-color: transparent;
   width: auto;
   height: auto;
   border-radius: 0;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  vertical-align: baseline;
 }
 
 .info-indicator__trigger--custom:hover {

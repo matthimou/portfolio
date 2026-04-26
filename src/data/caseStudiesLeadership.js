@@ -110,6 +110,7 @@ The final system included: a half-sheet shopping experience that transformed the
         after: {
           type: 'video',
           src: '/images/DoubledashWalkthroughFinal02.mp4',
+          poster: '/images/DoubledashWalkthroughFinal02-poster.jpg',
           label: 'After',
           caption: 'Core Commerce Platform'
         }

@@ -23,12 +23,12 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  padding: 1rem 0;
+  padding: var(--space-sm) 0;
   background: none;
   border: none;
   cursor: pointer;
   text-align: left;
-  transition: opacity 0.2s ease;
+  transition: opacity var(--duration-fast) var(--easing-default);
 }
 
 .design-principles__header:hover {
@@ -38,7 +38,7 @@
 .design-principles__header:focus-visible {
   outline: 2px solid var(--color-accent-primary);
   outline-offset: 4px;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
 }
 
 .design-principles__icon {
@@ -67,7 +67,7 @@
   height: 24px;
   flex-shrink: 0;
   color: var(--color-text-tertiary);
-  transition: transform 0.3s ease-out;
+  transition: transform var(--duration-fast) var(--easing-out);
 }
 
 .design-principles__chevron--open {
@@ -79,7 +79,8 @@
   display: grid;
   grid-template-rows: 0fr;
   opacity: 0;
-  transition: grid-template-rows 0.3s ease-out, opacity 0.3s ease-out;
+  transition: grid-template-rows var(--duration-fast) var(--easing-out),
+              opacity var(--duration-fast) var(--easing-out);
 }
 
 .design-principles__content--visible {
@@ -97,7 +98,7 @@
   color: var(--color-text-secondary);
   line-height: var(--leading-relaxed);
   margin: 0;
-  padding: 0 0 1rem calc(24px + var(--space-sm));
+  padding: 0 0 var(--space-sm) calc(24px + var(--space-sm));
   max-width: 720px;
 }
 
