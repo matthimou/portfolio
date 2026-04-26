@@ -115,12 +115,12 @@ Transform order tracking - a utility surface - into a shopping platform without 
       ],
       tradeoffs: [
         {
-          title: 'Governance enabled speed',
-          content: 'Gave teams clear guidance and prevented surface degradation.'
+          title: 'Compounding growth is a game of inches',
+          content: 'Each increment built on the last. Small wins created leverage for larger bets.'
         },
         {
-          title: 'Continued pushing for the cart',
-          content: 'Although it required engineering work we couldn\'t justify early, I worked in the background to re-envision & refactor so we could relaunch in the cart.'
+          title: 'Post-purchase before moving up funnel',
+          content: 'Although it required engineering work we couldn\'t justify early, I continued in the background to re-envision & refactor so we could relaunch in the cart.'
         },
         {
           title: 'Unified UI over separate modules',
@@ -132,13 +132,13 @@ Transform order tracking - a utility surface - into a shopping platform without 
       reflectionLabel: 'Leadership Takeaways',
       reflection: [
         {
-          title: 'Governance enables scale on shared surfaces'
+          title: 'Governance enables scale & quality'
         },
         {
           title: 'Behavior > visibility for sustainable growth'
         },
         {
-          title: 'Design leadership = systems + structure, not just UX'
+          title: 'Vision ahead of planning gives design leverage'
         }
       ],
       closing: null

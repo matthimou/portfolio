@@ -499,8 +499,35 @@ This work not only improved the product experience but established a more scalab
           ]
         },
         {
+          type: 'text',
+          heading: 'Leading With Design',
+          content: `I push teams to stay ahead of product capabilities, using design to define what's possible before engineering constraints set the boundary. The concepts below explored what the future could look like for Doubledash if we brought it to the home page.`
+        },
+        {
+          type: 'media-row',
+          constrain: true,
+          caption: 'Discovery Concepts',
+          items: [
+            { type: 'image', src: '/images/Future01.png', alt: 'Future exploration concept 1' },
+            { type: 'image', src: '/images/Future02.png', alt: 'Future exploration concept 2' },
+            { type: 'image', src: '/images/Future03.png', alt: 'Future exploration concept 3' },
+            { type: 'image', src: '/images/Future04.png', alt: 'Future exploration concept 4' }
+          ]
+        },
+        {
+          type: 'text',
+          content: `This last concept envisions DoorDash as a natively multi-store shopping destination.`
+        },
+        {
+          type: 'media-row',
+          items: [
+            { type: 'image', src: '/images/FutureCart.png', alt: 'Future cart concept', caption: 'Multi-store Cart' },
+            { type: 'video', src: '/images/FutureDelivery.mp4', poster: '/images/FutureDelivery-poster.jpg', alt: 'Future delivery concept', caption: 'Multi-store Delivery' }
+          ]
+        },
+        {
           type: 'callout',
-          content: '**Each phase expanded capabilities while compounding business impact.** The governance framework enabled us to scale without degrading the core experience.'
+          content: '**Teams that stay ahead of product don\'t just design experiences—they shape the roadmap.**'
         }
       ]
     }

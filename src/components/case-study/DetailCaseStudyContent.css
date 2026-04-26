@@ -271,11 +271,39 @@
 /* Media Row - horizontal layout with image + videos (phone mockup style) */
 .detail-content__media-row {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: var(--space-xl) 0;
+  max-width: 100%;
+}
+
+.detail-content__media-row-items {
+  display: flex;
   justify-content: center;
   align-items: flex-end;
   gap: var(--space-md);
-  margin: var(--space-xl) 0;
   max-width: 100%;
+}
+
+.detail-content__media-row--constrained {
+  max-width: var(--content-max-width, 720px);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.detail-content__media-row--constrained .detail-content__media-row-items {
+  width: 100%;
+}
+
+.detail-content__media-row--constrained .detail-content__media-item {
+  max-width: none;
+}
+
+.detail-content__media-row-caption {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  text-align: center;
+  margin-top: var(--space-md);
 }
 
 .detail-content__media-item {
@@ -345,7 +373,7 @@
 }
 
 @media (max-width: 768px) {
-  .detail-content__media-row {
+  .detail-content__media-row-items {
     flex-wrap: wrap;
     gap: var(--space-lg);
   }
@@ -356,7 +384,7 @@
 }
 
 @media (max-width: 480px) {
-  .detail-content__media-row {
+  .detail-content__media-row-items {
     flex-direction: column;
     align-items: center;
   }

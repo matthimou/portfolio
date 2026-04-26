@@ -377,65 +377,77 @@ const renderSection = (section, index, { onMilestoneClick, onImageClick, linkCon
           heading: item.caption
         }))
 
-      return (
-        <div key={index} className="detail-content__media-row">
-          {section.items.map((item, i) => {
-            const isClickable = item.type !== 'video'
-            const lightboxIndex = isClickable
-              ? section.items.slice(0, i).filter(it => it.type !== 'video').length
-              : 0
+      const mediaRowClasses = [
+        'detail-content__media-row',
+        section.constrain && 'detail-content__media-row--constrained'
+      ].filter(Boolean).join(' ')
 
-            return (
-              <figure key={i} className="detail-content__media-item">
-                <div
-                  className={`detail-content__media-container ${isClickable ? 'detail-content__media-container--clickable' : ''}`}
-                  onClick={isClickable ? () => onImageClick?.(mediaRowItems, lightboxIndex) : undefined}
-                  role={isClickable ? 'button' : undefined}
-                  tabIndex={isClickable ? 0 : undefined}
-                  onKeyDown={isClickable ? (e) => e.key === 'Enter' && onImageClick?.(mediaRowItems, lightboxIndex) : undefined}
-                >
-                  {item.type === 'video' ? (
-                    <VideoPlayer
-                      src={item.src}
-                      poster={item.poster}
-                      className="detail-content__media-video"
-                    />
-                  ) : (
-                    <>
-                      <img
+      return (
+        <div key={index} className={mediaRowClasses}>
+          <div className="detail-content__media-row-items">
+            {section.items.map((item, i) => {
+              const isClickable = item.type !== 'video'
+              const lightboxIndex = isClickable
+                ? section.items.slice(0, i).filter(it => it.type !== 'video').length
+                : 0
+
+              return (
+                <figure key={i} className="detail-content__media-item">
+                  <div
+                    className={`detail-content__media-container ${isClickable ? 'detail-content__media-container--clickable' : ''}`}
+                    onClick={isClickable ? () => onImageClick?.(mediaRowItems, lightboxIndex) : undefined}
+                    role={isClickable ? 'button' : undefined}
+                    tabIndex={isClickable ? 0 : undefined}
+                    onKeyDown={isClickable ? (e) => e.key === 'Enter' && onImageClick?.(mediaRowItems, lightboxIndex) : undefined}
+                  >
+                    {item.type === 'video' ? (
+                      <VideoPlayer
                         src={item.src}
-                        alt={item.alt || ''}
-                        className="detail-content__media-image"
-                        loading="lazy"
+                        poster={item.poster}
+                        className="detail-content__media-video"
                       />
-                      <div className="detail-content__zoom-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                          <circle cx="11" cy="11" r="8" />
-                          <path d="M21 21l-4.35-4.35" />
-                          <path d="M11 8v6M8 11h6" />
-                        </svg>
-                      </div>
-                    </>
-                  )}
-                </div>
-                {item.caption && (
-                  <figcaption className="detail-content__media-caption">
-                    {item.caption}
-                    {item.myTake && (
-                      <InfoIndicator
-                        variant="icon"
-                        size="sm"
-                        label={`My take on ${item.caption}`}
-                        maxWidth={280}
-                      >
-                        <p className="detail-content__popup-content">{item.myTake}</p>
-                      </InfoIndicator>
+                    ) : (
+                      <>
+                        <img
+                          src={item.src}
+                          alt={item.alt || ''}
+                          className="detail-content__media-image"
+                          loading="lazy"
+                        />
+                        <div className="detail-content__zoom-icon">
+                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <circle cx="11" cy="11" r="8" />
+                            <path d="M21 21l-4.35-4.35" />
+                            <path d="M11 8v6M8 11h6" />
+                          </svg>
+                        </div>
+                      </>
                     )}
-                  </figcaption>
-                )}
-              </figure>
-            )
-          })}
+                  </div>
+                  {item.caption && (
+                    <figcaption className="detail-content__media-caption">
+                      {item.caption}
+                      {item.myTake && (
+                        <InfoIndicator
+                          variant="icon"
+                          size="sm"
+                          label={`My take on ${item.caption}`}
+                          maxWidth={280}
+                        >
+                          <p className="detail-content__popup-content">{item.myTake}</p>
+                        </InfoIndicator>
+                      )}
+                    </figcaption>
+                  )}
+                </figure>
+              )
+            })}
+          </div>
+          {section.caption && (
+            <figcaption className="detail-content__media-row-caption">
+              {section.caption}
+            </figcaption>
+          )}
         </div>
       )
 
