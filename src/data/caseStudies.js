@@ -76,7 +76,7 @@ export const caseStudies = [
   {
     id: 'doordash-doubledash--governance',
     variant: 'detail',
-    parentId: 'doordash-doubledash',
+    parentId: 'doordash-doubledash-tight',
     status: 'published',
     protected: true,
     meta: {
@@ -135,7 +135,7 @@ The image below shows how we documented the system. Module types, ownership, tie
   {
     id: 'doordash-doubledash--experiment-story',
     variant: 'detail',
-    parentId: 'doordash-doubledash',
+    parentId: 'doordash-doubledash-tight',
     status: 'published',
     protected: true,
     meta: {
@@ -195,7 +195,7 @@ The image below shows how we documented the system. Module types, ownership, tie
   {
     id: 'doordash-doubledash--mvp',
     variant: 'detail',
-    parentId: 'doordash-doubledash',
+    parentId: 'doordash-doubledash-tight',
     status: 'published',
     protected: true,
     meta: {
@@ -298,7 +298,7 @@ We tested two entry points: pre-checkout (cart) and post-purchase (order trackin
   {
     id: 'doordash-doubledash--sprints',
     variant: 'detail',
-    parentId: 'doordash-doubledash',
+    parentId: 'doordash-doubledash-tight',
     status: 'published',
     protected: true,
     meta: {
@@ -394,7 +394,7 @@ This meant we could transform the tracker from a passive status view into an act
   {
     id: 'doordash-doubledash--evolution',
     variant: 'detail',
-    parentId: 'doordash-doubledash',
+    parentId: 'doordash-doubledash-tight',
     status: 'published',
     protected: true,
     meta: {
@@ -1514,7 +1514,7 @@ This positioned Me Tab as a durable driver of repeat behavior - capturing high-i
   {
     id: 'doordash-metab--sprint',
     variant: 'detail',
-    parentId: 'doordash-metab',
+    parentId: 'doordash-metab-tight',
     status: 'published',
     protected: true,
     meta: {
@@ -1613,7 +1613,7 @@ This positioned Me Tab as a durable driver of repeat behavior - capturing high-i
   {
     id: 'doordash-metab--launched',
     variant: 'detail',
-    parentId: 'doordash-metab',
+    parentId: 'doordash-metab-tight',
     status: 'published',
     protected: true,
     meta: {
