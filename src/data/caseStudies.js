@@ -545,7 +545,7 @@ This work not only improved the product experience but established a more scalab
     protected: true,
     hiddenFromNav: false,
     meta: {
-      title: 'Me Tab (Tight)',
+      title: 'Me Tab',
       client: 'DoorDash',
       cardSummary: 'Built a unified customer surface driving $2.1B annual GOV and 4% of marketplace orders.',
       timeline: '2024',
