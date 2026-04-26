@@ -40,6 +40,7 @@
 
 /* Chip Variant - Pill-shaped button */
 .go-deeper--chip {
+  display: inline-flex;
   font-family: var(--font-display);
   font-size: var(--text-sm);
   font-weight: var(--font-weight-medium);
@@ -49,6 +50,14 @@
   border-radius: var(--radius-full);
   padding: var(--space-xs) var(--space-sm);
   gap: 6px;
+}
+
+/* When chip is inside a list item or paragraph, put it on its own line */
+li .go-deeper--chip,
+p + .go-deeper--chip {
+  display: flex;
+  width: fit-content;
+  margin-top: var(--space-md);
 }
 
 .go-deeper--chip:hover {
